@@ -4,7 +4,7 @@ phases:
   pre_build:
     commands:
       - export NODE_ENV=production
-      - cd users-website
+      - cd admin-website
       - apk add --no-cache python3 py-pip
       - pip install awscli
       - yarn install
