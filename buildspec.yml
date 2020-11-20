@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - export NODE_ENV=production
+      - cd users-website
+      - apk add --no-cache python3 py-pip
+      - pip install awscli
+      - yarn install
+      - yarn add -D @types/react-input-mask@^2.0.5 @types/react-router-dom@^5.1.6 @types/react-select@^3.0.25 @types/styled-components@^5.1.4 @types/yup@^0.29.9 @typescript-eslint/eslint-plugin@^4.8.1 @typescript-eslint/parser@^4.8.1 eslint@^7.13.0 eslint-config-airbnb@^18.2.1 eslint-config-prettier@^6.15.0 eslint-import-resolver-typescript@^2.3.0 eslint-plugin-import@^2.21.2 eslint-plugin-jsx-a11y@^6.3.0 eslint-plugin-prettier@^3.1.4 eslint-plugin-react@^7.20.0 eslint-plugin-react-hooks@^4 prettier@^2.1.2
+  build:
+    commands:
+      - yarn build
+  post_build:
+    commands:
+      - aws s3 sync build "s3://$BUCKET_NAME" --delete --acl public-read
