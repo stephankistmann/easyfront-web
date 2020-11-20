@@ -25,16 +25,16 @@ export const Container = styled.div`
 export const LogoutMenu = styled.button`
   position: absolute;
   top: 60px;
-  background: #f3f3f3;
+  background: #ffffff;
   height: 56px;
   border-radius: 10px;
   width: 100px;
   font-weight: 500;
   transition: background-color 0.2s;
   margin-top: 16px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 
   &:hover {
     background: #ff6757;
+    color: #ffffff;
   }
 `;

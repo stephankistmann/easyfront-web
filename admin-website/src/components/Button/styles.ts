@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { shade } from 'polished';
+import { invert } from 'polished';
 
 export const Container = styled.button`
   background: #ff6757;
@@ -14,6 +14,6 @@ export const Container = styled.button`
   margin-top: 16px;
 
   &:hover {
-    background: ${shade(0.2, '#ff6757')};
+    background: ${invert('#d0b7a7')};
   }
 `;

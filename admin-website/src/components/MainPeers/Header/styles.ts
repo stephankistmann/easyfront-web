@@ -1,4 +1,4 @@
-import { shade } from 'polished';
+import { invert } from 'polished';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -39,7 +39,7 @@ export const Title = styled.div`
     transition: background-color 0.2s;
 
     &:hover {
-      background: ${shade(0.2, '#ff6757')};
+      background: ${invert('#d0b7a7')};
     }
   }
 `;
