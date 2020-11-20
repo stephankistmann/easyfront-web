@@ -23,6 +23,7 @@ export const Container = styled.div`
 export const Menu = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100%;
   a {
     margin: 16px 0px 0px 30px;
     width: 85%;
@@ -33,7 +34,8 @@ export const Menu = styled.div`
   }
 
   & button:nth-child(7) {
+    position: fixed;
     align-self: flex-end;
-    margin-top: 285px;
+    margin-top: 40%;
   }
 `;

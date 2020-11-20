@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { IconBaseProps } from 'react-icons';
-import { Link } from 'react-router-dom';
 import { Line } from 'react-chartjs-2';
 import {
   FiChevronLeft,
   FiChevronRight,
-  FiEdit,
-  FiTrash,
   FiLogIn,
   FiKey,
   FiUsers,
@@ -22,7 +19,6 @@ import {
   DataContainer,
   ChartContainer,
   DataContentBox,
-  Content,
 } from './styles';
 import Header from './Header';
 import NavButton from '../NavButton';
@@ -174,11 +170,11 @@ const MainDashboard: React.FC<MainDashboardProps> = ({ name, icon: Icon }) => {
           <span>11/19/2020 - 12:38:33</span>
         </ListItems>
         <Pagination>
-          <NavButton name="previousPage" icon={FiChevronLeft} />
+          <NavButton icon={FiChevronLeft} />
           <NavPage>
             <span>1</span>
           </NavPage>
-          <NavButton name="previousPage" icon={FiChevronRight} />
+          <NavButton icon={FiChevronRight} />
         </Pagination>
       </List>
     </Container>

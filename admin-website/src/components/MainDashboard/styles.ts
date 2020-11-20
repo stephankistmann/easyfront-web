@@ -16,10 +16,6 @@ export const SelectContainer = styled.div`
   justify-content: space-around;
 `;
 
-export const Content = styled.div`
-  margin-top: 30px;
-`;
-
 export const List = styled.div`
   display: flex;
   flex-direction: column;
@@ -37,7 +33,42 @@ export const List = styled.div`
 export const ListItemsCategory = styled.div`
   display: flex;
   margin: 8px 16px 8px 16px;
-  justify-content: space-between;
+
+  span {
+    width: 50px;
+    :first-child {
+      width: 97px;
+    }
+
+    :nth-child(2) {
+      width: 235px;
+    }
+
+    :nth-child(3) {
+      width: 158px;
+    }
+
+    :nth-child(4) {
+      width: 164px;
+    }
+
+    :nth-child(5) {
+      width: 178px;
+    }
+
+    :nth-child(6) {
+      width: 221px;
+    }
+
+    :nth-child(7) {
+      width: 154px;
+    }
+
+    :nth-child(8) {
+      width: 210px;
+    }
+  }
+  }
 `;
 
 export const ListItems = styled.div`

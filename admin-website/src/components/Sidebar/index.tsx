@@ -47,7 +47,7 @@ const Sidebar: React.FC = () => {
           name="Settings"
           icon={FiSettings}
         />
-        <NavButton name="MenuButton" icon={FiMenu} />
+        <NavButton icon={FiMenu} />
       </Menu>
     </Container>
   );

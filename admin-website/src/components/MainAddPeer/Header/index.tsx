@@ -1,8 +1,5 @@
 import React from 'react';
 import { IconBaseProps } from 'react-icons';
-import { FiUserPlus } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
-import Button from '../../Button';
 import { Container, Title } from './styles';
 
 interface HeaderProps {

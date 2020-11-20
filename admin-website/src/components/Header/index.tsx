@@ -12,7 +12,7 @@ const Header: React.FC = () => {
   return (
     <Container>
       <Navigation>
-        <NavButton name="BackButton" icon={FiChevronLeft} />
+        <NavButton icon={FiChevronLeft} />
         <p>Peers - </p>
         <p> Create peer</p>
       </Navigation>

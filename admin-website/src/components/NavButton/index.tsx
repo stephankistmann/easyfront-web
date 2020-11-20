@@ -4,11 +4,10 @@ import { useHistory } from 'react-router';
 import { Container } from './styles';
 
 interface NavButtonProps {
-  name: string;
   icon: React.ComponentType<IconBaseProps>;
 }
 
-const NavButton: React.FC<NavButtonProps> = ({ name, icon: Icon }) => {
+const NavButton: React.FC<NavButtonProps> = ({ icon: Icon }) => {
   const history = useHistory();
 
   const handleClick = () => {

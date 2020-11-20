@@ -130,11 +130,11 @@ const Main: React.FC<MainProps> = ({ name, icon: Icon }) => {
           </Link>
         </ListItems>
         <Pagination>
-          <NavButton name="previousPage" icon={FiChevronLeft} />
+          <NavButton icon={FiChevronLeft} />
           <NavPage>
             <span>1</span>
           </NavPage>
-          <NavButton name="previousPage" icon={FiChevronRight} />
+          <NavButton icon={FiChevronRight} />
         </Pagination>
       </List>
     </Container>
