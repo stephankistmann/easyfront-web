@@ -1,6 +1,5 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React from 'react';
 import { FiChevronDown, FiChevronLeft } from 'react-icons/fi';
-import useOnClickOutside from 'use-onclickoutside';
 import {
   Container,
   UserContent,

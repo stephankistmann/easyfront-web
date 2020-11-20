@@ -1,4 +1,3 @@
-import { invert } from 'polished';
 import styled from 'styled-components';
 
 export const Container = styled.li`
@@ -11,7 +10,7 @@ export const Container = styled.li`
   height: 56px;
   margin-bottom: 8px;
   :hover {
-    background: ${invert('#d0b7a7')};
+    background: #2f4858;
     color: #fff;
   }
 

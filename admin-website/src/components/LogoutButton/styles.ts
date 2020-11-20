@@ -30,11 +30,10 @@ export const LogoutMenu = styled.button`
   border-radius: 10px;
   width: 100px;
   font-weight: 500;
-  transition: background-color 0.2s;
-  margin-top: 16px;
+  margin-top: 8px;
 
   &:hover {
-    background: #ff6757;
+    background: #2f4858;
     color: #ffffff;
   }
 `;

@@ -55,14 +55,9 @@ export const UserContent = styled.div`
     margin-right: 30px;
     height: 56px;
     width: 56px;
-
-    :hover {
-      border: 1px solid #ff6757;
-    }
   }
 
   button {
-    color: #2f4858;
     background: #fff;
     border: 1px solid #dfe9eb;
     box-shadow: none;
@@ -71,6 +66,15 @@ export const UserContent = styled.div`
     :hover {
       background: #ff6757;
       color: #fff;
+    }
+  }
+
+  :nth-child(2) {
+    button {
+      :hover {
+        background: #2f4858;
+        border: 0;
+      }
     }
   }
 `;

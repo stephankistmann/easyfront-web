@@ -1,4 +1,3 @@
-import { invert } from 'polished';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -39,7 +38,7 @@ export const Title = styled.div`
     transition: background-color 0.2s;
 
     &:hover {
-      background: ${invert('#d0b7a7')};
+      background: #2f4858;
     }
   }
 `;
