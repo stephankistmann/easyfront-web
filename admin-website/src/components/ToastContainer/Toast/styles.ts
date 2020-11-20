@@ -31,7 +31,6 @@ export const Container = styled(animated.div)<ContainerProps>`
   margin-top: 16px;
   margin-right: 16px;
   border-radius: 10px;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
 
   display: flex;
 

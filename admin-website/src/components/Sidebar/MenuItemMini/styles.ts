@@ -24,7 +24,6 @@ export const Container = styled.button<ContainerProps>`
     css`
       color: #fff;
       background: #ff6757;
-      box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.25);
 
       border-radius: 10px;
     `}
@@ -35,7 +34,6 @@ export const Container = styled.button<ContainerProps>`
 
   &:hover {
     background: ${saturate(0.1, '#ff6757')};
-    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.25);
     color: #fff;
     border-radius: 10px;
   }
