@@ -88,7 +88,9 @@ const ResetPassword: React.FC = () => {
               placeholder="Confirmar senha"
             /> */}
 
-            <Button type="submit">Alterar senha</Button>
+            <Button type="submit" name="ChangePasswordButton">
+              Alterar senha
+            </Button>
 
             <Link to="/">Voltar para login</Link>
           </Form>

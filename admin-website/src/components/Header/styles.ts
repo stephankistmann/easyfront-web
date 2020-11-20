@@ -47,6 +47,7 @@ export const UserContent = styled.div`
   width: 400px;
   justify-content: space-between;
   margin-right: 8px;
+  height: 100%;
 
   img {
     margin-top: 17px;
@@ -65,12 +66,26 @@ export const UserContent = styled.div`
     background: #fff;
     border: 1px solid #dfe9eb;
     box-shadow: none;
-    margin: 0 4px 0 0;
     border: 1px solid #ff6757;
 
     :hover {
       background: #ff6757;
       color: #fff;
     }
+  }
+`;
+
+export const DropdownContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  margin-right: 24px;
+  margin-top: 8px;
+  z-index: 10;
+  border-radius: 10px;
+  border: 1px solid #ff6757;
+
+  :hover {
+    border: 1px solid #2f4858;
   }
 `;

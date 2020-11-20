@@ -33,7 +33,7 @@ export const Menu = styled.div`
     margin-top: 16px;
   }
 
-  & button:nth-child(7) {
+  & button:nth-child(5) {
     position: fixed;
     align-self: flex-end;
     margin-top: 40%;

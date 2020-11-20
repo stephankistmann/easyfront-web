@@ -34,13 +34,6 @@ const Sidebar: React.FC = () => {
         />
         <MenuItem path={path} to="/peers" name="Parceiros" icon={FiUser} />
         <MenuItem path={path} to="/faq" name="FAQ" icon={FiHelpCircle} />
-        <MenuItem path={path} to="/map" name="Device Map" icon={FiMapPin} />
-        <MenuItem
-          path={path}
-          to="/accounts"
-          name="Accounts"
-          icon={FiBookOpen}
-        />
         <MenuItem
           path={path}
           to="/settings"

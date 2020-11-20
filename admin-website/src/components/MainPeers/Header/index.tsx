@@ -16,7 +16,9 @@ const Header: React.FC<HeaderProps> = ({ icon: Icon, name }) => (
       {Icon && <Icon size={34} />}
       <h1>{name}</h1>
       <Link to="/peers/new">
-        <Button icon={FiUserPlus}>Adicionar parceiro</Button>
+        <Button icon={FiUserPlus} name="AddPeerButton">
+          Adicionar parceiro
+        </Button>
       </Link>
     </Title>
   </Container>

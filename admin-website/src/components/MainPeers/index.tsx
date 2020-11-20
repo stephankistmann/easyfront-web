@@ -45,7 +45,7 @@ const MainPeer: React.FC<MainPeerProps> = ({ name, icon: Icon }) => {
           <Input name="name" placeholder="Nome" />
           <Input name="email" placeholder="E-mail" />
           <Input name="cpf" placeholder="CPF" />
-          <Button type="submit" icon={FiSearch}>
+          <Button type="submit" icon={FiSearch} name="SearchButton">
             Pesquisar
           </Button>
         </Form>
