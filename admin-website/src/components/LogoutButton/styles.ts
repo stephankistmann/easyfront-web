@@ -24,12 +24,10 @@ export const Container = styled.div`
 
 export const LogoutMenu = styled.button`
   position: absolute;
-  top: 50px;
+  top: 60px;
   background: #f3f3f3;
   height: 56px;
   border-radius: 10px;
-  border: 0;
-  padding: 0 16px;
   width: 100px;
   font-weight: 500;
   transition: background-color 0.2s;

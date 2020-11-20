@@ -30,4 +30,21 @@ export default createGlobalStyle`
   body {
     height: 100vh;
   }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 103, 87, 0.6);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-track-piece {
+    background: #f3f3f3;
+  }
 `;
