@@ -2,28 +2,25 @@ import React, { useEffect, useState } from 'react';
 import { IconBaseProps } from 'react-icons';
 import { Line } from 'react-chartjs-2';
 import {
-  FiChevronLeft,
-  FiChevronRight,
   FiLogIn,
   FiKey,
   FiUsers,
   FiUserPlus,
   FiUserCheck,
 } from 'react-icons/fi';
+import { useParams } from 'react-router-dom';
+import Pagination from '../Pagination';
 import {
   Container,
   List,
   ListItems,
   ListItemsCategory,
-  Pagination,
   DataContainer,
   ChartContainer,
   DataContentBox,
 } from './styles';
 import Header from './Header';
-import NavButton from '../NavButton';
 import DataContentContainer from '../DataContentContainer';
-import NavPage from '../NavPage';
 import UserIcon from '../../assets/defaultUserIcon.png';
 
 interface MainDashboardProps {
@@ -33,6 +30,10 @@ interface MainDashboardProps {
 
 const MainDashboard: React.FC<MainDashboardProps> = ({ name, icon: Icon }) => {
   const [chartData, setChartData] = useState({});
+
+  const [page, setpage] = useState(1);
+  const totalPages = 15;
+  const handlePages = (updatePage: number) => setpage(updatePage);
 
   const chart = () => {
     setChartData({
@@ -169,13 +170,11 @@ const MainDashboard: React.FC<MainDashboardProps> = ({ name, icon: Icon }) => {
           <span>Entrada</span>
           <span>11/19/2020 - 12:38:33</span>
         </ListItems>
-        <Pagination>
-          <NavButton icon={FiChevronLeft} />
-          <NavPage>
-            <span>1</span>
-          </NavPage>
-          <NavButton icon={FiChevronRight} />
-        </Pagination>
+        <Pagination
+          page={page}
+          handlePagination={handlePages}
+          totalPages={totalPages}
+        />
       </List>
     </Container>
   );

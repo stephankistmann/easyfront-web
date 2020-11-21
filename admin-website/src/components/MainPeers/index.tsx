@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { IconBaseProps } from 'react-icons';
 import { Link } from 'react-router-dom';
 import {
@@ -10,12 +10,12 @@ import {
 } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
+import Pagination from '../Pagination';
 import {
   Container,
   List,
   ListItems,
   ListItemsCategory,
-  Pagination,
   FormContainer,
 } from './styles';
 import Header from './Header';
@@ -32,6 +32,10 @@ interface MainPeerProps {
 
 const MainPeer: React.FC<MainPeerProps> = ({ name, icon: Icon }) => {
   const formRef = useRef<FormHandles>(null);
+
+  const [page, setPage] = useState(1);
+  const totalPages = 15;
+  const handlePages = (updatePage: number) => setPage(updatePage);
 
   function handleSubmit(data: object): void {
     // eslint-disable-next-line no-console
@@ -133,7 +137,11 @@ const MainPeer: React.FC<MainPeerProps> = ({ name, icon: Icon }) => {
             <FiTrash />
           </Link>
         </ListItems>
-        <Pagination>
+        <Pagination
+          page={page}
+          handlePagination={handlePages}
+          totalPages={totalPages}
+        >
           <NavButton icon={FiChevronLeft} />
           <NavPage>
             <span>1</span>
