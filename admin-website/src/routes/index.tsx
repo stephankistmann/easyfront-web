@@ -14,9 +14,9 @@ const Routes: React.FC = () => (
     <Route path="/" exact component={SignIn} />
     <Route path="/forgot-password" component={ForgotPassword} />
     <Route path="/reset-password" component={ResetPassword} />
-    <Route path="/dashboard" component={Dashboard} isPrivate />
+    <Route path="/dashboard/:page?" component={Dashboard} isPrivate />
     <Route path="/peers" exact component={Peers} isPrivate />
-    <Route path="/peers/new" component={AddPeer} isPrivate />
+    <Route path="/newpeer" component={AddPeer} isPrivate />
   </Switch>
 );
 

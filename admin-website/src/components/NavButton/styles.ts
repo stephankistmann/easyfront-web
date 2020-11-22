@@ -9,7 +9,6 @@ export const Container = styled.button`
   background: #ffffff;
   border: 1px solid #dfe9eb;
   border-radius: 10px;
-  margin-bottom: 16px;
 
   &:hover {
     background: #ff6757;
