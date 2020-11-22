@@ -8,7 +8,6 @@ import {
   FiUserPlus,
   FiUserCheck,
 } from 'react-icons/fi';
-import { useParams } from 'react-router-dom';
 import Pagination from '../Pagination';
 import {
   Container,

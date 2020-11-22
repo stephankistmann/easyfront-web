@@ -15,7 +15,7 @@ const NavButton: React.FC<NavButtonProps> = ({ icon: Icon }) => {
   };
 
   return (
-    <Container onClick={handleClick}>{Icon && <Icon size={24} />}</Container>
+    <Container onClick={handleClick}>{Icon && <Icon size={20} />}</Container>
   );
 };
 
