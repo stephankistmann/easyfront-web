@@ -14,6 +14,8 @@ export const Container = styled.li`
     color: #fff;
   }
 
+  cursor: pointer;
+
   :first-child {
     border-radius: 10px 10px 0 0;
   }

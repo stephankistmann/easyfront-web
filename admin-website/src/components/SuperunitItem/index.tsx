@@ -1,11 +1,13 @@
 import React, {
   ButtonHTMLAttributes,
   useCallback,
+  useEffect,
   useRef,
   useState,
 } from 'react';
 import { IconBaseProps } from 'react-icons';
 import useOnClickOutside from 'use-onclickoutside';
+import { useSuperunit } from '../../hooks/superunit';
 import { Container, ContainerButton } from './styles';
 
 interface SuperunitItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -18,6 +20,8 @@ const SuperunitItem: React.FC<SuperunitItemProps> = ({
   children,
   defaultSuperUnit,
 }) => {
+  const { selected } = useSuperunit();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const ref = useRef(null);
 
@@ -26,6 +30,10 @@ const SuperunitItem: React.FC<SuperunitItemProps> = ({
   const handleClick = useCallback(() => {
     setIsMenuOpen(true);
   }, []);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [selected]);
 
   return (
     <Container onClick={handleClick} ref={ref}>

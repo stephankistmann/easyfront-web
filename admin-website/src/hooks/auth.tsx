@@ -32,6 +32,7 @@ interface SignInCredentials {
 
 interface AuthContextData {
   user: User;
+  token: string;
   signIn(credentials: SignInCredentials): Promise<void>;
   signOut(): void;
   updateUser(user: User): void;
@@ -44,6 +45,9 @@ const AuthProvider: React.FC = ({ children }) => {
     const token = localStorage.getItem('@Easyfront:token');
     const user = localStorage.getItem('@Easyfront:user');
 
+    if (token) {
+      api.defaults.headers.authorization = `bearer ${token}`;
+    }
     if (token && user) {
       return { token, user: JSON.parse(user) };
     }
@@ -90,7 +94,13 @@ const AuthProvider: React.FC = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user: data.user, signIn, signOut, updateUser }}
+      value={{
+        user: data.user,
+        token: data.token,
+        signIn,
+        signOut,
+        updateUser,
+      }}
     >
       {children}
     </AuthContext.Provider>

@@ -13,7 +13,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ icon: Icon, name }) => (
   <Container>
     <Title>
-      {Icon && <Icon size={34} />}
+      {Icon && <Icon size={26} />}
       <h1>{name}</h1>
       <Link to="/newpeer">
         <Button icon={FiUserPlus} name="AddPeerButton">

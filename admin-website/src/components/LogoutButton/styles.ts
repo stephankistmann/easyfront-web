@@ -19,6 +19,7 @@ export const Container = styled.div`
     position: absolute;
     right: -37px;
     top: -19px;
+    object-fit: cover;
   }
 `;
 

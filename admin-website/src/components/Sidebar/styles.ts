@@ -33,9 +33,9 @@ export const Menu = styled.div`
     margin-top: 16px;
   }
 
-  & button:nth-child(5) {
+  & button:nth-child(6) {
     position: fixed;
     align-self: flex-end;
-    margin-top: 40%;
+    margin-top: 38%;
   }
 `;

@@ -7,13 +7,14 @@ import {
   DropdownContainer,
 } from './styles';
 import NavButton from '../NavButton';
-import { useAuth } from '../../hooks/auth';
 import LogoutButton from '../LogoutButton';
 import SuperunitItem from '../SuperunitItem';
-import DropdownMenu from '../DropdownMenu';
+import { useSuperunit } from '../../hooks/superunit';
 
 const Header: React.FC = () => {
-  const { user } = useAuth();
+  const { superunities, selectSuperunit, selected } = useSuperunit();
+
+  if (!selected) return <p>loading...</p>;
 
   return (
     <Container>
@@ -23,12 +24,20 @@ const Header: React.FC = () => {
         <p> Create peer</p>
       </Navigation>
       <UserContent>
-        <SuperunitItem icon={FiChevronDown} defaultSuperUnit={user.name}>
+        <SuperunitItem icon={FiChevronDown} defaultSuperUnit={selected?.name}>
           <DropdownContainer>
-            <DropdownMenu>{user.name}</DropdownMenu>
-            <DropdownMenu>{user.name}</DropdownMenu>
-            <DropdownMenu>{user.name}</DropdownMenu>
-            <DropdownMenu>{user.name}</DropdownMenu>
+            {superunities.map(superunit => (
+              // <DropdownMenu>{superunit.name}</DropdownMenu>
+              <button
+                type="button"
+                key={superunit.id}
+                onClick={() => {
+                  selectSuperunit(superunit.id);
+                }}
+              >
+                {superunit.name}
+              </button>
+            ))}
           </DropdownContainer>
         </SuperunitItem>
         <LogoutButton />
