@@ -23,7 +23,6 @@ import NavButton from '../NavButton';
 import NavPage from '../NavPage';
 import Input from '../Input';
 import Button from '../Button';
-import InputMask from '../InputMask';
 
 interface MainPeerProps {
   name: string;
@@ -47,9 +46,7 @@ const MainPeer: React.FC<MainPeerProps> = ({ name, icon: Icon }) => {
       <Header name={name} icon={Icon} />
       <FormContainer>
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input name="name" placeholder="Nome" />
-          <Input name="email" placeholder="E-mail" />
-          <InputMask name="cpf" mask="999.999.999-99" placeholder="CPF" />
+          <Input name="name" placeholder="Nome ou e-mail" />
           <Button type="submit" icon={FiSearch} name="SearchButton">
             Pesquisar
           </Button>

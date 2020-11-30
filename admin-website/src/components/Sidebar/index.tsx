@@ -4,6 +4,7 @@ import {
   FiBarChart,
   FiBookOpen,
   FiHelpCircle,
+  FiHome,
   FiMapPin,
   FiMenu,
   FiSettings,
@@ -33,6 +34,7 @@ const Sidebar: React.FC = () => {
           icon={FiBarChart}
         />
         <MenuItem path={path} to="/peers" name="Parceiros" icon={FiUser} />
+        <MenuItem path={path} to="/units" name="Unidades" icon={FiHome} />
         <MenuItem path={path} to="/faq" name="FAQ" icon={FiHelpCircle} />
         <MenuItem
           path={path}

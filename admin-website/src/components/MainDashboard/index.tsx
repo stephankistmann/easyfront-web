@@ -8,6 +8,7 @@ import {
   FiUserPlus,
   FiUserCheck,
 } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
 import Pagination from '../Pagination';
 import {
   Container,
@@ -29,10 +30,14 @@ interface MainDashboardProps {
 
 const MainDashboard: React.FC<MainDashboardProps> = ({ name, icon: Icon }) => {
   const [chartData, setChartData] = useState({});
+  const history = useHistory();
 
   const [page, setpage] = useState(1);
   const totalPages = 15;
-  const handlePages = (updatePage: number) => setpage(updatePage);
+  const handlePages = (updatePage: number) => {
+    setpage(updatePage);
+    history.push(`/dashboard/${updatePage}`);
+  };
 
   const chart = () => {
     setChartData({

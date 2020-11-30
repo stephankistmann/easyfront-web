@@ -6,7 +6,7 @@ import { Container } from './styles';
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   loading?: boolean;
   icon?: React.ComponentType<IconBaseProps>;
-  name: string;
+  name?: string;
 };
 
 const Button: React.FC<ButtonProps> = ({
