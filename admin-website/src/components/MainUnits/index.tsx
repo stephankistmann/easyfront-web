@@ -26,7 +26,6 @@ import Button from '../Button';
 import Select from '../Select';
 import { useSuperunit } from '../../hooks/superunit';
 import api from '../../services/api';
-import SuperunitItem from '../SuperunitItem';
 
 interface MainUnitsProps {
   name: string;
@@ -46,7 +45,7 @@ const MainUnits: React.FC<MainUnitsProps> = ({ name, icon: Icon }) => {
   const [data, setData] = useState<IUnit[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const getData = async () => {
       if (selected) {
         const response = await api.get(`/superunities/${selected.id}/unities`);
 
@@ -56,10 +55,8 @@ const MainUnits: React.FC<MainUnitsProps> = ({ name, icon: Icon }) => {
       }
     };
 
-    fetchData();
-  }, [selected]);
-
-  console.log(data);
+    getData();
+  }, [selected, data]);
 
   const formRef = useRef<FormHandles>(null);
 
@@ -82,22 +79,14 @@ const MainUnits: React.FC<MainUnitsProps> = ({ name, icon: Icon }) => {
           <Select
             name="type"
             options={[
-              { label: 'Academia', value: '' },
-              { label: 'Apartamento', value: '' },
-              { label: 'Área de lazer', value: '' },
-              { label: 'Armário', value: '' },
-              { label: 'Bloco', value: '' },
-              { label: 'Casa', value: '' },
-              { label: 'Condomínio', value: '' },
-              { label: 'Departamento', value: '' },
-              { label: 'Empresa', value: '' },
-              { label: 'Espaço', value: '' },
-              { label: 'Espaço compartilhado', value: '' },
-              { label: 'Estacionamento', value: '' },
-              { label: 'Loja', value: '' },
-              { label: 'Portaria', value: '' },
-              { label: 'Sala', value: '' },
-              { label: 'Setor', value: '' },
+              { label: 'Academia', value: 'gym' },
+              { label: 'Apartamento', value: 'apt' },
+              { label: 'Bloco', value: 'block' },
+              { label: 'Casa', value: 'house' },
+              { label: 'Condomínio', value: 'condominium' },
+              { label: 'Departamento', value: 'deppartment' },
+              { label: 'Loja', value: 'store' },
+              { label: 'Sala', value: 'room' },
             ]}
             defaultValue={{
               label: 'Tipo',
@@ -123,10 +112,14 @@ const MainUnits: React.FC<MainUnitsProps> = ({ name, icon: Icon }) => {
             <span>{unit.name}</span>
             <span>{unit.public_area}</span>
             <span>{unit.superUnit_id}</span>
-            <Link to="/superunit">
-              <FiEdit />
-              <FiTrash />
-            </Link>
+            <div>
+              <Link to={`/units/edit/${unit.id}`}>
+                <FiEdit />
+              </Link>
+              <Link to={`/units/delete/${unit.id}`}>
+                <FiTrash />
+              </Link>
+            </div>
           </ListItems>
         ))}
         <Pagination

@@ -30,6 +30,7 @@ const MainAddUnitEmergency: React.FC<MainAddUnitEmergencyProps> = ({
 
   const handleSubmit = useCallback(
     async (data: object) => {
+      formRef.current?.setErrors({});
       try {
         const schema = Yup.object().shape({
           email: Yup.string()

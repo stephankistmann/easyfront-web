@@ -27,6 +27,7 @@ const MainAddUnitCategory: React.FC<MainAddUnitCategoryProps> = ({
 
   const handleSubmit = useCallback(
     async (data: object) => {
+      formRef.current?.setErrors({});
       try {
         const schema = Yup.object().shape({
           email: Yup.string()

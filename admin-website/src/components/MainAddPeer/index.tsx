@@ -23,8 +23,8 @@ const MainAddPeer: React.FC<MainAddPeerProps> = ({ name, icon: Icon }) => {
 
   const handleSubmit = useCallback(
     async (data: object) => {
+      formRef.current?.setErrors({});
       try {
-        formRef.current?.setErrors({});
         const schema = Yup.object().shape({
           email: Yup.string()
             .required('E-mail obrigatório')

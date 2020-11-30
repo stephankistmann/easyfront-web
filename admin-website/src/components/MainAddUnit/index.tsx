@@ -34,12 +34,10 @@ const MaindAddUnit: React.FC<MaindAddUnitProps> = ({ name, icon: Icon }) => {
 
   const handleSubmit = useCallback(
     async (data: IFormData) => {
-      console.log(data, 'aaa');
-
       const unit = { public_area: data.type, name: data.name };
 
+      formRef.current?.setErrors({});
       try {
-        formRef.current?.setErrors({});
         const schema = Yup.object().shape({
           name: Yup.string().required('Nome obrigatório'),
           public_area: Yup.string()
