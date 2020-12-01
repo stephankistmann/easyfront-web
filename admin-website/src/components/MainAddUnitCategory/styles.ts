@@ -10,6 +10,8 @@ export const Container = styled.div`
 
 export const FormContainer = styled.div`
   display: flex;
+  flex: 1;
+  justify-content: space-between;
 
   form {
     display: flex;
@@ -21,11 +23,27 @@ export const FormContainer = styled.div`
       margin-top: 0;
     }
 
-    div {
+    .sc-hKgILt.kunJfp {
+      width: 350px;
+    }
+
+    .kunJfp + div {
+      margin-top: 0px;
+    }
+
+    .kQSoJa + div {
+      margin-top: 0px;
+    }
+
+    label {
       display: flex;
       :hover {
         color: #ff6757;
       }
+    }
+
+    .sc-jSgupP.fVAFW {
+      width: 300px;
     }
 
     button {
@@ -40,10 +58,24 @@ export const FormContainer = styled.div`
         margin-right: 16px;
       }
     }
+  }
+`;
 
-    input {
-      width: 250px;
-      margin-right: 16px;
+export const CheckboxContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-right: 30px;
+
+  label {
+    margin-top: 16px;
+
+    :first-child {
+      margin-top: 0;
     }
   }
+`;
+
+export const ScheduleContainer = styled.div`
+  margin-right: 30px;
 `;

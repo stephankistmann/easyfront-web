@@ -3,8 +3,10 @@ import { useLocation } from 'react-router-dom';
 import {
   FiBarChart,
   FiBookOpen,
+  FiChevronsRight,
   FiHelpCircle,
   FiHome,
+  FiList,
   FiMapPin,
   FiMenu,
   FiSettings,
@@ -35,6 +37,13 @@ const Sidebar: React.FC = () => {
         />
         <MenuItem path={path} to="/peers" name="Parceiros" icon={FiUser} />
         <MenuItem path={path} to="/units" name="Unidades" icon={FiHome} />
+        <MenuItem path={path} to="/category" name="Categorias" icon={FiList} />
+        <MenuItem
+          path={path}
+          to="/acessess"
+          name="Acessos"
+          icon={FiChevronsRight}
+        />
         <MenuItem path={path} to="/faq" name="FAQ" icon={FiHelpCircle} />
         <MenuItem
           path={path}

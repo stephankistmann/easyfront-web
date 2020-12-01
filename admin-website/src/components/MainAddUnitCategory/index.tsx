@@ -1,27 +1,30 @@
 import React, { useRef, useCallback } from 'react';
 import { IconBaseProps } from 'react-icons';
 import { Form } from '@unform/web';
-import { FormHandles } from '@unform/core';
-import { FiMail, FiPlus } from 'react-icons/fi';
 import * as Yup from 'yup';
-import { Container, FormContainer } from './styles';
+import { FiClock, FiPlus } from 'react-icons/fi';
+import { FormHandles } from '@unform/core';
+import Checkbox from '../Checkbox';
+import {
+  Container,
+  FormContainer,
+  CheckboxContainer,
+  ScheduleContainer,
+} from './styles';
 import Header from './Header';
 import Input from '../Input';
 import Button from '../Button';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { useToast } from '../../hooks/toast';
 import api from '../../services/api';
-import Select from '../Select';
+import InputMask from '../InputMask';
 
-interface MainAddUnitCategoryProps {
+interface INewCategoryProps {
   name: string;
   icon: React.ComponentType<IconBaseProps>;
 }
 
-const MainAddUnitCategory: React.FC<MainAddUnitCategoryProps> = ({
-  name,
-  icon: Icon,
-}) => {
+const NewCategory: React.FC<INewCategoryProps> = ({ name, icon: Icon }) => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
 
@@ -72,89 +75,48 @@ const MainAddUnitCategory: React.FC<MainAddUnitCategoryProps> = ({
       <Header name={name} icon={Icon} />
       <FormContainer>
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input name="name" placeholder="Nome" />
-          <Select
-            name="unit"
-            options={[
-              { label: 'Academia', value: '' },
-              { label: 'Apartamento', value: '' },
-              { label: 'Área de lazer', value: '' },
-              { label: 'Armário', value: '' },
-              { label: 'Bloco', value: '' },
-              { label: 'Casa', value: '' },
-              { label: 'Condomínio', value: '' },
-              { label: 'Departamento', value: '' },
-              { label: 'Empresa', value: '' },
-              { label: 'Espaço', value: '' },
-              { label: 'Espaço compartilhado', value: '' },
-              { label: 'Estacionamento', value: '' },
-              { label: 'Loja', value: '' },
-              { label: 'Portaria', value: '' },
-              { label: 'Sala', value: '' },
-              { label: 'Setor', value: '' },
-            ]}
-            defaultValue={{
-              label: 'Unidades',
-              value: '',
-            }}
-          />
-          <Select
-            name="params"
-            options={[
-              { label: 'Academia', value: '' },
-              { label: 'Apartamento', value: '' },
-              { label: 'Área de lazer', value: '' },
-              { label: 'Armário', value: '' },
-              { label: 'Bloco', value: '' },
-              { label: 'Casa', value: '' },
-              { label: 'Condomínio', value: '' },
-              { label: 'Departamento', value: '' },
-              { label: 'Empresa', value: '' },
-              { label: 'Espaço', value: '' },
-              { label: 'Espaço compartilhado', value: '' },
-              { label: 'Estacionamento', value: '' },
-              { label: 'Loja', value: '' },
-              { label: 'Portaria', value: '' },
-              { label: 'Sala', value: '' },
-              { label: 'Setor', value: '' },
-            ]}
-            defaultValue={{
-              label: 'Parâmetros de Acesso',
-              value: '',
-            }}
-          />
-          <Select
-            name="access"
-            options={[
-              { label: 'Academia', value: '' },
-              { label: 'Apartamento', value: '' },
-              { label: 'Área de lazer', value: '' },
-              { label: 'Armário', value: '' },
-              { label: 'Bloco', value: '' },
-              { label: 'Casa', value: '' },
-              { label: 'Condomínio', value: '' },
-              { label: 'Departamento', value: '' },
-              { label: 'Empresa', value: '' },
-              { label: 'Espaço', value: '' },
-              { label: 'Espaço compartilhado', value: '' },
-              { label: 'Estacionamento', value: '' },
-              { label: 'Loja', value: '' },
-              { label: 'Portaria', value: '' },
-              { label: 'Sala', value: '' },
-              { label: 'Setor', value: '' },
-            ]}
-            defaultValue={{
-              label: 'Pontos de Acesso',
-              value: '',
-            }}
-          />
-          <Button type="submit" icon={FiPlus} name="AddButton">
-            Adicionar
-          </Button>
+          <FormContainer>
+            <Input name="name" placeholder="Nome" />
+            <CheckboxContainer>
+              <Checkbox name="monday" id="Segunda-Feira" />
+              <Checkbox name="tuesday" id="Terça-Feira" />
+              <Checkbox name="wednesday" id="Quarta-Feira" />
+              <Checkbox name="thursday" id="Quinta-Feira" />
+              <Checkbox name="friday" id="Sexta-Feira" />
+              <Checkbox name="saturday" id="Sábado" />
+              <Checkbox name="sunday" id="Domingo" />
+            </CheckboxContainer>
+            <CheckboxContainer>
+              <Checkbox name="entrance1" id="Entrada 1" />
+              <Checkbox name="entrance2" id="Entrada 2" />
+              <Checkbox name="exit1" id="Saída 1" />
+              <Checkbox name="exit2" id="Saída 2" />
+              <Checkbox name="hall" id="Hall" />
+              <Checkbox name="garage" id="Garagem" />
+            </CheckboxContainer>
+            <ScheduleContainer>
+              <InputMask
+                icon={FiClock}
+                name="schedule1"
+                mask="99:99"
+                placeholder="Horário de inicio"
+              />
+              <InputMask
+                icon={FiClock}
+                name="schedule2"
+                mask="99:99"
+                placeholder="Horário de término"
+              />
+            </ScheduleContainer>
+
+            <Button type="submit" icon={FiPlus} name="AddButton">
+              Adicionar
+            </Button>
+          </FormContainer>
         </Form>
       </FormContainer>
     </Container>
   );
 };
 
-export default MainAddUnitCategory;
+export default NewCategory;

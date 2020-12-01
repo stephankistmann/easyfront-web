@@ -1,11 +1,11 @@
 import React from 'react';
-import { FiHome } from 'react-icons/fi';
+import { FiList } from 'react-icons/fi';
 import Layout from '../../components/Layout';
-import MainUnitCategory from '../../components/MainUnitCategory';
+import Category from '../../components/Category';
 
 const UnitCategory: React.FC = () => (
   <Layout>
-    <MainUnitCategory name="Categoria" icon={FiHome} />
+    <Category name="Categoria" icon={FiList} />
   </Layout>
 );
 

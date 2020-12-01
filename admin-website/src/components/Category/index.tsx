@@ -48,64 +48,6 @@ const MainUnitCategory: React.FC<MainUnitCategoryProps> = ({
   return (
     <Container>
       <Header name={name} icon={Icon} />
-      <FormContainer>
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input name="name" placeholder="Nome" />
-          <Select
-            name="unit"
-            options={[
-              { label: 'Academia', value: '' },
-              { label: 'Apartamento', value: '' },
-              { label: 'Área de lazer', value: '' },
-              { label: 'Armário', value: '' },
-              { label: 'Bloco', value: '' },
-              { label: 'Casa', value: '' },
-              { label: 'Condomínio', value: '' },
-              { label: 'Departamento', value: '' },
-              { label: 'Empresa', value: '' },
-              { label: 'Espaço', value: '' },
-              { label: 'Espaço compartilhado', value: '' },
-              { label: 'Estacionamento', value: '' },
-              { label: 'Loja', value: '' },
-              { label: 'Portaria', value: '' },
-              { label: 'Sala', value: '' },
-              { label: 'Setor', value: '' },
-            ]}
-            defaultValue={{
-              label: 'Unidade',
-              value: '',
-            }}
-          />
-          <Select
-            name="permissions"
-            options={[
-              { label: 'Academia', value: '' },
-              { label: 'Apartamento', value: '' },
-              { label: 'Área de lazer', value: '' },
-              { label: 'Armário', value: '' },
-              { label: 'Bloco', value: '' },
-              { label: 'Casa', value: '' },
-              { label: 'Condomínio', value: '' },
-              { label: 'Departamento', value: '' },
-              { label: 'Empresa', value: '' },
-              { label: 'Espaço', value: '' },
-              { label: 'Espaço compartilhado', value: '' },
-              { label: 'Estacionamento', value: '' },
-              { label: 'Loja', value: '' },
-              { label: 'Portaria', value: '' },
-              { label: 'Sala', value: '' },
-              { label: 'Setor', value: '' },
-            ]}
-            defaultValue={{
-              label: 'Permissões',
-              value: '',
-            }}
-          />
-          <Button type="submit" icon={FiSearch} name="SearchButton">
-            Pesquisar
-          </Button>
-        </Form>
-      </FormContainer>
       <List>
         <ListItemsCategory>
           <span>ID</span>
