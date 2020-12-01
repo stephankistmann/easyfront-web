@@ -7,7 +7,7 @@ import Dashboard from '../pages/Dashboard';
 import Units from '../pages/Units';
 import Peers from '../pages/Peers';
 import AddPeer from '../pages/AddPeer';
-import AddUnit from '../pages/AddUnitData';
+import AddUnit from '../pages/AddUnit';
 import AddUnitEmergency from '../pages/AddUnitEmergency';
 import UnitCategory from '../pages/UnitCategory';
 import AddUnitCategory from '../pages/AddUnitCategory';

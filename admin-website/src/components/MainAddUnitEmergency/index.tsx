@@ -13,7 +13,6 @@ import getValidationErrors from '../../utils/getValidationErrors';
 import { useToast } from '../../hooks/toast';
 import api from '../../services/api';
 import Select from '../Select';
-import Checkbox from '../Checkbox';
 
 interface MainAddUnitEmergencyProps {
   name: string;
