@@ -31,8 +31,8 @@ const Routes: React.FC = () => (
     <Route path="/units/delete/:id" component={DeleteUnit} isPrivate />
     <Route path="/category" component={Category} isPrivate exact />
     <Route path="/category/new" component={AddCategory} isPrivate />
-    <Route path="/acesses" component={Access} isPrivate exact />
-    <Route path="/acesses/new" component={NewAccess} isPrivate />
+    <Route path="/access" component={Access} isPrivate exact />
+    <Route path="/access/new" component={NewAccess} isPrivate />
     <Route path="/peers" exact component={Peers} isPrivate />
     <Route path="/newpeer" component={AddPeer} isPrivate />
   </Switch>

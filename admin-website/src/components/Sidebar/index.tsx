@@ -40,7 +40,7 @@ const Sidebar: React.FC = () => {
         <MenuItem path={path} to="/category" name="Categorias" icon={FiList} />
         <MenuItem
           path={path}
-          to="/acessess"
+          to="/access"
           name="Acessos"
           icon={FiChevronsRight}
         />

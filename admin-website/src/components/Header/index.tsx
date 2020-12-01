@@ -27,7 +27,6 @@ const Header: React.FC = () => {
         <SuperunitItem icon={FiChevronDown} defaultSuperUnit={selected?.name}>
           <DropdownContainer>
             {superunities.map(superunit => (
-              // <DropdownMenu>{superunit.name}</DropdownMenu>
               <button
                 type="button"
                 key={superunit.id}
