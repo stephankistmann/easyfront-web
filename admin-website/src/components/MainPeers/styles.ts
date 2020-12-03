@@ -8,13 +8,6 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 
-export const SelectContainer = styled.div`
-  height: 15%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-`;
-
 export const List = styled.div`
   display: flex;
   flex-direction: column;
@@ -27,39 +20,46 @@ export const List = styled.div`
     flex-direction: row;
   }
 `;
+
 export const ListItemsCategory = styled.div`
   display: flex;
   margin: 8px 16px 8px 16px;
 
   span {
-    width: 190px;
-
     :first-child {
-      width: 70px;
+      width: 290px;
     }
 
     :nth-child(2) {
-      width: 270px;
+      width: 154px;
     }
 
     :nth-child(3) {
-      width: 270px;
+      width: 246px;
     }
 
     :nth-child(4) {
-      width: 270px;
+      width: 130px;
     }
 
     :nth-child(5) {
-      width: 270px;
+      width: 130px;
     }
 
     :nth-child(6) {
-      width: 221px;
+      width: 100px;
+    }
+
+    :nth-child(7) {
+      width: 103px;
+    }
+
+    :nth-child(8) {
+      width: 288px;
     }
 
     :last-child {
-      width: 95px;
+      width: 40px;
     }
   }
 `;
@@ -68,7 +68,6 @@ export const ListItems = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   height: 64px;
   border: 1px solid #dfe9eb;
   border-radius: 10px;
@@ -77,10 +76,42 @@ export const ListItems = styled.div`
   span {
     padding: 16px;
     font-weight: 500;
-    width: 230px;
 
     :first-child {
-      width: 10px;
+      width: 290px;
+    }
+
+    :nth-child(2) {
+      width: 150px;
+    }
+
+    :nth-child(3) {
+      width: 250px;
+    }
+
+    :nth-child(4) {
+      width: 130px;
+    }
+
+    :nth-child(5) {
+      width: 130px;
+    }
+
+    :nth-child(6) {
+      width: 90px;
+    }
+
+    :nth-child(7) {
+      width: 90px;
+    }
+
+    :nth-child(8) {
+      width: 317px;
+    }
+
+    :last-child {
+      display: flex;
+      justify-content: flex-end;
     }
   }
 
@@ -99,7 +130,6 @@ export const ListItems = styled.div`
 export const FilterContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin: 30px 30px 0 30px;
 `;
 
