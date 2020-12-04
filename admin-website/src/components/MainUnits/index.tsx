@@ -41,28 +41,33 @@ interface IUnit {
 
 const MainUnits: React.FC<MainUnitsProps> = ({ name, icon: Icon }) => {
   const { selected } = useSuperunit();
-
   const [data, setData] = useState<IUnit[]>([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const handlePages = (updatePage: number) => {
+    setPage(updatePage);
+  };
 
   useEffect(() => {
-    const getData = async () => {
+    async function getData() {
       if (selected) {
-        const response = await api.get(`/superunities/${selected.id}/unities`);
+        const response = await api.get(`/superunities/${selected.id}/unities`, {
+          params: { page },
+        });
 
         if (!response) return;
-
         setData(response.data.data);
+
+        setPage(response.data.page);
+        setTotalPages(response.data.total_pages);
       }
-    };
+    }
 
     getData();
-  }, [selected, data]);
+  }, [selected, page]);
 
   const formRef = useRef<FormHandles>(null);
-
-  const [page, setPage] = useState(1);
-  const totalPages = 15;
-  const handlePages = (updatePage: number) => setPage(updatePage);
 
   function handleSubmit(dataSubmit: object): void {
     // eslint-disable-next-line no-console
@@ -107,7 +112,7 @@ const MainUnits: React.FC<MainUnitsProps> = ({ name, icon: Icon }) => {
           <span>Editar/Excluir</span>
         </ListItemsCategory>
         {data.map(unit => (
-          <ListItems>
+          <ListItems key={unit.id}>
             <span>{unit.id}</span>
             <span>{unit.name}</span>
             <span>{unit.public_area}</span>
@@ -126,13 +131,7 @@ const MainUnits: React.FC<MainUnitsProps> = ({ name, icon: Icon }) => {
           page={page}
           handlePagination={handlePages}
           totalPages={totalPages}
-        >
-          <NavButton icon={FiChevronLeft} />
-          <NavPage>
-            <span>1</span>
-          </NavPage>
-          <NavButton icon={FiChevronRight} />
-        </Pagination>
+        />
       </List>
     </Container>
   );

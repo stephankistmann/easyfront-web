@@ -47,8 +47,12 @@ const MainPeer: React.FC<MainPeerProps> = ({ name, icon: Icon }) => {
       const response = await api.get('/users', { params: { page } });
 
       if (!response) return;
-      setPage(response.data.page);
+
       setPeers(response.data.data);
+
+      setPage(response.data.page);
+
+      console.log(response.data.page);
       setTotalPages(response.data.total_pages);
     }
 

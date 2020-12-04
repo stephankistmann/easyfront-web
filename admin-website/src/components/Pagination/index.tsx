@@ -1,6 +1,5 @@
 import React from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { useHistory } from 'react-router-dom';
 import { Container, NavPage } from './styles';
 
 export interface PaginationProps {

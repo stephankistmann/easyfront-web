@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = ({ icon: Icon, name }) => (
     <Title>
       {Icon && <Icon size={26} />}
       <h1>{name}</h1>
-      <Link to="/newunit">
+      <Link to="/units/new">
         <Button icon={FiHome} name="AddUnitButton">
           Adicionar unidade
         </Button>
