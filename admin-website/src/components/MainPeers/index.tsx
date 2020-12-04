@@ -1,16 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { IconBaseProps } from 'react-icons';
-import { Link } from 'react-router-dom';
-import {
-  FiChevronLeft,
-  FiChevronRight,
-  FiEdit,
-  FiTrash,
-  FiSearch,
-} from 'react-icons/fi';
+import { FiEdit, FiSearch } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
-import Pagination from '../Pagination';
 import {
   Container,
   List,
@@ -19,11 +11,10 @@ import {
   FormContainer,
 } from './styles';
 import Header from './Header';
-import NavButton from '../NavButton';
-import NavPage from '../NavPage';
 import Input from '../Input';
 import Button from '../Button';
 import api from '../../services/api';
+import Pagination from '../Pagination';
 
 interface MainPeerProps {
   name: string;
@@ -44,23 +35,25 @@ interface IPeer {
 const MainPeer: React.FC<MainPeerProps> = ({ name, icon: Icon }) => {
   const formRef = useRef<FormHandles>(null);
   const [peers, setPeers] = useState<IPeer[]>([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const handlePages = (updatePage: number) => {
+    setPage(updatePage);
+  };
 
   useEffect(() => {
     async function getData() {
-      const response = await api.get('/users');
+      const response = await api.get('/users', { params: { page } });
 
       if (!response) return;
-
+      setPage(response.data.page);
       setPeers(response.data.data);
+      setTotalPages(response.data.total_pages);
     }
+
     getData();
-  }, []);
-
-  console.log(peers);
-
-  const [page, setPage] = useState(1);
-  const totalPages = 15;
-  const handlePages = (updatePage: number) => setPage(updatePage);
+  }, [page]);
 
   function handleSubmit(data: object): void {
     // eslint-disable-next-line no-console
@@ -104,18 +97,11 @@ const MainPeer: React.FC<MainPeerProps> = ({ name, icon: Icon }) => {
             <FiEdit />
           </ListItems>
         ))}
-
         <Pagination
           page={page}
           handlePagination={handlePages}
           totalPages={totalPages}
-        >
-          <NavButton icon={FiChevronLeft} />
-          <NavPage>
-            <span>1</span>
-          </NavPage>
-          <NavButton icon={FiChevronRight} />
-        </Pagination>
+        />
       </List>
     </Container>
   );

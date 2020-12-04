@@ -24,7 +24,7 @@ import {
 import DataContentContainer from '../../components/DataContentContainer';
 import UserIcon from '../../assets/defaultUserIcon.png';
 
-const MainDashboard: React.FC = ({ children }) => {
+const MainDashboard: React.FC = () => {
   const [chartData, setChartData] = useState({});
   const history = useHistory();
 
