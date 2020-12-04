@@ -1,16 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { IconBaseProps } from 'react-icons';
-import { Link } from 'react-router-dom';
-import {
-  FiChevronLeft,
-  FiChevronRight,
-  FiEdit,
-  FiTrash,
-  FiSearch,
-} from 'react-icons/fi';
+import { FiEdit, FiSearch } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
-import Pagination from '../Pagination';
 import {
   Container,
   List,
@@ -19,22 +11,49 @@ import {
   FormContainer,
 } from './styles';
 import Header from './Header';
-import NavButton from '../NavButton';
-import NavPage from '../NavPage';
 import Input from '../Input';
 import Button from '../Button';
+import api from '../../services/api';
+import Pagination from '../Pagination';
 
 interface MainPeerProps {
   name: string;
   icon: React.ComponentType<IconBaseProps>;
 }
 
+interface IPeer {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  cpf: string;
+  rg: string;
+  gender: string;
+  nature: string;
+}
+
 const MainPeer: React.FC<MainPeerProps> = ({ name, icon: Icon }) => {
   const formRef = useRef<FormHandles>(null);
-
+  const [peers, setPeers] = useState<IPeer[]>([]);
   const [page, setPage] = useState(1);
-  const totalPages = 15;
-  const handlePages = (updatePage: number) => setPage(updatePage);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const handlePages = (updatePage: number) => {
+    setPage(updatePage);
+  };
+
+  useEffect(() => {
+    async function getData() {
+      const response = await api.get('/users', { params: { page } });
+
+      if (!response) return;
+      setPage(response.data.page);
+      setPeers(response.data.data);
+      setTotalPages(response.data.total_pages);
+    }
+
+    getData();
+  }, [page]);
 
   function handleSubmit(data: object): void {
     // eslint-disable-next-line no-console
@@ -54,97 +73,35 @@ const MainPeer: React.FC<MainPeerProps> = ({ name, icon: Icon }) => {
       </FormContainer>
       <List>
         <ListItemsCategory>
-          <span>ID</span>
           <span>Nome</span>
           <span>Telefone</span>
           <span>E-mail</span>
-          <span>Natureza</span>
           <span>CPF</span>
-          <span>Editar/Excluir</span>
+          <span>RG</span>
+          <span>Gênero</span>
+          <span>Natureza</span>
+          <span>ID</span>
+          <span>Editar</span>
         </ListItemsCategory>
-        <ListItems>
-          <span>0001</span>
-          <span>Stephan Kistmann Jacob</span>
-          <span>(99) 99999-9999</span>
-          <span>email@email.com</span>
-          <span>Pessoa Física</span>
-          <span>123.456.789-10</span>
-          <Link to="/superunit">
+
+        {peers.map(peer => (
+          <ListItems key={peer.id}>
+            <span>{peer.name || 'null'}</span>
+            <span>{peer.phone || 'null'}</span>
+            <span>{peer.email || 'null'}</span>
+            <span>{peer.cpf || 'null'}</span>
+            <span>{peer.rg || 'null'}</span>
+            <span>{peer.gender || 'null'}</span>
+            <span>{peer.nature || 'null'}</span>
+            <span>{peer.id || 'null'}</span>
             <FiEdit />
-            <FiTrash />
-          </Link>
-        </ListItems>
-        <ListItems>
-          <span>0001</span>
-          <span>Stephan Kistmann Jacob</span>
-          <span>(99) 99999-9999</span>
-          <span>email@email.com</span>
-          <span>Pessoa Física</span>
-          <span>123.456.789-10</span>
-          <Link to="/superunit">
-            <FiEdit />
-            <FiTrash />
-          </Link>
-        </ListItems>
-        <ListItems>
-          <span>0001</span>
-          <span>Stephan Kistmann Jacob</span>
-          <span>(99) 99999-9999</span>
-          <span>email@email.com</span>
-          <span>Pessoa Física</span>
-          <span>123.456.789-10</span>
-          <Link to="/superunit">
-            <FiEdit />
-            <FiTrash />
-          </Link>
-        </ListItems>
-        <ListItems>
-          <span>0001</span>
-          <span>Stephan Kistmann Jacob</span>
-          <span>(99) 99999-9999</span>
-          <span>email@email.com</span>
-          <span>Pessoa Física</span>
-          <span>123.456.789-10</span>
-          <Link to="/superunit">
-            <FiEdit />
-            <FiTrash />
-          </Link>
-        </ListItems>
-        <ListItems>
-          <span>0001</span>
-          <span>Stephan Kistmann Jacob</span>
-          <span>(99) 99999-9999</span>
-          <span>email@email.com</span>
-          <span>Pessoa Física</span>
-          <span>123.456.789-10</span>
-          <Link to="/superunit">
-            <FiEdit />
-            <FiTrash />
-          </Link>
-        </ListItems>
-        <ListItems>
-          <span>0001</span>
-          <span>Stephan Kistmann Jacob</span>
-          <span>(99) 99999-9999</span>
-          <span>email@email.com</span>
-          <span>Pessoa Física</span>
-          <span>123.456.789-10</span>
-          <Link to="/superunit">
-            <FiEdit />
-            <FiTrash />
-          </Link>
-        </ListItems>
+          </ListItems>
+        ))}
         <Pagination
           page={page}
           handlePagination={handlePages}
           totalPages={totalPages}
-        >
-          <NavButton icon={FiChevronLeft} />
-          <NavPage>
-            <span>1</span>
-          </NavPage>
-          <NavButton icon={FiChevronRight} />
-        </Pagination>
+        />
       </List>
     </Container>
   );
