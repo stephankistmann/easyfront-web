@@ -27,7 +27,6 @@ interface IFormData {
 const MaindAddUnit: React.FC<MaindAddUnitProps> = ({ name, icon: Icon }) => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
-  const history = useHistory();
   const { selected } = useSuperunit();
 
   const superunitId = selected?.id;
