@@ -68,47 +68,40 @@ const NewAcess: React.FC = () => {
             <FormContainer>
               <Select
                 name="name"
+                isMulti
                 options={[
-                  { label: 'João', value: '' },
-                  { label: 'Valéria', value: '' },
-                  { label: 'Roberto', value: '' },
-                  { label: 'Lilian', value: '' },
-                  { label: 'Christian', value: '' },
+                  { label: 'João', value: '1' },
+                  { label: 'Valéria', value: '2' },
+                  { label: 'Roberto', value: '3' },
+                  { label: 'Lilian', value: '4' },
+                  { label: 'Christian', value: '5' },
                 ]}
-                defaultValue={{
-                  label: 'Morador',
-                  value: '',
-                }}
+                placeholderName="Morador"
               />
               <Select
                 name="unity"
+                isMulti
                 options={[
-                  { label: 'Unidade 1', value: '' },
-                  { label: 'Unidade 2', value: '' },
-                  { label: 'Unidade 3', value: '' },
-                  { label: 'Unidade 4', value: '' },
-                  { label: 'Unidade 5', value: '' },
+                  { label: 'Unidade 1', value: '1' },
+                  { label: 'Unidade 2', value: '2' },
+                  { label: 'Unidade 3', value: '3' },
+                  { label: 'Unidade 4', value: '4' },
+                  { label: 'Unidade 5', value: '5' },
                 ]}
-                defaultValue={{
-                  label: 'Unidades',
-                  value: '',
-                }}
+                placeholderName="Unidade"
               />
               <Select
                 name="category"
+                isMulti
                 options={[
-                  { label: 'Categoria 1', value: '' },
-                  { label: 'Categoria 2', value: '' },
-                  { label: 'Categoria 3', value: '' },
-                  { label: 'Categoria 4', value: '' },
-                  { label: 'Categoria 5', value: '' },
+                  { label: 'Categoria 1', value: '1' },
+                  { label: 'Categoria 2', value: '2' },
+                  { label: 'Categoria 3', value: '3' },
+                  { label: 'Categoria 4', value: '4' },
+                  { label: 'Categoria 5', value: '5' },
                 ]}
-                defaultValue={{
-                  label: 'Categoria',
-                  value: '',
-                }}
+                placeholderName="Categoria"
               />
-
               <Button type="submit" icon={FiPlus} name="AddButton">
                 Adicionar
               </Button>

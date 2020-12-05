@@ -5,9 +5,10 @@ import { Container } from './styles';
 
 interface Props extends SelectProps<OptionTypeBase> {
   name: string;
+  placeholderName?: string;
 }
 
-const Select: React.FC<Props> = ({ name, ...rest }) => {
+const Select: React.FC<Props> = ({ name, placeholderName, ...rest }) => {
   const selectRef = useRef(null);
   const { fieldName, defaultValue, registerField, error } = useField(name);
 
@@ -35,7 +36,7 @@ const Select: React.FC<Props> = ({ name, ...rest }) => {
       defaultValue={defaultValue}
       ref={selectRef}
       classNamePrefix="react-select"
-      placeholder="Selecionar"
+      placeholder={placeholderName}
       {...rest}
     />
   );
