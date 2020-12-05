@@ -27,6 +27,10 @@ export const FormContainer = styled.div`
       width: 350px;
     }
 
+    .sc-hKgILt.kQSoJa {
+      width: 350px;
+    }
+
     .kunJfp + div {
       margin-top: 0px;
     }

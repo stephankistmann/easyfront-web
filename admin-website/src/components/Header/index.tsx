@@ -5,6 +5,7 @@ import {
   UserContent,
   Navigation,
   DropdownContainer,
+  SuperunitContainer,
 } from './styles';
 import NavButton from '../NavButton';
 import LogoutButton from '../LogoutButton';
@@ -27,7 +28,7 @@ const Header: React.FC = () => {
         <SuperunitItem icon={FiChevronDown} defaultSuperUnit={selected?.name}>
           <DropdownContainer>
             {superunities.map(superunit => (
-              <button
+              <SuperunitContainer
                 type="button"
                 key={superunit.id}
                 onClick={() => {
@@ -35,7 +36,7 @@ const Header: React.FC = () => {
                 }}
               >
                 {superunit.name}
-              </button>
+              </SuperunitContainer>
             ))}
           </DropdownContainer>
         </SuperunitItem>
