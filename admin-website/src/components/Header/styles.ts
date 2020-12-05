@@ -59,6 +59,11 @@ export const UserContent = styled.div`
 
   .sc-bkzZxe {
     border: 1px solid #ff6757;
+
+    :hover {
+      background: #ff6757;
+      color: #fff;
+    }
   }
 
   .sc-bqyKva {
