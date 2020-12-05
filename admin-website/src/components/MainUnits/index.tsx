@@ -1,13 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { IconBaseProps } from 'react-icons';
 import { Link } from 'react-router-dom';
-import {
-  FiChevronLeft,
-  FiChevronRight,
-  FiEdit,
-  FiTrash,
-  FiSearch,
-} from 'react-icons/fi';
+import { FiEdit, FiTrash, FiSearch } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import Pagination from '../Pagination';
@@ -17,10 +11,9 @@ import {
   ListItems,
   ListItemsCategory,
   FormContainer,
+  InvisibleButton,
 } from './styles';
 import Header from './Header';
-import NavButton from '../NavButton';
-import NavPage from '../NavPage';
 import Input from '../Input';
 import Button from '../Button';
 import Select from '../Select';
@@ -48,6 +41,14 @@ const MainUnits: React.FC<MainUnitsProps> = ({ name, icon: Icon }) => {
   const handlePages = (updatePage: number) => {
     setPage(updatePage);
   };
+
+  async function handleDelete(id: string) {
+    const deleteUnit = data.find(unit => unit.id === id);
+
+    await api.delete(`/superunities/${selected?.id}/unities/${deleteUnit?.id}`);
+
+    setData(oldData => oldData.filter(unit => unit.id !== id));
+  }
 
   useEffect(() => {
     async function getData() {
@@ -121,9 +122,12 @@ const MainUnits: React.FC<MainUnitsProps> = ({ name, icon: Icon }) => {
               <Link to={`/units/edit/${unit.id}`}>
                 <FiEdit />
               </Link>
-              <Link to={`/units/delete/${unit.id}`}>
+              <InvisibleButton
+                type="button"
+                onClick={() => handleDelete(unit.id)}
+              >
                 <FiTrash />
-              </Link>
+              </InvisibleButton>
             </div>
           </ListItems>
         ))}

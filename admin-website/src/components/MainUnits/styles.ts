@@ -138,3 +138,10 @@ export const Pagination = styled.div`
   justify-content: flex-end;
   margin-top: 17px;
 `;
+
+export const InvisibleButton = styled.button`
+  background: transparent;
+  border: none;
+  width: 22px;
+  margin-right: 22px;
+`;

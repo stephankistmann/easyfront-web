@@ -1,21 +1,28 @@
 import React from 'react';
-import { FiChevronDown, FiChevronLeft } from 'react-icons/fi';
+import { FiChevronDown, FiChevronLeft, FiLoader } from 'react-icons/fi';
 import {
   Container,
   UserContent,
   Navigation,
   DropdownContainer,
   SuperunitContainer,
+  LoadingContainer,
 } from './styles';
 import NavButton from '../NavButton';
 import LogoutButton from '../LogoutButton';
 import SuperunitItem from '../SuperunitItem';
 import { useSuperunit } from '../../hooks/superunit';
+import Loading from '../Loading';
 
 const Header: React.FC = () => {
   const { superunities, selectSuperunit, selected } = useSuperunit();
 
-  if (!selected) return <p>loading...</p>;
+  if (!selected)
+    return (
+      <LoadingContainer>
+        <Loading name="Loading..." icon={FiLoader} />
+      </LoadingContainer>
+    );
 
   return (
     <Container>

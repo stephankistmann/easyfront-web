@@ -57,7 +57,7 @@ export const UserContent = styled.div`
     width: 56px;
   }
 
-  .sc-bkzZxe {
+  .sc-kGNybE {
     border: 1px solid #ff6757;
 
     :hover {
@@ -118,4 +118,11 @@ export const SuperunitContainer = styled.button`
     border: 0;
     background: #2f4858;
   }
+`;
+
+export const LoadingContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 30px;
+  margin-bottom: 30px;
 `;
