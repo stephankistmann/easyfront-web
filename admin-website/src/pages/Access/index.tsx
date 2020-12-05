@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Header from './Header';
 import { Container, List, ListItems, ListItemsCategory } from './styles';
-import Title from '../../components/Title';
 
 const Access: React.FC = () => (
   <Layout>

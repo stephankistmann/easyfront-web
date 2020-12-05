@@ -57,55 +57,60 @@ export const UserContent = styled.div`
     width: 56px;
   }
 
-  button {
-    background: #fff;
-    border: 1px solid #dfe9eb;
-    box-shadow: none;
+  .sc-bkzZxe {
     border: 1px solid #ff6757;
+  }
 
+  .sc-bqyKva {
     :hover {
-      background: #ff6757;
+      border: 0;
+      background: #2f4858;
       color: #fff;
     }
   }
 
-  :nth-child(2) {
-    button {
-      :hover {
-        background: #2f4858;
-        border: 0;
-      }
+  button {
+    background: #fff;
+    box-shadow: none;
+
+    :hover {
+      border: 0;
+      background: #2f4858;
+      color: #fff;
     }
   }
 `;
 
-export const DropdownContainer = styled.ul`
+export const DropdownContainer = styled.div`
   display: flex;
   flex-direction: column;
   background: #ffffff;
-  margin-right: 24px;
   margin-top: 8px;
   z-index: 10;
-  border-radius: 10px;
   border: 1px solid #ff6757;
+  border-radius: 10px;
+  width: 92.5%;
+`;
 
-  :hover {
-    border: 1px solid #2f4858;
+export const SuperunitContainer = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style-type: none;
+  height: 56px;
+  width: 100%;
+  border: 0;
+
+  :first-child {
+    border-radius: 10px 10px 0 0;
   }
 
-  button {
-    background: #ff6757;
-    height: 56px;
-    border: 0;
-    padding: 0 16px;
-    color: #ffffff;
-    width: 100%;
-    font-weight: 500;
-    transition: background-color 0.2s;
-    margin-top: 16px;
+  :last-child {
+    border-radius: 0 0 10px 10px;
+  }
 
-    &:hover {
-      background: #2f4858;
-    }
+  :hover {
+    border: 0;
+    background: #2f4858;
   }
 `;
