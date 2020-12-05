@@ -66,6 +66,15 @@ export const UserContent = styled.div`
     }
   }
 
+  .sc-kJFuea {
+    border: 1px solid #ff6757;
+
+    :hover {
+      background: #ff6757;
+      color: #fff;
+    }
+  }
+
   .sc-bqyKva {
     :hover {
       border: 0;
