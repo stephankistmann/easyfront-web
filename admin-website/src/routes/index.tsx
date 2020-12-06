@@ -34,7 +34,7 @@ const Routes: React.FC = () => (
     <Route path="/access" component={Access} isPrivate exact />
     <Route path="/access/new" component={NewAccess} isPrivate />
     <Route path="/peers" exact component={Peers} isPrivate />
-    <Route path="/newpeer" component={AddPeer} isPrivate />
+    <Route path="/peers/new" component={AddPeer} isPrivate />
   </Switch>
 );
 

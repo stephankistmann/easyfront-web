@@ -57,7 +57,7 @@ export const UserContent = styled.div`
     width: 56px;
   }
 
-  .sc-kGNybE {
+  .sc-idOhPF {
     border: 1px solid #ff6757;
 
     :hover {
