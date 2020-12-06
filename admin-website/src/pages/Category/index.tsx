@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { IconBaseProps } from 'react-icons';
 import { Link } from 'react-router-dom';
 import {
   FiChevronLeft,
@@ -13,7 +12,7 @@ import { Container, List, ListItems, ListItemsCategory } from './styles';
 import NavButton from '../../components/NavButton';
 import NavPage from '../../components/NavPage';
 import Layout from '../../components/Layout';
-import Header from './Header';
+import MainHeaderButton from '../../components/MainHeaderButton';
 
 const Category: React.FC = () => {
   const [page, setPage] = useState(1);
@@ -28,7 +27,12 @@ const Category: React.FC = () => {
   return (
     <Layout>
       <Container>
-        <Header icon={FiList} name="Categorias" />
+        <MainHeaderButton
+          icon={FiList}
+          name="Categorias"
+          buttonName="Adicionar Categoria"
+          buttonLink="/category/new"
+        />
         <List>
           <ListItemsCategory>
             <span>ID</span>

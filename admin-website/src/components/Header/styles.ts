@@ -55,6 +55,7 @@ export const UserContent = styled.div`
     margin-right: 30px;
     height: 56px;
     width: 56px;
+    object-fit: cover;
   }
 
   .sc-idOhPF {

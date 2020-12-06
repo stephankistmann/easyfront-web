@@ -8,7 +8,6 @@ import Units from '../pages/Units';
 import Peers from '../pages/Peers';
 import AddPeer from '../pages/AddPeer';
 import AddUnit from '../pages/AddUnit';
-import AddUnitEmergency from '../pages/AddUnitEmergency';
 import Category from '../pages/Category';
 import AddCategory from '../pages/AddCategory';
 import ForgotPassword from '../pages/ForgotPassword';
@@ -26,7 +25,6 @@ const Routes: React.FC = () => (
     <Route path="/dashboard/:page?" component={Dashboard} isPrivate />
     <Route path="/units" component={Units} isPrivate exact />
     <Route path="/units/new" component={AddUnit} isPrivate exact />
-    <Route path="/units/new/emergency" component={AddUnitEmergency} isPrivate />
     <Route path="/units/edit/:id" component={EditUnit} isPrivate />
     <Route path="/units/delete/:id" component={DeleteUnit} isPrivate />
     <Route path="/category" component={Category} isPrivate exact />

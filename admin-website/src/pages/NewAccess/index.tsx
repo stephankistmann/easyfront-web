@@ -62,7 +62,7 @@ const NewAcess: React.FC = () => {
   return (
     <Layout>
       <Container>
-        <Header icon={FiChevronsRight} name="Novo Acesso" />
+        <Header icon={FiChevronsRight} name="Adicionar Acesso" />
         <FormContainer>
           <Form ref={formRef} onSubmit={handleSubmit}>
             <FormContainer>

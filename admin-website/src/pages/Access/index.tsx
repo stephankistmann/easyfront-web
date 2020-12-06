@@ -2,13 +2,18 @@ import React from 'react';
 import { FiChevronsRight, FiEdit, FiTrash } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import Layout from '../../components/Layout';
-import Header from './Header';
+import MainHeaderButton from '../../components/MainHeaderButton';
 import { Container, List, ListItems, ListItemsCategory } from './styles';
 
 const Access: React.FC = () => (
   <Layout>
     <Container>
-      <Header icon={FiChevronsRight} name="Acessos" />
+      <MainHeaderButton
+        icon={FiChevronsRight}
+        name="Acessos"
+        buttonName="Adicionar Acesso"
+        buttonLink="/access/new"
+      />
       <List>
         <ListItemsCategory>
           <span>ID</span>

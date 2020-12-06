@@ -24,7 +24,7 @@ import {
 import DataContentContainer from '../../components/DataContentContainer';
 import UserIcon from '../../assets/defaultUserIcon.png';
 
-const MainDashboard: React.FC = () => {
+const Dashboard: React.FC = () => {
   const [chartData, setChartData] = useState({});
   const history = useHistory();
 
@@ -185,4 +185,4 @@ const MainDashboard: React.FC = () => {
   );
 };
 
-export default MainDashboard;
+export default Dashboard;

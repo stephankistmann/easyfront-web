@@ -17,7 +17,6 @@ export const Title = styled.div`
 
   svg {
     margin-right: 16px;
-    margin-left: 4px;
   }
 
   h1 {
