@@ -7,6 +7,7 @@ import {
   FiHelpCircle,
   FiHome,
   FiList,
+  FiLogOut,
   FiMapPin,
   FiMenu,
   FiSettings,
@@ -14,6 +15,7 @@ import {
 } from 'react-icons/fi';
 import MenuItem from './MenuItem';
 import MenuItemMini from './MenuItemMini';
+import Logout from './LogoutButton';
 import NavButton from '../NavButton';
 import logoImg from '../../assets/logo.png';
 import { Container, Menu } from './styles';
@@ -51,6 +53,7 @@ const Sidebar: React.FC = () => {
           name="Settings"
           icon={FiSettings}
         />
+        <Logout name="Logout" icon={FiLogOut} />
         <NavButton icon={FiMenu} />
       </Menu>
     </Container>

@@ -33,9 +33,32 @@ export const Menu = styled.div`
     margin-top: 16px;
   }
 
-  & button:nth-child(8) {
+  div {
+    margin: 16px 0px 0px 30px;
+    width: 85%;
+  }
+
+  & button:nth-child(9) {
     position: fixed;
     align-self: flex-end;
     margin-top: 38%;
+  }
+`;
+
+export const LogoutButton = styled.div`
+  background: #ffffff;
+  padding: 16px;
+  width: 100%;
+  font-weight: 700;
+
+  border: 0;
+  color: #666360;
+
+  display: flex;
+  align-items: center;
+
+  svg {
+    margin-right: 16px;
+    margin-left: 8px;
   }
 `;

@@ -5,7 +5,7 @@ export const Container = styled.div`
   background: transparent;
   border-radius: 50%;
   display: flex;
-  align-itens: center;
+  align-items: center;
   justify-content: center;
   position: relative;
   flex-direction: row;
@@ -20,6 +20,10 @@ export const Container = styled.div`
     right: -37px;
     top: -19px;
     object-fit: cover;
+    border: 1px solid transparent;
+    :hover {
+      border: 1px solid #ff6757;
+    }
   }
 `;
 
