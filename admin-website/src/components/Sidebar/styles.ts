@@ -52,7 +52,7 @@ export const LogoutButton = styled.div`
   font-weight: 700;
 
   border: 0;
-  color: #666360;
+  color: #2f4858;
 
   display: flex;
   align-items: center;
