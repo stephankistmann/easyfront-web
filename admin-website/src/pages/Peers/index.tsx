@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { FiEdit, FiSearch, FiUsers } from 'react-icons/fi';
+import { FiEdit, FiUsers, FiXCircle, FiSearch } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import {
@@ -9,6 +9,7 @@ import {
   ListItemsCategory,
   FormContainer,
 } from './styles';
+import useDebounce from '../../hooks/debounce';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import api from '../../services/api';
@@ -28,14 +29,57 @@ interface IPeer {
 }
 
 const MainPeer: React.FC = () => {
-  const formRef = useRef<FormHandles>(null);
   const [peers, setPeers] = useState<IPeer[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isSearching, setIsSearching] = useState(false);
+  const formRef = useRef<FormHandles>(null);
+
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   const handlePages = (updatePage: number) => {
     setPage(updatePage);
   };
+
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      setIsSearching(true);
+
+      handleSearch(debouncedSearchTerm);
+
+      setIsSearching(false);
+    }
+  }, [debouncedSearchTerm]);
+
+  function handleSearch(searchData: string) {
+    const search = searchData;
+
+    async function getData() {
+      const response = await api.get('/users', { params: { search } });
+      setPeers(response.data.data);
+    }
+
+    getData();
+  }
+
+  function handleReset() {
+    async function getData() {
+      const response = await api.get('/users', { params: { page } });
+
+      if (!response) return;
+
+      setPeers(response.data.data);
+
+      setPage(response.data.page);
+
+      setTotalPages(response.data.total_pages);
+    }
+
+    getData();
+
+    formRef.current?.reset();
+  }
 
   useEffect(() => {
     async function getData() {
@@ -54,11 +98,6 @@ const MainPeer: React.FC = () => {
     getData();
   }, [page]);
 
-  function handleSubmit(data: object): void {
-    // eslint-disable-next-line no-console
-    console.log(data);
-  }
-
   return (
     <Layout>
       <Container>
@@ -69,10 +108,20 @@ const MainPeer: React.FC = () => {
           buttonLink="/peers/new"
         />
         <FormContainer>
-          <Form ref={formRef} onSubmit={handleSubmit}>
-            <Input name="name" placeholder="Nome ou e-mail" />
-            <Button type="submit" icon={FiSearch} name="SearchButton">
-              Pesquisar
+          <Form ref={formRef} onSubmit={() => debouncedSearchTerm}>
+            <Input
+              name="search"
+              placeholder="Nome ou e-mail"
+              onChange={e => setSearchTerm(e.target.value)}
+              icon={FiSearch}
+            />
+            <Button
+              type="button"
+              icon={FiXCircle}
+              name="ResetButton"
+              onClick={handleReset}
+            >
+              Resetar
             </Button>
           </Form>
         </FormContainer>

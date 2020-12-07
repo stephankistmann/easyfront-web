@@ -20,7 +20,7 @@ const Header: React.FC = () => {
   if (!selected)
     return (
       <LoadingContainer>
-        <Loading name="Loading..." icon={FiLoader} />
+        <Loading name="Carregando..." icon={FiLoader} />
       </LoadingContainer>
     );
 
