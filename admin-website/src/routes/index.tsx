@@ -7,14 +7,15 @@ import Dashboard from '../pages/Dashboard';
 import Units from '../pages/Units';
 import Peers from '../pages/Peers';
 import AddPeer from '../pages/AddPeer';
-import AddUnit from '../pages/AddUnitData';
-import AddUnitEmergency from '../pages/AddUnitEmergency';
-import UnitCategory from '../pages/UnitCategory';
-import AddUnitCategory from '../pages/AddUnitCategory';
+import AddUnit from '../pages/AddUnit';
+import Category from '../pages/Category';
+import AddCategory from '../pages/AddCategory';
 import ForgotPassword from '../pages/ForgotPassword';
 import ResetPassword from '../pages/ResetPassword';
 import EditUnit from '../pages/EditUnit';
 import DeleteUnit from '../pages/DeleteUnit';
+import Access from '../pages/Access';
+import NewAccess from '../pages/NewAccess';
 
 const Routes: React.FC = () => (
   <Switch>
@@ -24,13 +25,14 @@ const Routes: React.FC = () => (
     <Route path="/dashboard/:page?" component={Dashboard} isPrivate />
     <Route path="/units" component={Units} isPrivate exact />
     <Route path="/units/new" component={AddUnit} isPrivate exact />
-    <Route path="/units/new/emergency" component={AddUnitEmergency} isPrivate />
-    <Route path="/units/category" component={UnitCategory} isPrivate exact />
-    <Route path="/units/category/new" component={AddUnitCategory} isPrivate />
     <Route path="/units/edit/:id" component={EditUnit} isPrivate />
     <Route path="/units/delete/:id" component={DeleteUnit} isPrivate />
+    <Route path="/category" component={Category} isPrivate exact />
+    <Route path="/category/new" component={AddCategory} isPrivate />
+    <Route path="/access" component={Access} isPrivate exact />
+    <Route path="/access/new" component={NewAccess} isPrivate />
     <Route path="/peers" exact component={Peers} isPrivate />
-    <Route path="/newpeer" component={AddPeer} isPrivate />
+    <Route path="/peers/new" component={AddPeer} isPrivate />
   </Switch>
 );
 

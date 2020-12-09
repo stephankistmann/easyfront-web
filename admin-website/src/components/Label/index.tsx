@@ -7,7 +7,8 @@ interface LabelProps {
 
 const Label: React.FC<LabelProps> = ({ name, children }) => (
   <Container htmlFor={name}>
-    {name}
+    <span>{name}</span>
+
     {children}
   </Container>
 );

@@ -10,36 +10,28 @@ export const Container = styled.div`
 
 export const FormContainer = styled.div`
   display: flex;
+  margin-right: 30px;
+  margin-left: 30px;
+  margin-top: 30px;
 
   form {
+    width: 100%;
+    margin-bottom: 30px;
     display: flex;
     align-items: center;
-    padding: 30px;
-    width: 45%;
+    justify-content: space-between;
 
-    div {
-      :hover {
-        color: #ff6757;
-      }
+    .sc-hKgILt {
+      margin-right: 16px;
+    }
+    .css-2b097c-container {
+      margin-top: 0;
     }
 
     button {
-      display: flex;
-      margin: 0;
-      align-items: center;
-      justify-content: center;
-      width: 250px;
+      font-size: 22px;
+      margin-top: 0;
       margin-left: 16px;
-      font-weight: 700;
-
-      svg {
-        margin-right: 16px;
-      }
-    }
-
-    input {
-      width: 250px;
-      margin-right: 16px;
     }
   }
 `;

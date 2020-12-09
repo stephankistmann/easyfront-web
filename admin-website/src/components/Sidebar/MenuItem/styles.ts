@@ -12,7 +12,7 @@ export const Container = styled.button<ContainerProps>`
   font-weight: 700;
 
   border: 0;
-  color: #666360;
+  color: #2f4858;
 
   display: flex;
   align-items: center;

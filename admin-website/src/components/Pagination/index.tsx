@@ -1,6 +1,5 @@
 import React from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { useHistory } from 'react-router-dom';
 import { Container, NavPage } from './styles';
 
 export interface PaginationProps {
@@ -13,8 +12,6 @@ const Pagination: React.FC<PaginationProps> = ({
   totalPages,
   handlePagination,
 }) => {
-  const history = useHistory();
-
   return (
     <Container>
       {page !== 1 && (
@@ -22,7 +19,6 @@ const Pagination: React.FC<PaginationProps> = ({
           name="NavPagePrev"
           onClick={() => {
             handlePagination(page - 1);
-            history.goBack();
           }}
         >
           <FiChevronLeft />
@@ -36,7 +32,6 @@ const Pagination: React.FC<PaginationProps> = ({
           name="NavPageNext"
           onClick={() => {
             handlePagination(page + 1);
-            // history.push(`/dashboard/${page + 1}`);
           }}
         >
           <FiChevronRight />

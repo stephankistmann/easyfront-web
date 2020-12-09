@@ -35,7 +35,6 @@ export const Container = styled(ReactSelect)`
     }
   }
 
-
   .css-2b097c-container + div {
     margin-top: 0;
   }
@@ -52,4 +51,5 @@ export const Container = styled(ReactSelect)`
     :hover {
       border-color: #ff6757;
     }
+  }
 `;

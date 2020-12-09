@@ -1,16 +1,3 @@
-// import React from 'react';
-// import { FiBarChart } from 'react-icons/fi';
-// import Layout from '../../components/Layout';
-// import MainDashboard from '../../components/MainDashboard';
-
-// const Dashboard: React.FC = () => (
-//   <Layout>
-//     <MainDashboard name="Dashboard" icon={FiBarChart} />
-//   </Layout>
-// );
-
-// export default Dashboard;
-
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Line } from 'react-chartjs-2';
@@ -37,7 +24,7 @@ import {
 import DataContentContainer from '../../components/DataContentContainer';
 import UserIcon from '../../assets/defaultUserIcon.png';
 
-const MainDashboard: React.FC = ({ children }) => {
+const Dashboard: React.FC = () => {
   const [chartData, setChartData] = useState({});
   const history = useHistory();
 
@@ -198,4 +185,4 @@ const MainDashboard: React.FC = ({ children }) => {
   );
 };
 
-export default MainDashboard;
+export default Dashboard;

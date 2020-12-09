@@ -10,14 +10,42 @@ export const Container = styled.div`
 
 export const FormContainer = styled.div`
   display: flex;
+  flex: 1;
+  justify-content: space-between;
 
   form {
     display: flex;
     align-items: center;
     padding: 30px;
-    width: 45%;
+    flex: 1;
 
-    div {
+    .css-2b097c-container {
+      margin-right: 30px;
+      width: 25%;
+    }
+
+    .css-2b097c-container {
+      margin-top: 0;
+    }
+
+    .css-26l3qy-menu {
+      width: 100%;
+    }
+
+    .sc-hKgILt.kunJfp {
+      width: 350px;
+    }
+
+    .kunJfp + div {
+      margin-top: 0px;
+    }
+
+    .kQSoJa + div {
+      margin-top: 0px;
+    }
+
+    label {
+      display: flex;
       :hover {
         color: #ff6757;
       }
@@ -28,18 +56,12 @@ export const FormContainer = styled.div`
       margin: 0;
       align-items: center;
       justify-content: center;
-      width: 250px;
-      margin-left: 16px;
+      width: 300px;
       font-weight: 700;
 
       svg {
         margin-right: 16px;
       }
-    }
-
-    input {
-      width: 250px;
-      margin-right: 16px;
     }
   }
 `;
