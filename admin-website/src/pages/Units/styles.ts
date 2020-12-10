@@ -27,31 +27,36 @@ export const List = styled.div`
     flex-direction: row;
   }
 `;
+
 export const ListItemsCategory = styled.div`
   display: flex;
   margin: 8px 16px 8px 16px;
+  justify-content: space-between;
 
   span {
-    width: 190px;
+    width: 50px;
+    text-align: center;
 
     :first-child {
-      width: 250px;
+      width: 215px;
+
+      text-align: left;
     }
 
     :nth-child(2) {
-      width: 250px;
+      width: 187px;
     }
 
     :nth-child(3) {
-      width: 470px;
+      width: 160px;
     }
 
     :nth-child(4) {
-      width: 425px;
+      width: 170px;
     }
 
     :nth-child(5) {
-      width: 280px;
+      width: 185px;
     }
 
     :last-child {
@@ -69,12 +74,37 @@ export const ListItems = styled.div`
   border: 1px solid #dfe9eb;
   border-radius: 10px;
   margin-top: 8px;
+  padding: 16px;
 
   span {
-    padding: 16px;
     font-weight: 500;
-  }
 
+    :first-child {
+      width: 215px;
+
+      text-align: left;
+    }
+
+    :nth-child(2) {
+      width: 187px;
+    }
+
+    :nth-child(3) {
+      width: 160px;
+    }
+
+    :nth-child(4) {
+      width: 170px;
+    }
+
+    :nth-child(5) {
+      width: 185px;
+    }
+
+    :last-child {
+      width: 95px;
+    }
+  }
   svg {
     width: 22px;
     height: 22px;

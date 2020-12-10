@@ -43,15 +43,15 @@ export const ListItemsCategory = styled.div`
     }
 
     :nth-child(3) {
-      width: 260px;
+      width: 250px;
     }
 
     :nth-child(4) {
-      width: 260px;
+      width: 250px;
     }
 
     :nth-child(5) {
-      width: 300px;
+      width: 325px;
     }
 
     :last-child {
@@ -67,6 +67,20 @@ export const ListItems = styled.div`
   border: 1px solid #dfe9eb;
   border-radius: 10px;
   margin-top: 8px;
+  position: relative;
+
+  div {
+    display: flex;
+    margin-right: 8px;
+  }
+
+  .buttonsDiv {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: absolute;
+    right: 0;
+  }
 
   span {
     padding: 16px;
@@ -89,7 +103,7 @@ export const ListItems = styled.div`
     }
 
     :nth-child(5) {
-      width: 300px;
+      width: 290px;
     }
 
     :nth-child(6) {

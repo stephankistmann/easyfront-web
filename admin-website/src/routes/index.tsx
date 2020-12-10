@@ -19,6 +19,7 @@ import DeleteUnit from '../pages/DeleteUnit';
 import Access from '../pages/Access';
 import AddAccess from '../pages/AddAccess';
 import EditAccess from '../pages/EditAccess';
+import ErrorPage from '../pages/ErrorPage';
 
 const Routes: React.FC = () => (
   <Switch>
@@ -39,6 +40,7 @@ const Routes: React.FC = () => (
     <Route path="/peers" exact component={Peers} isPrivate />
     <Route path="/peers/new" component={AddPeer} isPrivate />
     <Route path="/peers/edit/:id" component={EditPeer} isPrivate />
+    <Route path="/error" component={ErrorPage} isPrivate />
   </Switch>
 );
 

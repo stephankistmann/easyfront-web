@@ -15,9 +15,9 @@ export const FormContainer = styled.div`
 
   form {
     display: flex;
-    align-items: center;
     padding: 30px;
     flex: 1;
+    position: relative;
 
     .css-2b097c-container {
       margin-top: 0;
@@ -57,6 +57,8 @@ export const FormContainer = styled.div`
       justify-content: center;
       width: 100%;
       font-weight: 700;
+      position: absolute;
+      right: 30px;
 
       svg {
         margin-right: 16px;
@@ -67,9 +69,9 @@ export const FormContainer = styled.div`
 
 export const CheckboxContainer = styled.div`
   div {
-    margin-right: 100px;
+    margin-left: 30px;
+    margin-right: 30px;
   }
-
   label {
     margin-top: 16px;
     margin-right: 30px;
@@ -86,8 +88,21 @@ export const CheckboxContainer = styled.div`
 
 export const ScheduleContainer = styled.div`
   margin-right: 30px;
+  width: 300px;
+
+  label {
+    align-items: center;
+  }
 
   span {
     margin-right: 8px;
+  }
+
+  input {
+    margin-right: 8px;
+  }
+
+  div {
+    margin-top: 16px;
   }
 `;

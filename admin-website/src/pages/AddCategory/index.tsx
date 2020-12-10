@@ -2,7 +2,7 @@ import React, { useRef, useCallback, useState, useEffect } from 'react';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { FormHandles } from '@unform/core';
-import { FiClock, FiList, FiPlus } from 'react-icons/fi';
+import { FiClock, FiList } from 'react-icons/fi';
 import {
   Container,
   FormContainer,
@@ -88,8 +88,6 @@ const NewCategory: React.FC = () => {
         data.max_time = '00:00';
       }
 
-      console.log(data.min_time, data.max_time);
-
       formRef.current?.setErrors({});
 
       const newResponse: IFormData = Object.assign(data, {
@@ -98,8 +96,6 @@ const NewCategory: React.FC = () => {
       });
 
       delete data.checkbox;
-
-      console.log(newResponse);
 
       try {
         const schema = Yup.object().shape({
@@ -152,43 +148,41 @@ const NewCategory: React.FC = () => {
             <CheckboxContainer>
               <CheckWeekDay value={weekDays} onChange={setWeekDays} />
             </CheckboxContainer>
-            <FormContainer>
-              <CheckboxContainer>
-                {newData && <CheckboxInput name="checkbox" options={newData} />}
-              </CheckboxContainer>
-              <ScheduleContainer>
-                <label>
-                  <span>Restrição de horário</span>
-                  <input
-                    type="checkbox"
-                    name="time_limit"
-                    id="Restrição de horário"
-                    checked={timeLimit}
-                    onChange={() => setTimeLimit(!timeLimit)}
+            <CheckboxContainer>
+              {newData && <CheckboxInput name="checkbox" options={newData} />}
+            </CheckboxContainer>
+            <ScheduleContainer>
+              <label>
+                <input
+                  type="checkbox"
+                  name="time_limit"
+                  id="Restrição de horário"
+                  checked={timeLimit}
+                  onChange={() => setTimeLimit(!timeLimit)}
+                />
+                <span>Restrição de horário</span>
+              </label>
+              {timeLimit && (
+                <div>
+                  <InputMask
+                    icon={FiClock}
+                    name="min_time"
+                    mask="99:99"
+                    placeholder="Horário de inicio"
                   />
-                </label>
-                {timeLimit && (
-                  <div>
-                    <InputMask
-                      icon={FiClock}
-                      name="min_time"
-                      mask="99:99"
-                      placeholder="Horário de inicio"
-                    />
-                    <InputMask
-                      icon={FiClock}
-                      name="max_time"
-                      mask="99:99"
-                      placeholder="Horário de término"
-                    />
-                  </div>
-                )}
-              </ScheduleContainer>
+                  <InputMask
+                    icon={FiClock}
+                    name="max_time"
+                    mask="99:99"
+                    placeholder="Horário de término"
+                  />
+                </div>
+              )}
+            </ScheduleContainer>
 
-              <Button type="submit" icon={FiPlus} name="AddButton">
-                Adicionar
-              </Button>
-            </FormContainer>
+            <Button type="submit" name="AddButton">
+              Atualizar
+            </Button>
           </Form>
         </FormContainer>
       </Container>

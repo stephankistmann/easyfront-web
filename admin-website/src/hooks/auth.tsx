@@ -48,6 +48,7 @@ const AuthProvider: React.FC = ({ children }) => {
     if (token) {
       api.defaults.headers.authorization = `bearer ${token}`;
     }
+
     if (token && user) {
       return { token, user: JSON.parse(user) };
     }

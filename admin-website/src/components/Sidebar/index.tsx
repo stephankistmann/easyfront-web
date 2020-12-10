@@ -46,15 +46,15 @@ const Sidebar: React.FC = () => {
           name="Acessos"
           icon={FiChevronsRight}
         />
-        <MenuItem path={path} to="/faq" name="FAQ" icon={FiHelpCircle} />
-        <MenuItem
+        {/* <MenuItem path={path} to="/faq" name="FAQ" icon={FiHelpCircle} /> */}
+        {/* <MenuItem
           path={path}
           to="/settings"
           name="Configurações"
           icon={FiSettings}
-        />
+        /> */}
         <Logout name="Logout" icon={FiLogOut} />
-        <NavButton icon={FiMenu} />
+        {/* <NavButton icon={FiMenu} /> */}
       </Menu>
     </Container>
   );

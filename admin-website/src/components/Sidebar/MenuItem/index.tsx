@@ -14,7 +14,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ path, to, name, icon: Icon }) => {
   return (
     <Link to={to} style={{ textDecoration: 'none' }}>
       <Container isSelected={path === to}>
-        {Icon && <Icon size={27} />}
+        {Icon && <Icon size={24} />}
         {name}
       </Container>
     </Link>

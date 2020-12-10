@@ -19,60 +19,60 @@ const CheckWeekDay: React.FC<ICheckWeekDay> = ({ value, onChange }) => {
   return (
     <Container>
       <Item>
-        <p>Domingo</p>
         <input
           type="checkbox"
           checked={value[0]}
           onChange={event => selectDay(0, event)}
         />
+        <p>Domingo</p>
       </Item>
       <Item>
-        <p>Segunda-feira</p>
         <input
           type="checkbox"
           checked={value[1]}
           onChange={event => selectDay(1, event)}
         />
+        <p>Segunda-feira</p>
       </Item>
       <Item>
-        <p>Terça-feira</p>
         <input
           type="checkbox"
           checked={value[2]}
           onChange={event => selectDay(2, event)}
         />
+        <p>Terça-feira</p>
       </Item>
       <Item>
-        <p>Quarta-feira</p>
         <input
           type="checkbox"
           checked={value[3]}
           onChange={event => selectDay(3, event)}
         />
+        <p>Quarta-feira</p>
       </Item>
       <Item>
-        <p>Quinta-feira</p>
         <input
           type="checkbox"
           checked={value[4]}
           onChange={event => selectDay(4, event)}
         />
+        <p>Quinta-feira</p>
       </Item>
       <Item>
-        <p>Sexta-feira</p>
         <input
           type="checkbox"
           checked={value[5]}
           onChange={event => selectDay(5, event)}
         />
+        <p>Sexta-feira</p>
       </Item>
       <Item>
-        <p>Sábado</p>
         <input
           type="checkbox"
           checked={value[6]}
           onChange={event => selectDay(6, event)}
         />
+        <p>Sábado</p>
       </Item>
     </Container>
   );

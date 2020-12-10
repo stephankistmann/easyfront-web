@@ -154,43 +154,41 @@ const EditCategory: React.FC = () => {
             <CheckboxContainer>
               <CheckWeekDay value={weekDays} onChange={setWeekDays} />
             </CheckboxContainer>
-            <FormContainer>
-              <CheckboxContainer>
-                {newData && <CheckboxInput name="checkbox" options={newData} />}
-              </CheckboxContainer>
-              <ScheduleContainer>
-                <label>
-                  <span>Restrição de horário</span>
-                  <input
-                    type="checkbox"
-                    name="time_limit"
-                    id="Restrição de horário"
-                    checked={timeLimit}
-                    onChange={() => setTimeLimit(!timeLimit)}
+            <CheckboxContainer>
+              {newData && <CheckboxInput name="checkbox" options={newData} />}
+            </CheckboxContainer>
+            <ScheduleContainer>
+              <label>
+                <input
+                  type="checkbox"
+                  name="time_limit"
+                  id="Restrição de horário"
+                  checked={timeLimit}
+                  onChange={() => setTimeLimit(!timeLimit)}
+                />
+                <span>Restrição de horário</span>
+              </label>
+              {timeLimit && (
+                <div>
+                  <InputMask
+                    icon={FiClock}
+                    name="min_time"
+                    mask="99:99"
+                    placeholder="Horário de inicio"
                   />
-                </label>
-                {timeLimit && (
-                  <div>
-                    <InputMask
-                      icon={FiClock}
-                      name="min_time"
-                      mask="99:99"
-                      placeholder="Horário de inicio"
-                    />
-                    <InputMask
-                      icon={FiClock}
-                      name="max_time"
-                      mask="99:99"
-                      placeholder="Horário de término"
-                    />
-                  </div>
-                )}
-              </ScheduleContainer>
+                  <InputMask
+                    icon={FiClock}
+                    name="max_time"
+                    mask="99:99"
+                    placeholder="Horário de término"
+                  />
+                </div>
+              )}
+            </ScheduleContainer>
 
-              <Button type="submit" icon={FiPlus} name="AddButton">
-                Atualizar
-              </Button>
-            </FormContainer>
+            <Button type="submit" name="AddButton">
+              Atualizar
+            </Button>
           </Form>
         </FormContainer>
       </Container>

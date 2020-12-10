@@ -97,10 +97,12 @@ const Category: React.FC = () => {
               <span>{category.name || null}</span>
               <span>{category.min_time || null}</span>
               <span>{category.max_time || null}</span>
-              {category.devices.map(device => (
-                <span>{device.name || null}</span>
-              ))}
               <div>
+                {category.devices.map(device => (
+                  <div>{device.name || null}</div>
+                ))}
+              </div>
+              <div className="buttonsDiv">
                 <Link to={`/category/edit/${category.id}`}>
                   <FiEdit />
                 </Link>

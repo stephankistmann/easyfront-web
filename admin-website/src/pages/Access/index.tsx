@@ -13,8 +13,6 @@ interface IUser {
   id: string;
   name: string;
   phone: string;
-  cpf: string;
-  rg: string;
 }
 
 interface IUnit {
@@ -92,8 +90,6 @@ const Access: React.FC = () => {
             <span>Telefone</span>
             <span>Unidade</span>
             <span>Categoria</span>
-            <span>CPF</span>
-            <span>RG</span>
             <span>ID</span>
             <span>Editar/Excluir</span>
           </ListItemsCategory>
@@ -103,8 +99,6 @@ const Access: React.FC = () => {
               <span>{access.user.phone || 'null'}</span>
               <span>{access.unit.name || 'null'}</span>
               <span>{access.accessCategory.name || 'null'}</span>
-              <span>{access.user.cpf || 'null'}</span>
-              <span>{access.user.rg || 'null'}</span>
               <span>{access.id || 'null'}</span>
               <div>
                 <Link to={`/access/edit/${access.id}`}>
