@@ -28,8 +28,6 @@ const Header: React.FC = () => {
     <Container>
       <Navigation>
         <NavButton icon={FiChevronLeft} />
-        <p>Peers - </p>
-        <p> Create peer</p>
       </Navigation>
       <UserContent>
         <SuperunitItem icon={FiChevronDown} defaultSuperUnit={selected?.name}>

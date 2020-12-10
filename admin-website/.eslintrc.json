@@ -24,6 +24,7 @@
   },
   "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
   "rules": {
+    "no-param-reassing": 0,
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": "error",
     "react-hooks/rules-of-hooks": "error",

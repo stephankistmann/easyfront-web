@@ -20,6 +20,7 @@ const Input: React.FC<InputProps> = ({
   containerStyle = {},
   name,
   icon: Icon,
+  children,
   ...rest
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -53,7 +54,7 @@ const Input: React.FC<InputProps> = ({
         ref={inputRef}
         {...rest}
       />
-
+      {children && children}
       {error && (
         <Error title={error}>
           <FiAlertCircle color="#c53030" size={20} />

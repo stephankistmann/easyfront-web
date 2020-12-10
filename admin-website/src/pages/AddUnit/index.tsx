@@ -37,14 +37,14 @@ const MaindAddUnit: React.FC = () => {
           public_area: Yup.string()
             .required('Tipo obrigatorio')
             .oneOf([
-              'gym',
-              'apt',
-              'block',
-              'house',
-              'condominium',
-              'deppartment',
-              'store',
-              'room',
+              'Academia',
+              'Apartamento',
+              'Bloco',
+              'Casa',
+              'Condomínio',
+              'Departamento',
+              'Loja',
+              'Sala',
             ]),
         });
 
@@ -89,14 +89,14 @@ const MaindAddUnit: React.FC = () => {
             <Select
               name="type"
               options={[
-                { label: 'Academia', value: 'gym' },
-                { label: 'Apartamento', value: 'apt' },
-                { label: 'Bloco', value: 'block' },
-                { label: 'Casa', value: 'house' },
-                { label: 'Condomínio', value: 'condominium' },
-                { label: 'Departamento', value: 'deppartment' },
-                { label: 'Loja', value: 'store' },
-                { label: 'Sala', value: 'room' },
+                { label: 'Academia', value: 'Academia' },
+                { label: 'Apartamento', value: 'Apartamento' },
+                { label: 'Bloco', value: 'Bloco' },
+                { label: 'Casa', value: 'Casa' },
+                { label: 'Condomínio', value: 'Condomínio' },
+                { label: 'Departamento', value: 'Departamento' },
+                { label: 'Loja', value: 'Loja' },
+                { label: 'Sala', value: 'Sala' },
               ]}
               defaultValue={{
                 label: 'Tipo',

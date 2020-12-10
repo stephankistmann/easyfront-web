@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconBaseProps } from 'react-icons';
-import { FiList } from 'react-icons/fi';
+import { FiPlus } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import Button from '../Button';
 import { Container, Title } from './styles';
@@ -23,7 +23,7 @@ const HeaderButton: React.FC<HeaderButtonProps> = ({
       {Icon && <Icon size={26} />}
       <h1>{name}</h1>
       <Link to={`${buttonLink}`}>
-        <Button icon={FiList} name="NewCategory">
+        <Button icon={FiPlus} name="NewCategory">
           {buttonName}
         </Button>
       </Link>

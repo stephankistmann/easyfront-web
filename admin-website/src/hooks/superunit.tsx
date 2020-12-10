@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import api from '../services/api';
 import { useAuth } from './auth';
 
@@ -22,14 +23,12 @@ const SuperunitProvider: React.FC = ({ children }) => {
   const [superunities, setSuperunities] = useState<ISuperUnit[]>([]);
   const [selected, setSelected] = useState<ISuperUnit>();
   const [load, setLoad] = useState(true);
+  const history = useHistory();
 
   async function selectSuperunit(id: string) {
     setSelected(superunities.find(superunit => superunit.id === id));
+    history.push('/dashboard');
   }
-
-  // useEffect(() => {
-  //   localStorage.setItem('Superunities', JSON.stringify(superunities));
-  // });
 
   useEffect(() => {
     async function getData() {
@@ -39,6 +38,10 @@ const SuperunitProvider: React.FC = ({ children }) => {
 
       setSelected(response.data[0]);
 
+      if (response.data.length === 0) {
+        console.log(response.data.length);
+        history.push('/error');
+      }
       setLoad(false);
     }
 

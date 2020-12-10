@@ -1,28 +1,77 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  FiChevronLeft,
-  FiChevronRight,
-  FiEdit,
-  FiList,
-  FiTrash,
-} from 'react-icons/fi';
+import { FiEdit, FiList, FiTrash } from 'react-icons/fi';
 import Pagination from '../../components/Pagination';
-import { Container, List, ListItems, ListItemsCategory } from './styles';
-import NavButton from '../../components/NavButton';
-import NavPage from '../../components/NavPage';
+import {
+  Container,
+  List,
+  ListItems,
+  ListItemsCategory,
+  InvisibleButton,
+} from './styles';
 import Layout from '../../components/Layout';
 import MainHeaderButton from '../../components/MainHeaderButton';
+import api from '../../services/api';
+import { useSuperunit } from '../../hooks/superunit';
+
+interface IDevices {
+  name: string;
+}
+
+interface ICategories {
+  id: string;
+  name: string;
+  min_time: string;
+  max_time: string;
+  devices: IDevices[];
+}
 
 const Category: React.FC = () => {
+  const [categories, setCategories] = useState<ICategories[]>([]);
   const [page, setPage] = useState(1);
-  const totalPages = 15;
-  const handlePages = (updatePage: number) => setPage(updatePage);
+  const [totalPages, setTotalPages] = useState(1);
+  const { selected } = useSuperunit();
 
-  function handleSubmit(data: object): void {
-    // eslint-disable-next-line no-console
-    console.log(data);
+  const superunitId = selected?.id;
+
+  const handlePages = (updatePage: number) => {
+    setPage(updatePage);
+  };
+
+  async function handleDelete(id: string) {
+    const deleteCategory = categories.find(category => category.id === id);
+
+    console.log(deleteCategory);
+
+    await api.delete(
+      `/superunities/${selected?.id}/accesscategories/${deleteCategory?.id}`,
+    );
+
+    setCategories(oldCategory =>
+      oldCategory.filter(category => category.id !== id),
+    );
   }
+
+  useEffect(() => {
+    async function getData() {
+      if (selected) {
+        const response = await api.get(
+          `/superunities/${superunitId}/accesscategories`,
+          { params: { page } },
+        );
+
+        if (!response) return;
+
+        setCategories(response.data.data);
+
+        setPage(response.data.page);
+
+        setTotalPages(response.data.total_pages);
+      }
+    }
+
+    getData();
+  }, [selected, page, superunitId]);
 
   return (
     <Layout>
@@ -37,93 +86,40 @@ const Category: React.FC = () => {
           <ListItemsCategory>
             <span>ID</span>
             <span>Nome</span>
-            <span>Unidade</span>
-            <span>Permissões</span>
+            <span>Horário de inicio</span>
+            <span>Horário de término</span>
+            <span>Dispositivos</span>
             <span>Editar/Excluir</span>
           </ListItemsCategory>
-          <ListItems>
-            <span>0001</span>
-            <span>Administrador</span>
-            <span>Novo Leblon</span>
-            <span>
-              Compartilha Acessos, Recebe Notificações, Envia Convites
-            </span>
-            <Link to="/superunit">
-              <FiEdit />
-              <FiTrash />
-            </Link>
-          </ListItems>
-          <ListItems>
-            <span>0001</span>
-            <span>Administrador</span>
-            <span>Novo Leblon</span>
-            <span>
-              Compartilha Acessos, Recebe Notificações, Envia Convites
-            </span>
-            <Link to="/superunit">
-              <FiEdit />
-              <FiTrash />
-            </Link>
-          </ListItems>
-          <ListItems>
-            <span>0001</span>
-            <span>Administrador</span>
-            <span>Novo Leblon</span>
-            <span>
-              Compartilha Acessos, Recebe Notificações, Envia Convites
-            </span>
-            <Link to="/superunit">
-              <FiEdit />
-              <FiTrash />
-            </Link>
-          </ListItems>
-          <ListItems>
-            <span>0001</span>
-            <span>Administrador</span>
-            <span>Novo Leblon</span>
-            <span>
-              Compartilha Acessos, Recebe Notificações, Envia Convites
-            </span>
-            <Link to="/superunit">
-              <FiEdit />
-              <FiTrash />
-            </Link>
-          </ListItems>
-          <ListItems>
-            <span>0001</span>
-            <span>Administrador</span>
-            <span>Novo Leblon</span>
-            <span>
-              Compartilha Acessos, Recebe Notificações, Envia Convites
-            </span>
-            <Link to="/superunit">
-              <FiEdit />
-              <FiTrash />
-            </Link>
-          </ListItems>
-          <ListItems>
-            <span>0001</span>
-            <span>Administrador</span>
-            <span>Novo Leblon</span>
-            <span>
-              Compartilha Acessos, Recebe Notificações, Envia Convites
-            </span>
-            <Link to="/superunit">
-              <FiEdit />
-              <FiTrash />
-            </Link>
-          </ListItems>
+          {categories.map(category => (
+            <ListItems key={category.id}>
+              <span>{category.id || null}</span>
+              <span>{category.name || null}</span>
+              <span>{category.min_time || null}</span>
+              <span>{category.max_time || null}</span>
+              <div>
+                {category.devices.map(device => (
+                  <div>{device.name || null}</div>
+                ))}
+              </div>
+              <div className="buttonsDiv">
+                <Link to={`/category/edit/${category.id}`}>
+                  <FiEdit />
+                </Link>
+                <InvisibleButton
+                  type="button"
+                  onClick={() => handleDelete(category.id)}
+                >
+                  <FiTrash />
+                </InvisibleButton>
+              </div>
+            </ListItems>
+          ))}
           <Pagination
             page={page}
             handlePagination={handlePages}
             totalPages={totalPages}
-          >
-            <NavButton icon={FiChevronLeft} />
-            <NavPage>
-              <span>1</span>
-            </NavPage>
-            <NavButton icon={FiChevronRight} />
-          </Pagination>
+          />
         </List>
       </Container>
     </Layout>

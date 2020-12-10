@@ -14,7 +14,7 @@ const Logout: React.FC<LogoutButtonProps> = ({ name, icon: Icon }) => {
   return (
     <Container>
       <button type="button" onClick={signOut}>
-        {Icon && <Icon size={27} />}
+        {Icon && <Icon size={24} />}
         {name}
       </button>
     </Container>

@@ -11,23 +11,27 @@ export const Container = styled.div`
 export const FormContainer = styled.div`
   display: flex;
   flex: 1;
-  justify-content: space-between;
 
   form {
     display: flex;
+    align-items: center;
     padding: 30px;
     flex: 1;
-    position: relative;
+
+    .css-2b097c-container {
+      margin-right: 30px;
+      width: 25%;
+    }
 
     .css-2b097c-container {
       margin-top: 0;
     }
 
-    .sc-hKgILt.kunJfp {
-      width: 350px;
+    .css-26l3qy-menu {
+      width: 100%;
     }
 
-    .sc-hKgILt.kQSoJa {
+    .sc-hKgILt.kunJfp {
       width: 350px;
     }
 
@@ -46,63 +50,17 @@ export const FormContainer = styled.div`
       }
     }
 
-    .sc-jSgupP.fVAFW {
-      width: 300px;
-    }
-
     button {
       display: flex;
       margin: 0;
       align-items: center;
       justify-content: center;
-      width: 100%;
+      width: 300px;
       font-weight: 700;
-      position: absolute;
-      right: 30px;
 
       svg {
         margin-right: 16px;
       }
     }
-  }
-`;
-
-export const CheckboxContainer = styled.div`
-  div {
-    margin-left: 30px;
-    margin-right: 30px;
-  }
-  label {
-    margin-top: 16px;
-    margin-right: 30px;
-
-    :first-child {
-      margin-top: 0;
-    }
-
-    input {
-      margin-right: 8px;
-    }
-  }
-`;
-
-export const ScheduleContainer = styled.div`
-  margin-right: 30px;
-  width: 300px;
-
-  label {
-    align-items: center;
-  }
-
-  span {
-    margin-right: 8px;
-  }
-
-  input {
-    margin-right: 8px;
-  }
-
-  div {
-    margin-top: 16px;
   }
 `;

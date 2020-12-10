@@ -146,26 +146,28 @@ export const FormContainer = styled.div`
 
     div {
       margin: 0 16px 0 0;
+      width: 33%;
     }
 
     button {
       display: flex;
-      width: 600px;
       align-items: center;
+      width: 14%;
       justify-content: center;
+      margin: 0;
       font-weight: 700;
-      margin: 0 0 0 16px;
-      background: #ffffff;
-      border: 1px solid #ff6757;
-      color: #2f4858;
+      background: transparent;
+      border: 0;
+      color: #a3a09d;
       transition: background-color 0.2s;
 
       :hover {
-        color: #fff;
-        background: #ff6757;
+        color: #ff6757;
+        background: transparent;
       }
+
       svg {
-        margin-right: 16px;
+        margin: 0;
       }
     }
   }

@@ -40,7 +40,7 @@ const ForgotPassword: React.FC = () => {
         });
 
         // add new route
-        await api.post('/users/confirmemail/resend', {
+        await api.post('/password/forgot', {
           email: data.email,
         });
 
