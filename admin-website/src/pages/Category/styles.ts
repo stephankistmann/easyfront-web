@@ -35,19 +35,23 @@ export const ListItemsCategory = styled.div`
     width: 190px;
 
     :first-child {
-      width: 215px;
+      width: 340px;
     }
 
     :nth-child(2) {
-      width: 412px;
+      width: 240px;
     }
 
     :nth-child(3) {
-      width: 415px;
+      width: 260px;
     }
 
     :nth-child(4) {
-      width: 365px;
+      width: 260px;
+    }
+
+    :nth-child(5) {
+      width: 300px;
     }
 
     :last-child {
@@ -58,9 +62,7 @@ export const ListItemsCategory = styled.div`
 
 export const ListItems = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 100%;
   height: 64px;
   border: 1px solid #dfe9eb;
   border-radius: 10px;
@@ -69,10 +71,34 @@ export const ListItems = styled.div`
   span {
     padding: 16px;
     font-weight: 500;
-    width: 230px;
 
     :first-child {
-      width: 10px;
+      width: 340px;
+    }
+
+    :nth-child(2) {
+      width: 245px;
+    }
+
+    :nth-child(3) {
+      width: 250px;
+    }
+
+    :nth-child(4) {
+      width: 265px;
+    }
+
+    :nth-child(5) {
+      width: 300px;
+    }
+
+    :nth-child(6) {
+      width: 100px;
+    }
+
+    :last-child {
+      display: flex;
+      justify-content: flex-end;
     }
   }
 
@@ -138,4 +164,11 @@ export const Pagination = styled.div`
   align-items: center;
   justify-content: flex-end;
   margin-top: 17px;
+`;
+
+export const InvisibleButton = styled.button`
+  background: transparent;
+  border: none;
+  width: 22px;
+  margin-right: 22px;
 `;

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FiEdit, FiUsers, FiXCircle, FiSearch } from 'react-icons/fi';
 import { Form } from '@unform/web';
+import { Link } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
 import {
   Container,
@@ -78,7 +79,8 @@ const MainPeer: React.FC = () => {
 
     getData();
 
-    formRef.current?.reset();
+    if (!formRef.current) return;
+    formRef.current.reset();
   }
 
   useEffect(() => {
@@ -91,7 +93,6 @@ const MainPeer: React.FC = () => {
 
       setPage(response.data.page);
 
-      console.log(response.data.page);
       setTotalPages(response.data.total_pages);
     }
 
@@ -114,15 +115,14 @@ const MainPeer: React.FC = () => {
               placeholder="Nome ou e-mail"
               onChange={e => setSearchTerm(e.target.value)}
               icon={FiSearch}
-            />
-            <Button
-              type="button"
-              icon={FiXCircle}
-              name="ResetButton"
-              onClick={handleReset}
             >
-              Resetar
-            </Button>
+              <Button
+                type="button"
+                icon={FiXCircle}
+                name="ResetButton"
+                onClick={handleReset}
+              />
+            </Input>
           </Form>
         </FormContainer>
         <List>
@@ -148,7 +148,9 @@ const MainPeer: React.FC = () => {
               <span>{peer.gender || 'null'}</span>
               <span>{peer.nature || 'null'}</span>
               <span>{peer.id || 'null'}</span>
-              <FiEdit />
+              <Link to={`/peers/edit/${peer.id}`}>
+                <FiEdit />
+              </Link>
             </ListItems>
           ))}
           <Pagination

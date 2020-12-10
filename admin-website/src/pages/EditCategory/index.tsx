@@ -1,6 +1,7 @@
 import React, { useRef, useCallback, useState, useEffect } from 'react';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
+import { useParams } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
 import { FiClock, FiList, FiPlus } from 'react-icons/fi';
 import {
@@ -38,8 +39,9 @@ interface CheckboxOption {
   value: string;
 }
 
-const NewCategory: React.FC = () => {
+const EditCategory: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const { id }: { id: string } = useParams();
   const { addToast } = useToast();
   const { selected } = useSuperunit();
   const [timeLimit, setTimeLimit] = useState(false);
@@ -88,8 +90,6 @@ const NewCategory: React.FC = () => {
         data.max_time = '00:00';
       }
 
-      console.log(data.min_time, data.max_time);
-
       formRef.current?.setErrors({});
 
       const newResponse: IFormData = Object.assign(data, {
@@ -104,6 +104,8 @@ const NewCategory: React.FC = () => {
       try {
         const schema = Yup.object().shape({
           name: Yup.string().required('Nome obrigatório'),
+          min_time: Yup.string(),
+          max_time: Yup.string(),
           devicesIds: Yup.array()
             .of(Yup.string())
             .required('Dispositivo obrigatório'),
@@ -113,8 +115,8 @@ const NewCategory: React.FC = () => {
           abortEarly: false,
         });
 
-        await api.post(
-          `/superunities/${superunitId}/accesscategories`,
+        await api.patch(
+          `/superunities/${superunitId}/accesscategories/${id}`,
           newResponse,
         );
 
@@ -139,13 +141,13 @@ const NewCategory: React.FC = () => {
         });
       }
     },
-    [addToast, superunitId, weekDays],
+    [addToast, superunitId],
   );
 
   return (
     <Layout>
       <Container>
-        <MainHeader name="Adicionar categoria" icon={FiList} />
+        <MainHeader name="Editar categoria" icon={FiList} />
         <FormContainer>
           <Form ref={formRef} onSubmit={handleSubmit}>
             <Input name="name" placeholder="Nome" />
@@ -186,7 +188,7 @@ const NewCategory: React.FC = () => {
               </ScheduleContainer>
 
               <Button type="submit" icon={FiPlus} name="AddButton">
-                Adicionar
+                Atualizar
               </Button>
             </FormContainer>
           </Form>
@@ -196,4 +198,4 @@ const NewCategory: React.FC = () => {
   );
 };
 
-export default NewCategory;
+export default EditCategory;

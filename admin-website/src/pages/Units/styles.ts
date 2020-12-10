@@ -35,15 +35,15 @@ export const ListItemsCategory = styled.div`
     width: 190px;
 
     :first-child {
-      width: 470px;
+      width: 250px;
     }
 
     :nth-child(2) {
-      width: 270px;
+      width: 250px;
     }
 
     :nth-child(3) {
-      width: 240px;
+      width: 470px;
     }
 
     :nth-child(4) {

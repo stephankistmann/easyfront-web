@@ -25,26 +25,34 @@ export const ListItemsCategory = styled.div`
   margin: 8px 16px 8px 16px;
 
   span {
-    width: 190px;
+    width: 50px;
 
     :first-child {
-      width: 470px;
+      width: 215px;
     }
 
     :nth-child(2) {
-      width: 270px;
+      width: 187px;
     }
 
     :nth-child(3) {
-      width: 240px;
+      width: 160px;
     }
 
     :nth-child(4) {
-      width: 425px;
+      width: 170px;
     }
 
     :nth-child(5) {
-      width: 280px;
+      width: 185px;
+    }
+
+    :nth-child(6) {
+      width: 140px;
+    }
+
+    :nth-child(7) {
+      width: 348px;
     }
 
     :last-child {

@@ -27,10 +27,6 @@ const SuperunitProvider: React.FC = ({ children }) => {
     setSelected(superunities.find(superunit => superunit.id === id));
   }
 
-  // useEffect(() => {
-  //   localStorage.setItem('Superunities', JSON.stringify(superunities));
-  // });
-
   useEffect(() => {
     async function getData() {
       const response = await api.get('/manager/superunities');

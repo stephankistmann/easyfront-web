@@ -1,7 +1,9 @@
+/* eslint-disable no-useless-escape */
+/* eslint-disable no-param-reassign */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import * as Yup from 'yup';
 import { Form } from '@unform/web';
-import { FiEdit } from 'react-icons/fi';
+import { FiEdit, FiSmartphone } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { useHistory, useParams } from 'react-router-dom';
 import { useToast } from '../../hooks/toast';
@@ -13,11 +15,16 @@ import getValidationErrors from '../../utils/getValidationErrors';
 import Select from '../../components/Select';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import { useSuperunit } from '../../hooks/superunit';
+import InputMask from '../../components/InputMask';
 
 interface IFormData {
   name: string;
-  public_area: string;
+  phone: string;
+  cpf?: string;
+  gender: string;
+  nature: string;
+  rg?: string;
+  id: string;
 }
 
 const EditPeer: React.FC = () => {
@@ -25,60 +32,85 @@ const EditPeer: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const history = useHistory();
   const { addToast } = useToast();
-  const { selected } = useSuperunit();
-  const [unitName, setUnitName] = useState<IFormData>();
-
-  const superunitId = selected?.id;
+  const [peers, setPeers] = useState<IFormData[]>([]);
+  const [selectedPeer, setSelectedPeer] = useState<IFormData>();
 
   useEffect(() => {
     async function getData() {
-      const response = await api.get(
-        `/superunities/${superunitId}/unities/${id}`,
-      );
+      const response = await api.get('/users');
 
-      setUnitName(response.data);
+      if (!response) return;
+
+      setPeers(response.data.data);
     }
+
     getData();
   }, []);
 
+  useEffect(() => {
+    async function selectPeer(selectedId: string) {
+      const selectedPeers = peers.find(peer => peer.id === selectedId);
+
+      if (!selectedPeers) return;
+
+      setSelectedPeer(selectedPeers);
+    }
+    selectPeer(id);
+  });
+
   const handleSubmit = useCallback(
     async (data: IFormData) => {
-      const unit = { public_area: data.public_area, name: data.name };
-
-      formRef.current?.setErrors({});
-
       try {
+        formRef.current?.setErrors({});
         const schema = Yup.object().shape({
-          name: Yup.string().required('Nome obrigatório'),
-          public_area: Yup.string()
-            .required('Tipo obrigatorio')
-            .oneOf([
-              'gym',
-              'apt',
-              'block',
-              'house',
-              'condominium',
-              'deppartment',
-              'store',
-              'room',
-            ]),
+          name: Yup.string()
+            .matches(/^[a-zA-Z\u00C0-\u00FF ]+$/i, 'Digite apenas letras')
+            .required('Nome obrigatório'),
+          phone: Yup.string()
+            .matches(/^\(\d{2}\)\s\d{4,5}-\d{4}$/, 'Digite um número válido')
+            .required('Celular obrigatório'),
+          cpf: Yup.string().matches(
+            /^\d{3}\.\d{3}\.\d{3}-\d{2}$/,
+            'Digite um CPF válido',
+          ),
+          rg: Yup.string().length(10, 'Digite um RG válido'),
+          gender: Yup.string()
+            .oneOf(['male', 'female', 'not-informed'])
+            .required('Gênero obrigatório'),
+          nature: Yup.string()
+            .oneOf(['physic', 'juridic'])
+            .required('Natureza obrigatória'),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
 
-        await api.patch(`/superunities/${superunitId}/unities/${id}`, unit);
+        data.phone = data.phone.replace(/[\(\)\s-]/g, '');
 
-        history.push('/units');
+        if (data.cpf) data.cpf = data.cpf.replace(/[\.-]/g, '');
+
+        const { name, phone, cpf, gender, nature, rg } = data;
+
+        const formData = {
+          name,
+          phone,
+          cpf,
+          rg,
+          gender,
+          nature,
+        };
+
+        await api.put('/users', formData);
+
+        history.push('/peers');
 
         addToast({
           type: 'success',
-          title: 'Unidade atualizada!',
-          description: 'Unidade atualizada com sucesso.',
+          title: 'Parceiro atualizado!',
+          description: 'Os dados do parceiro foram atualizadas com sucesso.',
         });
       } catch (err) {
-        console.log(err);
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
@@ -90,42 +122,50 @@ const EditPeer: React.FC = () => {
           type: 'error',
           title: 'Erro na atualização',
           description:
-            'Ocorreu um erro ao tentar atualizar os dados da unidade, tente novamente.',
+            'Ocorreu um erro ao tentar atualizar os dados, tente novamente.',
         });
       }
     },
-    [addToast, superunitId, id],
+    [addToast, history],
   );
 
   return (
     <Layout>
       <Container>
-        <Title icon={FiEdit} name="Editar unidade" />
+        <Title icon={FiEdit} name="Editar parceiro" />
         <FormContainer>
           <Form ref={formRef} onSubmit={handleSubmit}>
             <Input
               name="name"
               placeholder="Nome"
-              defaultValue={unitName && unitName.name}
+              defaultValue={selectedPeer?.name}
             />
+            <InputMask name="cpf" mask="999.999.999-99" placeholder="CPF" />
+            <InputMask name="rg" mask="9999999999" placeholder="RG" />
+
+            <InputMask
+              name="phone"
+              mask="(99) 99999-9999"
+              placeholder="Telefone"
+            />
+
             <Select
-              name="public_area"
+              name="gender"
               options={[
-                { label: 'Academia', value: 'gym' },
-                { label: 'Apartamento', value: 'apt' },
-                { label: 'Bloco', value: 'block' },
-                { label: 'Casa', value: 'house' },
-                { label: 'Condomínio', value: 'condominium' },
-                { label: 'Departamento', value: 'deppartment' },
-                { label: 'Loja', value: 'store' },
-                { label: 'Sala', value: 'room' },
+                { label: 'Masculino', value: 'male' },
+                { label: 'Feminino', value: 'female' },
+                { label: 'Não informado', value: 'not-informed' },
               ]}
-              defaultValue={{
-                label: 'Tipo',
-                value: '',
-              }}
             />
-            <Button type="submit">Atualizar</Button>
+
+            <Select
+              name="nature"
+              options={[
+                { label: 'Físico', value: 'physic' },
+                { label: 'Jurídico', value: 'juridic' },
+              ]}
+            />
+            <Button type="submit">Salvar</Button>
           </Form>
         </FormContainer>
       </Container>

@@ -19,19 +19,25 @@ export const FormContainer = styled.div`
     margin-bottom: 30px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
 
     .sc-hKgILt {
-      margin-right: 16px;
+      margin-right: 8px;
     }
-    .css-2b097c-container {
+
+    .sc-jONnTn {
       margin-top: 0;
+      margin-right: 8px;
+    }
+
+    .sc-aemoO {
+      margin-top: 0;
+      margin-right: 8px;
     }
 
     button {
-      font-size: 22px;
+      width: 84px;
+      font-size: 18px;
       margin-top: 0;
-      margin-left: 16px;
     }
   }
 `;

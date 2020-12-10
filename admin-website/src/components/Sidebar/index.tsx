@@ -50,7 +50,7 @@ const Sidebar: React.FC = () => {
         <MenuItem
           path={path}
           to="/settings"
-          name="Settings"
+          name="Configurações"
           icon={FiSettings}
         />
         <Logout name="Logout" icon={FiLogOut} />

@@ -29,10 +29,6 @@ export const Container = styled(ReactSelect)`
   .css-9gakcf-option {
     background-color: #fff;
     color: black;
-    :hover {
-      color: white;
-      background: #ff6757;
-    }
   }
 
   .css-2b097c-container + div {
