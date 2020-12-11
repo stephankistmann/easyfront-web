@@ -55,8 +55,8 @@ export const FormContainer = styled.div`
       margin: 0;
       align-items: center;
       justify-content: center;
-      width: 100%;
       font-weight: 700;
+      width: 25%;
       position: absolute;
       right: 30px;
 
