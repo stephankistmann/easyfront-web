@@ -76,6 +76,7 @@ const NewCategory: React.FC = () => {
 
   const handleSubmit = useCallback(
     async (data: IFormData) => {
+      console.log(data);
       /* eslint-disable no-param-reassign */
       if (data.min_time || data.max_time) {
         data.time_limit = true;
