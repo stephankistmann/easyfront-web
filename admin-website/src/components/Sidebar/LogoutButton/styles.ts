@@ -20,8 +20,8 @@ export const Container = styled.div`
     }
 
     &:hover {
-      background: ${saturate(0.1, '#ff6757')};
-      color: #fff;
+      filter: brightness(1.2);
+      transition: 0.2s;
       border-radius: 10px;
     }
   }
