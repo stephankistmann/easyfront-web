@@ -3,7 +3,7 @@ import { saturate } from 'polished';
 
 export const Container = styled.div`
   button {
-    background: #ffffff;
+    background: transparent;
     padding: 16px;
     width: 100%;
     font-weight: 700;

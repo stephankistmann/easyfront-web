@@ -11,7 +11,6 @@ export const Container = styled.button`
   font-weight: 500;
   transition: background-color 0.2s;
   margin-top: 16px;
-
   &:hover {
     background: #2f4858;
   }

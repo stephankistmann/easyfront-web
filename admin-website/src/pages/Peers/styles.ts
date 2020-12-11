@@ -24,42 +24,19 @@ export const List = styled.div`
 export const ListItemsCategory = styled.div`
   display: flex;
   margin: 8px 16px 8px 16px;
+  justify-content: space-between;
 
   span {
+    width: 170px;
+    text-align: center;
+
     :first-child {
-      width: 290px;
-    }
-
-    :nth-child(2) {
-      width: 154px;
-    }
-
-    :nth-child(3) {
-      width: 246px;
-    }
-
-    :nth-child(4) {
-      width: 130px;
-    }
-
-    :nth-child(5) {
-      width: 130px;
-    }
-
-    :nth-child(6) {
-      width: 100px;
-    }
-
-    :nth-child(7) {
-      width: 103px;
-    }
-
-    :nth-child(8) {
-      width: 288px;
+      text-align: left;
+      width: 200px;
     }
 
     :last-child {
-      width: 40px;
+      width: 60px;
     }
   }
 `;
@@ -68,50 +45,26 @@ export const ListItems = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   height: 64px;
   border: 1px solid #dfe9eb;
   border-radius: 10px;
   margin-top: 8px;
+  padding: 16px;
 
   span {
-    padding: 16px;
+    width: 170px;
     font-weight: 500;
+    padding: 16px;
+    text-align: center;
 
     :first-child {
-      width: 290px;
-    }
-
-    :nth-child(2) {
-      width: 150px;
-    }
-
-    :nth-child(3) {
-      width: 250px;
-    }
-
-    :nth-child(4) {
-      width: 130px;
-    }
-
-    :nth-child(5) {
-      width: 130px;
-    }
-
-    :nth-child(6) {
-      width: 90px;
-    }
-
-    :nth-child(7) {
-      width: 90px;
-    }
-
-    :nth-child(8) {
-      width: 317px;
+      text-align: left;
+      width: 200px;
     }
 
     :last-child {
-      display: flex;
-      justify-content: flex-end;
+      width: 95px;
     }
   }
 

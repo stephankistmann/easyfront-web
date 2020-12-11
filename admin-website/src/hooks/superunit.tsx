@@ -36,12 +36,11 @@ const SuperunitProvider: React.FC = ({ children }) => {
 
       setSuperunities(response.data);
 
-      setSelected(response.data[0]);
-
       if (response.data.length === 0) {
         console.log(response.data.length);
         history.push('/error');
       }
+      setSelected(response.data[0]);
       setLoad(false);
     }
 
