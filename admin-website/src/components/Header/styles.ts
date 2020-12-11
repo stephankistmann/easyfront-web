@@ -16,7 +16,8 @@ export const Navigation = styled.div`
   align-items: center;
 `;
 
-export const NavButton = styled.div`
+export const NavButton = styled.button`
+  border: 0;
   display: flex;
   width: 48px;
   height: 48px;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FiChevronLeft, FiUser } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
   Container,
   Navigation,
@@ -14,11 +14,12 @@ import { useAuth } from '../../hooks/auth';
 
 const Header: React.FC = () => {
   const { user } = useAuth();
+  const history = useHistory();
 
   return (
     <Container>
       <Navigation>
-        <NavButton>
+        <NavButton onClick={() => history.goBack()}>
           <FiChevronLeft size={24} color="#2f4858" />
         </NavButton>
         <Title>
