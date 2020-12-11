@@ -7,7 +7,6 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.div`
-  margin-top: 30px;
   display: flex;
   width: calc(100% - 300px);
   flex-direction: column;
