@@ -64,6 +64,8 @@ const AuthProvider: React.FC = ({ children }) => {
 
     const { token, user } = response.data;
 
+    api.defaults.headers.authorization = `bearer ${token}`;
+
     localStorage.setItem('@Easyfront:token', token);
     localStorage.setItem('@Easyfront:user', JSON.stringify(user));
 

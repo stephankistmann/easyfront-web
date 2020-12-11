@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useRef, useState } from 'react';
 import { FiEdit, FiUsers, FiXCircle, FiSearch } from 'react-icons/fi';
 import { Form } from '@unform/web';
@@ -141,9 +142,23 @@ const MainPeer: React.FC = () => {
           {peers.map(peer => (
             <ListItems key={peer.id}>
               <span>{peer.name || 'null'}</span>
-              <span>{peer.phone || 'null'}</span>
+              <span>
+                {(peer.phone &&
+                  peer.phone
+                    .replace(/^(\d{2})(\d)/g, '($1) $2')
+                    .replace(/(\d)(\d{4})$/, '$1-$2')) ||
+                  'null'}
+              </span>
               <span>{peer.email || 'null'}</span>
-              <span>{peer.cpf || 'null'}</span>
+
+              <span>
+                {(peer.cpf &&
+                  peer.cpf.replace(
+                    /(\d{3})(\d{3})(\d{3})(\d{2})/,
+                    '$1.$2.$3-$4',
+                  )) ||
+                  'null'}
+              </span>
               <span>{peer.rg || 'null'}</span>
               <span>{peer.gender || 'null'}</span>
               <span>{peer.nature || 'null'}</span>

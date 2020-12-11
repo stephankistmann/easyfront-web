@@ -4,13 +4,14 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 300px;
+  min-width: 300px;
 
   a {
     width: 70%;
     margin: 16px 30px 30px 30px;
 
     img {
-      width: 100%;
+      height: 48px;
     }
   }
 

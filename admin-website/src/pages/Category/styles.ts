@@ -30,6 +30,7 @@ export const List = styled.div`
 export const ListItemsCategory = styled.div`
   display: flex;
   margin: 8px 16px 8px 16px;
+  max-width: 1000px;
 
   span {
     width: 190px;

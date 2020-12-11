@@ -75,10 +75,10 @@ const EditPeer: React.FC = () => {
           ),
           rg: Yup.string().length(10, 'Digite um RG válido'),
           gender: Yup.string()
-            .oneOf(['male', 'female', 'not-informed'])
+            .oneOf(['Masculino', 'Feminino', 'Não-informado'])
             .required('Gênero obrigatório'),
           nature: Yup.string()
-            .oneOf(['physic', 'juridic'])
+            .oneOf(['Físico', 'Jurídico'])
             .required('Natureza obrigatória'),
         });
 
@@ -152,17 +152,17 @@ const EditPeer: React.FC = () => {
             <Select
               name="gender"
               options={[
-                { label: 'Masculino', value: 'male' },
-                { label: 'Feminino', value: 'female' },
-                { label: 'Não informado', value: 'not-informed' },
+                { label: 'Masculino', value: 'Masculino' },
+                { label: 'Feminino', value: 'Feminino' },
+                { label: 'Não informado', value: 'Não-informado' },
               ]}
             />
 
             <Select
               name="nature"
               options={[
-                { label: 'Físico', value: 'physic' },
-                { label: 'Jurídico', value: 'juridic' },
+                { label: 'Físico', value: 'Físico' },
+                { label: 'Jurídico', value: 'Jurídico' },
               ]}
             />
             <Button type="submit">Salvar</Button>

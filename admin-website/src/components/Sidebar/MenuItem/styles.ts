@@ -1,15 +1,14 @@
 import styled, { css } from 'styled-components';
-import { saturate } from 'polished';
 
 interface ContainerProps {
   isSelected: boolean;
 }
 
 export const Container = styled.button<ContainerProps>`
-  background: #ffffff;
   padding: 16px;
   width: 100%;
   font-weight: 700;
+  background: transparent;
 
   border: 0;
   color: #2f4858;
@@ -27,8 +26,8 @@ export const Container = styled.button<ContainerProps>`
     `}
 
   &:hover {
-    background: ${saturate(0.1, '#ff6757')};
-    color: #fff;
+    filter: brightness(1.2);
+    transition: 0.2s;
     border-radius: 10px;
   }
 
