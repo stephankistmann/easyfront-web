@@ -1,15 +1,15 @@
 import React from 'react';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
-import { Container, Content, HeaderContentContainer } from './styles';
+import { Container, Content, Main } from './styles';
 
 const Layout: React.FC = ({ children }) => (
   <Container>
     <Sidebar />
-    <HeaderContentContainer>
+    <Main>
       <Header />
       <Content>{children}</Content>
-    </HeaderContentContainer>
+    </Main>
   </Container>
 );
 

@@ -76,6 +76,7 @@ const NewCategory: React.FC = () => {
 
   const handleSubmit = useCallback(
     async (data: IFormData) => {
+      console.log(data);
       /* eslint-disable no-param-reassign */
       if (data.min_time || data.max_time) {
         data.time_limit = true;
@@ -157,11 +158,11 @@ const NewCategory: React.FC = () => {
                   <input
                     type="checkbox"
                     name="time_limit"
-                    id="Restrição de horário"
+                    id="Horário"
                     checked={timeLimit}
                     onChange={() => setTimeLimit(!timeLimit)}
                   />
-                  <span>Restrição de horário</span>
+                  <span>Horário</span>
                 </label>
                 {timeLimit && (
                   <div>

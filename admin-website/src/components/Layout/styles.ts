@@ -6,10 +6,9 @@ export const Container = styled.div`
   height: 100%;
 `;
 
-export const HeaderContentContainer = styled.div`
-  margin-top: 30px;
+export const Main = styled.div`
   display: flex;
-  width: 100%;
+  width: calc(100% - 300px);
   flex-direction: column;
 `;
 

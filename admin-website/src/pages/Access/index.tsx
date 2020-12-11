@@ -73,7 +73,7 @@ const Access: React.FC = () => {
     }
 
     getData();
-  }, [selected, page]);
+  }, [selected, page, data]);
 
   return (
     <Layout>

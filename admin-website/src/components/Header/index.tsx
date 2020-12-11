@@ -1,52 +1,47 @@
 import React from 'react';
-import { FiChevronDown, FiChevronLeft, FiLoader } from 'react-icons/fi';
+import { FiChevronLeft, FiUser } from 'react-icons/fi';
+import { Link, useHistory } from 'react-router-dom';
 import {
   Container,
-  UserContent,
   Navigation,
-  DropdownContainer,
-  SuperunitContainer,
-  LoadingContainer,
+  NavButton,
+  Title,
+  Left,
+  Profile,
 } from './styles';
-import NavButton from '../NavButton';
-import LogoutButton from '../LogoutButton';
-import SuperunitItem from '../SuperunitItem';
-import { useSuperunit } from '../../hooks/superunit';
-import Loading from '../Loading';
+import SuperUnitSelect from './SuperUnitSelect';
+import { useAuth } from '../../hooks/auth';
 
 const Header: React.FC = () => {
-  const { superunities, selectSuperunit, selected } = useSuperunit();
-
-  if (!selected)
-    return (
-      <LoadingContainer>
-        <Loading name="Carregando..." icon={FiLoader} />
-      </LoadingContainer>
-    );
+  const { user } = useAuth();
+  const history = useHistory();
 
   return (
     <Container>
       <Navigation>
-        <NavButton icon={FiChevronLeft} />
+        <NavButton onClick={() => history.goBack()}>
+          <FiChevronLeft size={24} color="#2f4858" />
+        </NavButton>
+        <Title>
+          <h1>Parceiros</h1>
+          <div />
+          <p>Novo parceiro</p>
+        </Title>
       </Navigation>
-      <UserContent>
-        <SuperunitItem icon={FiChevronDown} defaultSuperUnit={selected?.name}>
-          <DropdownContainer>
-            {superunities.map(superunit => (
-              <SuperunitContainer
-                type="button"
-                key={superunit.id}
-                onClick={() => {
-                  selectSuperunit(superunit.id);
-                }}
-              >
-                {superunit.name}
-              </SuperunitContainer>
-            ))}
-          </DropdownContainer>
-        </SuperunitItem>
-        <LogoutButton />
-      </UserContent>
+      <Left>
+        <Profile>
+          {user.avatar_url ? (
+            <Link to="/profile">
+              <img src={user.avatar_url} alt="Usuário" />
+            </Link>
+          ) : (
+            <Link to="/profile">
+              <FiUser />
+            </Link>
+          )}
+        </Profile>
+        <SuperUnitSelect />
+      </Left>
     </Container>
   );
 };

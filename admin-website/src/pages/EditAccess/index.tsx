@@ -56,7 +56,6 @@ const EditAccess: React.FC = () => {
 
   const handleSubmit = useCallback(
     async (data: IFormData) => {
-      console.log(data);
       formRef.current?.setErrors({});
       try {
         const schema = Yup.object().shape({
