@@ -163,11 +163,11 @@ const EditCategory: React.FC = () => {
                   <input
                     type="checkbox"
                     name="time_limit"
-                    id="Restrição de horário"
+                    id="Horário"
                     checked={timeLimit}
                     onChange={() => setTimeLimit(!timeLimit)}
                   />
-                  <span>Restrição de horário</span>
+                  <span>Horário</span>
                 </label>
                 {timeLimit && (
                   <div>
