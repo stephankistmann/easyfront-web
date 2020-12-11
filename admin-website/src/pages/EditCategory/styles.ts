@@ -19,49 +19,53 @@ export const FormContainer = styled.div`
     flex: 1;
     position: relative;
 
-    .css-2b097c-container {
-      margin-top: 0;
-    }
-
-    .sc-hKgILt.kunJfp {
-      width: 350px;
-    }
-
-    .sc-hKgILt.kQSoJa {
-      width: 350px;
-    }
-
-    .kunJfp + div {
-      margin-top: 0px;
-    }
-
-    .kQSoJa + div {
-      margin-top: 0px;
-    }
-
-    label {
+    main {
       display: flex;
-      :hover {
-        color: #ff6757;
+
+      .css-2b097c-container {
+        margin-top: 0;
       }
-    }
 
-    .sc-jSgupP.fVAFW {
-      width: 300px;
-    }
+      .sc-hKgILt.kunJfp {
+        width: 350px;
+      }
 
-    button {
-      display: flex;
-      margin: 0;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      width: 25%;
-      position: absolute;
-      right: 30px;
+      .sc-hKgILt.kQSoJa {
+        width: 350px;
+      }
 
-      svg {
-        margin-right: 16px;
+      .kunJfp + div {
+        margin-top: 0px;
+      }
+
+      .kQSoJa + div {
+        margin-top: 0px;
+      }
+
+      label {
+        display: flex;
+        :hover {
+          color: #ff6757;
+        }
+      }
+
+      .sc-jSgupP.fVAFW {
+        width: 300px;
+      }
+
+      button {
+        display: flex;
+        margin: 0;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        width: 25%;
+        position: absolute;
+        right: 30px;
+
+        svg {
+          margin-right: 16px;
+        }
       }
     }
   }
