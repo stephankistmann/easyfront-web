@@ -22,6 +22,7 @@ interface IFormData {
 interface ISelectOptions {
   id: string;
   name: string;
+  email: string;
 }
 
 const AddAccess: React.FC = () => {
@@ -101,7 +102,7 @@ const AddAccess: React.FC = () => {
 
   const selectOptionsUser = users.map(user => {
     return {
-      label: user.name,
+      label: user.email,
       value: user.id,
     };
   });
