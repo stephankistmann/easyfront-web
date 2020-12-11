@@ -6,10 +6,10 @@ export const Container = styled.div`
   height: 100%;
 `;
 
-export const HeaderContentContainer = styled.div`
+export const Main = styled.div`
   margin-top: 30px;
   display: flex;
-  width: 100%;
+  width: calc(100% - 300px);
   flex-direction: column;
 `;
 

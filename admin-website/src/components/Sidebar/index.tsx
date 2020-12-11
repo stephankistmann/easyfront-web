@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   FiBarChart,
   FiBookOpen,
@@ -26,9 +26,9 @@ const Sidebar: React.FC = () => {
 
   return (
     <Container>
-      <a href="https://www.easyfront.live/">
+      <Link to="/dashboard">
         <img src={logoImg} alt="EasyFront" />
-      </a>
+      </Link>
       <p>MENU</p>
       <Menu>
         <MenuItem
