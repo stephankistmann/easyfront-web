@@ -25,7 +25,7 @@ export const Container = styled.button<ContainerProps>`
       color: #fff;
       background: #ff6757;
 
-      border-radius: 10px;
+      border-radius: 8px;
     `}
 
   & + button {
@@ -35,7 +35,7 @@ export const Container = styled.button<ContainerProps>`
   &:hover {
     background: ${saturate(0.1, '#ff6757')};
     color: #fff;
-    border-radius: 10px;
+    border-radius: 8px;
   }
 
   svg {

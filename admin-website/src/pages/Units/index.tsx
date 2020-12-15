@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FiEdit, FiTrash, FiHome } from 'react-icons/fi';
+import { Link, useHistory } from 'react-router-dom';
+import { FiEdit, FiTrash, FiPlus } from 'react-icons/fi';
 import {
   Container,
   List,
@@ -11,8 +11,8 @@ import {
 import Pagination from '../../components/Pagination';
 import { useSuperunit } from '../../hooks/superunit';
 import api from '../../services/api';
-import Layout from '../../components/Layout';
-import MainHeaderButton from '../../components/MainHeaderButton';
+import Layout from '../../Layouts';
+import Button from '../../components/Button';
 
 interface IUnit {
   id: string;
@@ -21,11 +21,12 @@ interface IUnit {
   superUnit_id: string;
 }
 
-const MainUnits: React.FC = () => {
+const Units: React.FC = () => {
   const { selected } = useSuperunit();
   const [data, setData] = useState<IUnit[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const history = useHistory();
 
   const handlePages = (updatePage: number) => {
     setPage(updatePage);
@@ -51,8 +52,6 @@ const MainUnits: React.FC = () => {
 
         setPage(response.data.page);
         setTotalPages(response.data.total_pages);
-
-        console.log(response);
       }
     }
 
@@ -62,17 +61,17 @@ const MainUnits: React.FC = () => {
   return (
     <Layout>
       <Container>
-        <MainHeaderButton
+        <Button
           name="Unidades"
-          icon={FiHome}
-          buttonName="Adicionar Unidade"
-          buttonLink="/units/new"
-        />
+          icon={FiPlus}
+          onClick={() => history.push('/units/new')}
+        >
+          Adicionar Unidade
+        </Button>
         <List>
           <ListItemsCategory>
             <span>Nome</span>
             <span>Area</span>
-            <span>ID</span>
             <span>Superunit ID</span>
             <span>Editar/Excluir</span>
           </ListItemsCategory>
@@ -80,7 +79,6 @@ const MainUnits: React.FC = () => {
             <ListItems key={unit.id}>
               <span>{unit.name}</span>
               <span>{unit.public_area}</span>
-              <span>{unit.id}</span>
               <span>{unit.superUnit_id}</span>
               <div>
                 <Link to={`/units/edit/${unit.id}`}>
@@ -106,4 +104,4 @@ const MainUnits: React.FC = () => {
   );
 };
 
-export default MainUnits;
+export default Units;

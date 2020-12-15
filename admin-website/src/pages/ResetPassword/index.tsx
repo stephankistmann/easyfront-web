@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import { FormHandles } from '@unform/core';
-import { FiLock } from 'react-icons/fi';
+import { FiCheck, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { Link, useHistory, useParams } from 'react-router-dom';
@@ -88,7 +88,7 @@ const ResetPassword: React.FC = () => {
               placeholder="Confirmar senha"
             /> */}
 
-            <Button type="submit" name="ChangePasswordButton">
+            <Button type="submit" name="ChangePasswordButton" icon={FiCheck}>
               Alterar senha
             </Button>
 

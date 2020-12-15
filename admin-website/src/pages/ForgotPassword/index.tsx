@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { FormHandles } from '@unform/core';
-import { FiMail } from 'react-icons/fi';
+import { FiMail, FiSend } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { Link, useHistory } from 'react-router-dom';
@@ -87,7 +87,12 @@ const ForgotPassword: React.FC = () => {
 
             <Input name="email" icon={FiMail} placeholder="E-mail" />
 
-            <Button name="ForgotPasswordButton" loading={loading} type="submit">
+            <Button
+              name="ForgotPasswordButton"
+              loading={loading}
+              type="submit"
+              icon={FiSend}
+            >
               Recuperar
             </Button>
 

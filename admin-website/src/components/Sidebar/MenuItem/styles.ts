@@ -20,15 +20,15 @@ export const Container = styled.button<ContainerProps>`
     props.isSelected &&
     css`
       color: #fff;
-      background: #ff6757;
+      background: linear-gradient(30deg, #ff6757, #ff7957);
 
-      border-radius: 10px;
+      border-radius: 8px;
     `}
 
   &:hover {
     filter: brightness(1.2);
     transition: 0.2s;
-    border-radius: 10px;
+    border-radius: 8px;
   }
 
   svg {

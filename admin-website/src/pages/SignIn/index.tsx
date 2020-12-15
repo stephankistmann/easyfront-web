@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import { FormHandles } from '@unform/core';
-import { FiLock, FiMail } from 'react-icons/fi';
+import { FiLock, FiLogIn, FiMail } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
@@ -83,7 +83,7 @@ const SignIn: React.FC = () => {
               placeholder="Senha"
             />
 
-            <Button type="submit" name="LoginButton">
+            <Button type="submit" name="LoginButton" icon={FiLogIn}>
               Entrar
             </Button>
 

@@ -1,11 +1,35 @@
 import styled from 'styled-components';
+import Button from '../../components/Button';
 
 export const Container = styled.div`
   display: flex;
-  border-radius: 10px;
-  border: 1px solid #dfe9eb;
-  background: #ffffff;
+  border-radius: 8px;
   flex-direction: column;
+  background: #fff;
+  padding: 24px;
+  box-shadow: 0 0 15px rgba(0, 0, 50, 0.1);
+
+  header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h1 {
+      font-size: 18px;
+      align-items: center;
+      display: flex;
+      margin-left: 12px;
+
+      svg {
+        margin-right: 12px;
+      }
+    }
+  }
+`;
+
+export const StyledButton = styled(Button)`
+  width: 300px;
 `;
 
 export const SelectContainer = styled.div`
@@ -20,7 +44,7 @@ export const List = styled.div`
   flex-direction: column;
   height: 100%;
   border-radius: 10px;
-  margin: 80px 30px 0 30px;
+  margin-top: 16px;
 
   span {
     font-weight: 700;
@@ -29,8 +53,12 @@ export const List = styled.div`
 `;
 export const ListItemsCategory = styled.div`
   display: flex;
-  margin: 8px 16px 8px 16px;
-  max-width: 1000px;
+  width: 100%;
+  justify-content: space-between;
+  background: #eee;
+  padding: 8px;
+  color: #888;
+  border-radius: 4px;
 
   span {
     width: 190px;
@@ -65,8 +93,7 @@ export const ListItems = styled.div`
   display: flex;
   align-items: center;
   height: 64px;
-  border: 1px solid #dfe9eb;
-  border-radius: 10px;
+  border-bottom: 1px solid #dfe9eb77;
   margin-top: 8px;
   position: relative;
 
@@ -122,10 +149,6 @@ export const ListItems = styled.div`
     height: 22px;
     color: #2f4858;
     margin-right: 16px;
-  }
-
-  :hover {
-    border: 1px solid #ff6756;
   }
 `;
 

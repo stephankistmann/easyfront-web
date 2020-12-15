@@ -1,10 +1,13 @@
 import styled from 'styled-components';
+import Loading from '../../Loading';
 
 export const Container = styled.div`
   position: relative;
   width: 300px;
   height: 72px;
   z-index: 20;
+  max-width: 300px;
+
   div:nth-child(2) {
     visibility: hidden;
     opacity: 0;
@@ -21,15 +24,22 @@ export const Container = styled.div`
   }
 `;
 
+export const StyledLoading = styled(Loading)`
+  width: 100%;
+  flex: 1;
+`;
+
 export const Selected = styled.div`
   display: flex;
   align-items: center;
   padding: 0 8px 0 24px;
-  background: #ff6757;
+  background: linear-gradient(30deg, #ff6757, #ff7957);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
   height: 72px;
   justify-content: space-between;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  width: 300px;
 
   button {
     background: transparent;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import ReactSelect from 'react-select';
 
-export const Container = styled(ReactSelect)`
+export const StyledReactSelect = styled(ReactSelect)`
   display: flex;
   height: 54px;
   width: 100%;
@@ -9,22 +9,22 @@ export const Container = styled(ReactSelect)`
 
   .css-yk16xz-control {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 8px;
   }
 
   .css-1pahdxg-control {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 8px;
   }
 
   .css-26l3qy-menu {
     width: 96%;
-    border-radius: 10px;
+    border-radius: 8px;
   }
 
   .css-4ljt47-MenuList {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 8px;
   }
   .css-9gakcf-option {
     background-color: #fff;

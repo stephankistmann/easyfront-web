@@ -1,7 +1,8 @@
+/* eslint-disable no-constant-condition */
 import React from 'react';
 import { FiChevronDown } from 'react-icons/fi';
 import { useSuperunit } from '../../../hooks/superunit';
-import { Container, Content, Selected, Item } from './styles';
+import { Container, Content, Selected, Item, StyledLoading } from './styles';
 
 const SuperUnitSelect: React.FC = () => {
   const { superunities, selected, selectSuperunit } = useSuperunit();
@@ -9,8 +10,8 @@ const SuperUnitSelect: React.FC = () => {
   return (
     <Container>
       <Selected>
-        {false ? (
-          <p>loading...</p>
+        {!selected ? (
+          <StyledLoading color="#fff" />
         ) : (
           <>
             <div>

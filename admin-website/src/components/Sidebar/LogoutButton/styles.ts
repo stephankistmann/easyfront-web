@@ -22,7 +22,7 @@ export const Container = styled.div`
     &:hover {
       filter: brightness(1.2);
       transition: 0.2s;
-      border-radius: 10px;
+      border-radius: 8px;
     }
   }
 `;

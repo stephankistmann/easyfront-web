@@ -30,12 +30,12 @@ export const Container = styled(animated.div)<ContainerProps>`
   padding: 16px 30px 16px 16px;
   margin-top: 16px;
   margin-right: 16px;
-  border-radius: 10px;
+  border-radius: 8px;
 
   display: flex;
 
   & + div {
-    marin-top: 8px;
+    margin-top: 8px;
   }
 
   ${props => toastTypeVariations[props.type || 'info']}

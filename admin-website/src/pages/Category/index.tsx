@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FiEdit, FiList, FiTrash } from 'react-icons/fi';
+import { Link, useHistory } from 'react-router-dom';
+import { FiEdit, FiPlus, FiTrash, FiUsers } from 'react-icons/fi';
 import Pagination from '../../components/Pagination';
 import {
   Container,
@@ -8,9 +8,9 @@ import {
   ListItems,
   ListItemsCategory,
   InvisibleButton,
+  StyledButton,
 } from './styles';
-import Layout from '../../components/Layout';
-import MainHeaderButton from '../../components/MainHeaderButton';
+import Layout from '../../Layouts';
 import api from '../../services/api';
 import { useSuperunit } from '../../hooks/superunit';
 
@@ -31,6 +31,7 @@ const Category: React.FC = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const { selected } = useSuperunit();
+  const history = useHistory();
 
   const superunitId = selected?.id;
 
@@ -40,8 +41,6 @@ const Category: React.FC = () => {
 
   async function handleDelete(id: string) {
     const deleteCategory = categories.find(category => category.id === id);
-
-    console.log(deleteCategory);
 
     await api.delete(
       `/superunities/${selected?.id}/accesscategories/${deleteCategory?.id}`,
@@ -76,15 +75,21 @@ const Category: React.FC = () => {
   return (
     <Layout>
       <Container>
-        <MainHeaderButton
-          icon={FiList}
-          name="Categorias"
-          buttonName="Adicionar Categoria"
-          buttonLink="/category/new"
-        />
+        <header>
+          <h1>
+            <FiUsers />
+            Lista de Parceiros
+          </h1>
+          <StyledButton
+            icon={FiPlus}
+            name="Categorias"
+            onClick={() => history.push('/category/new')}
+          >
+            Adicionar Acesso
+          </StyledButton>
+        </header>
         <List>
           <ListItemsCategory>
-            <span>ID</span>
             <span>Nome</span>
             <span>Horário de inicio</span>
             <span>Horário de término</span>
@@ -93,7 +98,6 @@ const Category: React.FC = () => {
           </ListItemsCategory>
           {categories.map(category => (
             <ListItems key={category.id}>
-              <span>{category.id || null}</span>
               <span>{category.name || null}</span>
               <span>{category.min_time || null}</span>
               <span>{category.max_time || null}</span>

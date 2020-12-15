@@ -13,21 +13,22 @@ export const NavPage = styled.button`
   justify-content: center;
   width: 56px;
   height: 56px;
-  background: #ffffff;
+  background: #eee;
   border: 1px solid #dfe9eb;
-  border-radius: 10px;
+  border-radius: 8px;
   margin-left: 8px;
   margin-right: 8px;
   margin-bottom: 16px;
   margin-top: 16px;
+  color: #2f4858;
+  transition: 0.2s;
 
   :last-child {
     margin-right: 0;
   }
 
   &:hover {
-    background: #ff6757;
-    color: #ffffff;
+    background: #ddd;
   }
 
   span {

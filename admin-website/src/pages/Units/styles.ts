@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid #dfe9eb;
   background: #ffffff;
   flex-direction: column;
@@ -19,7 +19,7 @@ export const List = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  border-radius: 10px;
+  border-radius: 8px;
   margin: 80px 30px 0 30px;
 
   span {
@@ -62,7 +62,7 @@ export const ListItems = styled.div`
   align-items: center;
   height: 64px;
   border: 1px solid #dfe9eb;
-  border-radius: 10px;
+  border-radius: 8px;
   margin-top: 8px;
   padding: 16px;
 

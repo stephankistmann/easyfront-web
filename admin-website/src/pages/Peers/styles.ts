@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Loading from '../../components/Loading';
 
 export const Container = styled.div`
   display: flex;
@@ -6,6 +7,56 @@ export const Container = styled.div`
   border: 1px solid #dfe9eb;
   background: #ffffff;
   flex-direction: column;
+`;
+
+export const Header = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const Search = styled.div`
+  width: 350px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+
+  input {
+    height: 100%;
+    flex: 1;
+    border: 0;
+    background: transparent;
+  }
+
+  svg {
+    margin: 14px;
+  }
+
+  button {
+    border: 0;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    margin-top: 3px;
+
+    svg {
+      color: #888;
+    }
+
+    &:hover {
+      svg {
+        color: #333;
+      }
+    }
+  }
+`;
+
+export const StyledLoading = styled(Loading).attrs({
+  color: '#888',
+})`
+  padding-bottom: 64px;
 `;
 
 export const List = styled.div`

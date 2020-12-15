@@ -37,7 +37,6 @@ const SuperunitProvider: React.FC = ({ children }) => {
       setSuperunities(response.data);
 
       if (response.data.length === 0) {
-        console.log(response.data.length);
         history.push('/error');
       }
       setSelected(response.data[0]);
@@ -45,7 +44,7 @@ const SuperunitProvider: React.FC = ({ children }) => {
     }
 
     getData();
-  }, [token]);
+  }, [token, history]);
 
   return (
     <SuperunitContext.Provider

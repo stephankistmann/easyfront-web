@@ -4,7 +4,6 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 12%;
   height: 72px;
   justify-content: space-between;
   padding-right: 32px;
@@ -14,6 +13,8 @@ export const Container = styled.div`
 export const Navigation = styled.div`
   display: flex;
   align-items: center;
+
+  margin-top: 16px;
 `;
 
 export const NavButton = styled.button`
@@ -26,6 +27,11 @@ export const NavButton = styled.button`
   background: #eee;
   border-radius: 8px;
   margin-left: 30px;
+  transition: 0.2s;
+
+  :hover {
+    background: #ddd;
+  }
 `;
 
 export const Title = styled.div`
