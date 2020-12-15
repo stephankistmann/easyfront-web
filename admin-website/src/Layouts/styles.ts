@@ -7,17 +7,16 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.div`
+  flex: 1;
+  width: 100%;
   display: flex;
-  width: calc(100% - 300px);
   flex-direction: column;
 `;
 
 export const Header = styled.div`
   width: 100%;
-  height: 12%;
 `;
 
 export const Content = styled.div`
-  flex: 1;
-  margin: 0 30px 30px 30px;
+  padding: 0 30px 30px 30px;
 `;

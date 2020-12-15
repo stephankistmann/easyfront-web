@@ -1,11 +1,11 @@
 import React from 'react';
 import Header from '../components/Header';
-import Sidebar from '../components/Sidebar';
+import SideMenu from '../components/SideMenu';
 import { Container, Content, Main } from './styles';
 
 const Layout: React.FC = ({ children }) => (
   <Container>
-    <Sidebar />
+    <SideMenu />
     <Main>
       <Header />
       <Content>{children}</Content>

@@ -5,21 +5,20 @@ export const Container = styled.div`
   flex-wrap: wrap;
   margin-left: -10px;
   margin-top: -10px;
-  max-width: 480px;
+  max-width: 432px;
 `;
 
 export const Item = styled.div`
   display: flex;
   flex-direction: column;
-  border-radius: 24px;
-  height: 220px;
-  width: 220px;
+  border-radius: 8px;
+  height: 200px;
+  width: 200px;
   padding: 8px;
   align-items: center;
   justify-content: center;
   position: relative;
-  margin: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 50, 0.05);
+  margin: 8px;
 
   h1 {
     font-size: 14px;
@@ -35,8 +34,8 @@ export const Item = styled.div`
   }
 
   div {
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
     background: rgba(255, 255, 255, 0.4);
     border-radius: 90px;
     margin-top: 24px;
@@ -45,8 +44,9 @@ export const Item = styled.div`
     justify-content: center;
 
     p {
-      font-size: 54px;
+      font-size: 32px;
       font-weight: 700;
+      opacity: 0.8;
     }
   }
 `;

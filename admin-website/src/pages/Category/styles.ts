@@ -2,15 +2,14 @@ import styled from 'styled-components';
 import Button from '../../components/Button';
 
 export const Container = styled.div`
+  flex: 1;
   display: flex;
   border-radius: 8px;
   flex-direction: column;
   background: #fff;
   padding: 24px;
   box-shadow: 0 0 15px rgba(0, 0, 50, 0.1);
-
   header {
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -61,26 +60,24 @@ export const ListItemsCategory = styled.div`
   border-radius: 4px;
 
   span {
-    width: 190px;
-
     :first-child {
-      width: 340px;
+      width: 200px;
     }
 
     :nth-child(2) {
-      width: 240px;
+      width: 200px;
     }
 
     :nth-child(3) {
-      width: 250px;
+      width: 200px;
     }
 
     :nth-child(4) {
-      width: 250px;
+      width: 200px;
     }
 
     :nth-child(5) {
-      width: 325px;
+      width: 225px;
     }
 
     :last-child {
@@ -115,27 +112,27 @@ export const ListItems = styled.div`
     font-weight: 500;
 
     :first-child {
-      width: 340px;
+      width: 200px;
     }
 
     :nth-child(2) {
-      width: 245px;
+      width: 200px;
     }
 
     :nth-child(3) {
-      width: 250px;
+      width: 200px;
     }
 
     :nth-child(4) {
-      width: 265px;
+      width: 200px;
     }
 
     :nth-child(5) {
-      width: 290px;
+      width: 225px;
     }
 
-    :nth-child(6) {
-      width: 100px;
+    :last-child {
+      width: 95px;
     }
 
     :last-child {

@@ -32,13 +32,13 @@ const Chart: React.FC = () => {
 
   return (
     <Container>
-      <Line
+      {/* <Line
         data={chartData}
         options={{
           responsive: true,
           maintainAspectRatio: false,
         }}
-      />
+      /> */}
     </Container>
   );
 };

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
-  border-radius: 24px;
+  border-radius: 8px;
   background: #fff;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
   margin-top: 16px;
@@ -12,13 +12,13 @@ export const Container = styled.div`
 export const Header = styled.div`
   display: flex;
   align-items: center;
-  margin: 16px;
-  margin-bottom: 24px;
+  margin: 8px;
+  margin-bottom: 16px;
 
   h1 {
     display: flex;
     align-items: center;
-    font-size: 18px;
+    font-size: 16px;
 
     svg {
       margin-right: 8px;
@@ -31,8 +31,8 @@ export const Content = styled.div``;
 export const AccessItem = styled.div`
   display: flex;
   align-items: center;
-  padding: 16px 0;
-  margin: 0 16px;
+  padding: 16px 8px;
+  margin: 0 8px;
   border-top: 1px solid #f6f6f9;
   justify-content: space-between;
 `;
@@ -43,20 +43,20 @@ export const Infos = styled.div`
 `;
 
 export const InfoPicture = styled.div`
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   position: relative;
 
   img {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
   }
 
   svg {
     position: absolute;
     z-index: 1;
-    bottom: -5px;
-    right: -5px;
+    bottom: -8px;
+    right: -8px;
   }
 `;
 
@@ -64,30 +64,29 @@ export const InfoContent = styled.div`
   margin-left: 16px;
 
   h1 {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   p {
-    font-size: 14px;
+    font-size: 12px;
     opacity: 0.6;
     margin-top: 4px;
   }
 `;
 
 export const Unit = styled.div`
-  width: 300px;
-  height: 32px;
-  border-radius: 8px;
-  background: #e2f2ff;
+  padding: 0 24px;
+  height: 28px;
+  border-radius: 4px;
+  background: #e2f2f2;
   display: flex;
   align-items: center;
   justify-content: center;
 
   div {
     background: #356d9b;
-    height: 6px;
-    width: 6px;
-    opacity: 0.3;
+    height: 4px;
+    width: 4px;
     border-radius: 50%;
     margin: 0 12px;
   }
@@ -99,9 +98,9 @@ export const Unit = styled.div`
 `;
 
 export const Device = styled.div`
-  width: 150px;
-  height: 32px;
-  border-radius: 8px;
+  height: 28px;
+  padding: 0 24px;
+  border-radius: 4px;
   background: #e4defe;
   display: flex;
   align-items: center;
@@ -112,7 +111,6 @@ export const Device = styled.div`
     height: 6px;
     width: 6px;
     opacity: 0.3;
-    border-radius: 50%;
     margin: 0 12px;
   }
 `;
