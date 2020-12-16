@@ -1,21 +1,22 @@
 /* eslint-disable */
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
-import { FiChevronRight, FiSearch, FiX } from 'react-icons/fi';
+import { FiChevronRight, FiSearch, FiUsers, FiX } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import {
   Container,
-  Header,
+  MainHeader,
   Search,
   List,
-  ListItems,
   ListItemsCategory,
   StyledLoading,
+  StyledButton,
 } from './styles';
 import useDebounce from '../../hooks/debounce';
-import Button from '../../components/Button';
 import api from '../../services/api';
 import Pagination from '../../components/Pagination';
 import Layout from '../../Layouts';
+import Header from '../../components/Header';
+import PeerItem from './PeerItem';
 
 interface IPeer {
   id: string;
@@ -75,43 +76,54 @@ const Peers: React.FC = () => {
 
   return (
     <Layout>
+      <Header
+        title={{ value: 'Parceiros', path: '/peers' }}
+        subTitle={{ value: 'Parceiros', path: '/peers' }}
+        hasBackButton
+      />
       <Container>
-        <Header>
-          <Search>
-            <FiSearch size={20} />
-            <input
-              value={search}
-              onChange={event => setSearch(event.target.value)}
-              placeholder="Pesquisar por nome ou e-mail"
-            />
-            {showResetSearch && (
-              <button type="button" onClick={handleResetSearch}>
-                <FiX size={20} />
-              </button>
-            )}
-          </Search>
-          <Button
+        <MainHeader>
+          <div>
+            <h1>
+              <FiUsers />
+              Lista de Parceiros
+            </h1>
+            <Search>
+              <FiSearch size={20} />
+              <input
+                value={search}
+                onChange={event => setSearch(event.target.value)}
+                placeholder="Pesquisar por nome ou e-mail"
+              />
+              {showResetSearch && (
+                <button type="button" onClick={handleResetSearch}>
+                  <FiX size={20} />
+                </button>
+              )}
+            </Search>
+          </div>
+
+          <StyledButton
             name="Parceiros"
             icon={FiChevronRight}
             onClick={() => history.push('/peers/new')}
           >
             Adicionar Parceiro
-          </Button>
-        </Header>
+          </StyledButton>
+        </MainHeader>
 
         {loading ? (
           <StyledLoading />
         ) : (
           <List>
             <ListItemsCategory>
-              <span>Nome</span>
-              <span>Telefone</span>
-              <span>E-mail</span>
-              <span>Gênero</span>
-              <span>Natureza</span>
+              <div>Nome</div>
+              <div>Contato</div>
+              <div>Gênero / Natureza</div>
+              <div>Editar / Excluir</div>
             </ListItemsCategory>
 
-            {peers.map(peer => (
+            {/* {peers.map(peer => (
               <ListItems key={peer.id}>
                 <span>{peer.name || 'null'}</span>
                 <span>
@@ -126,7 +138,13 @@ const Peers: React.FC = () => {
                 <span>{peer.gender || 'null'}</span>
                 <span>{peer.nature || 'null'}</span>
               </ListItems>
-            ))}
+            ))} */}
+            <PeerItem />
+            <PeerItem />
+            <PeerItem />
+            <PeerItem />
+            <PeerItem />
+            <PeerItem />
             <Pagination
               page={page}
               handlePagination={handlePages}

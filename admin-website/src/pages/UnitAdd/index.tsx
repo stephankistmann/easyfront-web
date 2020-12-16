@@ -13,6 +13,7 @@ import api from '../../services/api';
 import Select from '../../components/Select';
 import { useSuperunit } from '../../hooks/superunit';
 import Layout from '../../Layouts';
+import Header from '../../components/Header';
 
 interface IFormData {
   name: string;
@@ -80,6 +81,11 @@ const UnitAdd: React.FC = () => {
 
   return (
     <Layout>
+      <Header
+        title={{ value: 'Unidades', path: '/units' }}
+        subTitle={{ value: 'Adicionar Unidade', path: '/units/new' }}
+        hasBackButton
+      />
       <Container>
         <MainHeader name="Adicionar Unidade" icon={FiHome} />
         <FormContainer>

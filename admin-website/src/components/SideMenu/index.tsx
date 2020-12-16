@@ -19,6 +19,7 @@ const SideMenu: React.FC = () => {
   });
 
   const { pathname } = useLocation();
+
   const path = `/${pathname.split('/')[1]}`;
 
   const handleToggle = useCallback(() => setOpen(oldOpen => !oldOpen), []);

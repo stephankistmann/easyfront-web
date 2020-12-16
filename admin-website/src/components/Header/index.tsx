@@ -1,18 +1,31 @@
 import React, { useMemo } from 'react';
-import { FiChevronLeft, FiUser } from 'react-icons/fi';
+import { FiChevronLeft } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 import {
   Container,
   Navigation,
   NavButton,
+  TitleContainer,
   Title,
+  SubTitle,
   Left,
   Profile,
 } from './styles';
 import SuperUnitSelect from './SuperUnitSelect';
 import { useAuth } from '../../hooks/auth';
 
-const Header: React.FC = () => {
+interface ITitle {
+  value: string;
+  path: string;
+}
+
+interface IProps {
+  hasBackButton?: boolean;
+  title: ITitle;
+  subTitle?: ITitle;
+}
+
+const Header: React.FC<IProps> = ({ hasBackButton, title, subTitle }) => {
   const { user } = useAuth();
   const history = useHistory();
 
@@ -24,11 +37,16 @@ const Header: React.FC = () => {
         <NavButton onClick={() => history.goBack()}>
           <FiChevronLeft size={18} color="#2f4858" />
         </NavButton>
-        <Title>
-          <h1>Parceiros</h1>
-          <div />
-          <p>Novo parceiro</p>
-        </Title>
+
+        <TitleContainer>
+          <Title to={title.path}>{title.value}</Title>
+          {subTitle && (
+            <>
+              <div />
+              <SubTitle to={subTitle.path}>{subTitle.value}</SubTitle>
+            </>
+          )}
+        </TitleContainer>
       </Navigation>
       <Left>
         <Profile>

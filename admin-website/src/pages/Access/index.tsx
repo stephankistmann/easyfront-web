@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FiPlus, FiEdit, FiTrash, FiUsers } from 'react-icons/fi';
+import { FiPlus, FiEdit, FiTrash, FiChevronsRight } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 import Layout from '../../Layouts';
 import Pagination from '../../components/Pagination';
@@ -83,8 +83,8 @@ const Access: React.FC = () => {
       <Container>
         <header>
           <h1>
-            <FiUsers />
-            Lista de Parceiros
+            <FiChevronsRight />
+            Lista de Acessos
           </h1>
           <StyledButton
             icon={FiPlus}

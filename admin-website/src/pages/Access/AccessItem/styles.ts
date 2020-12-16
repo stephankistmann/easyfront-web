@@ -14,10 +14,10 @@ export const Infos = styled.div`
 
   svg {
     margin-right: 16px;
+    margin-left: 16px;
     width: 20px;
     height: 20px;
     color: #2f4858;
-    margin-left: 16px;
   }
 
   h1 {

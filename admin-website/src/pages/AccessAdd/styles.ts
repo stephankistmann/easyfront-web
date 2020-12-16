@@ -22,7 +22,15 @@ export const FormContainer = styled.div`
     align-items: flex-end;
     flex: 1;
 
-    .css-2b097c-container {
+    > div {
+      margin-top: 16px;
+    }
+
+    button {
+      margin-top: 16px;
+    }
+
+    /* .css-2b097c-container {
       width: 100%;
       margin-top: 8px;
     }
@@ -52,6 +60,6 @@ export const FormContainer = styled.div`
       :hover {
         color: #ff6757;
       }
-    }
+    } */
   }
 `;

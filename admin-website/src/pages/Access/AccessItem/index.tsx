@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  FiUnlock,
-  FiTag,
-  FiEdit3,
-  FiTrash,
-  FiChevronsRight,
-} from 'react-icons/fi';
+import { FiTag, FiEdit3, FiTrash, FiChevronsRight } from 'react-icons/fi';
 import { Container, Infos, Extra, Controllers } from './styles';
 
 const AccessItem: React.FC = () => {

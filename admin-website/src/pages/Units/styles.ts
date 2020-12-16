@@ -1,11 +1,37 @@
 import styled from 'styled-components';
+import Loading from '../../components/Loading';
+import Button from '../../components/Button';
 
 export const Container = styled.div`
   display: flex;
   border-radius: 8px;
-  border: 1px solid #dfe9eb;
-  background: #ffffff;
   flex-direction: column;
+  background: #fff;
+  padding: 24px;
+  box-shadow: 0 0 15px rgba(0, 0, 50, 0.1);
+`;
+
+export const StyledButton = styled(Button)`
+  width: 276px;
+  height: 48px;
+`;
+
+export const MainHeader = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h1 {
+    font-size: 18px;
+    align-items: center;
+    display: flex;
+    margin-left: 8px;
+
+    svg {
+      margin-right: 12px;
+    }
+  }
 `;
 
 export const SelectContainer = styled.div`
@@ -15,56 +41,52 @@ export const SelectContainer = styled.div`
   justify-content: space-around;
 `;
 
+export const StyledLoading = styled(Loading).attrs({
+  color: '#888',
+})`
+  padding-bottom: 64px;
+  padding-top: 64px;
+`;
+
 export const List = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
   border-radius: 8px;
-  margin: 80px 30px 0 30px;
+  margin-top: 20px;
 
   span {
     font-weight: 700;
     flex-direction: row;
+    text-align: center;
   }
 `;
 
 export const ListItemsCategory = styled.div`
   display: flex;
-  margin: 8px 16px 8px 16px;
+  width: 100%;
   justify-content: space-between;
-
-  span {
-    width: 280px;
-    text-align: center;
-
-    :first-child {
-      text-align: left;
-      width: 100px;
-    }
-
-    :nth-child(2) {
-      width: 300px;
-    }
-
-    :nth-child(4) {
-      width: 380px;
-    }
-
-    :last-child {
-      width: 100px;
-    }
-  }
+  background: #eee;
+  padding: 8px;
+  color: #888;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  border-radius: 8px;
 `;
 
 export const ListItems = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   height: 64px;
-  border: 1px solid #dfe9eb;
-  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 15px rgba(0, 0, 100, 0.05);
+  border-radius: 4px;
   margin-top: 8px;
   padding: 16px;
+  border-bottom: 2px solid transparent;
+  transition: 0.2s;
 
   span {
     font-weight: 500;
@@ -88,52 +110,7 @@ export const ListItems = styled.div`
   }
 
   :hover {
-    border: 1px solid #ff6756;
-  }
-`;
-
-export const FilterContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 30px 30px 0 30px;
-`;
-
-export const FormContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 30px 30px 0 30px;
-
-  form {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: space-between;
-
-    div {
-      margin: 0 16px 0 0;
-    }
-
-    button {
-      display: flex;
-      width: 600px;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      margin: 0 0 0 16px;
-      background: #ffffff;
-      border: 1px solid #ff6757;
-      color: #2f4858;
-      transition: background-color 0.2s;
-
-      :hover {
-        color: #fff;
-        background: #ff6757;
-      }
-      svg {
-        margin-right: 16px;
-      }
-    }
+    border-bottom: 2px solid #ddd;
   }
 `;
 

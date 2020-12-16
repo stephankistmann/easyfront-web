@@ -1,12 +1,12 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
   height: 64px;
   justify-content: space-between;
-  padding-right: 32px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 `;
 
 export const Navigation = styled.div`
@@ -24,7 +24,7 @@ export const NavButton = styled.button`
   align-items: center;
   background: #eee;
   border-radius: 8px;
-  margin-left: 30px;
+  margin-right: 24px;
   transition: 0.2s;
 
   :hover {
@@ -32,26 +32,40 @@ export const NavButton = styled.button`
   }
 `;
 
-export const Title = styled.div`
+export const TitleContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 24px;
-  h1 {
-    font-size: 16px;
-    color: #2f4858;
-  }
+
   div {
     width: 4px;
     height: 4px;
-    margin: 0 16px;
-    border-radius: 4px;
+    border-radius: 50%;
     background: #2f4858;
-    opacity: 0.5;
-    margin-top: 2px;
+    margin: 0 16px;
+    opacity: 0.6;
   }
-  p {
-    color: #2f4858;
-    font-size: 14px;
+`;
+
+export const Title = styled(Link)`
+  font-size: 16px;
+  color: #2f4858;
+  text-decoration: none;
+  font-weight: 700;
+
+  transition: 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+export const SubTitle = styled(Link)`
+  color: #2f4858;
+  text-decoration: none;
+
+  transition: 0.2s;
+
+  &:hover {
     opacity: 0.8;
   }
 `;

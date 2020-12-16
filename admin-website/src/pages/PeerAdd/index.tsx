@@ -11,6 +11,7 @@ import getValidationErrors from '../../utils/getValidationErrors';
 import { useToast } from '../../hooks/toast';
 import api from '../../services/api';
 import Layout from '../../Layouts';
+import Header from '../../components/Header';
 
 const PeerAdd: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -60,6 +61,11 @@ const PeerAdd: React.FC = () => {
 
   return (
     <Layout>
+      <Header
+        title={{ value: 'Parceiros', path: '/peers' }}
+        subTitle={{ value: 'Adicionar Parceiro', path: '/peers/new' }}
+        hasBackButton
+      />
       <Container>
         <MainHeader name="Adicionar Parceiro" icon={FiUserPlus} />
         <FormContainer>

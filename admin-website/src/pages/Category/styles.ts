@@ -1,34 +1,37 @@
 import styled from 'styled-components';
+import Loading from '../../components/Loading';
 import Button from '../../components/Button';
 
 export const Container = styled.div`
-  flex: 1;
   display: flex;
   border-radius: 8px;
   flex-direction: column;
   background: #fff;
   padding: 24px;
   box-shadow: 0 0 15px rgba(0, 0, 50, 0.1);
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    h1 {
-      font-size: 18px;
-      align-items: center;
-      display: flex;
-      margin-left: 12px;
-
-      svg {
-        margin-right: 12px;
-      }
-    }
-  }
 `;
 
 export const StyledButton = styled(Button)`
-  width: 300px;
+  width: 276px;
+  height: 48px;
+`;
+
+export const MainHeader = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h1 {
+    font-size: 18px;
+    align-items: center;
+    display: flex;
+    margin-left: 8px;
+
+    svg {
+      margin-right: 12px;
+    }
+  }
 `;
 
 export const SelectContainer = styled.div`
@@ -38,18 +41,27 @@ export const SelectContainer = styled.div`
   justify-content: space-around;
 `;
 
+export const StyledLoading = styled(Loading).attrs({
+  color: '#888',
+})`
+  padding-bottom: 64px;
+  padding-top: 64px;
+`;
+
 export const List = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  border-radius: 10px;
-  margin-top: 16px;
+  border-radius: 8px;
+  margin-top: 20px;
 
   span {
     font-weight: 700;
     flex-direction: row;
+    text-align: center;
   }
 `;
+
 export const ListItemsCategory = styled.div`
   display: flex;
   width: 100%;
@@ -58,139 +70,47 @@ export const ListItemsCategory = styled.div`
   padding: 8px;
   color: #888;
   border-radius: 4px;
-
-  span {
-    :first-child {
-      width: 200px;
-    }
-
-    :nth-child(2) {
-      width: 200px;
-    }
-
-    :nth-child(3) {
-      width: 200px;
-    }
-
-    :nth-child(4) {
-      width: 200px;
-    }
-
-    :nth-child(5) {
-      width: 225px;
-    }
-
-    :last-child {
-      width: 95px;
-    }
-  }
+  margin-bottom: 4px;
+  border-radius: 8px;
 `;
 
 export const ListItems = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
   height: 64px;
-  border-bottom: 1px solid #dfe9eb77;
+  background-color: #fff;
+  box-shadow: 0 0 15px rgba(0, 0, 100, 0.05);
+  border-radius: 4px;
   margin-top: 8px;
-  position: relative;
-
-  div {
-    display: flex;
-    margin-right: 8px;
-  }
-
-  .buttonsDiv {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    position: absolute;
-    right: 0;
-  }
+  padding: 16px;
+  border-bottom: 2px solid transparent;
+  transition: 0.2s;
 
   span {
-    padding: 16px;
     font-weight: 500;
+    width: 280px;
+    text-align: center;
 
     :first-child {
-      width: 200px;
+      text-align: left;
+      width: 100px;
     }
 
     :nth-child(2) {
       width: 200px;
     }
-
-    :nth-child(3) {
-      width: 200px;
-    }
-
-    :nth-child(4) {
-      width: 200px;
-    }
-
-    :nth-child(5) {
-      width: 225px;
-    }
-
-    :last-child {
-      width: 95px;
-    }
-
-    :last-child {
-      display: flex;
-      justify-content: flex-end;
-    }
   }
-
   svg {
     width: 22px;
     height: 22px;
     color: #2f4858;
     margin-right: 16px;
   }
-`;
 
-export const FilterContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 30px 30px 0 30px;
-`;
-
-export const FormContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 30px 30px 0 30px;
-
-  form {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: space-between;
-
-    div {
-      margin: 0 16px 0 0;
-    }
-
-    button {
-      display: flex;
-      width: 600px;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      margin: 0 0 0 16px;
-      background: #ffffff;
-      border: 1px solid #ff6757;
-      color: #2f4858;
-      transition: background-color 0.2s;
-
-      :hover {
-        color: #fff;
-        background: #ff6757;
-      }
-      svg {
-        margin-right: 16px;
-      }
-    }
+  :hover {
+    border-bottom: 2px solid #ddd;
   }
 `;
 
