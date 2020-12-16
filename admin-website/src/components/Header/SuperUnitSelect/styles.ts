@@ -4,7 +4,7 @@ import Loading from '../../Loading';
 export const Container = styled.div`
   position: relative;
   width: 300px;
-  height: 72px;
+  height: 64px;
   z-index: 20;
   max-width: 300px;
 
@@ -35,12 +35,12 @@ export const Selected = styled.div`
   padding: 0 8px 0 24px;
   background: linear-gradient(30deg, #ff6757, #ff7957);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
-  height: 72px;
+  height: 64px;
   justify-content: space-between;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   width: 300px;
-
+  cursor: pointer;
   button {
     background: transparent;
     border: 0;
@@ -80,7 +80,7 @@ export const Item = styled.div`
   position: relative;
   color: #000;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 16px 0;
+  padding: 8px 0;
   transition: 0.1s;
   cursor: pointer;
 
