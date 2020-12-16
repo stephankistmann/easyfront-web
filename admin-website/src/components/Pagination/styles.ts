@@ -16,16 +16,9 @@ export const NavPage = styled.button`
   background: #eee;
   border: 1px solid #dfe9eb;
   border-radius: 8px;
-  margin-left: 8px;
-  margin-right: 8px;
-  margin-bottom: 16px;
-  margin-top: 16px;
+  margin: 16px 8px 0 8px;
   color: #2f4858;
   transition: 0.2s;
-
-  :last-child {
-    margin-right: 0;
-  }
 
   &:hover {
     background: #ddd;

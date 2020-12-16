@@ -5,9 +5,7 @@ import {
   Container,
   MainHeader,
   List,
-  ListItems,
   ListItemsCategory,
-  InvisibleButton,
   StyledButton,
   StyledLoading,
 } from './styles';
@@ -16,6 +14,7 @@ import { useSuperunit } from '../../hooks/superunit';
 import api from '../../services/api';
 import Layout from '../../Layouts';
 import Header from '../../components/Header';
+import UnitItem from './UnitItem';
 
 interface IUnit {
   id: string;
@@ -93,28 +92,18 @@ const Units: React.FC = () => {
         ) : (
           <List>
             <ListItemsCategory>
-              <span>Nome</span>
-              <span>Area</span>
-              <span>Superunit ID</span>
-              <span>Editar/Excluir</span>
+              <div>Nome</div>
+              <div>Area</div>
+              <div>Superunit ID</div>
+              <div>Editar/Excluir</div>
             </ListItemsCategory>
             {data.map(unit => (
-              <ListItems key={unit.id}>
-                <span>{unit.name}</span>
-                <span>{unit.public_area}</span>
-                <span>{unit.superUnit_id}</span>
-                <div>
-                  <Link to={`/units/edit/${unit.id}`}>
-                    <FiEdit />
-                  </Link>
-                  <InvisibleButton
-                    type="button"
-                    onClick={() => handleDelete(unit.id)}
-                  >
-                    <FiTrash />
-                  </InvisibleButton>
-                </div>
-              </ListItems>
+              <UnitItem
+                name={unit.name}
+                public_area={unit.public_area}
+                superunitId={unit.superUnit_id}
+                onClickDelete={() => handleDelete(unit.id)}
+              />
             ))}
             <Pagination
               page={page}

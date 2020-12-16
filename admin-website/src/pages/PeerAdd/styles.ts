@@ -2,44 +2,53 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  border-radius: 10px;
-  border: 1px solid #dfe9eb;
-  background: #ffffff;
+  border-radius: 8px;
   flex-direction: column;
-`;
-
-export const FormContainer = styled.div`
-  display: flex;
+  background: #fff;
+  padding: 24px;
+  box-shadow: 0 0 15px rgba(0, 0, 50, 0.1);
 
   form {
     display: flex;
     align-items: center;
-    padding: 30px;
-    width: 45%;
-
-    div {
-      :hover {
-        color: #ff6757;
-      }
-    }
+    width: 50%;
+    margin-top: 24px;
 
     button {
-      display: flex;
-      margin: 0;
-      align-items: center;
-      justify-content: center;
-      width: 250px;
-      margin-left: 16px;
-      font-weight: 700;
+      height: 48px;
+    }
 
-      svg {
-        margin-right: 16px;
+    > div {
+      margin-right: 16px;
+
+      :hover {
+        color: #ff6757;
       }
     }
 
     input {
       width: 250px;
       margin-right: 16px;
+    }
+  }
+`;
+
+export const MainHeader = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+    h1 {
+      font-size: 18px;
+      align-items: center;
+      display: flex;
+      margin-left: 8px;
+      margin-right: 24px;
+
+      svg {
+        margin-right: 12px;
+      }
     }
   }
 `;

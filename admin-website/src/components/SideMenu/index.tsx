@@ -10,6 +10,7 @@ import {
 import { useLocation } from 'react-router-dom';
 import { Container, Logo, Title, Menu, OpenButton } from './styles';
 import MenuItem from './MenuItem';
+import OpenCloseButton from './OpenCloseButton';
 import logo from '../../assets/logo.png';
 
 const SideMenu: React.FC = () => {
@@ -51,9 +52,9 @@ const SideMenu: React.FC = () => {
           icon={FiChevronsRight}
         />
       </Menu>
-      <OpenButton open={open} onClick={handleToggle}>
+      <OpenCloseButton open={open} onClick={handleToggle}>
         <FiChevronLeft />
-      </OpenButton>
+      </OpenCloseButton>
     </Container>
   );
 };

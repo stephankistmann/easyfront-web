@@ -3,28 +3,46 @@ import { FiEdit3, FiTrash, FiFile, FiSmartphone } from 'react-icons/fi';
 import { Container, Infos, Contact, Extra, Controllers } from './styles';
 import defaultUserIcon from '../../../assets/defaultUserIcon.png';
 
-const PeerItem: React.FC = () => {
+interface PeerItemProps {
+  name: string;
+  phone: string;
+  email: string;
+  gender: string;
+  nature: string;
+}
+
+const PeerItem: React.FC<PeerItemProps> = ({
+  name,
+  phone,
+  email,
+  gender,
+  nature,
+}) => {
+  const phoneMasked = phone
+    .replace(/^(\d{2})(\d)/g, '($1) $2')
+    .replace(/(\d)(\d{4})$/, '$1-$2');
+
   return (
     <Container>
       <Infos>
         <img src={defaultUserIcon} alt="User" />
         <div>
-          <h1>Stephan Jacob</h1>
-          <p>stephanjacob17@gmail.com</p>
+          <h1>{name}</h1>
+          <p>{email}</p>
         </div>
       </Infos>
       <Contact>
         <div>
           <FiSmartphone />
-          <p>(21) 99371-5212</p>
+          <p>{phoneMasked}</p>
         </div>
       </Contact>
       <Extra>
         <div>
           <FiFile />
-          <h1>Masculino</h1>
+          <h1>{gender}</h1>
           <div />
-          <p>Pessoa Física</p>
+          <p>{nature}</p>
         </div>
       </Extra>
       <Controllers>

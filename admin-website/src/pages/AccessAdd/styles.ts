@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Select from '../../components/Select';
 
 export const Container = styled.div`
   display: flex;
@@ -7,6 +8,26 @@ export const Container = styled.div`
   background: #ffffff;
   flex-direction: column;
   padding: 24px;
+`;
+
+export const MainHeader = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+    h1 {
+      font-size: 18px;
+      align-items: center;
+      display: flex;
+      margin-left: 8px;
+      margin-right: 24px;
+
+      svg {
+        margin-right: 12px;
+      }
+    }
+  }
 `;
 
 export const FormContainer = styled.div`
@@ -21,45 +42,15 @@ export const FormContainer = styled.div`
     display: flex;
     align-items: flex-end;
     flex: 1;
+    width: 100%;
 
     > div {
       margin-top: 16px;
+      width: 100%;
     }
 
     button {
       margin-top: 16px;
     }
-
-    /* .css-2b097c-container {
-      width: 100%;
-      margin-top: 8px;
-    }
-
-    .css-2b097c-container {
-      margin-top: 0;
-    }
-
-    .css-26l3qy-menu {
-      width: 100%;
-    }
-
-    .sc-hKgILt.kunJfp {
-      width: 350px;
-    }
-
-    .kunJfp + div {
-      margin-top: 0px;
-    }
-
-    .kQSoJa + div {
-      margin-top: 0px;
-    }
-
-    label {
-      display: flex;
-      :hover {
-        color: #ff6757;
-      }
-    } */
   }
 `;

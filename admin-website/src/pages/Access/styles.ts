@@ -28,6 +28,24 @@ export const Container = styled.div`
   }
 `;
 
+export const MainHeader = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h1 {
+    font-size: 18px;
+    align-items: center;
+    display: flex;
+    margin-left: 8px;
+
+    svg {
+      margin-right: 12px;
+    }
+  }
+`;
+
 export const StyledButton = styled(Button)`
   width: 276px;
   height: 48px;

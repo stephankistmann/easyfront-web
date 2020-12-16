@@ -6,12 +6,12 @@ import { FiChevronsRight, FiPlus } from 'react-icons/fi';
 import Button from '../../components/Button';
 import Layout from '../../Layouts';
 import { useToast } from '../../hooks/toast';
-import { Container, FormContainer } from './styles';
+import { Container, MainHeader, FormContainer } from './styles';
 import api from '../../services/api';
 import getValidationErrors from '../../utils/getValidationErrors';
-import Header from './Header';
-import Select from '../../components/Select';
 import { useSuperunit } from '../../hooks/superunit';
+import Header from '../../components/Header';
+import Select from '../../components/Select';
 
 interface IFormData {
   user_id: string;
@@ -125,24 +125,35 @@ const AccessAdd: React.FC = () => {
 
   return (
     <Layout>
+      <Header
+        title={{ value: 'Acessos', path: '/access' }}
+        subTitle={{ value: 'Adicionar Acesso', path: '/access/new' }}
+        hasBackButton
+      />
       <Container>
-        <Header icon={FiChevronsRight} name="Adicionar Acesso" />
+        <MainHeader>
+          <h1>
+            <FiChevronsRight />
+            Adicionar Acesso
+          </h1>
+        </MainHeader>
         <FormContainer>
           <Form ref={formRef} onSubmit={handleSubmit}>
             <Select
               name="user_id"
-              placeholderName="Morador"
+              placeholder="Morador"
               options={selectOptionsUser}
             />
             <Select
               name="unit_id"
-              placeholderName="Unidade"
+              placeholder="Unidade"
               options={selectOptionsUnit}
             />
             <Select
               name="accessCategory_id"
-              placeholderName="Categoria"
+              placeholder="Categoria"
               options={selectOptionsCategory}
+              width="400px"
             />
             <Button
               type="submit"

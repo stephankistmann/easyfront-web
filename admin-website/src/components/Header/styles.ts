@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
@@ -27,9 +27,17 @@ export const NavButton = styled.button`
   margin-right: 24px;
   transition: 0.2s;
 
-  :hover {
+  &:hover {
     background: #ddd;
   }
+  ${props =>
+    props.disabled &&
+    css`
+      cursor: default;
+      &:hover {
+        background: #eee;
+      }
+    `}
 `;
 
 export const TitleContainer = styled.div`

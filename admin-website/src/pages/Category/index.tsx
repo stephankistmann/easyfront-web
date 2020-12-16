@@ -106,11 +106,10 @@ const Category: React.FC = () => {
         ) : (
           <List>
             <ListItemsCategory>
-              <span>Nome</span>
-              <span>Horário de inicio</span>
-              <span>Horário de término</span>
-              <span>Dispositivos</span>
-              <span>Editar/Excluir</span>
+              <div>Nome</div>
+              <div>Horário</div>
+              <div>Dispositivos</div>
+              <div>Editar/Excluir</div>
             </ListItemsCategory>
             {categories.map(category => (
               <ListItems key={category.id}>

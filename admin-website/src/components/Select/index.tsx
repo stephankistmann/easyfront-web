@@ -5,9 +5,10 @@ import { StyledReactSelect } from './styles';
 
 interface Props extends SelectProps<OptionTypeBase> {
   name: string;
+  placeholder?: string;
 }
 
-const Select: React.FC<Props> = ({ name, ...rest }) => {
+const Select: React.FC<Props> = ({ name, placeholder, ...rest }) => {
   const selectRef = useRef(null);
   const { fieldName, defaultValue, registerField } = useField(name);
 
@@ -31,8 +32,10 @@ const Select: React.FC<Props> = ({ name, ...rest }) => {
   return (
     <StyledReactSelect
       defaultValue={defaultValue}
+      placeholder={placeholder}
       menu={(style: Object) => ({ ...style })}
       ref={selectRef}
+      classNamePrefix="Select"
       {...rest}
     />
   );

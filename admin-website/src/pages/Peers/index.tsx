@@ -83,11 +83,12 @@ const Peers: React.FC = () => {
       />
       <Container>
         <MainHeader>
+          <h1>
+            <FiUsers />
+            Lista de Parceiros
+          </h1>
+
           <div>
-            <h1>
-              <FiUsers />
-              Lista de Parceiros
-            </h1>
             <Search>
               <FiSearch size={20} />
               <input
@@ -101,15 +102,14 @@ const Peers: React.FC = () => {
                 </button>
               )}
             </Search>
+            <StyledButton
+              name="Parceiros"
+              icon={FiChevronRight}
+              onClick={() => history.push('/peers/new')}
+            >
+              Adicionar Parceiro
+            </StyledButton>
           </div>
-
-          <StyledButton
-            name="Parceiros"
-            icon={FiChevronRight}
-            onClick={() => history.push('/peers/new')}
-          >
-            Adicionar Parceiro
-          </StyledButton>
         </MainHeader>
 
         {loading ? (
@@ -122,29 +122,16 @@ const Peers: React.FC = () => {
               <div>Gênero / Natureza</div>
               <div>Editar / Excluir</div>
             </ListItemsCategory>
-
-            {/* {peers.map(peer => (
-              <ListItems key={peer.id}>
-                <span>{peer.name || 'null'}</span>
-                <span>
-                  {(peer.phone &&
-                    peer.phone
-                      .replace(/^(\d{2})(\d)/g, '($1) $2')
-                      .replace(/(\d)(\d{4})$/, '$1-$2')) ||
-                    'null'}
-                </span>
-                <span>{peer.email || 'null'}</span>
-
-                <span>{peer.gender || 'null'}</span>
-                <span>{peer.nature || 'null'}</span>
-              </ListItems>
-            ))} */}
-            <PeerItem />
-            <PeerItem />
-            <PeerItem />
-            <PeerItem />
-            <PeerItem />
-            <PeerItem />
+            {peers.map(peer => (
+              <PeerItem
+                key={peer.id}
+                name={peer.name || 'null'}
+                phone={peer.phone || 'null'}
+                email={peer.email || 'null'}
+                gender={peer.gender || 'null'}
+                nature={peer.nature || 'null'}
+              />
+            ))}
             <Pagination
               page={page}
               handlePagination={handlePages}

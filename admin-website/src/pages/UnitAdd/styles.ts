@@ -2,74 +2,50 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  border-radius: 10px;
-  border: 1px solid #dfe9eb;
-  background: #ffffff;
+  border-radius: 8px;
   flex-direction: column;
-`;
-
-export const FormContainer = styled.div`
-  display: flex;
-  margin-right: 30px;
-  margin-left: 30px;
-  margin-top: 30px;
+  background: #fff;
+  padding: 24px;
+  box-shadow: 0 0 15px rgba(0, 0, 50, 0.1);
 
   form {
-    width: 100%;
     display: flex;
-    margin-bottom: 30px;
+    margin-top: 24px;
     align-items: center;
     justify-content: space-between;
 
-    button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 54px;
-      margin-top: 0;
-      margin-left: 16px;
-
-      svg {
-        margin-right: 8px;
-      }
-    }
-
-    .sc-hKgILt {
+    input {
+      width: 20%;
       margin-right: 16px;
+      height: 48px;
     }
 
-    .css-yk16xz-control {
-      margin-top: 0;
+    button {
+      height: 48px;
     }
 
-    .css-2b097c-container {
-      margin-top: 0;
+    > div {
+      width: 350px;
     }
   }
 `;
 
-export const FormSteps = styled.div`
+export const MainHeader = styled.div`
+  width: 100%;
   display: flex;
-  margin-left: 30px;
-  margin-right: 30px;
-  height: 56px;
+  align-items: center;
   justify-content: space-between;
 
-  button {
-    width: 49.5%;
-    margin-top: 0;
-    color: #2f4858;
-    background: #fff;
-    border: 1px solid #dfe9eb;
-    font-size: 22px;
+    h1 {
+      font-size: 18px;
+      align-items: center;
+      display: flex;
+      margin-left: 8px;
+      margin-right: 24px;
 
-    :hover {
-      color: #fff;
-      background: #ff6757;
+      svg {
+        margin-right: 12px;
+      }
     }
-  }
-
-  button:first-child {
-    border: 1px solid #ff6757;
   }
 `;

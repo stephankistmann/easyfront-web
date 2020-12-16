@@ -9,11 +9,7 @@ import Header from '../../components/Header';
 const Dashboard: React.FC = () => {
   return (
     <Layout>
-      <Header
-        title={{ value: 'Dashboard', path: '/dashboard' }}
-        subTitle={{ value: 'Parceiros', path: '/peers' }}
-        hasBackButton
-      />
+      <Header title={{ value: 'Dashboard', path: '/dashboard' }} />
       <Container>
         <Content>
           <AccessInfo />

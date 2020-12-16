@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { FiPlus, FiEdit, FiTrash, FiChevronsRight } from 'react-icons/fi';
+import {
+  FiPlus,
+  FiEdit,
+  FiTrash,
+  FiChevronsRight,
+  FiHome,
+} from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 import Layout from '../../Layouts';
 import Pagination from '../../components/Pagination';
@@ -9,11 +15,13 @@ import { InvisibleButton } from '../Units/styles';
 import AccessItem from './AccessItem';
 import {
   Container,
+  MainHeader,
   List,
   ListItems,
   ListItemsCategory,
   StyledButton,
 } from './styles';
+import Header from '../../components/Header';
 
 interface IUser {
   id: string;
@@ -80,12 +88,19 @@ const Access: React.FC = () => {
 
   return (
     <Layout>
+      <Header
+        title={{ value: 'Acessos', path: '/access' }}
+        subTitle={{ value: 'Acessos', path: '/access' }}
+        hasBackButton
+      />
       <Container>
-        <header>
-          <h1>
-            <FiChevronsRight />
-            Lista de Acessos
-          </h1>
+        <MainHeader>
+          <div>
+            <h1>
+              <FiChevronsRight />
+              Lista de Acessos
+            </h1>
+          </div>
           <StyledButton
             icon={FiPlus}
             name="Acessos"
@@ -93,7 +108,7 @@ const Access: React.FC = () => {
           >
             Adicionar Acesso
           </StyledButton>
-        </header>
+        </MainHeader>
 
         <List>
           <ListItemsCategory>

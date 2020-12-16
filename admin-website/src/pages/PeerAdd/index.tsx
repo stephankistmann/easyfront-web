@@ -3,10 +3,9 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { FiMail, FiPlus, FiUserPlus } from 'react-icons/fi';
 import * as Yup from 'yup';
-import { Container, FormContainer } from './styles';
+import { Container, MainHeader } from './styles';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import MainHeader from '../../components/MainHeader';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { useToast } from '../../hooks/toast';
 import api from '../../services/api';
@@ -67,15 +66,18 @@ const PeerAdd: React.FC = () => {
         hasBackButton
       />
       <Container>
-        <MainHeader name="Adicionar Parceiro" icon={FiUserPlus} />
-        <FormContainer>
-          <Form ref={formRef} onSubmit={handleSubmit}>
-            <Input name="email" placeholder="E-mail" icon={FiMail} />
-            <Button type="submit" icon={FiPlus} name="AddButton">
-              Adicionar
-            </Button>
-          </Form>
-        </FormContainer>
+        <MainHeader>
+          <h1>
+            <FiUserPlus />
+            Adicionar Parceiro
+          </h1>
+        </MainHeader>
+        <Form ref={formRef} onSubmit={handleSubmit}>
+          <Input name="email" placeholder="E-mail" icon={FiMail} />
+          <Button type="submit" icon={FiPlus} name="AddButton">
+            Adicionar
+          </Button>
+        </Form>
       </Container>
     </Layout>
   );

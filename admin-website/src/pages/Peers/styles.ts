@@ -22,20 +22,24 @@ export const MainHeader = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  > div {
+  h1 {
+    font-size: 18px;
+    align-items: center;
+    display: flex;
+    margin-left: 8px;
+    margin-right: 24px;
+
+    svg {
+      margin-right: 12px;
+    }
+  }
+
+  div {
     display: flex;
     align-items: center;
 
-    h1 {
-      font-size: 18px;
-      align-items: center;
-      display: flex;
-      margin-left: 8px;
-      margin-right: 24px;
-
-      svg {
-        margin-right: 12px;
-      }
+    button {
+      margin-left: 16px;
     }
   }
 `;

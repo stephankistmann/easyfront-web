@@ -3,10 +3,9 @@ import { FiHome, FiPlus } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
-import { Container, FormContainer } from './styles';
+import { Container, MainHeader } from './styles';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import MainHeader from '../../components/MainHeader';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { useToast } from '../../hooks/toast';
 import api from '../../services/api';
@@ -87,32 +86,35 @@ const UnitAdd: React.FC = () => {
         hasBackButton
       />
       <Container>
-        <MainHeader name="Adicionar Unidade" icon={FiHome} />
-        <FormContainer>
-          <Form ref={formRef} onSubmit={handleSubmit}>
-            <Input name="name" placeholder="Nome" />
-            <Select
-              name="type"
-              options={[
-                { label: 'Academia', value: 'Academia' },
-                { label: 'Apartamento', value: 'Apartamento' },
-                { label: 'Bloco', value: 'Bloco' },
-                { label: 'Casa', value: 'Casa' },
-                { label: 'Condomínio', value: 'Condomínio' },
-                { label: 'Departamento', value: 'Departamento' },
-                { label: 'Loja', value: 'Loja' },
-                { label: 'Sala', value: 'Sala' },
-              ]}
-              defaultValue={{
-                label: 'Tipo',
-                value: '',
-              }}
-            />
-            <Button type="submit" icon={FiPlus}>
-              Adicionar
-            </Button>
-          </Form>
-        </FormContainer>
+        <MainHeader>
+          <h1>
+            <FiHome />
+            Adicionar Unidade
+          </h1>
+        </MainHeader>
+        <Form ref={formRef} onSubmit={handleSubmit}>
+          <Input name="name" placeholder="Nome" />
+          <Select
+            name="type"
+            options={[
+              { label: 'Academia', value: 'Academia' },
+              { label: 'Apartamento', value: 'Apartamento' },
+              { label: 'Bloco', value: 'Bloco' },
+              { label: 'Casa', value: 'Casa' },
+              { label: 'Condomínio', value: 'Condomínio' },
+              { label: 'Departamento', value: 'Departamento' },
+              { label: 'Loja', value: 'Loja' },
+              { label: 'Sala', value: 'Sala' },
+            ]}
+            defaultValue={{
+              label: 'Tipo',
+              value: '',
+            }}
+          />
+          <Button type="submit" icon={FiPlus}>
+            Adicionar
+          </Button>
+        </Form>
       </Container>
     </Layout>
   );

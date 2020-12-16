@@ -66,51 +66,33 @@ export const ListItemsCategory = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
   background: #eee;
   padding: 8px;
   color: #888;
   border-radius: 4px;
   margin-bottom: 4px;
   border-radius: 8px;
-`;
 
-export const ListItems = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 64px;
-  background-color: #fff;
-  box-shadow: 0 0 15px rgba(0, 0, 100, 0.05);
-  border-radius: 4px;
-  margin-top: 8px;
-  padding: 16px;
-  border-bottom: 2px solid transparent;
-  transition: 0.2s;
-
-  span {
-    font-weight: 500;
-    width: 280px;
-    text-align: center;
+  div {
+    width: 25%;
 
     :first-child {
-      text-align: left;
-      width: 100px;
+      margin-left: 8px;
     }
 
     :nth-child(2) {
-      width: 200px;
+      text-align: center;
     }
-  }
-  svg {
-    width: 22px;
-    height: 22px;
-    color: #2f4858;
-    margin-right: 16px;
-  }
 
-  :hover {
-    border-bottom: 2px solid #ddd;
+    :nth-child(3) {
+      text-align: center;
+    }
+
+    :last-child {
+      text-align: end;
+      margin-right: 8px;
+    }
   }
 `;
 

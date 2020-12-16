@@ -2,50 +2,35 @@ import styled from 'styled-components';
 import ReactSelect from 'react-select';
 
 export const StyledReactSelect = styled(ReactSelect)`
-  display: flex;
-  height: 54px;
-  width: 100%;
-  margin-top: 0;
+  .Select__control {
+    border-color: #ddd;
+    box-shadow: none;
 
-  .css-yk16xz-control {
-    width: 100%;
-    border-radius: 8px;
-  }
+    :hover {
+      border-color: #ccc;
+    }
 
-  .css-1pahdxg-control {
-    width: 100%;
-    border-radius: 8px;
+    :focus {
+      border-color: #ff6757;
+    }
   }
-
-  .css-26l3qy-menu {
-    width: 96%;
-    border-radius: 8px;
-  }
-
-  .css-4ljt47-MenuList {
-    width: 100%;
-    border-radius: 8px;
-  }
-  .css-9gakcf-option {
-    background-color: #fff;
-    color: black;
-  }
-
-  .css-2b097c-container + div {
-    margin-top: 0;
-  }
-
-  .react-select__indicator-separator {
-    display: none;
-  }
-  .react-select__control--is-focused {
+  .Select__control--is-focused {
     border-color: #ff6757;
     box-shadow: none;
-  }
-  .react-select__control {
-    box-shadow: none;
+
     :hover {
       border-color: #ff6757;
+    }
+  }
+
+  .Select__menu {
+    .Select__option--is-focused {
+      background-color: rgba(255, 103, 87, 0.5);
+      color: #fff;
+    }
+
+    .Select__option--is-selected {
+      background-color: rgba(255, 103, 87, 0.7);
     }
   }
 `;

@@ -5,6 +5,7 @@ import { FormHandles } from '@unform/core';
 import { FiClock, FiList, FiPlus } from 'react-icons/fi';
 import {
   Container,
+  MainHeader,
   FormContainer,
   CheckboxContainer,
   ScheduleContainer,
@@ -12,7 +13,6 @@ import {
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import InputMask from '../../components/InputMask';
-import MainHeader from '../../components/MainHeader';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { useToast } from '../../hooks/toast';
 import api from '../../services/api';
@@ -20,6 +20,7 @@ import Layout from '../../Layouts';
 import { useSuperunit } from '../../hooks/superunit';
 import CheckboxInput from '../../components/CheckboxInput';
 import CheckWeekDay from '../../components/CheckWeekDay';
+import Header from '../../components/Header';
 
 interface IFormData {
   name: string;
@@ -140,8 +141,19 @@ const CategoryAdd: React.FC = () => {
 
   return (
     <Layout>
+      <Header
+        title={{ value: 'Categorias', path: '/category' }}
+        subTitle={{ value: 'Adicionar Categoria', path: '/category/new' }}
+        hasBackButton
+      />
       <Container>
-        <MainHeader name="Adicionar categoria" icon={FiList} />
+        <MainHeader>
+          <h1>
+            <FiList />
+            Adicionar Parceiro
+          </h1>
+        </MainHeader>
+
         <FormContainer>
           <Form ref={formRef} onSubmit={handleSubmit}>
             <main>

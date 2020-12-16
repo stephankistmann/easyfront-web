@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { FiChevronLeft } from 'react-icons/fi';
+import { BsDot } from 'react-icons/bs';
 import { Link, useHistory } from 'react-router-dom';
 import {
   Container,
@@ -34,8 +35,12 @@ const Header: React.FC<IProps> = ({ hasBackButton, title, subTitle }) => {
   return (
     <Container>
       <Navigation>
-        <NavButton onClick={() => history.goBack()}>
-          <FiChevronLeft size={18} color="#2f4858" />
+        <NavButton disabled={!hasBackButton} onClick={() => history.goBack()}>
+          {hasBackButton ? (
+            <FiChevronLeft size={18} color="#2f4858" />
+          ) : (
+            <BsDot size={30} color="#939da3" />
+          )}
         </NavButton>
 
         <TitleContainer>
