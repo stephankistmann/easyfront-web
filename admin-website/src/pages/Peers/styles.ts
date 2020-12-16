@@ -114,6 +114,10 @@ export const ListItemsCategory = styled.div`
   div {
     width: 25%;
 
+    :first-child {
+      margin-left: 8px;
+    }
+
     :nth-child(2) {
       text-align: center;
     }
@@ -124,6 +128,7 @@ export const ListItemsCategory = styled.div`
 
     :last-child {
       text-align: end;
+      margin-right: 8px;
     }
   }
 `;

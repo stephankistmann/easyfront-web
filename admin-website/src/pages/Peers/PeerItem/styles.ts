@@ -126,7 +126,7 @@ export const Controllers = styled.div`
     svg {
       height: 16px;
       width: 16px;
-      margin-right: 8px;
+      margin-right: 16px;
       color: #2f4858;
     }
   }
