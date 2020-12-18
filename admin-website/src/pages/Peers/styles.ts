@@ -116,19 +116,16 @@ export const ListItemsCategory = styled.div`
   border-radius: 8px;
 
   div {
-    width: 25%;
+    width: 33%;
+    text-align: center;
 
     :first-child {
+      display: flex;
+      justify-content: flex-start;
       margin-left: 8px;
     }
 
     :nth-child(2) {
-      text-align: center;
-    }
-
-    :last-child {
-      text-align: center;
-      margin-right: 8px;
     }
   }
 `;

@@ -38,6 +38,7 @@ export const AccessItem = styled.div`
 `;
 
 export const Infos = styled.div`
+  width: 33%;
   display: flex;
   align-items: center;
 `;
@@ -75,42 +76,59 @@ export const InfoContent = styled.div`
 `;
 
 export const Unit = styled.div`
-  padding: 0 24px;
-  height: 28px;
-  border-radius: 4px;
-  background: #e2f2f2;
   display: flex;
   align-items: center;
+  width: 33%;
   justify-content: center;
 
-  div {
-    background: #356d9b;
-    height: 4px;
-    width: 4px;
-    border-radius: 50%;
-    margin: 0 12px;
-  }
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    padding: 0 24px;
+    border-radius: 8px;
+    background: #e2f2f2;
 
-  p {
-    color: #356d9b;
-    font-size: 14px;
+    p {
+      font-size: 14px;
+    }
+
+    > div {
+      background: #356d9b;
+      height: 4px;
+      width: 4px;
+      border-radius: 50%;
+      margin: 0 12px;
+    }
   }
 `;
 
 export const Device = styled.div`
-  height: 28px;
-  padding: 0 24px;
-  border-radius: 4px;
-  background: #e4defe;
   display: flex;
   align-items: center;
+  width: 33%;
   justify-content: center;
 
-  p {
-    background: #5f5294;
-    height: 6px;
-    width: 6px;
-    opacity: 0.3;
-    margin: 0 12px;
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    padding: 0 24px;
+    border-radius: 8px;
+    background: #e4defe;
+
+    p {
+      font-size: 14px;
+    }
+
+    > div {
+      background: #5f5294;
+      height: 4px;
+      width: 4px;
+      border-radius: 50%;
+      margin: 0 12px;
+    }
   }
 `;

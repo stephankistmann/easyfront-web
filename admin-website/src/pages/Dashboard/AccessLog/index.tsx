@@ -32,15 +32,21 @@ const AccessLog: React.FC = () => {
             </InfoPicture>
             <InfoContent>
               <h1>Stephan Jacob</h1>
-              <p>12/15/2020</p>
+              <p>15/12/2020</p>
             </InfoContent>
           </Infos>
           <Unit>
-            <p>Novo Leblon</p>
-            <div />
-            <p>Apt 203</p>
+            <div>
+              <p>Millenium</p>
+              <div />
+              <p>Apt 201</p>
+            </div>
           </Unit>
-          <Device>Portão 7</Device>
+          <Device>
+            <div>
+              <p>Portão 2</p>
+            </div>
+          </Device>
         </AccessItem>
         <AccessItem>
           <Infos>
@@ -49,16 +55,22 @@ const AccessLog: React.FC = () => {
               <img src={defaultUserIcon} alt="User" />
             </InfoPicture>
             <InfoContent>
-              <h1>Stephan Jacob</h1>
-              <p>12/15/2020</p>
+              <h1>Luam Menezes</h1>
+              <p>14/12/2020</p>
             </InfoContent>
           </Infos>
           <Unit>
-            <p>Novo Leblon</p>
-            <div />
-            <p>Apt 203</p>
+            <div>
+              <p>Nova Barra</p>
+              <div />
+              <p>Casa 60 - 1</p>
+            </div>
           </Unit>
-          <Device>Portão 7</Device>
+          <Device>
+            <div>
+              <p>Entrada 1</p>
+            </div>
+          </Device>
         </AccessItem>
         <AccessItem>
           <Infos>
@@ -67,16 +79,22 @@ const AccessLog: React.FC = () => {
               <img src={defaultUserIcon} alt="User" />
             </InfoPicture>
             <InfoContent>
-              <h1>Stephan Jacob</h1>
-              <p>12/15/2020</p>
+              <h1>Renata Amorim</h1>
+              <p>13/12/2020</p>
             </InfoContent>
           </Infos>
           <Unit>
-            <p>Novo Leblon</p>
-            <div />
-            <p>Apt 203</p>
+            <div>
+              <p>Novo Leblon</p>
+              <div />
+              <p>Apt 203</p>
+            </div>
           </Unit>
-          <Device>Portão 7</Device>
+          <Device>
+            <div>
+              <p>Portaria</p>
+            </div>
+          </Device>
         </AccessItem>
         <AccessItem>
           <Infos>
@@ -85,16 +103,22 @@ const AccessLog: React.FC = () => {
               <img src={defaultUserIcon} alt="User" />
             </InfoPicture>
             <InfoContent>
-              <h1>Stephan Jacob</h1>
-              <p>12/15/2020</p>
+              <h1>Janaina Castelo Branco</h1>
+              <p>12/12/2020</p>
             </InfoContent>
           </Infos>
           <Unit>
-            <p>Novo Leblon</p>
-            <div />
-            <p>Apt 203</p>
+            <div>
+              <p>Mansões</p>
+              <div />
+              <p>Casa 133</p>
+            </div>
           </Unit>
-          <Device>Portão 7</Device>
+          <Device>
+            <div>
+              <p>Portão 7</p>
+            </div>
+          </Device>
         </AccessItem>
         <AccessItem>
           <Infos>
@@ -103,16 +127,22 @@ const AccessLog: React.FC = () => {
               <img src={defaultUserIcon} alt="User" />
             </InfoPicture>
             <InfoContent>
-              <h1>Stephan Jacob</h1>
-              <p>12/15/2020</p>
+              <h1>Vicenzo Menescal</h1>
+              <p>11/12/2020</p>
             </InfoContent>
           </Infos>
           <Unit>
-            <p>Novo Leblon</p>
-            <div />
-            <p>Apt 203</p>
+            <div>
+              <p>Novo Mundo</p>
+              <div />
+              <p>Apt 202</p>
+            </div>
           </Unit>
-          <Device>Portão 7</Device>
+          <Device>
+            <div>
+              <p>Academia</p>
+            </div>
+          </Device>
         </AccessItem>
         <AccessItem>
           <Infos>
@@ -121,16 +151,22 @@ const AccessLog: React.FC = () => {
               <img src={defaultUserIcon} alt="User" />
             </InfoPicture>
             <InfoContent>
-              <h1>Stephan Jacob</h1>
-              <p>12/15/2020</p>
+              <h1>Isis Lima</h1>
+              <p>10/12/2020</p>
             </InfoContent>
           </Infos>
           <Unit>
-            <p>Novo Leblon</p>
-            <div />
-            <p>Apt 203</p>
+            <div>
+              <p>Sol da manhã</p>
+              <div />
+              <p>Apt 1404</p>
+            </div>
           </Unit>
-          <Device>Portão 7</Device>
+          <Device>
+            <div>
+              <p>Saída 2</p>
+            </div>
+          </Device>
         </AccessItem>
       </Content>
     </Container>

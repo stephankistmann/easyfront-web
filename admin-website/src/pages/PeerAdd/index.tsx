@@ -16,16 +16,17 @@ const PeerAdd: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
 
+  const schema = Yup.object().shape({
+    email: Yup.string()
+      .required('E-mail obrigatório')
+      .email('Digite um e-mail válido'),
+  });
+
   const handleSubmit = useCallback(
     async (data: object) => {
       formRef.current?.setErrors({});
-      try {
-        const schema = Yup.object().shape({
-          email: Yup.string()
-            .required('E-mail obrigatório')
-            .email('Digite um e-mail válido'),
-        });
 
+      try {
         await schema.validate(data, {
           abortEarly: false,
         });
@@ -55,7 +56,7 @@ const PeerAdd: React.FC = () => {
         });
       }
     },
-    [addToast],
+    [addToast, schema],
   );
 
   return (

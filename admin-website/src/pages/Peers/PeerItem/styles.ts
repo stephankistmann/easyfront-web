@@ -37,7 +37,6 @@ export const Contact = styled.div`
   justify-content: center;
 
   div {
-    width: 50%;
     height: 28px;
     padding: 0 24px;
     border-radius: 4px;
@@ -46,8 +45,8 @@ export const Contact = styled.div`
     align-items: center;
     justify-content: center;
     svg {
-      height: 14px;
-      width: 14px;
+      height: 16px;
+      width: 16px;
       margin-right: 8px;
       color: #2f4858;
     }
@@ -75,10 +74,9 @@ export const Contact = styled.div`
 export const Extra = styled.div`
   width: 33%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 
   > div {
-    width: 75%;
     height: 28px;
     padding: 0 24px;
     border-radius: 4px;
@@ -88,8 +86,8 @@ export const Extra = styled.div`
     justify-content: center;
 
     svg {
-      height: 14px;
-      width: 14px;
+      height: 16px;
+      width: 16px;
       margin-right: 8px;
       color: #2f4858;
     }
