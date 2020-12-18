@@ -1,23 +1,22 @@
 /* eslint-disable */
-import React, { useEffect, useRef, useState } from 'react';
-import { FiEdit, FiUsers, FiXCircle, FiSearch } from 'react-icons/fi';
-import { Form } from '@unform/web';
-import { Link } from 'react-router-dom';
-import { FormHandles } from '@unform/core';
+import React, { useEffect, useMemo, useState, useCallback } from 'react';
+import { FiChevronRight, FiSearch, FiUsers, FiX } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
 import {
   Container,
+  MainHeader,
+  Search,
   List,
-  ListItems,
   ListItemsCategory,
-  FormContainer,
+  StyledLoading,
+  StyledButton,
 } from './styles';
 import useDebounce from '../../hooks/debounce';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
 import api from '../../services/api';
 import Pagination from '../../components/Pagination';
-import Layout from '../../components/Layout';
-import MainHeaderButton from '../../components/MainHeaderButton';
+import Layout from '../../Layouts/Default';
+import Header from '../../components/Header';
+import PeerItem from './PeerItem';
 
 interface IPeer {
   id: string;
@@ -30,44 +29,36 @@ interface IPeer {
   nature: string;
 }
 
-const MainPeer: React.FC = () => {
+const Peers: React.FC = () => {
   const [peers, setPeers] = useState<IPeer[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [isSearching, setIsSearching] = useState(false);
-  const formRef = useRef<FormHandles>(null);
+  const [search, setSearch] = useState('');
+  const history = useHistory();
+  const [loading, setLoading] = useState(true);
 
-  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+  const showResetSearch = useMemo(() => search.length > 2, [search]);
+
+  const debouncedSearch = useDebounce(search, 500);
+
+  const handleResetSearch = useCallback(() => {
+    setSearch('');
+  }, [setSearch]);
 
   const handlePages = (updatePage: number) => {
     setPage(updatePage);
   };
 
   useEffect(() => {
-    if (debouncedSearchTerm) {
-      setIsSearching(true);
-
-      handleSearch(debouncedSearchTerm);
-
-      setIsSearching(false);
-    }
-  }, [debouncedSearchTerm]);
-
-  function handleSearch(searchData: string) {
-    const search = searchData;
-
     async function getData() {
-      const response = await api.get('/users', { params: { search } });
-      setPeers(response.data.data);
-    }
+      setLoading(true);
+      const params = { page };
 
-    getData();
-  }
+      if (debouncedSearch.length > 2) {
+        Object.assign(params, { search: debouncedSearch });
+      }
 
-  function handleReset() {
-    async function getData() {
-      const response = await api.get('/users', { params: { page } });
+      const response = await api.get('/users', { params });
 
       if (!response) return;
 
@@ -76,107 +67,77 @@ const MainPeer: React.FC = () => {
       setPage(response.data.page);
 
       setTotalPages(response.data.total_pages);
+
+      setLoading(false);
     }
 
     getData();
-
-    if (!formRef.current) return;
-    formRef.current.reset();
-  }
-
-  useEffect(() => {
-    async function getData() {
-      const response = await api.get('/users', { params: { page } });
-
-      if (!response) return;
-
-      setPeers(response.data.data);
-
-      setPage(response.data.page);
-
-      setTotalPages(response.data.total_pages);
-    }
-
-    getData();
-  }, [page]);
+  }, [page, debouncedSearch]);
 
   return (
     <Layout>
+      <Header title={{ value: 'Parceiros', path: '/peers' }} />
       <Container>
-        <MainHeaderButton
-          name="Parceiros"
-          icon={FiUsers}
-          buttonName="Adicionar Parceiro"
-          buttonLink="/peers/new"
-        />
-        <FormContainer>
-          <Form ref={formRef} onSubmit={() => debouncedSearchTerm}>
-            <Input
-              name="search"
-              placeholder="Nome ou e-mail"
-              onChange={e => setSearchTerm(e.target.value)}
-              icon={FiSearch}
-            >
-              <Button
-                type="button"
-                icon={FiXCircle}
-                name="ResetButton"
-                onClick={handleReset}
+        <MainHeader>
+          <h1>
+            <FiUsers />
+            Lista de Parceiros
+          </h1>
+
+          <div>
+            <Search>
+              <FiSearch size={20} />
+              <input
+                value={search}
+                onChange={event => setSearch(event.target.value)}
+                placeholder="Pesquisar por nome ou e-mail"
               />
-            </Input>
-          </Form>
-        </FormContainer>
-        <List>
-          <ListItemsCategory>
-            <span>Nome</span>
-            <span>Telefone</span>
-            <span>E-mail</span>
-            <span>CPF</span>
-            <span>RG</span>
-            <span>Gênero</span>
-            <span>Natureza</span>
-            <span>ID</span>
-            <span>Editar</span>
-          </ListItemsCategory>
+              {showResetSearch && (
+                <button type="button" onClick={handleResetSearch}>
+                  <FiX size={20} />
+                </button>
+              )}
+            </Search>
+            <StyledButton
+              name="Parceiros"
+              icon={FiChevronRight}
+              onClick={() => history.push('/peers/new')}
+            >
+              Adicionar Parceiro
+            </StyledButton>
+          </div>
+        </MainHeader>
 
-          {peers.map(peer => (
-            <ListItems key={peer.id}>
-              <span>{peer.name || 'null'}</span>
-              <span>
-                {(peer.phone &&
-                  peer.phone
-                    .replace(/^(\d{2})(\d)/g, '($1) $2')
-                    .replace(/(\d)(\d{4})$/, '$1-$2')) ||
-                  'null'}
-              </span>
-              <span>{peer.email || 'null'}</span>
-
-              <span>
-                {(peer.cpf &&
-                  peer.cpf.replace(
-                    /(\d{3})(\d{3})(\d{3})(\d{2})/,
-                    '$1.$2.$3-$4',
-                  )) ||
-                  'null'}
-              </span>
-              <span>{peer.rg || 'null'}</span>
-              <span>{peer.gender || 'null'}</span>
-              <span>{peer.nature || 'null'}</span>
-              <span>{peer.id || 'null'}</span>
-              <Link to={`/peers/edit/${peer.id}`}>
-                <FiEdit />
-              </Link>
-            </ListItems>
-          ))}
-          <Pagination
-            page={page}
-            handlePagination={handlePages}
-            totalPages={totalPages}
-          />
-        </List>
+        {loading ? (
+          <StyledLoading />
+        ) : (
+          <List>
+            <ListItemsCategory>
+              <div>Nome</div>
+              <div>Contato</div>
+              <div>Gênero / Natureza</div>
+            </ListItemsCategory>
+            {peers.map(peer => (
+              <PeerItem
+                key={peer.id}
+                name={peer.name || 'Não informado'}
+                phone={peer.phone || 'Não informado'}
+                email={peer.email || 'Não informado'}
+                gender={peer.gender || 'Não informado'}
+                nature={peer.nature || 'Não informado'}
+                id={peer.id}
+              />
+            ))}
+            <Pagination
+              page={page}
+              handlePagination={handlePages}
+              totalPages={totalPages}
+            />
+          </List>
+        )}
       </Container>
     </Layout>
   );
 };
 
-export default MainPeer;
+export default Peers;

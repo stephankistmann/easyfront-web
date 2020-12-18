@@ -14,7 +14,7 @@ const Pagination: React.FC<PaginationProps> = ({
 }) => {
   return (
     <Container>
-      {page !== 1 && (
+      {page > 1 && (
         <NavPage
           name="NavPagePrev"
           onClick={() => {
@@ -24,7 +24,7 @@ const Pagination: React.FC<PaginationProps> = ({
           <FiChevronLeft />
         </NavPage>
       )}
-      <NavPage name="NavPageCurrent" onClick={() => handlePagination(page)}>
+      <NavPage name="NavPageCurrent">
         <span>{page}</span>
       </NavPage>
       {page !== totalPages && (

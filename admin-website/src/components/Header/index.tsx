@@ -1,32 +1,57 @@
-import React from 'react';
-import { FiChevronLeft, FiUser } from 'react-icons/fi';
+import React, { useMemo } from 'react';
+import { FiChevronLeft } from 'react-icons/fi';
+import { BsDot } from 'react-icons/bs';
 import { Link, useHistory } from 'react-router-dom';
 import {
   Container,
   Navigation,
   NavButton,
+  TitleContainer,
   Title,
+  SubTitle,
   Left,
   Profile,
 } from './styles';
 import SuperUnitSelect from './SuperUnitSelect';
 import { useAuth } from '../../hooks/auth';
 
-const Header: React.FC = () => {
+interface ITitle {
+  value: string;
+  path: string;
+}
+
+interface IProps {
+  hasBackButton?: boolean;
+  title: ITitle;
+  subTitle?: ITitle;
+}
+
+const Header: React.FC<IProps> = ({ hasBackButton, title, subTitle }) => {
   const { user } = useAuth();
   const history = useHistory();
+
+  const initials = useMemo(() => user.name.slice(0, 2).toUpperCase(), [user]);
 
   return (
     <Container>
       <Navigation>
-        <NavButton onClick={() => history.goBack()}>
-          <FiChevronLeft size={24} color="#2f4858" />
+        <NavButton disabled={!hasBackButton} onClick={() => history.goBack()}>
+          {hasBackButton ? (
+            <FiChevronLeft size={18} color="#2f4858" />
+          ) : (
+            <BsDot size={30} color="#939da3" />
+          )}
         </NavButton>
-        <Title>
-          <h1>Parceiros</h1>
-          <div />
-          <p>Novo parceiro</p>
-        </Title>
+
+        <TitleContainer>
+          <Title to={title.path}>{title.value}</Title>
+          {subTitle && (
+            <>
+              <div />
+              <SubTitle to={subTitle.path}>{subTitle.value}</SubTitle>
+            </>
+          )}
+        </TitleContainer>
       </Navigation>
       <Left>
         <Profile>
@@ -36,7 +61,7 @@ const Header: React.FC = () => {
             </Link>
           ) : (
             <Link to="/profile">
-              <FiUser />
+              <h1>{initials}</h1>
             </Link>
           )}
         </Profile>

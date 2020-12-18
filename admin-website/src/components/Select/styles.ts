@@ -1,51 +1,62 @@
 import styled from 'styled-components';
 import ReactSelect from 'react-select';
 
-export const Container = styled(ReactSelect)`
-  display: flex;
-  height: 54px;
-  width: 100%;
-  margin-top: 0;
-
-  .css-yk16xz-control {
-    width: 100%;
-    border-radius: 10px;
-  }
-
-  .css-1pahdxg-control {
-    width: 100%;
-    border-radius: 10px;
-  }
-
-  .css-26l3qy-menu {
-    width: 96%;
-    border-radius: 10px;
-  }
-
-  .css-4ljt47-MenuList {
-    width: 100%;
-    border-radius: 10px;
-  }
-  .css-9gakcf-option {
-    background-color: #fff;
-    color: black;
-  }
-
-  .css-2b097c-container + div {
-    margin-top: 0;
-  }
-
-  .react-select__indicator-separator {
-    display: none;
-  }
-  .react-select__control--is-focused {
-    border-color: #ff6757;
+export const StyledReactSelect = styled(ReactSelect)`
+  .Select__control {
+    border-color: #ddd;
     box-shadow: none;
-  }
-  .react-select__control {
-    box-shadow: none;
+    height: 48px;
+    border-radius: 8px;
+
+    span {
+      display: none;
+    }
+
     :hover {
       border-color: #ff6757;
+    }
+
+    :focus {
+      border-color: #ff6757;
+    }
+  }
+  .Select__control--is-focused {
+    border-color: #ff6757;
+    box-shadow: none;
+    height: 48px;
+
+    :hover {
+      border-color: #ff6757;
+    }
+  }
+
+  .Select__value-container {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-radius: 8px;
+
+    > div {
+      display: flex;
+      align-items: center;
+      height: 48px;
+    }
+
+    .css-b8ldur-Input {
+      margin: 0;
+    }
+  }
+
+  .Select__menu {
+    .Select__option--is-focused {
+      background-color: rgba(255, 103, 87, 0.5);
+      color: #fff;
+    }
+
+    .Select__option--is-selected {
+      background-color: rgba(255, 103, 87, 0.7);
     }
   }
 `;

@@ -38,13 +38,19 @@ export const AnimationContainer = styled.div`
 
   animation: ${appearFromLeft} 1s;
 
+  img {
+    height: 100px;
+  }
+
   form {
-    margin: 80px 0;
+    margin: 36px 0;
     width: 340px;
     text-align: center;
 
     h1 {
       margin-bottom: 24px;
+      font-size: 16px;
+      font-weight: 700;
     }
 
     a {
@@ -57,6 +63,11 @@ export const AnimationContainer = styled.div`
       &:hover {
         opacity: 0.8;
       }
+    }
+
+    button {
+      margin-top: 16px;
+      height: 48px;
     }
   }
 

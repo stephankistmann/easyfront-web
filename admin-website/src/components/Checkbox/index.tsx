@@ -1,7 +1,7 @@
 import React, { InputHTMLAttributes, useEffect, useRef } from 'react';
 import { useField } from '@unform/core';
 import { Container } from './styles';
-import Label from '../Label';
+import Label from './Label';
 
 interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;

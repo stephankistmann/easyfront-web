@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FiEdit, FiList, FiTrash } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
+import { FiList, FiPlus } from 'react-icons/fi';
 import Pagination from '../../components/Pagination';
 import {
   Container,
+  MainHeader,
   List,
-  ListItems,
   ListItemsCategory,
-  InvisibleButton,
+  StyledButton,
+  StyledLoading,
 } from './styles';
-import Layout from '../../components/Layout';
-import MainHeaderButton from '../../components/MainHeaderButton';
+import Layout from '../../Layouts/Default';
 import api from '../../services/api';
 import { useSuperunit } from '../../hooks/superunit';
+import Header from '../../components/Header';
+import CategoryItem from './CategoryItem';
 
 interface IDevices {
   name: string;
@@ -31,6 +33,8 @@ const Category: React.FC = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const { selected } = useSuperunit();
+  const [loading, setLoading] = useState(true);
+  const history = useHistory();
 
   const superunitId = selected?.id;
 
@@ -40,8 +44,6 @@ const Category: React.FC = () => {
 
   async function handleDelete(id: string) {
     const deleteCategory = categories.find(category => category.id === id);
-
-    console.log(deleteCategory);
 
     await api.delete(
       `/superunities/${selected?.id}/accesscategories/${deleteCategory?.id}`,
@@ -54,6 +56,7 @@ const Category: React.FC = () => {
 
   useEffect(() => {
     async function getData() {
+      setLoading(true);
       if (selected) {
         const response = await api.get(
           `/superunities/${superunitId}/accesscategories`,
@@ -68,6 +71,7 @@ const Category: React.FC = () => {
 
         setTotalPages(response.data.total_pages);
       }
+      setLoading(false);
     }
 
     getData();
@@ -75,52 +79,51 @@ const Category: React.FC = () => {
 
   return (
     <Layout>
+      <Header title={{ value: 'Categorias', path: '/category' }} />
       <Container>
-        <MainHeaderButton
-          icon={FiList}
-          name="Categorias"
-          buttonName="Adicionar Categoria"
-          buttonLink="/category/new"
-        />
-        <List>
-          <ListItemsCategory>
-            <span>ID</span>
-            <span>Nome</span>
-            <span>Horário de inicio</span>
-            <span>Horário de término</span>
-            <span>Dispositivos</span>
-            <span>Editar/Excluir</span>
-          </ListItemsCategory>
-          {categories.map(category => (
-            <ListItems key={category.id}>
-              <span>{category.id || null}</span>
-              <span>{category.name || null}</span>
-              <span>{category.min_time || null}</span>
-              <span>{category.max_time || null}</span>
-              <div>
-                {category.devices.map(device => (
-                  <div>{device.name || null}</div>
-                ))}
-              </div>
-              <div className="buttonsDiv">
-                <Link to={`/category/edit/${category.id}`}>
-                  <FiEdit />
-                </Link>
-                <InvisibleButton
-                  type="button"
-                  onClick={() => handleDelete(category.id)}
-                >
-                  <FiTrash />
-                </InvisibleButton>
-              </div>
-            </ListItems>
-          ))}
-          <Pagination
-            page={page}
-            handlePagination={handlePages}
-            totalPages={totalPages}
-          />
-        </List>
+        <MainHeader>
+          <div>
+            <h1>
+              <FiList />
+              Lista de Categorias
+            </h1>
+          </div>
+          <StyledButton
+            icon={FiPlus}
+            name="Categorias"
+            onClick={() => history.push('/category/new')}
+          >
+            Adicionar Acesso
+          </StyledButton>
+        </MainHeader>
+        {loading ? (
+          <StyledLoading />
+        ) : (
+          <List>
+            <ListItemsCategory>
+              <div>Nome</div>
+              <div>Horário</div>
+              <div>Dispositivos</div>
+              <div>Editar/Excluir</div>
+            </ListItemsCategory>
+            {categories.map(category => (
+              <CategoryItem
+                key={category.id}
+                id={category.id}
+                name={category.name || 'Não informado'}
+                min_time={category.min_time || 'Não informado'}
+                max_time={category.max_time || 'Não informado'}
+                devices={category.devices.map(device => device.name)}
+                onClickDelete={() => handleDelete(category.id)}
+              />
+            ))}
+            <Pagination
+              page={page}
+              handlePagination={handlePages}
+              totalPages={totalPages}
+            />
+          </List>
+        )}
       </Container>
     </Layout>
   );

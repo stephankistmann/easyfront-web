@@ -1,31 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FiEdit, FiTrash, FiHome } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
+import { FiPlus, FiHome } from 'react-icons/fi';
 import {
   Container,
+  MainHeader,
   List,
-  ListItems,
   ListItemsCategory,
-  InvisibleButton,
+  StyledButton,
+  StyledLoading,
 } from './styles';
 import Pagination from '../../components/Pagination';
 import { useSuperunit } from '../../hooks/superunit';
 import api from '../../services/api';
-import Layout from '../../components/Layout';
-import MainHeaderButton from '../../components/MainHeaderButton';
+import Layout from '../../Layouts/Default';
+import Header from '../../components/Header';
+import UnitItem from './UnitItem';
 
 interface IUnit {
   id: string;
   name: string;
   public_area: string;
-  superUnit_id: string;
 }
 
-const MainUnits: React.FC = () => {
+const Units: React.FC = () => {
   const { selected } = useSuperunit();
   const [data, setData] = useState<IUnit[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const history = useHistory();
 
   const handlePages = (updatePage: number) => {
     setPage(updatePage);
@@ -41,6 +44,7 @@ const MainUnits: React.FC = () => {
 
   useEffect(() => {
     async function getData() {
+      setLoading(true);
       if (selected) {
         const response = await api.get(`/superunities/${selected.id}/unities`, {
           params: { page },
@@ -51,9 +55,8 @@ const MainUnits: React.FC = () => {
 
         setPage(response.data.page);
         setTotalPages(response.data.total_pages);
-
-        console.log(response);
       }
+      setLoading(false);
     }
 
     getData();
@@ -61,49 +64,52 @@ const MainUnits: React.FC = () => {
 
   return (
     <Layout>
+      <Header title={{ value: 'Unidades', path: '/units' }} />
       <Container>
-        <MainHeaderButton
-          name="Unidades"
-          icon={FiHome}
-          buttonName="Adicionar Unidade"
-          buttonLink="/units/new"
-        />
-        <List>
-          <ListItemsCategory>
-            <span>Nome</span>
-            <span>Area</span>
-            <span>ID</span>
-            <span>Superunit ID</span>
-            <span>Editar/Excluir</span>
-          </ListItemsCategory>
-          {data.map(unit => (
-            <ListItems key={unit.id}>
-              <span>{unit.name}</span>
-              <span>{unit.public_area}</span>
-              <span>{unit.id}</span>
-              <span>{unit.superUnit_id}</span>
-              <div>
-                <Link to={`/units/edit/${unit.id}`}>
-                  <FiEdit />
-                </Link>
-                <InvisibleButton
-                  type="button"
-                  onClick={() => handleDelete(unit.id)}
-                >
-                  <FiTrash />
-                </InvisibleButton>
-              </div>
-            </ListItems>
-          ))}
-          <Pagination
-            page={page}
-            handlePagination={handlePages}
-            totalPages={totalPages}
-          />
-        </List>
+        <MainHeader>
+          <div>
+            <h1>
+              <FiHome />
+              Lista de Unidades
+            </h1>
+          </div>
+          <StyledButton
+            name="Unidades"
+            icon={FiPlus}
+            onClick={() => history.push('/units/new')}
+          >
+            Adicionar Unidade
+          </StyledButton>
+        </MainHeader>
+
+        {loading ? (
+          <StyledLoading />
+        ) : (
+          <List>
+            <ListItemsCategory>
+              <div>Nome</div>
+              <div>Area</div>
+              <div>Editar / Excluir</div>
+            </ListItemsCategory>
+            {data.map(unit => (
+              <UnitItem
+                key={unit.id}
+                name={unit.name || 'Não informado'}
+                public_area={unit.public_area || 'Não informado'}
+                id={unit.id}
+                onClickDelete={() => handleDelete(unit.id)}
+              />
+            ))}
+            <Pagination
+              page={page}
+              handlePagination={handlePages}
+              totalPages={totalPages}
+            />
+          </List>
+        )}
       </Container>
     </Layout>
   );
 };
 
-export default MainUnits;
+export default Units;

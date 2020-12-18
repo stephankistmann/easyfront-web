@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import { FormHandles } from '@unform/core';
-import { FiLock, FiMail } from 'react-icons/fi';
+import { FiLock, FiLogIn, FiMail } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
@@ -17,6 +17,13 @@ interface SignInFormData {
   password: string;
 }
 
+const schema = Yup.object().shape({
+  email: Yup.string()
+    .required('E-mail obrigatório')
+    .email('Digite um e-mail válido'),
+  password: Yup.string().required('Senha obrigatória.'),
+});
+
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
@@ -28,13 +35,6 @@ const SignIn: React.FC = () => {
       formRef.current?.setErrors({});
 
       try {
-        const schema = Yup.object().shape({
-          email: Yup.string()
-            .required('E-mail obrigatório')
-            .email('Digite um e-mail válido'),
-          password: Yup.string().required('Senha obrigatória.'),
-        });
-
         await schema.validate(data, {
           abortEarly: false,
         });
@@ -67,9 +67,7 @@ const SignIn: React.FC = () => {
     <Container>
       <Content>
         <AnimationContainer>
-          <Link to="https://www.easyfront.live/">
-            <img src={logoImg} alt="EasyFront" />
-          </Link>
+          <img src={logoImg} alt="EasyFront" />
 
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Faça seu login</h1>
@@ -83,7 +81,7 @@ const SignIn: React.FC = () => {
               placeholder="Senha"
             />
 
-            <Button type="submit" name="LoginButton">
+            <Button type="submit" name="LoginButton" icon={FiLogIn}>
               Entrar
             </Button>
 

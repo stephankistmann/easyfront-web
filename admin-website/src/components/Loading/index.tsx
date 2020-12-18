@@ -1,16 +1,21 @@
-import React from 'react';
-import { IconBaseProps } from 'react-icons';
+import React, { HTMLAttributes } from 'react';
+import { FiLoader } from 'react-icons/fi';
 import { Container } from './styles';
 
-interface LoadingProps {
-  name: string;
-  icon?: React.ComponentType<IconBaseProps>;
+interface LoadingProps extends HTMLAttributes<HTMLDivElement> {
+  color?: string;
+  size?: number;
 }
 
-const Loading: React.FC<LoadingProps> = ({ name, icon: Icon }) => (
-  <Container>
-    {Icon && <Icon size={20} />}
-    {name}
+const Loading: React.FC<LoadingProps> = ({
+  children,
+  color = '#fff',
+  size = 24,
+  ...rest
+}) => (
+  <Container {...rest}>
+    <FiLoader color={color} size={size} />
+    {children}
   </Container>
 );
 
