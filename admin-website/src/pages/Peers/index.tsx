@@ -14,7 +14,7 @@ import {
 import useDebounce from '../../hooks/debounce';
 import api from '../../services/api';
 import Pagination from '../../components/Pagination';
-import Layout from '../../Layouts';
+import Layout from '../../Layouts/Default';
 import Header from '../../components/Header';
 import PeerItem from './PeerItem';
 
@@ -76,11 +76,7 @@ const Peers: React.FC = () => {
 
   return (
     <Layout>
-      <Header
-        title={{ value: 'Parceiros', path: '/peers' }}
-        subTitle={{ value: 'Parceiros', path: '/peers' }}
-        hasBackButton
-      />
+      <Header title={{ value: 'Parceiros', path: '/peers' }} />
       <Container>
         <MainHeader>
           <h1>
@@ -120,16 +116,16 @@ const Peers: React.FC = () => {
               <div>Nome</div>
               <div>Contato</div>
               <div>Gênero / Natureza</div>
-              <div>Editar / Excluir</div>
             </ListItemsCategory>
             {peers.map(peer => (
               <PeerItem
                 key={peer.id}
-                name={peer.name || 'null'}
-                phone={peer.phone || 'null'}
-                email={peer.email || 'null'}
-                gender={peer.gender || 'null'}
-                nature={peer.nature || 'null'}
+                name={peer.name || 'Não informado'}
+                phone={peer.phone || 'Não informado'}
+                email={peer.email || 'Não informado'}
+                gender={peer.gender || 'Não informado'}
+                nature={peer.nature || 'Não informado'}
+                id={peer.id}
               />
             ))}
             <Pagination

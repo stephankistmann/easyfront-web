@@ -12,7 +12,7 @@ export const Container = styled.div`
 export const Infos = styled.div`
   display: flex;
   align-items: center;
-  width: 25%;
+  width: 33%;
 
   img {
     width: 32px;
@@ -32,7 +32,7 @@ export const Infos = styled.div`
 `;
 
 export const Contact = styled.div`
-  width: 25%;
+  width: 33%;
   display: flex;
   justify-content: center;
 
@@ -73,9 +73,9 @@ export const Contact = styled.div`
 `;
 
 export const Extra = styled.div`
-  width: 25%;
+  width: 33%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 
   > div {
     width: 75%;
@@ -110,24 +110,6 @@ export const Extra = styled.div`
 
     p {
       font-size: 14px;
-    }
-  }
-`;
-
-export const Controllers = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 25%;
-
-  button {
-    background: transparent;
-    border: 0;
-
-    svg {
-      height: 16px;
-      width: 16px;
-      margin-right: 16px;
-      color: #2f4858;
     }
   }
 `;

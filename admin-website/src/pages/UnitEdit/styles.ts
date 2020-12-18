@@ -2,36 +2,46 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  border-radius: 10px;
-  border: 1px solid #dfe9eb;
-  background: #ffffff;
+  border-radius: 8px;
   flex-direction: column;
-`;
-
-export const FormContainer = styled.div`
-  display: flex;
-  margin-right: 30px;
-  margin-left: 30px;
-  margin-top: 30px;
+  background: #fff;
+  padding: 24px;
+  box-shadow: 0 0 15px rgba(0, 0, 50, 0.1);
 
   form {
-    width: 100%;
-    margin-bottom: 30px;
+    flex-direction: column;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: flex-end;
+    flex: 1;
+    width: 100%;
 
-    .sc-hKgILt {
-      margin-right: 16px;
-    }
-    .css-2b097c-container {
-      margin-top: 0;
+    > div {
+      margin-top: 16px;
+      width: 100%;
     }
 
     button {
-      font-size: 22px;
-      margin-top: 0;
-      margin-left: 16px;
+      margin-top: 16px;
+    }
+  }
+`;
+
+export const MainHeader = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+    h1 {
+      font-size: 18px;
+      align-items: center;
+      display: flex;
+      margin-left: 8px;
+      margin-right: 24px;
+
+      svg {
+        margin-right: 12px;
+      }
     }
   }
 `;

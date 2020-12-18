@@ -75,59 +75,23 @@ export const ListItemsCategory = styled.div`
   border-radius: 4px;
   margin-bottom: 4px;
   border-radius: 8px;
-`;
 
-export const ListItems = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 64px;
-  background-color: #fff;
-  box-shadow: 0 0 15px rgba(0, 0, 100, 0.05);
-  border-radius: 4px;
-  margin-top: 8px;
-  padding: 16px;
-  border-bottom: 2px solid transparent;
-  transition: 0.2s;
-
-  span {
-    font-weight: 500;
+  div {
+    width: 33%;
 
     :first-child {
-      width: 215px;
-
-      text-align: left;
+      margin-left: 8px;
     }
 
     :nth-child(2) {
-      width: 187px;
-    }
-
-    :nth-child(3) {
-      width: 160px;
-    }
-
-    :nth-child(4) {
-      width: 170px;
-    }
-
-    :nth-child(5) {
-      width: 185px;
+      display: flex;
+      justify-content: center;
     }
 
     :last-child {
-      width: 95px;
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 8px;
     }
-  }
-  svg {
-    width: 22px;
-    height: 22px;
-    color: #2f4858;
-    margin-right: 16px;
-  }
-
-  &:hover {
-    border-bottom: 2px solid #ddd;
   }
 `;

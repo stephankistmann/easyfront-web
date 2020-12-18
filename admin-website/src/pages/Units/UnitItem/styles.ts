@@ -10,101 +10,63 @@ export const Container = styled.div`
 `;
 
 export const Infos = styled.div`
+  width: 50%;
   display: flex;
-  align-items: center;
-  width: 25%;
-  margin-left: 8px;
 
-  img {
-    width: 32px;
-    height: 32px;
-    margin: 0 16px;
-  }
+  div {
+    display: flex;
 
-  h1 {
-    font-size: 14px;
-    font-weight: 700;
-  }
+    svg {
+      margin-right: 16px;
+      margin-left: 16px;
+      width: 20px;
+      height: 20px;
+      color: #2f4858;
+    }
 
-  p {
-    font-size: 14px;
-    margin-top: 4px;
+    h1 {
+      font-size: 14px;
+    }
   }
 `;
 
 export const Area = styled.div`
-  width: 25%;
-  display: flex;
-  border-radius: 4px;
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  svg {
-    height: 14px;
-    width: 14px;
-    margin-right: 8px;
-    color: #2f4858;
-  }
-
-  h1 {
-    font-size: 14px;
-    font-weight: 700;
-  }
-
-  div {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: #2f4858;
-    margin: 8px;
-    opacity: 0.6;
-  }
-
-  p {
-    font-size: 14px;
-  }
-`;
-
-export const SuperUnit = styled.div`
+  justify-content: flex-start;
   width: 25%;
-  display: flex;
-  justify-content: center;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  svg {
-    height: 14px;
-    width: 14px;
-    margin-right: 8px;
-    color: #2f4858;
-  }
-
-  h1 {
-    font-size: 14px;
-    font-weight: 700;
-  }
 
   div {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: #2f4858;
-    margin: 8px;
-    opacity: 0.6;
-  }
+    display: flex;
 
-  p {
-    font-size: 14px;
+    svg {
+      margin-right: 16px;
+      margin-left: 16px;
+      width: 20px;
+      height: 20px;
+      color: #2f4858;
+    }
+
+    h1 {
+      font-size: 14px;
+    }
   }
 `;
 
 export const Controllers = styled.div`
   display: flex;
   justify-content: flex-end;
-  width: 25%;
+  width: 33%;
+
+  a {
+    text-decoration: none;
+    svg {
+      height: 16px;
+      width: 16px;
+      margin-right: 16px;
+      color: #2f4858;
+    }
+  }
 
   button {
     background: transparent;

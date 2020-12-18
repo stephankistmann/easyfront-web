@@ -20,10 +20,6 @@ export const Container = styled.div`
 
     > div {
       margin-right: 16px;
-
-      :hover {
-        color: #ff6757;
-      }
     }
 
     input {

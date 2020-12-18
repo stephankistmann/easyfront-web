@@ -5,9 +5,15 @@ export const StyledReactSelect = styled(ReactSelect)`
   .Select__control {
     border-color: #ddd;
     box-shadow: none;
+    height: 48px;
+    border-radius: 8px;
+
+    span {
+      display: none;
+    }
 
     :hover {
-      border-color: #ccc;
+      border-color: #ff6757;
     }
 
     :focus {
@@ -17,9 +23,29 @@ export const StyledReactSelect = styled(ReactSelect)`
   .Select__control--is-focused {
     border-color: #ff6757;
     box-shadow: none;
+    height: 48px;
 
     :hover {
       border-color: #ff6757;
+    }
+  }
+
+  .Select__value-container {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-radius: 8px;
+
+    > div {
+      display: flex;
+      align-items: center;
+      height: 48px;
+    }
+
+    .css-b8ldur-Input {
+      margin: 0;
     }
   }
 

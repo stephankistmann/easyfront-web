@@ -8,7 +8,7 @@ import {
   FiBarChart,
 } from 'react-icons/fi';
 import { useLocation } from 'react-router-dom';
-import { Container, Logo, Title, Menu, OpenButton } from './styles';
+import { Container, Logo, Title, Menu } from './styles';
 import MenuItem from './MenuItem';
 import OpenCloseButton from './OpenCloseButton';
 import logo from '../../assets/logo.png';

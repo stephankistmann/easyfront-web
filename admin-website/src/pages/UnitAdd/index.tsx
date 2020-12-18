@@ -3,7 +3,7 @@ import { FiHome, FiPlus } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
-import { Container, MainHeader } from './styles';
+import { Container, MainHeader, ButtonContainer } from './styles';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import getValidationErrors from '../../utils/getValidationErrors';
@@ -11,7 +11,7 @@ import { useToast } from '../../hooks/toast';
 import api from '../../services/api';
 import Select from '../../components/Select';
 import { useSuperunit } from '../../hooks/superunit';
-import Layout from '../../Layouts';
+import Layout from '../../Layouts/Default';
 import Header from '../../components/Header';
 
 interface IFormData {
@@ -111,9 +111,11 @@ const UnitAdd: React.FC = () => {
               value: '',
             }}
           />
-          <Button type="submit" icon={FiPlus}>
-            Adicionar
-          </Button>
+          <ButtonContainer>
+            <Button type="submit" icon={FiPlus}>
+              Adicionar
+            </Button>
+          </ButtonContainer>
         </Form>
       </Container>
     </Layout>

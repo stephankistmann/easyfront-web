@@ -9,7 +9,7 @@ import Button from '../../components/Button';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { useToast } from '../../hooks/toast';
 import api from '../../services/api';
-import Layout from '../../Layouts';
+import Layout from '../../Layouts/Default';
 import Header from '../../components/Header';
 
 const PeerAdd: React.FC = () => {

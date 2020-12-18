@@ -1,18 +1,24 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import { useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 import { FiChevronsRight, FiPlus } from 'react-icons/fi';
 import Button from '../../components/Button';
-import Layout from '../../Layouts';
+import Layout from '../../Layouts/Default';
 import { useToast } from '../../hooks/toast';
-import { Container, FormContainer } from './styles';
+import { Container, MainHeader } from './styles';
 import api from '../../services/api';
 import getValidationErrors from '../../utils/getValidationErrors';
-import Header from './Header';
 import Select from '../../components/Select';
 import { useSuperunit } from '../../hooks/superunit';
+import Header from '../../components/Header';
 
 interface IFormData {
   accessCategory_id: string;
@@ -20,9 +26,21 @@ interface IFormData {
   active: boolean;
 }
 
+interface IAccessCategory {
+  id: string;
+  name: string;
+}
+
+interface IUnitCategory {
+  id: string;
+  name: string;
+}
+
 interface ISelectOptions {
   id: string;
   name: string;
+  accessCategory: IAccessCategory;
+  unit: IUnitCategory;
 }
 
 const AccessEdit: React.FC = () => {
@@ -37,22 +55,42 @@ const AccessEdit: React.FC = () => {
 
   useEffect(() => {
     async function getData() {
-      const unitiesData = await api.get(`/superunities/${superunitId}/unities`);
+      if (selected) {
+        const unitiesData = await api.get(
+          `/superunities/${superunitId}/unities`,
+        );
 
-      const categoriesData = await api.get(
-        `/superunities/${superunitId}/accesscategories`,
-      );
+        if (!unitiesData) return;
 
-      function setData() {
+        const categoriesData = await api.get(
+          `/superunities/${superunitId}/accesscategories`,
+        );
+
+        if (!categoriesData) return;
+
+        const accessData = await api.get(
+          `/superunities/${superunitId}/accesses/${id}`,
+        );
+
+        if (!accessData) return;
+
+        formRef.current?.setFieldValue('unit_id', {
+          label: accessData.data.unit.name,
+          value: accessData.data.unit.id,
+        });
+
+        formRef.current?.setFieldValue('accessCategory_id', {
+          label: accessData.data.accessCategory.name,
+          value: accessData.data.accessCategory.id,
+        });
+
         setUnities(unitiesData.data.data);
         setCategories(categoriesData.data.data);
       }
-
-      setData();
     }
 
     getData();
-  }, [superunitId]);
+  }, [superunitId, id, selected]);
 
   const handleSubmit = useCallback(
     async (data: IFormData) => {
@@ -92,46 +130,52 @@ const AccessEdit: React.FC = () => {
         });
       }
     },
-    [addToast],
+    [addToast, id, superunitId],
   );
 
-  const selectOptionsUnit = unities.map(unit => {
-    return {
-      label: unit.name,
-      value: unit.id,
-    };
-  });
+  const optionsUnit = useMemo(
+    () =>
+      unities.map(unit => {
+        return {
+          label: unit.name,
+          value: unit.id,
+        };
+      }),
+    [unities],
+  );
 
-  const selectOptionsCategory = categories.map(category => {
-    return {
-      label: category.name,
-      value: category.id,
-    };
-  });
+  const optionsCategory = useMemo(
+    () =>
+      categories.map(category => {
+        return {
+          label: category.name,
+          value: category.id,
+        };
+      }),
+    [categories],
+  );
 
   return (
     <Layout>
+      <Header
+        title={{ value: 'Acessos', path: '/access' }}
+        subTitle={{ value: 'Editar Acesso', path: `/access/edit/${id}` }}
+        hasBackButton
+      />
       <Container>
-        <Header icon={FiChevronsRight} name="Editar Acesso" />
-        <FormContainer>
-          <Form ref={formRef} onSubmit={handleSubmit}>
-            <FormContainer>
-              <Select
-                name="unit_id"
-                placeholderName="Unidade"
-                options={selectOptionsUnit}
-              />
-              <Select
-                name="accessCategory_id"
-                placeholderName="Categoria"
-                options={selectOptionsCategory}
-              />
-              <Button type="submit" name="AddButton" icon={FiPlus}>
-                Atualizar
-              </Button>
-            </FormContainer>
-          </Form>
-        </FormContainer>
+        <MainHeader>
+          <h1>
+            <FiChevronsRight />
+            Editar Accesso
+          </h1>
+        </MainHeader>
+        <Form ref={formRef} onSubmit={handleSubmit}>
+          <Select name="accessCategory_id" options={optionsCategory} />
+          <Select name="unit_id" options={optionsUnit} />
+          <Button type="submit" name="AddButton" icon={FiPlus}>
+            Atualizar
+          </Button>
+        </Form>
       </Container>
     </Layout>
   );

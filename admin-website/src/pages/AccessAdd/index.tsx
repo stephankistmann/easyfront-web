@@ -1,12 +1,18 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { FiChevronsRight, FiPlus } from 'react-icons/fi';
 import Button from '../../components/Button';
-import Layout from '../../Layouts';
+import Layout from '../../Layouts/Default';
 import { useToast } from '../../hooks/toast';
-import { Container, MainHeader, FormContainer } from './styles';
+import { Container, MainHeader } from './styles';
 import api from '../../services/api';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { useSuperunit } from '../../hooks/superunit';
@@ -38,25 +44,31 @@ const AccessAdd: React.FC = () => {
 
   useEffect(() => {
     async function getData() {
-      const unitiesData = await api.get(`/superunities/${superunitId}/unities`);
+      if (selected) {
+        const unitiesData = await api.get(
+          `/superunities/${superunitId}/unities`,
+        );
 
-      const usersData = await api.get('/users');
+        if (!unitiesData) return;
 
-      const categoriesData = await api.get(
-        `/superunities/${superunitId}/accesscategories`,
-      );
+        const usersData = await api.get('/users');
 
-      function setData() {
+        if (!usersData) return;
+
+        const categoriesData = await api.get(
+          `/superunities/${superunitId}/accesscategories`,
+        );
+
+        if (!categoriesData) return;
+
         setUnities(unitiesData.data.data);
         setUsers(usersData.data.data);
         setCategories(categoriesData.data.data);
       }
-
-      setData();
     }
 
     getData();
-  }, [superunitId]);
+  }, [superunitId, selected]);
 
   const handleSubmit = useCallback(
     async (data: IFormData) => {
@@ -102,26 +114,38 @@ const AccessAdd: React.FC = () => {
     [addToast, superunitId],
   );
 
-  const selectOptionsUser = users.map(user => {
-    return {
-      label: user.email,
-      value: user.id,
-    };
-  });
+  const selectOptionsUser = useMemo(
+    () =>
+      users.map(user => {
+        return {
+          label: user.email,
+          value: user.id,
+        };
+      }),
+    [users],
+  );
 
-  const selectOptionsUnit = unities.map(unit => {
-    return {
-      label: unit.name,
-      value: unit.id,
-    };
-  });
+  const selectOptionsUnit = useMemo(
+    () =>
+      unities.map(unit => {
+        return {
+          label: unit.name,
+          value: unit.id,
+        };
+      }),
+    [unities],
+  );
 
-  const selectOptionsCategory = categories.map(category => {
-    return {
-      label: category.name,
-      value: category.id,
-    };
-  });
+  const selectOptionsCategory = useMemo(
+    () =>
+      categories.map(category => {
+        return {
+          label: category.name,
+          value: category.id,
+        };
+      }),
+    [categories],
+  );
 
   return (
     <Layout>
@@ -137,34 +161,32 @@ const AccessAdd: React.FC = () => {
             Adicionar Acesso
           </h1>
         </MainHeader>
-        <FormContainer>
-          <Form ref={formRef} onSubmit={handleSubmit}>
-            <Select
-              name="user_id"
-              placeholder="Morador"
-              options={selectOptionsUser}
-            />
-            <Select
-              name="unit_id"
-              placeholder="Unidade"
-              options={selectOptionsUnit}
-            />
-            <Select
-              name="accessCategory_id"
-              placeholder="Categoria"
-              options={selectOptionsCategory}
-              width="400px"
-            />
-            <Button
-              type="submit"
-              icon={FiPlus}
-              name="AddButton"
-              loading={loadingCreate}
-            >
-              Adicionar
-            </Button>
-          </Form>
-        </FormContainer>
+        <Form ref={formRef} onSubmit={handleSubmit}>
+          <Select
+            name="user_id"
+            placeholder="Morador"
+            options={selectOptionsUser}
+          />
+          <Select
+            name="unit_id"
+            placeholder="Unidade"
+            options={selectOptionsUnit}
+          />
+          <Select
+            name="accessCategory_id"
+            placeholder="Categoria"
+            options={selectOptionsCategory}
+            width="400px"
+          />
+          <Button
+            type="submit"
+            icon={FiPlus}
+            name="AddButton"
+            loading={loadingCreate}
+          >
+            Adicionar
+          </Button>
+        </Form>
       </Container>
     </Layout>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../../Layouts';
+import Layout from '../../Layouts/Default';
 import { Container, Content } from './styles';
 import AccessInfo from './AccessInfo';
 import AccessLog from './AccessLog';

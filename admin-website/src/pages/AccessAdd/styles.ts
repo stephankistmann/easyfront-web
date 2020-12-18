@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Select from '../../components/Select';
 
 export const Container = styled.div`
   display: flex;
@@ -8,6 +7,23 @@ export const Container = styled.div`
   background: #ffffff;
   flex-direction: column;
   padding: 24px;
+
+  form {
+    flex-direction: column;
+    display: flex;
+    align-items: flex-end;
+    flex: 1;
+    width: 100%;
+
+    > div {
+      margin-top: 16px;
+      width: 100%;
+    }
+
+    button {
+      margin-top: 16px;
+    }
+  }
 `;
 
 export const MainHeader = styled.div`
@@ -26,31 +42,6 @@ export const MainHeader = styled.div`
       svg {
         margin-right: 12px;
       }
-    }
-  }
-`;
-
-export const FormContainer = styled.div`
-  display: flex;
-  flex: 1;
-  justify-content: space-between;
-  margin-top: 16px;
-  width: 100%;
-
-  form {
-    flex-direction: column;
-    display: flex;
-    align-items: flex-end;
-    flex: 1;
-    width: 100%;
-
-    > div {
-      margin-top: 16px;
-      width: 100%;
-    }
-
-    button {
-      margin-top: 16px;
     }
   }
 `;

@@ -126,12 +126,8 @@ export const ListItemsCategory = styled.div`
       text-align: center;
     }
 
-    :nth-child(3) {
-      text-align: center;
-    }
-
     :last-child {
-      text-align: end;
+      text-align: center;
       margin-right: 8px;
     }
   }

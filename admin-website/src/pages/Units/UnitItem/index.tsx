@@ -1,35 +1,39 @@
 import React from 'react';
-import { FiEdit3, FiTrash } from 'react-icons/fi';
-import { Container, Infos, Area, SuperUnit, Controllers } from './styles';
+import { FiEdit3, FiTrash, FiMapPin, FiHome } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
+import { Container, Infos, Area, Controllers } from './styles';
 
 interface UnitItemProps {
   name: string;
   public_area: string;
-  superunitId: string;
+  id: string;
   onClickDelete?: () => {};
 }
 
 const PeerItem: React.FC<UnitItemProps> = ({
   name,
   public_area,
-  superunitId,
   onClickDelete,
+  id,
 }) => {
   return (
     <Container>
       <Infos>
-        <p>{name}</p>
+        <div>
+          <FiMapPin />
+          <h1>{name}</h1>
+        </div>
       </Infos>
       <Area>
-        <p>{public_area}</p>
+        <div>
+          <FiHome />
+          <h1>{public_area}</h1>
+        </div>
       </Area>
-      <SuperUnit>
-        <p>{superunitId}</p>
-      </SuperUnit>
       <Controllers>
-        <button type="button">
+        <Link to={`/units/edit/${id}`}>
           <FiEdit3 />
-        </button>
+        </Link>
         <button type="button" onClick={onClickDelete}>
           <FiTrash />
         </button>

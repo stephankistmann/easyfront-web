@@ -30,7 +30,7 @@ const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={SignIn} />
     <Route path="/forgot-password" component={ForgotPassword} />
-    <Route path="/reset-password" component={ResetPassword} />
+    <Route path="/reset-password/:token/:user" component={ResetPassword} />
     <Route path="/dashboard/:page?" component={Dashboard} isPrivate />
     <Route path="/units" component={Units} isPrivate exact />
     <Route path="/units/new" component={UnitAdd} isPrivate exact />

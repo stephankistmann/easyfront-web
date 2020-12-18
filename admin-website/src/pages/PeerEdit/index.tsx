@@ -3,18 +3,20 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import * as Yup from 'yup';
 import { Form } from '@unform/web';
-import { FiEdit, FiSave, FiSmartphone } from 'react-icons/fi';
+import { FiSave, FiUser } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { useHistory, useParams } from 'react-router-dom';
 import { useToast } from '../../hooks/toast';
 import api from '../../services/api';
-import { Container, FormContainer } from './styles';
-import Layout from '../../Layouts';
+import { Container } from './styles';
+import Layout from '../../Layouts/Default';
 import getValidationErrors from '../../utils/getValidationErrors';
 import Select from '../../components/Select';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import InputMask from '../../components/InputMask';
+import Header from '../../components/Header';
+import { MainHeader } from '../Units/styles';
 
 interface IFormData {
   name: string;
@@ -130,44 +132,59 @@ const PeerEdit: React.FC = () => {
 
   return (
     <Layout>
+      <Header
+        title={{ value: 'Parceiros', path: '/peers' }}
+        subTitle={{ value: 'Editar Parceiro', path: `/peers/edit/${id}` }}
+        hasBackButton
+      />
       <Container>
-        <FormContainer>
-          <Form ref={formRef} onSubmit={handleSubmit}>
-            <Input
-              name="name"
-              placeholder="Nome"
-              defaultValue={selectedPeer?.name}
-            />
-            <InputMask name="cpf" mask="999.999.999-99" placeholder="CPF" />
-            <InputMask name="rg" mask="9999999999" placeholder="RG" />
+        <MainHeader>
+          <div>
+            <h1>
+              <FiUser />
+              Editar Parceiro
+            </h1>
+          </div>
+        </MainHeader>
+        <Form ref={formRef} onSubmit={handleSubmit}>
+          <Input
+            name="name"
+            placeholder="Nome"
+            defaultValue={selectedPeer?.name}
+          />
+          <InputMask
+            name="cpf"
+            defaultValue={selectedPeer?.cpf}
+            mask="999.999.999-99"
+          />
+          <InputMask name="rg" mask="9999999999" placeholder="RG" />
 
-            <InputMask
-              name="phone"
-              mask="(99) 99999-9999"
-              placeholder="Telefone"
-            />
+          <InputMask
+            name="phone"
+            mask="(99) 99999-9999"
+            placeholder="Telefone"
+          />
 
-            <Select
-              name="gender"
-              options={[
-                { label: 'Masculino', value: 'male' },
-                { label: 'Feminino', value: 'female' },
-                { label: 'Não informado', value: 'not-informed' },
-              ]}
-            />
+          <Select
+            name="gender"
+            options={[
+              { label: 'Masculino', value: 'male' },
+              { label: 'Feminino', value: 'female' },
+              { label: 'Não informado', value: 'not-informed' },
+            ]}
+          />
 
-            <Select
-              name="nature"
-              options={[
-                { label: 'Físico', value: 'physic' },
-                { label: 'Jurídico', value: 'juridic' },
-              ]}
-            />
-            <Button type="submit" icon={FiSave}>
-              Salvar
-            </Button>
-          </Form>
-        </FormContainer>
+          <Select
+            name="nature"
+            options={[
+              { label: 'Físico', value: 'physic' },
+              { label: 'Jurídico', value: 'juridic' },
+            ]}
+          />
+          <Button type="submit" icon={FiSave}>
+            Salvar
+          </Button>
+        </Form>
       </Container>
     </Layout>
   );

@@ -11,6 +11,7 @@ export const Container = styled.div`
 export const Infos = styled.div`
   display: flex;
   align-items: center;
+  width: 33%;
 
   svg {
     margin-right: 16px;
@@ -34,6 +35,8 @@ export const Infos = styled.div`
 export const Extra = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 33%;
 
   p {
     font-size: 14px;
@@ -48,6 +51,20 @@ export const Extra = styled.div`
 `;
 
 export const Controllers = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 33%;
+
+  a {
+    text-decoration: none;
+    svg {
+      height: 16px;
+      width: 16px;
+      margin-right: 16px;
+      color: #2f4858;
+    }
+  }
+
   button {
     background: transparent;
     border: 0;

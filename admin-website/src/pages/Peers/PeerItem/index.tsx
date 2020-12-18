@@ -1,6 +1,6 @@
 import React from 'react';
-import { FiEdit3, FiTrash, FiFile, FiSmartphone } from 'react-icons/fi';
-import { Container, Infos, Contact, Extra, Controllers } from './styles';
+import { FiFile, FiSmartphone } from 'react-icons/fi';
+import { Container, Infos, Contact, Extra } from './styles';
 import defaultUserIcon from '../../../assets/defaultUserIcon.png';
 
 interface PeerItemProps {
@@ -9,6 +9,7 @@ interface PeerItemProps {
   email: string;
   gender: string;
   nature: string;
+  id: string;
 }
 
 const PeerItem: React.FC<PeerItemProps> = ({
@@ -45,14 +46,6 @@ const PeerItem: React.FC<PeerItemProps> = ({
           <p>{nature}</p>
         </div>
       </Extra>
-      <Controllers>
-        <button type="button">
-          <FiEdit3 />
-        </button>
-        <button type="button">
-          <FiTrash />
-        </button>
-      </Controllers>
     </Container>
   );
 };

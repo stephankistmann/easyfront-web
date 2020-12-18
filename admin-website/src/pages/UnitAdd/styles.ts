@@ -11,21 +11,17 @@ export const Container = styled.div`
   form {
     display: flex;
     margin-top: 24px;
-    align-items: center;
-    justify-content: space-between;
-
-    input {
-      width: 20%;
-      margin-right: 16px;
-      height: 48px;
-    }
-
-    button {
-      height: 48px;
-    }
+    flex-direction: column;
 
     > div {
-      width: 350px;
+      margin-top: 16px;
+      width: 100%;
+    }
+
+    input {
+      margin-right: 16px;
+      height: 48px;
+      width: 100%;
     }
   }
 `;
@@ -48,4 +44,11 @@ export const MainHeader = styled.div`
       }
     }
   }
+`;
+
+export const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
 `;

@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { FiEdit, FiPlus, FiTrash, FiUsers } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
+import { FiList, FiPlus } from 'react-icons/fi';
 import Pagination from '../../components/Pagination';
 import {
   Container,
   MainHeader,
   List,
-  ListItems,
   ListItemsCategory,
-  InvisibleButton,
   StyledButton,
   StyledLoading,
 } from './styles';
-import Layout from '../../Layouts';
+import Layout from '../../Layouts/Default';
 import api from '../../services/api';
 import { useSuperunit } from '../../hooks/superunit';
 import Header from '../../components/Header';
+import CategoryItem from './CategoryItem';
 
 interface IDevices {
   name: string;
@@ -80,16 +79,12 @@ const Category: React.FC = () => {
 
   return (
     <Layout>
-      <Header
-        title={{ value: 'Categorias', path: '/category' }}
-        subTitle={{ value: 'Categorias', path: '/category' }}
-        hasBackButton
-      />
+      <Header title={{ value: 'Categorias', path: '/category' }} />
       <Container>
         <MainHeader>
           <div>
             <h1>
-              <FiUsers />
+              <FiList />
               Lista de Categorias
             </h1>
           </div>
@@ -112,27 +107,15 @@ const Category: React.FC = () => {
               <div>Editar/Excluir</div>
             </ListItemsCategory>
             {categories.map(category => (
-              <ListItems key={category.id}>
-                <span>{category.name || null}</span>
-                <span>{category.min_time || null}</span>
-                <span>{category.max_time || null}</span>
-                <div>
-                  {category.devices.map(device => (
-                    <div>{device.name || null}</div>
-                  ))}
-                </div>
-                <div className="buttonsDiv">
-                  <Link to={`/category/edit/${category.id}`}>
-                    <FiEdit />
-                  </Link>
-                  <InvisibleButton
-                    type="button"
-                    onClick={() => handleDelete(category.id)}
-                  >
-                    <FiTrash />
-                  </InvisibleButton>
-                </div>
-              </ListItems>
+              <CategoryItem
+                key={category.id}
+                id={category.id}
+                name={category.name || 'Não informado'}
+                min_time={category.min_time || 'Não informado'}
+                max_time={category.max_time || 'Não informado'}
+                devices={category.devices.map(device => device.name)}
+                onClickDelete={() => handleDelete(category.id)}
+              />
             ))}
             <Pagination
               page={page}

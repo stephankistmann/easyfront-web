@@ -39,7 +39,6 @@ const ForgotPassword: React.FC = () => {
           abortEarly: false,
         });
 
-        // add new route
         await api.post('/password/forgot', {
           email: data.email,
         });
@@ -78,9 +77,7 @@ const ForgotPassword: React.FC = () => {
     <Container>
       <Content>
         <AnimationContainer>
-          <Link to="https://www.easyfront.live/">
-            <img src={logoImg} alt="EasyFront" />
-          </Link>
+          <img src={logoImg} alt="EasyFront" />
 
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Recuperar senha</h1>

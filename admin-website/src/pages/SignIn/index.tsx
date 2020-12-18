@@ -67,9 +67,7 @@ const SignIn: React.FC = () => {
     <Container>
       <Content>
         <AnimationContainer>
-          <Link to="https://www.easyfront.live/">
-            <img src={logoImg} alt="EasyFront" />
-          </Link>
+          <img src={logoImg} alt="EasyFront" />
 
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Faça seu login</h1>

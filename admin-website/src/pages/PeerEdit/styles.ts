@@ -2,42 +2,27 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  border-radius: 10px;
-  border: 1px solid #dfe9eb;
-  background: #ffffff;
+  border-radius: 8px;
   flex-direction: column;
+  background: #fff;
+  padding: 24px;
+  box-shadow: 0 0 15px rgba(0, 0, 50, 0.1);
 `;
 
-export const FormContainer = styled.div`
+export const MainHeader = styled.div`
+  width: 100%;
   display: flex;
-  margin-right: 30px;
-  margin-left: 30px;
-  margin-top: 30px;
+  align-items: center;
+  justify-content: space-between;
 
-  form {
-    width: 100%;
-    margin-bottom: 30px;
-    display: flex;
+  h1 {
+    font-size: 18px;
     align-items: center;
+    display: flex;
+    margin-left: 8px;
 
-    .sc-hKgILt {
-      margin-right: 8px;
-    }
-
-    .sc-jONnTn {
-      margin-top: 0;
-      margin-right: 8px;
-    }
-
-    .sc-aemoO {
-      margin-top: 0;
-      margin-right: 8px;
-    }
-
-    button {
-      width: 84px;
-      font-size: 18px;
-      margin-top: 0;
+    svg {
+      margin-right: 12px;
     }
   }
 `;

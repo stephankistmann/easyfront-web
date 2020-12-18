@@ -3,9 +3,10 @@ import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { useParams } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
-import { FiClock, FiList, FiPlus, FiSave } from 'react-icons/fi';
+import { FiClock, FiList, FiSave } from 'react-icons/fi';
 import {
   Container,
+  MainHeader,
   FormContainer,
   CheckboxContainer,
   ScheduleContainer,
@@ -13,14 +14,14 @@ import {
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import InputMask from '../../components/InputMask';
-import MainHeader from '../../components/MainHeader';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { useToast } from '../../hooks/toast';
 import api from '../../services/api';
-import Layout from '../../Layouts';
+import Layout from '../../Layouts/Default';
 import { useSuperunit } from '../../hooks/superunit';
 import CheckboxInput from '../../components/CheckboxInput';
 import CheckWeekDay from '../../components/CheckWeekDay';
+import Header from '../../components/Header';
 
 interface IFormData {
   name: string;
@@ -60,12 +61,17 @@ const CategoryEdit: React.FC = () => {
 
   useEffect(() => {
     async function getData() {
-      const response = await api.get(`/superunities/${superunitId}/devices`);
-      setDevices(response.data.data);
+      if (selected) {
+        const response = await api.get(`/superunities/${superunitId}/devices`);
+
+        if (!response) return;
+
+        setDevices(response.data.data);
+      }
     }
 
     getData();
-  }, [superunitId]);
+  }, [superunitId, selected]);
 
   const newData = devices.map(device => {
     return {
@@ -139,13 +145,23 @@ const CategoryEdit: React.FC = () => {
         });
       }
     },
-    [addToast, superunitId],
+    [addToast, superunitId, id, weekDays],
   );
 
   return (
     <Layout>
+      <Header
+        title={{ value: 'Categorias', path: '/category' }}
+        subTitle={{ value: 'Editar Categoria', path: `/category/edit/${id}` }}
+        hasBackButton
+      />
       <Container>
-        <MainHeader name="Editar categoria" icon={FiList} />
+        <MainHeader>
+          <h1>
+            <FiList />
+            Editar Categoria
+          </h1>
+        </MainHeader>
         <FormContainer>
           <Form ref={formRef} onSubmit={handleSubmit}>
             <main>

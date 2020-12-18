@@ -1,6 +1,6 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { FormHandles } from '@unform/core';
-import { FiCheck, FiLock } from 'react-icons/fi';
+import { FiLock, FiSend } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { Link, useHistory, useParams } from 'react-router-dom';
@@ -14,24 +14,32 @@ import api from '../../services/api';
 
 interface ResetPasswordFormData {
   password: string;
-  // password-confirmation: string;
+  token: string;
+  passwordConfirmation?: string;
 }
 
 const ResetPassword: React.FC = () => {
   const { token, user }: { user: string; token: string } = useParams();
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
+  const [loading, setLoading] = useState(false);
 
   const { addToast } = useToast();
 
   const handleSubmit = useCallback(
     async (data: ResetPasswordFormData) => {
       formRef.current?.setErrors({});
+      setLoading(true);
 
       try {
         const schema = Yup.object().shape({
-          password: Yup.string().required('Senha obrigatóriaw'),
-          // password-confirmation: Yup.string().oneOf([Yup.ref('password'), null], 'Confirmação incorreta'),
+          password: Yup.string()
+            .min(6, 'No mínimo 6 caracteres')
+            .required('Senha obrigatóriaw'),
+          passwordConfirmation: Yup.string().oneOf(
+            [Yup.ref('password')],
+            'Confirmação incorreta',
+          ),
         });
 
         await schema.validate(data, {
@@ -40,8 +48,15 @@ const ResetPassword: React.FC = () => {
 
         const newData: ResetPasswordFormData = Object.assign(data, { token });
 
-        // add new route
-        await api.patch(`/users/${user}/confirm`, newData);
+        delete newData.passwordConfirmation;
+
+        await api.post(`/password/reset/${user}`, newData);
+
+        addToast({
+          type: 'success',
+          title: 'Senha redefinida',
+          description: 'Sua senha foi redefinida com sucesso',
+        });
 
         history.push('/');
       } catch (err) {
@@ -58,6 +73,8 @@ const ResetPassword: React.FC = () => {
           title: 'Erro ao resetar senha',
           description: 'Ocorreu um erro ao resetar a senha, tente novamente.',
         });
+      } finally {
+        setLoading(false);
       }
     },
     [history, addToast, token, user],
@@ -67,9 +84,7 @@ const ResetPassword: React.FC = () => {
     <Container>
       <Content>
         <AnimationContainer>
-          <Link to="https://www.easyfront.live/">
-            <img src={logoImg} alt="EasyFront" />
-          </Link>
+          <img src={logoImg} alt="EasyFront" />
 
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Resetar senha</h1>
@@ -81,14 +96,19 @@ const ResetPassword: React.FC = () => {
               placeholder="Nova senha"
             />
 
-            {/* <Input
-              name="password-confirmation"
+            <Input
+              name="passwordConfirmation"
               icon={FiLock}
               type="password"
               placeholder="Confirmar senha"
-            /> */}
+            />
 
-            <Button type="submit" name="ChangePasswordButton" icon={FiCheck}>
+            <Button
+              name="ResetPasswordButton"
+              loading={loading}
+              type="submit"
+              icon={FiSend}
+            >
               Alterar senha
             </Button>
 

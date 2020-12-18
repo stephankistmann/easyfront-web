@@ -16,7 +16,7 @@ import InputMask from '../../components/InputMask';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { useToast } from '../../hooks/toast';
 import api from '../../services/api';
-import Layout from '../../Layouts';
+import Layout from '../../Layouts/Default';
 import { useSuperunit } from '../../hooks/superunit';
 import CheckboxInput from '../../components/CheckboxInput';
 import CheckWeekDay from '../../components/CheckWeekDay';
@@ -59,12 +59,17 @@ const CategoryAdd: React.FC = () => {
 
   useEffect(() => {
     async function getData() {
-      const response = await api.get(`/superunities/${superunitId}/devices`);
-      setDevices(response.data.data);
+      if (selected) {
+        const response = await api.get(`/superunities/${superunitId}/devices`);
+
+        if (!response) return;
+
+        setDevices(response.data.data);
+      }
     }
 
     getData();
-  }, [superunitId]);
+  }, [superunitId, selected]);
 
   const newData = devices.map(device => {
     return {

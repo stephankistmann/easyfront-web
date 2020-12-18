@@ -2,64 +2,45 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  border-radius: 10px;
-  border: 1px solid #dfe9eb;
-  background: #ffffff;
+  border-radius: 8px;
   flex-direction: column;
-`;
-
-export const FormContainer = styled.div`
-  display: flex;
-  flex: 1;
+  background: #fff;
+  padding: 24px;
+  box-shadow: 0 0 15px rgba(0, 0, 50, 0.1);
 
   form {
+    flex-direction: column;
     display: flex;
-    align-items: center;
-    padding: 30px;
+    align-items: flex-end;
     flex: 1;
+    width: 100%;
 
-    .css-2b097c-container {
-      margin-right: 30px;
-      width: 25%;
-    }
-
-    .css-2b097c-container {
-      margin-top: 0;
-    }
-
-    .css-26l3qy-menu {
+    > div {
+      margin-top: 16px;
       width: 100%;
     }
 
-    .sc-hKgILt.kunJfp {
-      width: 350px;
-    }
-
-    .kunJfp + div {
-      margin-top: 0px;
-    }
-
-    .kQSoJa + div {
-      margin-top: 0px;
-    }
-
-    label {
-      display: flex;
-      :hover {
-        color: #ff6757;
-      }
-    }
-
     button {
-      display: flex;
-      margin: 0;
+      margin-top: 16px;
+    }
+  }
+`;
+
+export const MainHeader = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+    h1 {
+      font-size: 18px;
       align-items: center;
-      justify-content: center;
-      width: 300px;
-      font-weight: 700;
+      display: flex;
+      margin-left: 8px;
+      margin-right: 24px;
 
       svg {
-        margin-right: 16px;
+        margin-right: 12px;
       }
     }
   }

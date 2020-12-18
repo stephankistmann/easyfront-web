@@ -70,7 +70,6 @@ export const ListItemsCategory = styled.div`
   background: #eee;
   padding: 8px;
   color: #888;
-  border-radius: 4px;
   margin-bottom: 4px;
   border-radius: 8px;
 
@@ -82,10 +81,6 @@ export const ListItemsCategory = styled.div`
     }
 
     :nth-child(2) {
-      text-align: center;
-    }
-
-    :nth-child(3) {
       text-align: center;
     }
 
@@ -101,11 +96,4 @@ export const Pagination = styled.div`
   align-items: center;
   justify-content: flex-end;
   margin-top: 17px;
-`;
-
-export const InvisibleButton = styled.button`
-  background: transparent;
-  border: none;
-  width: 22px;
-  margin-right: 22px;
 `;

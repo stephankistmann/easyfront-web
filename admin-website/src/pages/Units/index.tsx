@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { FiEdit, FiTrash, FiPlus, FiHome } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
+import { FiPlus, FiHome } from 'react-icons/fi';
 import {
   Container,
   MainHeader,
@@ -12,7 +12,7 @@ import {
 import Pagination from '../../components/Pagination';
 import { useSuperunit } from '../../hooks/superunit';
 import api from '../../services/api';
-import Layout from '../../Layouts';
+import Layout from '../../Layouts/Default';
 import Header from '../../components/Header';
 import UnitItem from './UnitItem';
 
@@ -20,7 +20,6 @@ interface IUnit {
   id: string;
   name: string;
   public_area: string;
-  superUnit_id: string;
 }
 
 const Units: React.FC = () => {
@@ -65,11 +64,7 @@ const Units: React.FC = () => {
 
   return (
     <Layout>
-      <Header
-        title={{ value: 'Unidades', path: '/units' }}
-        subTitle={{ value: 'Unidades', path: '/units' }}
-        hasBackButton
-      />
+      <Header title={{ value: 'Unidades', path: '/units' }} />
       <Container>
         <MainHeader>
           <div>
@@ -94,14 +89,14 @@ const Units: React.FC = () => {
             <ListItemsCategory>
               <div>Nome</div>
               <div>Area</div>
-              <div>Superunit ID</div>
-              <div>Editar/Excluir</div>
+              <div>Editar / Excluir</div>
             </ListItemsCategory>
             {data.map(unit => (
               <UnitItem
-                name={unit.name}
-                public_area={unit.public_area}
-                superunitId={unit.superUnit_id}
+                key={unit.id}
+                name={unit.name || 'Não informado'}
+                public_area={unit.public_area || 'Não informado'}
+                id={unit.id}
                 onClickDelete={() => handleDelete(unit.id)}
               />
             ))}
