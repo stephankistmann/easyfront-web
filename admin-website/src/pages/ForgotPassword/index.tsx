@@ -16,6 +16,12 @@ interface ForgotPasswordFormData {
   email: string;
 }
 
+const schema = Yup.object().shape({
+  email: Yup.string()
+    .required('E-mail obrigatório')
+    .email('Digite um e-mail válido'),
+});
+
 const ForgotPassword: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const formRef = useRef<FormHandles>(null);
@@ -29,12 +35,6 @@ const ForgotPassword: React.FC = () => {
       setLoading(true);
 
       try {
-        const schema = Yup.object().shape({
-          email: Yup.string()
-            .required('E-mail obrigatório')
-            .email('Digite um e-mail válido'),
-        });
-
         await schema.validate(data, {
           abortEarly: false,
         });

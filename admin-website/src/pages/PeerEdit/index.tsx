@@ -36,6 +36,26 @@ const PeerEdit: React.FC = () => {
   const [peers, setPeers] = useState<IFormData[]>([]);
   const [selectedPeer, setSelectedPeer] = useState<IFormData>();
 
+  const schema = Yup.object().shape({
+    name: Yup.string()
+      .matches(/^[a-zA-Z\u00C0-\u00FF ]+$/i, 'Digite apenas letras')
+      .required('Nome obrigatório'),
+    phone: Yup.string()
+      .matches(/^\(\d{2}\)\s\d{4,5}-\d{4}$/, 'Digite um número válido')
+      .required('Celular obrigatório'),
+    cpf: Yup.string().matches(
+      /^\d{3}\.\d{3}\.\d{3}-\d{2}$/,
+      'Digite um CPF válido',
+    ),
+    rg: Yup.string().length(10, 'Digite um RG válido'),
+    gender: Yup.string()
+      .oneOf(['male', 'female', 'not-informed'])
+      .required('Gênero obrigatório'),
+    nature: Yup.string()
+      .oneOf(['physic', 'juridic'])
+      .required('Natureza obrigatória'),
+  });
+
   useEffect(() => {
     async function getData() {
       const response = await api.get('/users');
@@ -63,25 +83,6 @@ const PeerEdit: React.FC = () => {
     async (data: IFormData) => {
       try {
         formRef.current?.setErrors({});
-        const schema = Yup.object().shape({
-          name: Yup.string()
-            .matches(/^[a-zA-Z\u00C0-\u00FF ]+$/i, 'Digite apenas letras')
-            .required('Nome obrigatório'),
-          phone: Yup.string()
-            .matches(/^\(\d{2}\)\s\d{4,5}-\d{4}$/, 'Digite um número válido')
-            .required('Celular obrigatório'),
-          cpf: Yup.string().matches(
-            /^\d{3}\.\d{3}\.\d{3}-\d{2}$/,
-            'Digite um CPF válido',
-          ),
-          rg: Yup.string().length(10, 'Digite um RG válido'),
-          gender: Yup.string()
-            .oneOf(['male', 'female', 'not-informed'])
-            .required('Gênero obrigatório'),
-          nature: Yup.string()
-            .oneOf(['physic', 'juridic'])
-            .required('Natureza obrigatória'),
-        });
 
         await schema.validate(data, {
           abortEarly: false,

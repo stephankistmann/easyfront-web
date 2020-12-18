@@ -18,6 +18,16 @@ interface ResetPasswordFormData {
   passwordConfirmation?: string;
 }
 
+const schema = Yup.object().shape({
+  password: Yup.string()
+    .min(6, 'No mínimo 6 caracteres')
+    .required('Senha obrigatóriaw'),
+  passwordConfirmation: Yup.string().oneOf(
+    [Yup.ref('password')],
+    'Confirmação incorreta',
+  ),
+});
+
 const ResetPassword: React.FC = () => {
   const { token, user }: { user: string; token: string } = useParams();
   const history = useHistory();
@@ -32,16 +42,6 @@ const ResetPassword: React.FC = () => {
       setLoading(true);
 
       try {
-        const schema = Yup.object().shape({
-          password: Yup.string()
-            .min(6, 'No mínimo 6 caracteres')
-            .required('Senha obrigatóriaw'),
-          passwordConfirmation: Yup.string().oneOf(
-            [Yup.ref('password')],
-            'Confirmação incorreta',
-          ),
-        });
-
         await schema.validate(data, {
           abortEarly: false,
         });

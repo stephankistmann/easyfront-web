@@ -17,6 +17,13 @@ interface SignInFormData {
   password: string;
 }
 
+const schema = Yup.object().shape({
+  email: Yup.string()
+    .required('E-mail obrigatório')
+    .email('Digite um e-mail válido'),
+  password: Yup.string().required('Senha obrigatória.'),
+});
+
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
@@ -28,13 +35,6 @@ const SignIn: React.FC = () => {
       formRef.current?.setErrors({});
 
       try {
-        const schema = Yup.object().shape({
-          email: Yup.string()
-            .required('E-mail obrigatório')
-            .email('Digite um e-mail válido'),
-          password: Yup.string().required('Senha obrigatória.'),
-        });
-
         await schema.validate(data, {
           abortEarly: false,
         });

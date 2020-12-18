@@ -20,6 +20,22 @@ interface IFormData {
   public_area: string;
 }
 
+const schema = Yup.object().shape({
+  name: Yup.string().required('Nome obrigatório'),
+  public_area: Yup.string()
+    .required('Tipo obrigatorio')
+    .oneOf([
+      'Academia',
+      'Apartamento',
+      'Bloco',
+      'Casa',
+      'Condomínio',
+      'Departamento',
+      'Loja',
+      'Sala',
+    ]),
+});
+
 const public_areaValue = {
   Academia: 'Academia',
   Apartamento: 'Apartamento',
@@ -67,22 +83,6 @@ const UnitEdit: React.FC = () => {
       formRef.current?.setErrors({});
 
       try {
-        const schema = Yup.object().shape({
-          name: Yup.string().required('Nome obrigatório'),
-          public_area: Yup.string()
-            .required('Tipo obrigatorio')
-            .oneOf([
-              'Academia',
-              'Apartamento',
-              'Bloco',
-              'Casa',
-              'Condomínio',
-              'Departamento',
-              'Loja',
-              'Sala',
-            ]),
-        });
-
         await schema.validate(data, {
           abortEarly: false,
         });

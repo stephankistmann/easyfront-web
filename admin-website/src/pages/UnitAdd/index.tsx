@@ -19,6 +19,22 @@ interface IFormData {
   type: string;
 }
 
+const schema = Yup.object().shape({
+  name: Yup.string().required('Nome obrigatório'),
+  public_area: Yup.string()
+    .required('Tipo obrigatorio')
+    .oneOf([
+      'Academia',
+      'Apartamento',
+      'Bloco',
+      'Casa',
+      'Condomínio',
+      'Departamento',
+      'Loja',
+      'Sala',
+    ]),
+});
+
 const UnitAdd: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
@@ -32,22 +48,6 @@ const UnitAdd: React.FC = () => {
 
       formRef.current?.setErrors({});
       try {
-        const schema = Yup.object().shape({
-          name: Yup.string().required('Nome obrigatório'),
-          public_area: Yup.string()
-            .required('Tipo obrigatorio')
-            .oneOf([
-              'Academia',
-              'Apartamento',
-              'Bloco',
-              'Casa',
-              'Condomínio',
-              'Departamento',
-              'Loja',
-              'Sala',
-            ]),
-        });
-
         await schema.validate(unit, {
           abortEarly: false,
         });

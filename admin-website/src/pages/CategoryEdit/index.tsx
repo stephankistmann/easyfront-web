@@ -59,6 +59,15 @@ const CategoryEdit: React.FC = () => {
 
   const superunitId = selected?.id;
 
+  const schema = Yup.object().shape({
+    name: Yup.string().required('Nome obrigatório'),
+    min_time: Yup.string(),
+    max_time: Yup.string(),
+    devicesIds: Yup.array()
+      .of(Yup.string())
+      .required('Dispositivo obrigatório'),
+  });
+
   useEffect(() => {
     async function getData() {
       if (selected) {
@@ -106,15 +115,6 @@ const CategoryEdit: React.FC = () => {
       delete data.checkbox;
 
       try {
-        const schema = Yup.object().shape({
-          name: Yup.string().required('Nome obrigatório'),
-          min_time: Yup.string(),
-          max_time: Yup.string(),
-          devicesIds: Yup.array()
-            .of(Yup.string())
-            .required('Dispositivo obrigatório'),
-        });
-
         await schema.validate(data, {
           abortEarly: false,
         });

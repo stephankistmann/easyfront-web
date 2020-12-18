@@ -42,6 +42,12 @@ const AccessAdd: React.FC = () => {
 
   const superunitId = selected?.id;
 
+  const schema = Yup.object().shape({
+    user_id: Yup.string(),
+    accessCategory_id: Yup.string(),
+    unit_id: Yup.string(),
+  });
+
   useEffect(() => {
     async function getData() {
       if (selected) {
@@ -75,11 +81,6 @@ const AccessAdd: React.FC = () => {
       formRef.current?.setErrors({});
       try {
         setLoadingCreate(true);
-        const schema = Yup.object().shape({
-          user_id: Yup.string(),
-          accessCategory_id: Yup.string(),
-          unit_id: Yup.string(),
-        });
 
         await schema.validate(data, {
           abortEarly: false,

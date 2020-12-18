@@ -53,6 +53,11 @@ const AccessEdit: React.FC = () => {
 
   const superunitId = selected?.id;
 
+  const schema = Yup.object().shape({
+    accessCategory_id: Yup.string(),
+    unit_id: Yup.string(),
+  });
+
   useEffect(() => {
     async function getData() {
       if (selected) {
@@ -96,11 +101,6 @@ const AccessEdit: React.FC = () => {
     async (data: IFormData) => {
       formRef.current?.setErrors({});
       try {
-        const schema = Yup.object().shape({
-          accessCategory_id: Yup.string(),
-          unit_id: Yup.string(),
-        });
-
         await schema.validate(data, {
           abortEarly: false,
         });
