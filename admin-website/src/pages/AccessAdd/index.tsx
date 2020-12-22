@@ -62,7 +62,7 @@ const AccessAdd: React.FC = () => {
         if (!usersData) return;
 
         const categoriesData = await api.get(
-          `/superunities/${superunitId}/accesscategories`,
+          `/superunities/${superunitId}/accesses/categories`,
         );
 
         if (!categoriesData) return;
@@ -112,7 +112,7 @@ const AccessAdd: React.FC = () => {
       }
       setLoadingCreate(false);
     },
-    [addToast, superunitId],
+    [addToast, superunitId, schema],
   );
 
   const selectOptionsUser = useMemo(

@@ -12,8 +12,9 @@ import { Container, Logo, Title, Menu } from './styles';
 import MenuItem from './MenuItem';
 import OpenCloseButton from './OpenCloseButton';
 import logo from '../../assets/logo.png';
+import LogoutButton from './LogoutButton';
 
-const SideMenu: React.FC = () => {
+const SideBar: React.FC = () => {
   const [open, setOpen] = useState(() => {
     const menuState = localStorage.getItem('@Easyfront:menuState');
     return menuState ? menuState === 'true' : true;
@@ -42,7 +43,7 @@ const SideMenu: React.FC = () => {
           name="Dashboard"
           icon={FiBarChart}
         />
-        <MenuItem path={path} to="/peers" name="Parceiros" icon={FiUser} />
+        <MenuItem path={path} to="/peers" name="Usuários" icon={FiUser} />
         <MenuItem path={path} to="/units" name="Unidades" icon={FiHome} />
         <MenuItem path={path} to="/category" name="Categorias" icon={FiList} />
         <MenuItem
@@ -51,6 +52,7 @@ const SideMenu: React.FC = () => {
           name="Acessos"
           icon={FiChevronsRight}
         />
+        <LogoutButton />
       </Menu>
       <OpenCloseButton open={open} onClick={handleToggle}>
         <FiChevronLeft />
@@ -59,4 +61,4 @@ const SideMenu: React.FC = () => {
   );
 };
 
-export default SideMenu;
+export default SideBar;

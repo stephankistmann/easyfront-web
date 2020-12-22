@@ -52,7 +52,7 @@ export const List = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  border-radius: 8px;
+  border-radius: 4px;
   margin-top: 20px;
 
   span {
@@ -71,7 +71,7 @@ export const ListItemsCategory = styled.div`
   color: #888;
   border-radius: 4px;
   margin-bottom: 4px;
-  border-radius: 8px;
+  font-weight: 700;
 
   div {
     width: 25%;

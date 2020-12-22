@@ -46,7 +46,7 @@ const Category: React.FC = () => {
     const deleteCategory = categories.find(category => category.id === id);
 
     await api.delete(
-      `/superunities/${selected?.id}/accesscategories/${deleteCategory?.id}`,
+      `/superunities/${selected?.id}/accesses/categories/${deleteCategory?.id}`,
     );
 
     setCategories(oldCategory =>
@@ -59,7 +59,7 @@ const Category: React.FC = () => {
       setLoading(true);
       if (selected) {
         const response = await api.get(
-          `/superunities/${superunitId}/accesscategories`,
+          `/superunities/${superunitId}/accesses/categories`,
           { params: { page } },
         );
 
@@ -100,28 +100,37 @@ const Category: React.FC = () => {
           <StyledLoading />
         ) : (
           <List>
-            <ListItemsCategory>
-              <div>Nome</div>
-              <div>Horário</div>
-              <div>Dispositivos</div>
-              <div>Editar/Excluir</div>
-            </ListItemsCategory>
-            {categories.map(category => (
-              <CategoryItem
-                key={category.id}
-                id="category.id"
-                name={category.name || 'Não informado'}
-                min_time={category.min_time || 'Não informado'}
-                max_time={category.max_time || 'Não informado'}
-                devices={category.devices.map(device => device.name)}
-                onClickDelete={() => handleDelete(category.id)}
+            {categories.length > 0 && (
+              <ListItemsCategory>
+                <div>Nome</div>
+                <div>Horário</div>
+                <div>Dispositivos</div>
+                <div>Editar/Excluir</div>
+              </ListItemsCategory>
+            )}
+
+            {categories.length > 0 ? (
+              categories.map(category => (
+                <CategoryItem
+                  key={category.id}
+                  id="category.id"
+                  name={category.name || 'Não informado'}
+                  min_time={category.min_time || 'Não informado'}
+                  max_time={category.max_time || 'Não informado'}
+                  devices={category.devices.map(device => device.name)}
+                  onClickDelete={() => handleDelete(category.id)}
+                />
+              ))
+            ) : (
+              <p>Ainda não há categorias registradas</p>
+            )}
+            {categories.length > 0 && (
+              <Pagination
+                page={page}
+                handlePagination={handlePages}
+                totalPages={totalPages}
               />
-            ))}
-            <Pagination
-              page={page}
-              handlePagination={handlePages}
-              totalPages={totalPages}
-            />
+            )}
           </List>
         )}
       </Container>

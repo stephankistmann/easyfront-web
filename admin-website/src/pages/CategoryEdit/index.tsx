@@ -11,7 +11,7 @@ import {
   CheckboxContainer,
   ScheduleContainer,
 } from './styles';
-import Input from '../../components/Input';
+import InputUnform from '../../components/InputUnform';
 import Button from '../../components/Button';
 import InputMask from '../../components/InputMask';
 import getValidationErrors from '../../utils/getValidationErrors';
@@ -75,7 +75,7 @@ const CategoryEdit: React.FC = () => {
 
         if (!response) return;
 
-        setDevices(response.data.data);
+        setDevices(response.data);
       }
     }
 
@@ -120,7 +120,7 @@ const CategoryEdit: React.FC = () => {
         });
 
         await api.patch(
-          `/superunities/${superunitId}/accesscategories/${id}`,
+          `/superunities/${superunitId}/accesses/categories/${id}`,
           newResponse,
         );
 
@@ -145,7 +145,7 @@ const CategoryEdit: React.FC = () => {
         });
       }
     },
-    [addToast, superunitId, id, weekDays],
+    [addToast, superunitId, id, weekDays, schema],
   );
 
   return (
@@ -165,7 +165,7 @@ const CategoryEdit: React.FC = () => {
         <FormContainer>
           <Form ref={formRef} onSubmit={handleSubmit}>
             <main>
-              <Input name="name" placeholder="Nome" />
+              <InputUnform name="name" placeholder="Nome" />
               <CheckboxContainer>
                 <CheckWeekDay value={weekDays} onChange={setWeekDays} />
               </CheckboxContainer>

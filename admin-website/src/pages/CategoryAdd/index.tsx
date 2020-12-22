@@ -50,7 +50,7 @@ const CategoryAdd: React.FC = () => {
         if (response.status !== 200) return;
 
         setDevices(
-          response.data.data.map((device: IDevice) => ({
+          response.data.map((device: IDevice) => ({
             ...device,
             selected: false,
           })),

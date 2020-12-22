@@ -4,7 +4,7 @@ import { FiLock, FiLogIn, FiMail } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
-import Input from '../../components/Input';
+import InputUnform from '../../components/InputUnform';
 import Button from '../../components/Button';
 import { Container, Content, Background, AnimationContainer } from './styles';
 import logoImg from '../../assets/logo.png';
@@ -72,9 +72,9 @@ const SignIn: React.FC = () => {
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Faça seu login</h1>
 
-            <Input name="email" icon={FiMail} placeholder="E-mail" />
+            <InputUnform name="email" icon={FiMail} placeholder="E-mail" />
 
-            <Input
+            <InputUnform
               name="password"
               icon={FiLock}
               type="password"

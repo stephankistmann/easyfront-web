@@ -40,7 +40,7 @@ export default createGlobalStyle`
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(255, 103, 87, 0.6);
+    background: #ddd;
     border-radius: 8px;
   }
 

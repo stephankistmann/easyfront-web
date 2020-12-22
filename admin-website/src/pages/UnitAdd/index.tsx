@@ -4,7 +4,7 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 import { Container, MainHeader, ButtonContainer } from './styles';
-import Input from '../../components/Input';
+import InputUnform from '../../components/InputUnform';
 import Button from '../../components/Button';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { useToast } from '../../hooks/toast';
@@ -93,7 +93,7 @@ const UnitAdd: React.FC = () => {
           </h1>
         </MainHeader>
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input name="name" placeholder="Nome" />
+          <InputUnform name="name" placeholder="Nome" />
           <Select
             name="type"
             options={[

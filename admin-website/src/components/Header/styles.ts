@@ -70,7 +70,7 @@ export const Title = styled(Link)`
 export const SubTitle = styled(Link)`
   color: #2f4858;
   text-decoration: none;
-
+  cursor: default;
   transition: 0.2s;
 
   &:hover {
