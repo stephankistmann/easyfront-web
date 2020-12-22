@@ -74,7 +74,7 @@ export const Contact = styled.div`
 export const Extra = styled.div`
   width: 33%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 
   > div {
     height: 28px;

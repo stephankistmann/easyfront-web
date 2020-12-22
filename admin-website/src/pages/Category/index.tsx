@@ -109,7 +109,7 @@ const Category: React.FC = () => {
             {categories.map(category => (
               <CategoryItem
                 key={category.id}
-                id={category.id}
+                id="category.id"
                 name={category.name || 'Não informado'}
                 min_time={category.min_time || 'Não informado'}
                 max_time={category.max_time || 'Não informado'}

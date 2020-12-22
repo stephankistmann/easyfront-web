@@ -17,15 +17,16 @@ export const Infos = styled.div`
     display: flex;
 
     svg {
-      margin-right: 16px;
+      margin-right: 12px;
       margin-left: 16px;
-      width: 20px;
-      height: 20px;
+      width: 16px;
+      height: 16px;
       color: #2f4858;
     }
 
     h1 {
       font-size: 14px;
+      font-weight: 700;
     }
   }
 `;

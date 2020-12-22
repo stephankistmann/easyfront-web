@@ -97,12 +97,6 @@ export const Left = styled.div`
     svg {
       transition: 0.2s;
     }
-
-    &:hover {
-      svg {
-        fill: #ff6757;
-      }
-    }
   }
 `;
 
@@ -145,10 +139,10 @@ export const Profile = styled.div`
   }
 
   &:hover {
-    border: 2px solid #ff675777;
+    border: 2px solid #69aaf5;
     a {
       h1 {
-        background: #ff675777;
+        background: #69aaf5;
       }
     }
   }

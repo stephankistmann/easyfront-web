@@ -125,7 +125,10 @@ export const ListItemsCategory = styled.div`
       margin-left: 8px;
     }
 
-    :nth-child(2) {
+    :last-child {
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 8px;
     }
   }
 `;

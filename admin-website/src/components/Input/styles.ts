@@ -20,7 +20,7 @@ export const Container = styled.div<ContainerProps>`
   align-items: center;
 
   :hover {
-    border-color: #ff6757;
+    border-color: #69aaf5;
   }
 
   ${props =>
@@ -33,8 +33,8 @@ export const Container = styled.div<ContainerProps>`
   ${props =>
     props.isFocused &&
     css`
-      color: #ff6757;
-      border: 1px solid #ff6757;
+      color: #69aaf5;
+      border: 1px solid #69aaf5;
     `}
 
   input {

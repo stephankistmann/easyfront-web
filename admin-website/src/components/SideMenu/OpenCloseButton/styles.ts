@@ -66,5 +66,5 @@ export const Line = styled.div`
   height: 3px;
   border-radius: 3px;
   background: #aaa;
-  transition: 0.2s;
+  transition: 0.4s;
 `;
