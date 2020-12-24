@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components';
-import Tooltip from '../InputUnform/Tooltip';
+
+import Tooltip from './Tooltip';
 
 interface ContainerProps {
   isFocused: boolean;
-  isErrored: boolean;
+  // isErrored: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -13,32 +14,21 @@ export const Container = styled.div<ContainerProps>`
   padding: 16px;
   width: 100%;
   color: #666360;
-  height: 54px;
+  height: 48px;
 
   display: flex;
   align-items: center;
 
   :hover {
-    border: 1px solid #ff6757;
+    border-color: #69aaf5;
   }
-
-  ${props =>
-    props.isErrored &&
-    css`
-      color: #c53030;
-      border: 1px solid #c53030;
-    `}
 
   ${props =>
     props.isFocused &&
     css`
-      color: #ff6757;
-      border: 1px solid #ff6757;
+      color: #69aaf5;
+      border: 1px solid #69aaf5;
     `}
-
-  & + div {
-    margin-top: 8px;
-  }
 
   input {
     flex: 1;

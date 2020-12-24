@@ -14,7 +14,7 @@ import Button from '../../components/Button';
 // import { useToast } from '../../hooks/toast';
 // import getValidationErrors from '../../utils/getValidationErrors';
 
-interface IDevice {
+interface IInvite {
   id: string;
   name: string;
   selected: boolean;
@@ -35,8 +35,8 @@ interface ITimeRestrictions {
 //   weekDays: boolean[];
 // }
 
-const CategoryAdd: React.FC = () => {
-  const [devices, setDevices] = useState<IDevice[]>([]);
+const InviteAdd: React.FC = () => {
+  const [invites, setInvites] = useState<IInvite[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [loading, setLoading] = useState(false);
   // const { addToast } = useToast();
@@ -67,22 +67,22 @@ const CategoryAdd: React.FC = () => {
   // });
 
   useEffect(() => {
-    const getDevices = async () => {
+    const getInvites = async () => {
       if (superUnitId) {
         const response = await api.get(`/superunities/${superUnitId}/devices`);
 
         if (response.status !== 200) return;
 
-        setDevices(
-          response.data.map((device: IDevice) => ({
-            ...device,
+        setInvites(
+          response.data.map((invite: IInvite) => ({
+            ...invite,
             selected: false,
           })),
         );
       }
     };
 
-    getDevices();
+    getInvites();
   }, [superUnitId]);
 
   const handleChange = useCallback(value => {
@@ -124,15 +124,15 @@ const CategoryAdd: React.FC = () => {
   return (
     <Layout>
       <Header
-        title={{ value: 'Categorias', path: '/category' }}
-        subTitle={{ value: 'Adicionar Categoria', path: '/category/new' }}
+        title={{ value: 'Convites', path: '/invites' }}
+        subTitle={{ value: 'Adicionar Convite', path: '/invites/new' }}
         hasBackButton
       />
       <Container>
         <MainHeader>
           <h1>
             <FiList />
-            Adicionar Categoria
+            Adicionar Convite
           </h1>
         </MainHeader>
         <Content>
@@ -156,8 +156,8 @@ const CategoryAdd: React.FC = () => {
             />
 
             <SelectDevices
-              value={devices}
-              onChange={value => setDevices(value)}
+              value={invites}
+              onChange={value => setInvites(value)}
             />
 
             <Button type="submit" icon={FiPlus} loading={loading}>
@@ -170,4 +170,4 @@ const CategoryAdd: React.FC = () => {
   );
 };
 
-export default CategoryAdd;
+export default InviteAdd;

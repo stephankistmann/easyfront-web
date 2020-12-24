@@ -38,7 +38,7 @@ const AccessAdd: React.FC = () => {
   const [unities, setUnities] = useState<ISelectOptions[]>([]);
   const [users, setUsers] = useState<ISelectOptions[]>([]);
   const [categories, setCategories] = useState<ISelectOptions[]>([]);
-  const [loadingCreate, setLoadingCreate] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const superunitId = selected?.id;
 
@@ -79,9 +79,10 @@ const AccessAdd: React.FC = () => {
   const handleSubmit = useCallback(
     async (data: IFormData) => {
       formRef.current?.setErrors({});
-      try {
-        setLoadingCreate(true);
 
+      setLoading(true);
+
+      try {
         await schema.validate(data, {
           abortEarly: false,
         });
@@ -109,8 +110,9 @@ const AccessAdd: React.FC = () => {
           description:
             'Ocorreu um erro ao tentar realiazar o cadastro, tente novamente.',
         });
+      } finally {
+        setLoading(false);
       }
-      setLoadingCreate(false);
     },
     [addToast, superunitId, schema],
   );
@@ -183,7 +185,7 @@ const AccessAdd: React.FC = () => {
             type="submit"
             icon={FiPlus}
             name="AddButton"
-            loading={loadingCreate}
+            loading={loading}
           >
             Adicionar
           </Button>

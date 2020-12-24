@@ -27,6 +27,7 @@ interface IPeer {
   rg: string;
   gender: string;
   nature: string;
+  active: boolean;
 }
 
 const Peers: React.FC = () => {
@@ -117,6 +118,7 @@ const Peers: React.FC = () => {
                 <div>Nome</div>
                 <div>Contato</div>
                 <div>Gênero / Natureza</div>
+                <div>Estado</div>
               </ListItemsCategory>
             )}
             {peers.length > 0 ? (
@@ -126,6 +128,7 @@ const Peers: React.FC = () => {
                   name={peer.name || 'Não informado'}
                   phone={peer.phone || 'Não informado'}
                   email={peer.email || 'Não informado'}
+                  active={peer.active}
                   gender={
                     (peer.gender &&
                       peer.gender

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import Switch from 'react-switch';
 import { Container, SelectRestriction, WeekDay, Content } from './styles';
 
@@ -23,11 +23,13 @@ const SelectWeekDay: React.FC<IProps> = ({ value, onChange }) => {
     [value, onChange],
   );
 
-  useEffect(() => {
+  function handleToggleRestriction(checkedValue: boolean) {
     if (!restriction) {
       onChange([true, true, true, true, true, true, true]);
     }
-  }, [restriction, onChange]);
+
+    setRestriction(checkedValue);
+  }
 
   return (
     <Container>
@@ -35,7 +37,7 @@ const SelectWeekDay: React.FC<IProps> = ({ value, onChange }) => {
         <p>Restrição de dias</p>
         <Switch
           checked={restriction}
-          onChange={checked => setRestriction(checked)}
+          onChange={checked => handleToggleRestriction(checked)}
           onColor="#69aaf5"
           offColor="#ddd"
           checkedIcon={false}

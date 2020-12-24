@@ -6,6 +6,7 @@ import {
   FiChevronsRight,
   FiChevronLeft,
   FiBarChart,
+  FiSend,
 } from 'react-icons/fi';
 import { useLocation } from 'react-router-dom';
 import { Container, Logo, Title, Menu } from './styles';
@@ -52,6 +53,7 @@ const SideBar: React.FC = () => {
           name="Acessos"
           icon={FiChevronsRight}
         />
+        <MenuItem path={path} to="/invites" name="Convites" icon={FiSend} />
         <LogoutButton />
       </Menu>
       <OpenCloseButton open={open} onClick={handleToggle}>

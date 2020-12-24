@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { FiList, FiPlus } from 'react-icons/fi';
+import { FiList, FiPlus, FiSend } from 'react-icons/fi';
 import Pagination from '../../components/Pagination';
 import {
   Container,
@@ -14,13 +14,13 @@ import Layout from '../../Layouts/Default';
 import api from '../../services/api';
 import { useSuperunit } from '../../hooks/superunit';
 import Header from '../../components/Header';
-import CategoryItem from './CategoryItem';
+import CategoryItem from './InviteItem';
 
 interface IDevices {
   name: string;
 }
 
-interface ICategories {
+interface IInvites {
   id: string;
   name: string;
   min_time: string;
@@ -28,8 +28,8 @@ interface ICategories {
   devices: IDevices[];
 }
 
-const Category: React.FC = () => {
-  const [categories, setCategories] = useState<ICategories[]>([]);
+const Invite: React.FC = () => {
+  const [categories, setCategories] = useState<IInvites[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const { selected } = useSuperunit();
@@ -79,21 +79,21 @@ const Category: React.FC = () => {
 
   return (
     <Layout>
-      <Header title={{ value: 'Categorias', path: '/category' }} />
+      <Header title={{ value: 'Convites', path: '/invites' }} />
       <Container>
         <MainHeader>
           <div>
             <h1>
-              <FiList />
-              Lista de Categorias
+              <FiSend />
+              Lista de Convites
             </h1>
           </div>
           <StyledButton
             icon={FiPlus}
-            name="Categorias"
-            onClick={() => history.push('/category/new')}
+            name="Convites"
+            onClick={() => history.push('/invites/new')}
           >
-            Adicionar Categoria
+            Adicionar Convite
           </StyledButton>
         </MainHeader>
         {loading ? (
@@ -122,7 +122,7 @@ const Category: React.FC = () => {
                 />
               ))
             ) : (
-              <p>Ainda não há categorias registradas</p>
+              <p>Ainda não há convites registrados</p>
             )}
             {categories.length > 0 && (
               <Pagination
@@ -138,4 +138,4 @@ const Category: React.FC = () => {
   );
 };
 
-export default Category;
+export default Invite;

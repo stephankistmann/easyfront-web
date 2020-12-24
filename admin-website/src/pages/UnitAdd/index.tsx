@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useState } from 'react';
 import { FiHome, FiPlus } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
@@ -39,6 +39,7 @@ const UnitAdd: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const { selected } = useSuperunit();
+  const [loading, setLoading] = useState(false);
 
   const superunitId = selected?.id;
 
@@ -47,6 +48,9 @@ const UnitAdd: React.FC = () => {
       const unit = { public_area: data.type, name: data.name };
 
       formRef.current?.setErrors({});
+
+      setLoading(true);
+
       try {
         await schema.validate(unit, {
           abortEarly: false,
@@ -73,6 +77,8 @@ const UnitAdd: React.FC = () => {
           description:
             'Ocorreu um erro ao tentar realiazar o cadastro, tente novamente.',
         });
+      } finally {
+        setLoading(false);
       }
     },
     [addToast, superunitId],
@@ -112,7 +118,7 @@ const UnitAdd: React.FC = () => {
             }}
           />
           <ButtonContainer>
-            <Button type="submit" icon={FiPlus}>
+            <Button type="submit" icon={FiPlus} loading={loading}>
               Adicionar
             </Button>
           </ButtonContainer>

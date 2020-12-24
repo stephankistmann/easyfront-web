@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+interface IStatusProps {
+  active: boolean;
+}
 
 export const Container = styled.div`
   display: flex;
@@ -12,7 +16,7 @@ export const Container = styled.div`
 export const Infos = styled.div`
   display: flex;
   align-items: center;
-  width: 33%;
+  width: 25%;
 
   img {
     width: 32px;
@@ -32,7 +36,7 @@ export const Infos = styled.div`
 `;
 
 export const Contact = styled.div`
-  width: 33%;
+  width: 25%;
   display: flex;
   justify-content: center;
 
@@ -40,7 +44,7 @@ export const Contact = styled.div`
     height: 28px;
     padding: 0 24px;
     border-radius: 4px;
-    background: rgb(224, 249, 224);
+    background: #e4defe;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,9 +76,9 @@ export const Contact = styled.div`
 `;
 
 export const Extra = styled.div`
-  width: 33%;
+  width: 25%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 
   > div {
     height: 28px;
@@ -108,6 +112,40 @@ export const Extra = styled.div`
 
     p {
       font-size: 14px;
+    }
+  }
+`;
+
+export const Status = styled.div<IStatusProps>`
+  width: 25%;
+  display: flex;
+  justify-content: flex-end;
+
+  > div {
+    height: 28px;
+    padding: 0 24px;
+    border-radius: 4px;
+    background: #f7f7f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    ${props =>
+      props.active &&
+      css`
+        background: rgb(224, 249, 224);
+      `}
+
+    svg {
+      height: 16px;
+      width: 16px;
+      margin-right: 8px;
+      color: #2f4858;
+    }
+
+    h1 {
+      font-size: 14px;
+      font-weight: 700;
     }
   }
 `;

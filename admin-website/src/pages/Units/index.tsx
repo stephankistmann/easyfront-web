@@ -15,6 +15,7 @@ import api from '../../services/api';
 import Layout from '../../Layouts/Default';
 import Header from '../../components/Header';
 import UnitItem from './UnitItem';
+import Tooltip from '../../components/Tooltip';
 
 interface IUnit {
   id: string;
@@ -71,6 +72,12 @@ const Units: React.FC = () => {
             <h1>
               <FiHome />
               Lista de Unidades
+              <Tooltip
+                title="Teste de largura do container"
+                width={400}
+                height={100}
+                direction="down"
+              />
             </h1>
           </div>
           <StyledButton
