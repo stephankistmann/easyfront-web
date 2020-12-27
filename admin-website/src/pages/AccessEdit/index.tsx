@@ -68,7 +68,7 @@ const AccessEdit: React.FC = () => {
         if (!unitiesData) return;
 
         const categoriesData = await api.get(
-          `/superunities/${superunitId}/accesscategories`,
+          `/superunities/${superunitId}/accesses/categories`,
         );
 
         if (!categoriesData) return;
@@ -130,7 +130,7 @@ const AccessEdit: React.FC = () => {
         });
       }
     },
-    [addToast, id, superunitId],
+    [addToast, id, superunitId, schema],
   );
 
   const optionsUnit = useMemo(

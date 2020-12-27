@@ -6,7 +6,6 @@ import { Container, Infos, Extra, Controllers } from './styles';
 interface AccessItemProps {
   id: string;
   name: string;
-  superUnit: string;
   unit: string;
   category: string;
   onClickDelete?: () => {};
@@ -15,7 +14,6 @@ interface AccessItemProps {
 const AccessItem: React.FC<AccessItemProps> = ({
   id,
   name,
-  superUnit,
   unit,
   category,
   onClickDelete,
@@ -26,7 +24,6 @@ const AccessItem: React.FC<AccessItemProps> = ({
         <FiChevronsRight />
         <div>
           <h1>{name}</h1>
-          <p>{superUnit}</p>
         </div>
       </Infos>
       <Extra>

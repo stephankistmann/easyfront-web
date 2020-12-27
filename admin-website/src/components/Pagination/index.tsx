@@ -25,7 +25,7 @@ const Pagination: React.FC<PaginationProps> = ({
         </NavPage>
       )}
       <NavPage name="NavPageCurrent">
-        <span>{page}</span>
+        <span>{`${page}/${totalPages}`}</span>
       </NavPage>
       {page !== totalPages && (
         <NavPage

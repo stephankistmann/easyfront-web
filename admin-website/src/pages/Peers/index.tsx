@@ -27,6 +27,7 @@ interface IPeer {
   rg: string;
   gender: string;
   nature: string;
+  active: boolean;
 }
 
 const Peers: React.FC = () => {
@@ -76,12 +77,12 @@ const Peers: React.FC = () => {
 
   return (
     <Layout>
-      <Header title={{ value: 'Parceiros', path: '/peers' }} />
+      <Header title={{ value: 'Usuários', path: '/peers' }} />
       <Container>
         <MainHeader>
           <h1>
             <FiUsers />
-            Lista de Parceiros
+            Lista de Usuários
           </h1>
 
           <div>
@@ -99,7 +100,7 @@ const Peers: React.FC = () => {
               )}
             </Search>
             <StyledButton
-              name="Parceiros"
+              name="Usuários"
               icon={FiChevronRight}
               onClick={() => history.push('/peers/new')}
             >
@@ -112,27 +113,49 @@ const Peers: React.FC = () => {
           <StyledLoading />
         ) : (
           <List>
-            <ListItemsCategory>
-              <div>Nome</div>
-              <div>Contato</div>
-              <div>Gênero / Natureza</div>
-            </ListItemsCategory>
-            {peers.map(peer => (
-              <PeerItem
-                key={peer.id}
-                name={peer.name || 'Não informado'}
-                phone={peer.phone || 'Não informado'}
-                email={peer.email || 'Não informado'}
-                gender={peer.gender || 'Não informado'}
-                nature={peer.nature || 'Não informado'}
-                id={peer.id}
+            {peers.length > 0 && (
+              <ListItemsCategory>
+                <div>Nome</div>
+                <div>Contato</div>
+                <div>Gênero / Natureza</div>
+                <div>Estado</div>
+              </ListItemsCategory>
+            )}
+            {peers.length > 0 ? (
+              peers.map(peer => (
+                <PeerItem
+                  key={peer.id}
+                  name={peer.name || 'Não informado'}
+                  phone={peer.phone || 'Não informado'}
+                  email={peer.email || 'Não informado'}
+                  active={peer.active}
+                  gender={
+                    (peer.gender &&
+                      peer.gender
+                        .replace('female', 'Feminino')
+                        .replace('male', 'Masculino')) ||
+                    'Não informado'
+                  }
+                  nature={
+                    (peer.nature &&
+                      peer.nature
+                        .replace('juridic', 'Jurídico')
+                        .replace('physic', 'Físico')) ||
+                    'Não informado'
+                  }
+                  id={peer.id}
+                />
+              ))
+            ) : (
+              <p>Ainda não há usuários registrados</p>
+            )}
+            {peers.length > 0 && (
+              <Pagination
+                page={page}
+                handlePagination={handlePages}
+                totalPages={totalPages}
               />
-            ))}
-            <Pagination
-              page={page}
-              handlePagination={handlePages}
-              totalPages={totalPages}
-            />
+            )}
           </List>
         )}
       </Container>

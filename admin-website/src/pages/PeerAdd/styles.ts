@@ -10,12 +10,13 @@ export const Container = styled.div`
 
   form {
     display: flex;
-    align-items: center;
-    width: 50%;
+    flex-direction: column;
     margin-top: 24px;
 
     button {
+      margin-top: 8px;
       height: 48px;
+      align-self: flex-end;
     }
 
     > div {
@@ -23,7 +24,6 @@ export const Container = styled.div`
     }
 
     input {
-      width: 250px;
       margin-right: 16px;
     }
   }

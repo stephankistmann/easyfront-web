@@ -4,7 +4,7 @@ import Tooltip from './Tooltip';
 
 interface ContainerProps {
   isFocused: boolean;
-  isErrored: boolean;
+  // isErrored: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -20,21 +20,14 @@ export const Container = styled.div<ContainerProps>`
   align-items: center;
 
   :hover {
-    border-color: #ff6757;
+    border-color: #69aaf5;
   }
-
-  ${props =>
-    props.isErrored &&
-    css`
-      color: #c53030;
-      border: 1px solid #c53030;
-    `}
 
   ${props =>
     props.isFocused &&
     css`
-      color: #ff6757;
-      border: 1px solid #ff6757;
+      color: #69aaf5;
+      border: 1px solid #69aaf5;
     `}
 
   input {

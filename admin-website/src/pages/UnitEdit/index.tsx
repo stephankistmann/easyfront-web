@@ -11,7 +11,7 @@ import Layout from '../../Layouts/Default';
 import getValidationErrors from '../../utils/getValidationErrors';
 import Select from '../../components/Select';
 import Button from '../../components/Button';
-import Input from '../../components/Input';
+import InputUnform from '../../components/InputUnform';
 import { useSuperunit } from '../../hooks/superunit';
 import Header from '../../components/Header';
 
@@ -130,7 +130,7 @@ const UnitEdit: React.FC = () => {
           </h1>
         </MainHeader>
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input name="name" placeholder="Nome" />
+          <InputUnform name="name" placeholder="Nome" />
           <Select
             name="public_area"
             options={[

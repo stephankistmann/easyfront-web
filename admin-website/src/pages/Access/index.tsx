@@ -34,7 +34,6 @@ interface IAccess {
   id: string;
   user: IUser;
   unit: IUnit;
-  superUnit_id: string;
   accessCategory: IAccessCategory;
 }
 
@@ -50,13 +49,13 @@ const Access: React.FC = () => {
   };
 
   async function handleDelete(id: string) {
-    const deleteAccess = accesses.find(access => access.id === id);
+    const deleteAccess = accesses.find(acce => acce.id === id);
 
     await api.delete(
       `/superunities/${selected?.id}/accesses/${deleteAccess?.id}`,
     );
 
-    setAccesses(oldAccesses => oldAccesses.filter(access => access.id !== id));
+    setAccesses(oldAccesses => oldAccesses.filter(acce => acce.id !== id));
   }
 
   useEffect(() => {
@@ -99,28 +98,34 @@ const Access: React.FC = () => {
         </MainHeader>
 
         <List>
-          <ListItemsCategory>
-            <div>Parceiro / Super Unidade</div>
-            <div>Categoria / Unidade</div>
-            <div>Editar / Excluir</div>
-          </ListItemsCategory>
-
-          {accesses.map(access => (
-            <AccessItem
-              key={access.id}
-              id={access.id}
-              name={access.user?.name}
-              superUnit={access.superUnit_id}
-              unit={access.unit.name}
-              category={access.accessCategory.name}
-              onClickDelete={() => handleDelete(access.id)}
+          {accesses.length > 0 && (
+            <ListItemsCategory>
+              <div>Parceiro / Super Unidade</div>
+              <div>Categoria / Unidade</div>
+              <div>Editar / Excluir</div>
+            </ListItemsCategory>
+          )}
+          {accesses.length > 0 ? (
+            accesses.map(acces => (
+              <AccessItem
+                key={acces.id}
+                id={acces.id}
+                name={acces.user?.name}
+                unit={acces.unit.name}
+                category={acces.accessCategory.name}
+                onClickDelete={() => handleDelete(acces.id)}
+              />
+            ))
+          ) : (
+            <p>Ainda não há accessos registrados</p>
+          )}
+          {accesses.length > 0 && (
+            <Pagination
+              page={page}
+              handlePagination={handlePages}
+              totalPages={totalPages}
             />
-          ))}
-          <Pagination
-            page={page}
-            handlePagination={handlePages}
-            totalPages={totalPages}
-          />
+          )}
         </List>
       </Container>
     </Layout>

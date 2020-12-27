@@ -1,49 +1,61 @@
-import React, { useRef, useCallback, useState, useEffect } from 'react';
-import { Form } from '@unform/web';
+import React, { useCallback, useEffect, useState } from 'react';
+import { FiList, FiPlus } from 'react-icons/fi';
 import * as Yup from 'yup';
-import { FormHandles } from '@unform/core';
-import { FiClock, FiList, FiPlus } from 'react-icons/fi';
-import {
-  Container,
-  MainHeader,
-  FormContainer,
-  CheckboxContainer,
-  ScheduleContainer,
-} from './styles';
+import { Container, MainHeader, Content } from './styles';
+import Layout from '../../Layouts/Default';
+import Header from '../../components/Header';
+import SelectWeekDay from '../../components/SelectWeekDay';
+import SelectDevices from './SelectDevices';
+import api from '../../services/api';
+import SelectTimeRestrictions from './SelectTimeRestrictions';
+import { useSuperunit } from '../../hooks/superunit';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import InputMask from '../../components/InputMask';
-import getValidationErrors from '../../utils/getValidationErrors';
 import { useToast } from '../../hooks/toast';
-import api from '../../services/api';
-import Layout from '../../Layouts/Default';
-import { useSuperunit } from '../../hooks/superunit';
-import CheckboxInput from '../../components/CheckboxInput';
-import CheckWeekDay from '../../components/CheckWeekDay';
-import Header from '../../components/Header';
+import getValidationErrors from '../../utils/getValidationErrors';
 
-interface IFormData {
+interface IDevice {
+  id: string;
   name: string;
-  weekDays: boolean[];
-  checked: boolean;
+  selected: boolean;
+}
+
+interface ITimeRestrictions {
+  time_limit: boolean;
+  min_time: string;
+  max_time: string;
+}
+
+interface ICategory {
+  name: string;
   min_time: string;
   max_time: string;
   time_limit: boolean;
   devicesIds: string[];
-  checkbox?: string[];
+  weekDays: boolean[];
 }
 
-interface CheckboxOption {
-  name: string;
-  id: string;
-  value: string;
+interface IValidationErrors {
+  name?: string;
 }
+
+const schema = Yup.object().shape({
+  name: Yup.string().required('Nome obrigatório'),
+});
 
 const CategoryAdd: React.FC = () => {
-  const formRef = useRef<FormHandles>(null);
+  const [devices, setDevices] = useState<IDevice[]>([]);
+  const [validationErrors, setValidationErrors] = useState<IValidationErrors>(
+    {},
+  );
+  const [name, setName] = useState('');
+  const [loading, setLoading] = useState(false);
   const { addToast } = useToast();
-  const { selected } = useSuperunit();
-  const [timeLimit, setTimeLimit] = useState(false);
+  const [timeRestrictions, setTimeRestrictions] = useState<ITimeRestrictions>({
+    time_limit: false,
+    min_time: '00:00',
+    max_time: '23:59',
+  });
   const [weekDays, setWeekDays] = useState<boolean[]>([
     true,
     true,
@@ -53,62 +65,52 @@ const CategoryAdd: React.FC = () => {
     true,
     true,
   ]);
-  const [devices, setDevices] = useState<CheckboxOption[]>([]);
 
-  const superunitId = selected?.id;
+  const { selected } = useSuperunit();
 
-  const schema = Yup.object().shape({
-    name: Yup.string().required('Nome obrigatório'),
-    devicesIds: Yup.array()
-      .of(Yup.string())
-      .required('Dispositivo obrigatório'),
-  });
+  const superUnitId = selected?.id;
 
   useEffect(() => {
-    async function getData() {
-      if (selected) {
-        const response = await api.get(`/superunities/${superunitId}/devices`);
+    const getDevices = async () => {
+      if (superUnitId) {
+        const response = await api.get(`/superunities/${superUnitId}/devices`);
 
-        if (!response) return;
+        if (response.status !== 200) return;
 
-        setDevices(response.data.data);
+        setDevices(
+          response.data.map((device: IDevice) => ({
+            ...device,
+            selected: false,
+          })),
+        );
       }
-    }
-
-    getData();
-  }, [superunitId, selected]);
-
-  const newData = devices.map(device => {
-    return {
-      ...device,
-      id: device.id,
-      value: device.id,
-      label: device.name,
     };
-  });
+
+    getDevices();
+  }, [superUnitId]);
 
   const handleSubmit = useCallback(
-    async (data: IFormData) => {
-      /* eslint-disable no-param-reassign */
-      if (data.min_time || data.max_time) {
-        data.time_limit = true;
-      } else {
-        data.time_limit = false;
-      }
+    async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
 
-      if (!data.time_limit) {
-        data.min_time = '00:00';
-        data.max_time = '00:00';
-      }
+      setLoading(true);
 
-      formRef.current?.setErrors({});
+      setValidationErrors({});
 
-      const newResponse: IFormData = Object.assign(data, {
-        devicesIds: data.checkbox,
+      const devicesIds = devices
+        .filter(device => device.selected)
+        .map(device => device.id);
+
+      const { time_limit, min_time, max_time } = timeRestrictions;
+
+      const data: ICategory = {
+        time_limit,
+        min_time,
+        max_time,
+        name,
+        devicesIds,
         weekDays,
-      });
-
-      delete data.checkbox;
+      };
 
       try {
         await schema.validate(data, {
@@ -116,8 +118,8 @@ const CategoryAdd: React.FC = () => {
         });
 
         await api.post(
-          `/superunities/${superunitId}/accesscategories`,
-          newResponse,
+          `/superunities/${superUnitId}/accesses/categories`,
+          data,
         );
 
         addToast({
@@ -129,7 +131,8 @@ const CategoryAdd: React.FC = () => {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
-          formRef.current?.setErrors(errors);
+          setValidationErrors(errors);
+
           return;
         }
 
@@ -139,9 +142,13 @@ const CategoryAdd: React.FC = () => {
           description:
             'Ocorreu um erro ao tentar realiazar o cadastro, tente novamente.',
         });
+      } finally {
+        setLoading(false);
       }
+
+      setLoading(false);
     },
-    [addToast, superunitId, weekDays],
+    [superUnitId, weekDays, devices, name, timeRestrictions, addToast],
   );
 
   return (
@@ -155,55 +162,38 @@ const CategoryAdd: React.FC = () => {
         <MainHeader>
           <h1>
             <FiList />
-            Adicionar Parceiro
+            Adicionar Categoria
           </h1>
         </MainHeader>
+        <Content>
+          <form onSubmit={handleSubmit}>
+            <Input
+              value={name}
+              onChange={event => setName(event.target.value)}
+              placeholder="Nome"
+              error={validationErrors?.name}
+            />
 
-        <FormContainer>
-          <Form ref={formRef} onSubmit={handleSubmit}>
-            <main>
-              <Input name="name" placeholder="Nome" />
-              <CheckboxContainer>
-                <CheckWeekDay value={weekDays} onChange={setWeekDays} />
-              </CheckboxContainer>
-              <CheckboxContainer>
-                {newData && <CheckboxInput name="checkbox" options={newData} />}
-              </CheckboxContainer>
-              <ScheduleContainer>
-                <label>
-                  <input
-                    type="checkbox"
-                    name="time_limit"
-                    id="Horário"
-                    checked={timeLimit}
-                    onChange={() => setTimeLimit(!timeLimit)}
-                  />
-                  <span>Horário</span>
-                </label>
-                {timeLimit && (
-                  <div>
-                    <InputMask
-                      icon={FiClock}
-                      name="min_time"
-                      mask="99:99"
-                      placeholder="Horário de inicio"
-                    />
-                    <InputMask
-                      icon={FiClock}
-                      name="max_time"
-                      mask="99:99"
-                      placeholder="Horário de término"
-                    />
-                  </div>
-                )}
-              </ScheduleContainer>
-            </main>
+            <SelectWeekDay
+              value={weekDays}
+              onChange={value => setWeekDays(value)}
+            />
 
-            <Button type="submit" name="AddButton" icon={FiPlus}>
+            <SelectTimeRestrictions
+              value={timeRestrictions}
+              onChange={value => setTimeRestrictions(value)}
+            />
+
+            <SelectDevices
+              value={devices}
+              onChange={value => setDevices(value)}
+            />
+
+            <Button type="submit" icon={FiPlus} loading={loading}>
               Adicionar
             </Button>
-          </Form>
-        </FormContainer>
+          </form>
+        </Content>
       </Container>
     </Layout>
   );

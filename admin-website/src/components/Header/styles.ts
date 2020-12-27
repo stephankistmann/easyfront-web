@@ -70,7 +70,7 @@ export const Title = styled(Link)`
 export const SubTitle = styled(Link)`
   color: #2f4858;
   text-decoration: none;
-
+  cursor: default;
   transition: 0.2s;
 
   &:hover {
@@ -96,12 +96,6 @@ export const Left = styled.div`
     margin: 0 16px;
     svg {
       transition: 0.2s;
-    }
-
-    &:hover {
-      svg {
-        fill: #ff6757;
-      }
     }
   }
 `;
@@ -145,10 +139,10 @@ export const Profile = styled.div`
   }
 
   &:hover {
-    border: 2px solid #ff675777;
+    border: 2px solid #69aaf5;
     a {
       h1 {
-        background: #ff675777;
+        background: #69aaf5;
       }
     }
   }

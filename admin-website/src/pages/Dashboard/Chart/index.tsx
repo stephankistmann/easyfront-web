@@ -32,13 +32,29 @@ const Chart: React.FC = () => {
 
   return (
     <Container>
-      {/* <Line
+      <Line
         data={chartData}
         options={{
           responsive: true,
           maintainAspectRatio: false,
+          scales: {
+            xAxes: [
+              {
+                gridLines: {
+                  color: 'rgba(0, 0, 0, 0)',
+                },
+              },
+            ],
+            yAxes: [
+              {
+                gridLines: {
+                  color: 'rgba(0, 0, 0, 0)',
+                },
+              },
+            ],
+          },
         }}
-      /> */}
+      />
     </Container>
   );
 };

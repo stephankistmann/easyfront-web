@@ -1,10 +1,10 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useState } from 'react';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { FiMail, FiPlus, FiUserPlus } from 'react-icons/fi';
 import * as Yup from 'yup';
 import { Container, MainHeader } from './styles';
-import Input from '../../components/Input';
+import InputUnform from '../../components/InputUnform';
 import Button from '../../components/Button';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { useToast } from '../../hooks/toast';
@@ -15,6 +15,7 @@ import Header from '../../components/Header';
 const PeerAdd: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
+  const [loading, setLoading] = useState(false);
 
   const schema = Yup.object().shape({
     email: Yup.string()
@@ -25,6 +26,8 @@ const PeerAdd: React.FC = () => {
   const handleSubmit = useCallback(
     async (data: object) => {
       formRef.current?.setErrors({});
+
+      setLoading(true);
 
       try {
         await schema.validate(data, {
@@ -54,6 +57,8 @@ const PeerAdd: React.FC = () => {
           description:
             'Ocorreu um erro ao tentar realiazar o cadastro, tente novamente.',
         });
+      } finally {
+        setLoading(false);
       }
     },
     [addToast, schema],
@@ -62,7 +67,7 @@ const PeerAdd: React.FC = () => {
   return (
     <Layout>
       <Header
-        title={{ value: 'Parceiros', path: '/peers' }}
+        title={{ value: 'Usuários', path: '/peers' }}
         subTitle={{ value: 'Adicionar Parceiro', path: '/peers/new' }}
         hasBackButton
       />
@@ -74,8 +79,13 @@ const PeerAdd: React.FC = () => {
           </h1>
         </MainHeader>
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input name="email" placeholder="E-mail" icon={FiMail} />
-          <Button type="submit" icon={FiPlus} name="AddButton">
+          <InputUnform name="email" placeholder="E-mail" icon={FiMail} />
+          <Button
+            type="submit"
+            icon={FiPlus}
+            name="AddButton"
+            loading={loading}
+          >
             Adicionar
           </Button>
         </Form>

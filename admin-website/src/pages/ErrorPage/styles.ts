@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid #dfe9eb;
   background: #ffffff;
   flex-direction: column;
@@ -53,7 +53,7 @@ export const Content = styled.div`
   margin-top: 30px;
   margin-bottom: 30px;
 
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid #dfe9eb;
   background: #ffffff;
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import { FiFile, FiSmartphone } from 'react-icons/fi';
-import { Container, Infos, Contact, Extra } from './styles';
+import { FiCheck, FiFile, FiSmartphone, FiX } from 'react-icons/fi';
+import { Container, Infos, Contact, Extra, Status } from './styles';
 import defaultUserIcon from '../../../assets/defaultUserIcon.png';
 
 interface PeerItemProps {
@@ -10,6 +10,7 @@ interface PeerItemProps {
   gender: string;
   nature: string;
   id: string;
+  active: boolean;
 }
 
 const PeerItem: React.FC<PeerItemProps> = ({
@@ -18,6 +19,7 @@ const PeerItem: React.FC<PeerItemProps> = ({
   email,
   gender,
   nature,
+  active,
 }) => {
   const phoneMasked = phone
     .replace(/^(\d{2})(\d)/g, '($1) $2')
@@ -46,6 +48,21 @@ const PeerItem: React.FC<PeerItemProps> = ({
           <p>{nature}</p>
         </div>
       </Extra>
+      {active ? (
+        <Status active={active}>
+          <div>
+            <FiCheck />
+            <h1>Ativo</h1>
+          </div>
+        </Status>
+      ) : (
+        <Status active={active}>
+          <div>
+            <FiX />
+            <h1>Inativo</h1>
+          </div>
+        </Status>
+      )}
     </Container>
   );
 };

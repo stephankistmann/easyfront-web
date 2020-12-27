@@ -13,20 +13,20 @@ export const StyledReactSelect = styled(ReactSelect)`
     }
 
     :hover {
-      border-color: #ff6757;
+      border-color: #69aaf5;
     }
 
     :focus {
-      border-color: #ff6757;
+      border-color: #69aaf5;
     }
   }
   .Select__control--is-focused {
-    border-color: #ff6757;
+    border-color: #69aaf5;
     box-shadow: none;
     height: 48px;
 
     :hover {
-      border-color: #ff6757;
+      border-color: #69aaf5;
     }
   }
 
@@ -51,12 +51,12 @@ export const StyledReactSelect = styled(ReactSelect)`
 
   .Select__menu {
     .Select__option--is-focused {
-      background-color: rgba(255, 103, 87, 0.5);
+      background-color: #69aaf5;
       color: #fff;
     }
 
     .Select__option--is-selected {
-      background-color: rgba(255, 103, 87, 0.7);
+      background-color: #69aaf588;
     }
   }
 `;

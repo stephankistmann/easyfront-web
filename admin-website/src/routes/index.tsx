@@ -24,27 +24,40 @@ import Access from '../pages/Access';
 import AccessAdd from '../pages/AccessAdd';
 import AccessEdit from '../pages/AccessEdit';
 
+import Invite from '../pages/Invite';
+import InviteAdd from '../pages/InviteAdd';
+import InviteEdit from '../pages/InviteEdit';
+
 import ErrorPage from '../pages/ErrorPage';
 
 const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={SignIn} />
+    <Route path="/dashboard/:page?" component={Dashboard} isPrivate />
+    <Route path="/error" component={ErrorPage} isPrivate />
+
     <Route path="/forgot-password" component={ForgotPassword} />
     <Route path="/reset-password/:token/:user" component={ResetPassword} />
-    <Route path="/dashboard/:page?" component={Dashboard} isPrivate />
+
+    <Route path="/invites" component={Invite} isPrivate exact />
+    <Route path="/invites/new" component={InviteAdd} isPrivate />
+    <Route path="/invites/edit/:id" component={InviteEdit} isPrivate />
+
     <Route path="/units" component={Units} isPrivate exact />
     <Route path="/units/new" component={UnitAdd} isPrivate exact />
     <Route path="/units/edit/:id" component={UnitEdit} isPrivate />
+
     <Route path="/category" component={Category} isPrivate exact />
     <Route path="/category/new" component={CategoryAdd} isPrivate />
     <Route path="/category/edit/:id" component={CategoryEdit} isPrivate />
+
     <Route path="/access" component={Access} isPrivate exact />
     <Route path="/access/new" component={AccessAdd} isPrivate />
     <Route path="/access/edit/:id" component={AccessEdit} isPrivate />
+
     <Route path="/peers" exact component={Peers} isPrivate />
     <Route path="/peers/new" component={PeerAdd} isPrivate />
     <Route path="/peers/edit/:id" component={PeerEdit} isPrivate />
-    <Route path="/error" component={ErrorPage} isPrivate />
   </Switch>
 );
 

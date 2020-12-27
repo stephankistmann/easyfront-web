@@ -4,7 +4,7 @@ import { FiLock, FiSend } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { Link, useHistory, useParams } from 'react-router-dom';
-import Input from '../../components/Input';
+import InputUnform from '../../components/InputUnform';
 import Button from '../../components/Button';
 import { Container, Content, Background, AnimationContainer } from './styles';
 import logoImg from '../../assets/logo.png';
@@ -89,14 +89,14 @@ const ResetPassword: React.FC = () => {
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Resetar senha</h1>
 
-            <Input
+            <InputUnform
               name="password"
               icon={FiLock}
               type="password"
               placeholder="Nova senha"
             />
 
-            <Input
+            <InputUnform
               name="passwordConfirmation"
               icon={FiLock}
               type="password"

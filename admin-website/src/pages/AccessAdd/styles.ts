@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: 0 0 16px rgba(0, 0, 50, 0.1);
   background: #ffffff;
   flex-direction: column;
   padding: 24px;
 
   form {
+    margin-top: 8px;
     flex-direction: column;
     display: flex;
     align-items: flex-end;

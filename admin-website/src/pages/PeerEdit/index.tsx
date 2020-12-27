@@ -13,7 +13,7 @@ import Layout from '../../Layouts/Default';
 import getValidationErrors from '../../utils/getValidationErrors';
 import Select from '../../components/Select';
 import Button from '../../components/Button';
-import Input from '../../components/Input';
+import InputUnform from '../../components/InputUnform';
 import InputMask from '../../components/InputMask';
 import Header from '../../components/Header';
 import { MainHeader } from '../Units/styles';
@@ -128,13 +128,13 @@ const PeerEdit: React.FC = () => {
         });
       }
     },
-    [addToast, history],
+    [addToast, history, schema],
   );
 
   return (
     <Layout>
       <Header
-        title={{ value: 'Parceiros', path: '/peers' }}
+        title={{ value: 'Usuários', path: '/peers' }}
         subTitle={{ value: 'Editar Parceiro', path: `/peers/edit/${id}` }}
         hasBackButton
       />
@@ -148,7 +148,7 @@ const PeerEdit: React.FC = () => {
           </div>
         </MainHeader>
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input
+          <InputUnform
             name="name"
             placeholder="Nome"
             defaultValue={selectedPeer?.name}

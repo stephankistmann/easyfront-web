@@ -1,10 +1,10 @@
 import React from 'react';
-import SideMenu from '../../components/SideMenu';
+import SideBar from '../../components/SideBar';
 import { Container, Content, Main } from './styles';
 
 const Layout: React.FC = ({ children }) => (
   <Container>
-    <SideMenu />
+    <SideBar />
     <Main>
       <Content>{children}</Content>
     </Main>

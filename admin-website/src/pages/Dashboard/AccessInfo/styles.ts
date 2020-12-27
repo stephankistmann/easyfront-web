@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex-wrap: wrap;
   margin-left: -8px;
   margin-top: -10px;
-  max-width: 432px;
+  max-width: 433px;
 `;
 
 export const Item = styled.div`
