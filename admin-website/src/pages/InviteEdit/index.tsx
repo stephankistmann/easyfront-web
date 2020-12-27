@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { FiList, FiPlus } from 'react-icons/fi';
 import * as Yup from 'yup';
+import { useHistory, useParams } from 'react-router-dom';
 import { Container, MainHeader, Content } from './styles';
 import Layout from '../../Layouts/Default';
 import Header from '../../components/Header';
@@ -43,13 +44,15 @@ const schema = Yup.object().shape({
   name: Yup.string().required('Nome obrigatório'),
 });
 
-const CategoryAdd: React.FC = () => {
+const InviteEdit: React.FC = () => {
+  const { id }: { id: string } = useParams();
   const [devices, setDevices] = useState<IDevice[]>([]);
   const [validationErrors, setValidationErrors] = useState<IValidationErrors>(
     {},
   );
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
+  const history = useHistory();
   const { addToast } = useToast();
   const [timeRestrictions, setTimeRestrictions] = useState<ITimeRestrictions>({
     time_limit: false,
@@ -71,6 +74,24 @@ const CategoryAdd: React.FC = () => {
   const superUnitId = selected?.id;
 
   useEffect(() => {
+    const getData = async () => {
+      if (superUnitId) {
+        const inviteData = await api.get(
+          `superunities/${superUnitId}/invites/types/${id}`,
+        );
+
+        if (!inviteData) return;
+
+        setName(inviteData.data.name);
+        setWeekDays(inviteData.data.weekDays);
+        // setTimeRestrictions(
+        //   (inviteData.data.time_limit,
+        //   inviteData.data.min_time,
+        //   inviteData.data.max_time),
+        // );
+      }
+    };
+
     const getDevices = async () => {
       if (superUnitId) {
         const response = await api.get(`/superunities/${superUnitId}/devices`);
@@ -86,8 +107,9 @@ const CategoryAdd: React.FC = () => {
       }
     };
 
+    getData();
     getDevices();
-  }, [superUnitId]);
+  }, [id, superUnitId]);
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
@@ -117,8 +139,8 @@ const CategoryAdd: React.FC = () => {
           abortEarly: false,
         });
 
-        await api.post(
-          `/superunities/${superUnitId}/accesses/categories`,
+        await api.patch(
+          `/superunities/${superUnitId}/invites/types/${id}`,
           data,
         );
 
@@ -147,22 +169,23 @@ const CategoryAdd: React.FC = () => {
       }
 
       setLoading(false);
-    },
-    [superUnitId, weekDays, devices, name, timeRestrictions, addToast],
-  );
 
+      history.push('/invites');
+    },
+    [superUnitId, weekDays, devices, name, timeRestrictions, addToast, id],
+  );
   return (
     <Layout>
       <Header
-        title={{ value: 'Categorias', path: '/category' }}
-        subTitle={{ value: 'Adicionar Categoria', path: '/category/new' }}
+        title={{ value: 'Tipos de Convites', path: '/invites' }}
+        subTitle={{ value: 'Editar tipo de Convite', path: '/invites/new' }}
         hasBackButton
       />
       <Container>
         <MainHeader>
           <h1>
             <FiList />
-            Adicionar Categoria
+            Editar tipo de Convite
           </h1>
         </MainHeader>
         <Content>
@@ -190,7 +213,7 @@ const CategoryAdd: React.FC = () => {
             />
 
             <Button type="submit" icon={FiPlus} loading={loading}>
-              Adicionar
+              Salvar
             </Button>
           </form>
         </Content>
@@ -199,4 +222,4 @@ const CategoryAdd: React.FC = () => {
   );
 };
 
-export default CategoryAdd;
+export default InviteEdit;

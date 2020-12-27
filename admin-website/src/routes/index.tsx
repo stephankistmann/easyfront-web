@@ -26,6 +26,7 @@ import AccessEdit from '../pages/AccessEdit';
 
 import Invite from '../pages/Invite';
 import InviteAdd from '../pages/InviteAdd';
+import InviteEdit from '../pages/InviteEdit';
 
 import ErrorPage from '../pages/ErrorPage';
 
@@ -40,6 +41,7 @@ const Routes: React.FC = () => (
 
     <Route path="/invites" component={Invite} isPrivate exact />
     <Route path="/invites/new" component={InviteAdd} isPrivate />
+    <Route path="/invites/edit/:id" component={InviteEdit} isPrivate />
 
     <Route path="/units" component={Units} isPrivate exact />
     <Route path="/units/new" component={UnitAdd} isPrivate exact />

@@ -74,7 +74,7 @@ const CategoryItem: React.FC<InviteItemProps> = ({
         )}
       </Devices>
       <Controllers>
-        <Link to={`/category/edit/${id}`}>
+        <Link to={`/invites/edit/${id}`}>
           <FiEdit3 />
         </Link>
         <button type="button" onClick={onClickDelete}>

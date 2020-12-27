@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { FiList, FiPlus, FiSend } from 'react-icons/fi';
+import { FiPlus, FiSend } from 'react-icons/fi';
 import Pagination from '../../components/Pagination';
 import {
   Container,
@@ -29,7 +29,7 @@ interface IInvites {
 }
 
 const Invite: React.FC = () => {
-  const [categories, setCategories] = useState<IInvites[]>([]);
+  const [invites, setInvites] = useState<IInvites[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const { selected } = useSuperunit();
@@ -43,15 +43,13 @@ const Invite: React.FC = () => {
   };
 
   async function handleDelete(id: string) {
-    const deleteCategory = categories.find(category => category.id === id);
+    const deleteInvite = invites.find(category => category.id === id);
 
     await api.delete(
-      `/superunities/${selected?.id}/accesses/categories/${deleteCategory?.id}`,
+      `/superunities/${selected?.id}/invites/types/${deleteInvite?.id}`,
     );
 
-    setCategories(oldCategory =>
-      oldCategory.filter(category => category.id !== id),
-    );
+    setInvites(oldInvite => oldInvite.filter(invite => invite.id !== id));
   }
 
   useEffect(() => {
@@ -59,13 +57,13 @@ const Invite: React.FC = () => {
       setLoading(true);
       if (selected) {
         const response = await api.get(
-          `/superunities/${superunitId}/accesses/categories`,
+          `/superunities/${superunitId}/invites/types`,
           { params: { page } },
         );
 
         if (!response) return;
 
-        setCategories(response.data.data);
+        setInvites(response.data.data);
 
         setPage(response.data.page);
 
@@ -79,28 +77,28 @@ const Invite: React.FC = () => {
 
   return (
     <Layout>
-      <Header title={{ value: 'Convites', path: '/invites' }} />
+      <Header title={{ value: 'Tipos de Convites', path: '/invites' }} />
       <Container>
         <MainHeader>
           <div>
             <h1>
               <FiSend />
-              Lista de Convites
+              Lista de tipos de Convites
             </h1>
           </div>
           <StyledButton
             icon={FiPlus}
-            name="Convites"
+            name="Tipos de Convites"
             onClick={() => history.push('/invites/new')}
           >
-            Adicionar Convite
+            Adicionar tipo de Convite
           </StyledButton>
         </MainHeader>
         {loading ? (
           <StyledLoading />
         ) : (
           <List>
-            {categories.length > 0 && (
+            {invites.length > 0 && (
               <ListItemsCategory>
                 <div>Nome</div>
                 <div>Horário</div>
@@ -109,22 +107,22 @@ const Invite: React.FC = () => {
               </ListItemsCategory>
             )}
 
-            {categories.length > 0 ? (
-              categories.map(category => (
+            {invites.length > 0 ? (
+              invites.map(invite => (
                 <CategoryItem
-                  key={category.id}
-                  id="category.id"
-                  name={category.name || 'Não informado'}
-                  min_time={category.min_time || 'Não informado'}
-                  max_time={category.max_time || 'Não informado'}
-                  devices={category.devices.map(device => device.name)}
-                  onClickDelete={() => handleDelete(category.id)}
+                  key={invite.id}
+                  id={invite.id}
+                  name={invite.name || 'Não informado'}
+                  min_time={invite.min_time || 'Não informado'}
+                  max_time={invite.max_time || 'Não informado'}
+                  devices={invite.devices.map(device => device.name)}
+                  onClickDelete={() => handleDelete(invite.id)}
                 />
               ))
             ) : (
-              <p>Ainda não há convites registrados</p>
+              <p>Ainda não há tipos de convites registrados</p>
             )}
-            {categories.length > 0 && (
+            {invites.length > 0 && (
               <Pagination
                 page={page}
                 handlePagination={handlePages}
