@@ -5,6 +5,7 @@ import React, {
   useContext,
   useEffect,
 } from 'react';
+import { useHistory } from 'react-router-dom';
 import api from '../services/api';
 
 interface User {
@@ -41,6 +42,7 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
+  const history = useHistory();
   const [data, setData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@Easyfront:token');
     const user = localStorage.getItem('@Easyfront:user');
@@ -56,21 +58,33 @@ const AuthProvider: React.FC = ({ children }) => {
     return {} as AuthState;
   });
 
-  const signIn = useCallback(async ({ email, password }) => {
-    const response = await api.post('session', {
-      email,
-      password,
-    });
+  const signIn = useCallback(
+    async ({ email, password }) => {
+      await api
+        .post('session', {
+          email,
+          password,
+        })
+        .then(response => {
+          const { token, user } = response.data;
 
-    const { token, user } = response.data;
+          api.defaults.headers.authorization = `bearer ${token}`;
 
-    api.defaults.headers.authorization = `bearer ${token}`;
+          localStorage.setItem('@Easyfront:token', token);
+          localStorage.setItem('@Easyfront:user', JSON.stringify(user));
 
-    localStorage.setItem('@Easyfront:token', token);
-    localStorage.setItem('@Easyfront:user', JSON.stringify(user));
+          if (user.active !== true) history.push('/error');
 
-    setData({ token, user });
-  }, []);
+          setData({ token, user });
+        })
+        .catch(error => {
+          if (error.response.data.content.code === 1) {
+            history.push('/signin');
+          }
+        });
+    },
+    [history],
+  );
 
   const signOut = useCallback(() => {
     localStorage.removeItem('@Easyfront:token');
