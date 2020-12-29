@@ -33,9 +33,8 @@ import ErrorPage from '../pages/ErrorPage';
 const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={SignIn} />
-    <Route path="/signin" component={SignIn} />
+    <Route path="/signin" exact component={SignIn} />
     <Route path="/dashboard" component={Dashboard} isPrivate />
-    <Route path="/dashboard/:page?" component={Dashboard} isPrivate />
     <Route path="/error" component={ErrorPage} isPrivate />
 
     <Route path="/forgot-password" component={ForgotPassword} />
