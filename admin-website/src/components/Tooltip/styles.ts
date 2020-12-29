@@ -20,7 +20,7 @@ export const Container = styled.div<ITooltipProps>`
     align-items: center;
     justify-content: center;
 
-    width: ${props => `${props.width}px`};
+    min-width: ${props => `${props.width}px`};
     height: ${props => `${props.height}px`};
     padding: 8px;
     border-radius: 4px;
@@ -35,6 +35,8 @@ export const Container = styled.div<ITooltipProps>`
     left: 50%;
     transform: translateX(-50%);
     color: #312e31;
+
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 
     ${props =>
       props.direction === 'up' &&

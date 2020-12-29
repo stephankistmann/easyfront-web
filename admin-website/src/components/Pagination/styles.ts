@@ -25,7 +25,7 @@ export const NavPage = styled.button`
   }
 
   span {
-    font-size: 18px;
+    font-size: 14px;
   }
 
   svg {

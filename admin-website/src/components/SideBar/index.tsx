@@ -46,19 +46,19 @@ const SideBar: React.FC = () => {
         />
         <MenuItem path={path} to="/peers" name="Usuários" icon={FiUser} />
         <MenuItem path={path} to="/units" name="Unidades" icon={FiHome} />
-        <MenuItem path={path} to="/category" name="Categorias" icon={FiList} />
-        <MenuItem
-          path={path}
-          to="/access"
-          name="Acessos"
-          icon={FiChevronsRight}
-        />
         <MenuItem
           path={path}
           to="/invites"
           name="Tipos de Convites"
           icon={FiSend}
         />
+        <MenuItem
+          path={path}
+          to="/access"
+          name="Acessos"
+          icon={FiChevronsRight}
+        />
+        <MenuItem path={path} to="/category" name="Categorias" icon={FiList} />
         <LogoutButton />
       </Menu>
       <OpenCloseButton open={open} onClick={handleToggle}>

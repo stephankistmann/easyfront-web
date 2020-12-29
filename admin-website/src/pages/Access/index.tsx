@@ -100,7 +100,7 @@ const Access: React.FC = () => {
         <List>
           {accesses.length > 0 && (
             <ListItemsCategory>
-              <div>Parceiro / Super Unidade</div>
+              <div>Parceiro</div>
               <div>Categoria / Unidade</div>
               <div>Editar / Excluir</div>
             </ListItemsCategory>

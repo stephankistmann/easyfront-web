@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import Switch from 'react-switch';
-import { Container, Content } from './styles';
+import { Container, Content, SelectRestriction } from './styles';
 
 interface ITimeRestrictions {
   time_limit: boolean;
@@ -45,7 +45,7 @@ const SelectTimeRestrictions: React.FC<IProps> = ({ value, onChange }) => {
 
   return (
     <Container>
-      <div>
+      <SelectRestriction>
         <p>Definir restrição de horário</p>
         <Switch
           checked={value.time_limit}
@@ -58,7 +58,7 @@ const SelectTimeRestrictions: React.FC<IProps> = ({ value, onChange }) => {
           width={40}
           // boxShadow="0 0 6px rgba(0, 0, 0, 0.4)"
         />
-      </div>
+      </SelectRestriction>
       {value.time_limit && (
         <Content>
           {value.time_limit && (
