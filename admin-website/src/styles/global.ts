@@ -9,8 +9,8 @@ export default createGlobalStyle`
   }
 
   body {
-    background: #fcfcff
-    color: #2f4858
+    background: #fafafe;
+    color: #2f4858;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -40,8 +40,8 @@ export default createGlobalStyle`
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(255, 103, 87, 0.6);
-    border-radius: 10px;
+    background: #ddd;
+    border-radius: 8px;
   }
 
   ::-webkit-scrollbar-track-piece {

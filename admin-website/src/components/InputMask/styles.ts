@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import Tooltip from '../Input/Tooltip';
+import Tooltip from '../InputUnform/Tooltip';
 
 interface ContainerProps {
   isFocused: boolean;
@@ -9,7 +9,7 @@ interface ContainerProps {
 export const Container = styled.div<ContainerProps>`
   background: #ffffff;
   border: 1px solid #dfe9eb;
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 16px;
   width: 100%;
   color: #666360;

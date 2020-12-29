@@ -1,49 +1,113 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
-  height: 12%;
+  height: 64px;
   justify-content: space-between;
-  height: 56px;
-  margin-bottom: 30px;
-
-  button {
-    margin-right: 24px;
-  }
-
-  a {
-    margin-top: 8px;
-    margin-right: 63px;
-    color: #2f4858;
-    text-decoration: none;
-
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-
-  p {
-    align-self: center;
-  }
-
-  p + p {
-    margin-left: 4px;
-    left: 450px;
-    font-weight: bold;
-  }
+  margin-bottom: 16px;
 `;
 
 export const Navigation = styled.div`
   display: flex;
-  button {
-    margin-left: 28px;
+  align-items: center;
+  margin-top: 16px;
+`;
+
+export const NavButton = styled.button`
+  border: 0;
+  display: flex;
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+  background: #eee;
+  border-radius: 8px;
+  margin-right: 24px;
+  transition: 0.2s;
+
+  &:hover {
+    background: #ddd;
+  }
+  ${props =>
+    props.disabled &&
+    css`
+      cursor: default;
+      &:hover {
+        background: #eee;
+      }
+    `}
+`;
+
+export const TitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  div {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #2f4858;
+    margin: 0 16px;
+    opacity: 0.6;
   }
 `;
 
-export const UserContent = styled.div`
+export const Title = styled(Link)`
+  font-size: 16px;
+  color: #2f4858;
+  text-decoration: none;
+  font-weight: 700;
+
+  transition: 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+export const SubTitle = styled(Link)`
+  color: #2f4858;
+  text-decoration: none;
+  cursor: default;
+  transition: 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+export const Left = styled.div`
   display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 88px;
+
+  button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 0;
+    margin: 0 16px;
+    svg {
+      transition: 0.2s;
+    }
+  }
+`;
+
+export const Profile = styled.div`
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  margin-right: 24px;
+  display: flex;
+<<<<<<< HEAD
   width: 400px;
   justify-content: space-between;
   margin-right: 8px;
@@ -57,40 +121,45 @@ export const UserContent = styled.div`
     width: 56px;
     object-fit: cover;
   }
+=======
+  align-items: center;
+  justify-content: center;
+>>>>>>> d1b124f4889f0369a0a1630e157bae317f8140b1
 
-  button {
-    background: #fff;
-    border: 1px solid #dfe9eb;
-    box-shadow: none;
-    border: 1px solid #ff6757;
+  transition: 0.2s;
 
-    :hover {
-      background: #ff6757;
+  a {
+    height: 40px;
+    width: 40px;
+    text-decoration: none;
+
+    img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: bolder;
       color: #fff;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ddd;
+      border-radius: 50%;
+      transition: 0.2s;
     }
   }
 
-  :nth-child(2) {
-    button {
-      :hover {
-        background: #2f4858;
-        border: 0;
+  &:hover {
+    border: 2px solid #69aaf5;
+    a {
+      h1 {
+        background: #69aaf5;
       }
     }
-  }
-`;
-
-export const DropdownContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  background: #ffffff;
-  margin-right: 24px;
-  margin-top: 8px;
-  z-index: 10;
-  border-radius: 10px;
-  border: 1px solid #ff6757;
-
-  :hover {
-    border: 1px solid #2f4858;
   }
 `;

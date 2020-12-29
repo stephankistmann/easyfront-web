@@ -1,12 +1,13 @@
 import React, { ButtonHTMLAttributes } from 'react';
 import { IconBaseProps } from 'react-icons';
+import Loading from '../Loading';
 
-import { Container } from './styles';
+import { Container, IconContent } from './styles';
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   loading?: boolean;
   icon?: React.ComponentType<IconBaseProps>;
-  name: string;
+  name?: string;
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -17,8 +18,10 @@ const Button: React.FC<ButtonProps> = ({
   ...rest
 }) => (
   <Container type="button" name={name} {...rest}>
-    {Icon && <Icon size={24} />}
-    {loading ? 'Carregando...' : children}
+    {children}
+    <IconContent>
+      {loading ? <Loading /> : Icon && <Icon size={20} />}
+    </IconContent>
   </Container>
 );
 

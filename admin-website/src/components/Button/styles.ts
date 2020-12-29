@@ -1,18 +1,28 @@
 import styled from 'styled-components';
 
 export const Container = styled.button`
-  background: #ff6757;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 24px;
+  background: linear-gradient(-30deg, #ff6757, #ff7957);
   height: 56px;
-  border-radius: 10px;
-  border: 0;
-  padding: 0 16px;
-  color: #ffffff;
   width: 100%;
+  border-radius: 8px;
+  border: 0;
+  color: #ffffff;
   font-weight: 500;
   transition: background-color 0.2s;
-  margin-top: 16px;
+  max-width: 340px;
+`;
 
-  &:hover {
-    background: #2f4858;
-  }
+export const IconContent = styled.div`
+  height: 56px;
+  width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
 `;

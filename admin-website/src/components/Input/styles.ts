@@ -4,41 +4,30 @@ import Tooltip from './Tooltip';
 
 interface ContainerProps {
   isFocused: boolean;
-  isErrored: boolean;
+  // isErrored: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
   background: #ffffff;
   border: 1px solid #dfe9eb;
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 16px;
   width: 100%;
   color: #666360;
-  height: 54px;
+  height: 48px;
 
   display: flex;
   align-items: center;
 
-  & + div {
-    margin-top: 8px;
-  }
-
   :hover {
-    border-color: #ff6757;
+    border-color: #69aaf5;
   }
-
-  ${props =>
-    props.isErrored &&
-    css`
-      color: #c53030;
-      border: 1px solid #c53030;
-    `}
 
   ${props =>
     props.isFocused &&
     css`
-      color: #ff6757;
-      border: 1px solid #ff6757;
+      color: #69aaf5;
+      border: 1px solid #69aaf5;
     `}
 
   input {

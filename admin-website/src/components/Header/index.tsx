@@ -1,38 +1,72 @@
-import React from 'react';
-import { FiChevronDown, FiChevronLeft } from 'react-icons/fi';
+import React, { useMemo } from 'react';
+import { FiChevronLeft } from 'react-icons/fi';
+import { BsDot } from 'react-icons/bs';
+import { Link, useHistory } from 'react-router-dom';
 import {
   Container,
-  UserContent,
   Navigation,
-  DropdownContainer,
+  NavButton,
+  TitleContainer,
+  Title,
+  SubTitle,
+  Left,
+  Profile,
 } from './styles';
-import NavButton from '../NavButton';
+import SuperUnitSelect from './SuperUnitSelect';
 import { useAuth } from '../../hooks/auth';
-import LogoutButton from '../LogoutButton';
-import SuperunitItem from '../SuperunitItem';
-import DropdownMenu from '../DropdownMenu';
 
-const Header: React.FC = () => {
+interface ITitle {
+  value: string;
+  path: string;
+}
+
+interface IProps {
+  hasBackButton?: boolean;
+  title: ITitle;
+  subTitle?: ITitle;
+}
+
+const Header: React.FC<IProps> = ({ hasBackButton, title, subTitle }) => {
   const { user } = useAuth();
+  const history = useHistory();
+
+  const initials = useMemo(() => user.name.slice(0, 2).toUpperCase(), [user]);
 
   return (
     <Container>
       <Navigation>
-        <NavButton icon={FiChevronLeft} />
-        <p>Peers - </p>
-        <p> Create peer</p>
+        <NavButton disabled={!hasBackButton} onClick={() => history.goBack()}>
+          {hasBackButton ? (
+            <FiChevronLeft size={18} color="#2f4858" />
+          ) : (
+            <BsDot size={30} color="#939da3" />
+          )}
+        </NavButton>
+
+        <TitleContainer>
+          <Title to={title.path}>{title.value}</Title>
+          {subTitle && (
+            <>
+              <div />
+              <SubTitle to={subTitle.path}>{subTitle.value}</SubTitle>
+            </>
+          )}
+        </TitleContainer>
       </Navigation>
-      <UserContent>
-        <SuperunitItem icon={FiChevronDown} defaultSuperUnit={user.name}>
-          <DropdownContainer>
-            <DropdownMenu>{user.name}</DropdownMenu>
-            <DropdownMenu>{user.name}</DropdownMenu>
-            <DropdownMenu>{user.name}</DropdownMenu>
-            <DropdownMenu>{user.name}</DropdownMenu>
-          </DropdownContainer>
-        </SuperunitItem>
-        <LogoutButton />
-      </UserContent>
+      <Left>
+        <Profile>
+          {user.avatar_url ? (
+            <Link to="/profile">
+              <img src={user.avatar_url} alt="Usuário" />
+            </Link>
+          ) : (
+            <Link to="/profile">
+              <h1>{initials}</h1>
+            </Link>
+          )}
+        </Profile>
+        <SuperUnitSelect />
+      </Left>
     </Container>
   );
 };

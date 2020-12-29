@@ -8,9 +8,15 @@ import { Container, Error } from './styles';
 interface Props extends InputProps {
   name: string;
   icon?: React.ComponentType<IconBaseProps>;
+  inputName?: string;
 }
 
-const InputMask: React.FC<Props> = ({ icon: Icon, name, ...rest }) => {
+const InputMask: React.FC<Props> = ({
+  icon: Icon,
+  name,
+  inputName,
+  ...rest
+}) => {
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
@@ -40,6 +46,7 @@ const InputMask: React.FC<Props> = ({ icon: Icon, name, ...rest }) => {
   return (
     <Container isFocused={isFocused} isErrored={!!error}>
       {Icon && <Icon size={20} />}
+      {inputName && <p>{inputName}</p>}
       <ReactInputMask
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
