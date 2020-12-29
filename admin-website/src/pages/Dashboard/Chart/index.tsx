@@ -17,7 +17,7 @@ const Chart: React.FC = () => {
       ],
       datasets: [
         {
-          label: 'Acessos',
+          label: 'Acessos Semanais',
           data: [32, 45, 12, 76, 68, 90, 20],
           backgroundColor: ['rgba(255, 103, 87, 0.2)'],
           borderWidth: 4,

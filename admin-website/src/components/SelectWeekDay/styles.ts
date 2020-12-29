@@ -6,7 +6,7 @@ interface IWeekDayProps {
 
 export const Container = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
 `;
 
 export const SelectRestriction = styled.div`
@@ -24,13 +24,15 @@ export const SelectRestriction = styled.div`
 export const Content = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   border-radius: 8px;
   height: 48px;
   padding: 0 16px;
   box-shadow: 0 0 16px rgba(0, 0, 100, 0.08);
-  margin-left: 12px;
+  /* margin-left: 12px; */
   position: relative;
-
+  width: 270px;
+  /* 
   &::before {
     content: '';
     width: 8px;
@@ -39,7 +41,7 @@ export const Content = styled.div`
     background: #ddd;
     position: absolute;
     left: -28px;
-  }
+  } */
 `;
 
 export const WeekDay = styled.div<IWeekDayProps>`

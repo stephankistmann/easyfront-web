@@ -74,8 +74,8 @@ const Units: React.FC = () => {
               Lista de Unidades
               <Tooltip
                 title="Teste de largura do container"
-                width={400}
-                height={100}
+                width={250}
+                height={40}
                 direction="down"
               />
             </h1>
