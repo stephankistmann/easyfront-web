@@ -1,8 +1,22 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react';
-import { FiClock, FiEdit3, FiTrash, FiList, FiTablet } from 'react-icons/fi';
+import {
+  FiClock,
+  FiEdit3,
+  FiTrash,
+  FiList,
+  FiTablet,
+  FiSend,
+} from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { Container, Infos, Schedule, Devices, Controllers } from './styles';
+import {
+  Container,
+  Infos,
+  Schedule,
+  Devices,
+  Invites,
+  Controllers,
+} from './styles';
 
 interface CategoryItemProps {
   id: string;
@@ -10,6 +24,7 @@ interface CategoryItemProps {
   min_time: string;
   max_time: string;
   devices: string[];
+  inviteTypesIds: string[];
   onClickDelete?: () => {};
 }
 
@@ -19,6 +34,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
   min_time,
   max_time,
   devices,
+  inviteTypesIds,
   onClickDelete,
 }) => {
   const min_timeMasked = min_time.slice(0, -3);
@@ -61,7 +77,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
               </>
             ))}
           </div>
-        ) : (
+        ) : devices.length === 1 ? (
           <div>
             <FiTablet />
             {devices.map(device => (
@@ -71,8 +87,54 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
               </>
             ))}
           </div>
+        ) : (
+          <div>
+            <FiTablet />
+            <p>Não informado</p>
+            <p>.</p>
+          </div>
         )}
       </Devices>
+      <Invites>
+        {inviteTypesIds.length > 2 ? (
+          // eslint-disable-next-line react/jsx-indent
+          <div>
+            <FiSend />
+            <p>{inviteTypesIds[0]}</p>
+            <p>, &nbsp;</p>
+            <p>{inviteTypesIds[1]}</p>
+            <p>...</p>
+            <p>.</p>
+          </div>
+        ) : inviteTypesIds.length > 1 ? (
+          <div>
+            <FiSend />
+            {inviteTypesIds.map(device => (
+              <>
+                <p>{device}</p>
+                <p>,&nbsp;</p>
+              </>
+            ))}
+          </div>
+        ) : inviteTypesIds.length === 1 ? (
+          <div>
+            <FiSend />
+            {inviteTypesIds.map(device => (
+              <>
+                <p>{device}</p>
+                <p>.</p>
+              </>
+            ))}
+          </div>
+        ) : (
+          <div>
+            <FiSend />
+            <p>Não informado</p>
+            <p>.</p>
+          </div>
+        )}
+      </Invites>
+
       <Controllers>
         <Link to={`/category/edit/${id}`}>
           <FiEdit3 />

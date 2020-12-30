@@ -172,7 +172,16 @@ const InviteEdit: React.FC = () => {
 
       history.push('/invites');
     },
-    [superUnitId, weekDays, devices, name, timeRestrictions, addToast, id],
+    [
+      superUnitId,
+      weekDays,
+      devices,
+      name,
+      timeRestrictions,
+      addToast,
+      id,
+      history,
+    ],
   );
   return (
     <Layout>
