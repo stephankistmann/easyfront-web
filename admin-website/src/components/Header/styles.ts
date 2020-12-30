@@ -107,8 +107,24 @@ export const Profile = styled.div`
   border: 2px solid #ddd;
   margin-right: 24px;
   display: flex;
+<<<<<<< HEAD
+  width: 400px;
+  justify-content: space-between;
+  margin-right: 8px;
+  height: 100%;
+
+  img {
+    margin-top: 17px;
+    margin-left: 30px;
+    margin-right: 30px;
+    height: 56px;
+    width: 56px;
+    object-fit: cover;
+  }
+=======
   align-items: center;
   justify-content: center;
+>>>>>>> d1b124f4889f0369a0a1630e157bae317f8140b1
 
   transition: 0.2s;
 
