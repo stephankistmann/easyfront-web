@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { BiDevices } from 'react-icons/bi';
 import { FiCheck, FiX } from 'react-icons/fi';
 import { Container, Content, Device } from './styles';

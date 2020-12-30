@@ -61,7 +61,7 @@ const CategoryItem: React.FC<InviteItemProps> = ({
               </>
             ))}
           </div>
-        ) : (
+        ) : devices.length === 1 ? (
           <div>
             <FiTablet />
             {devices.map(device => (
@@ -70,6 +70,12 @@ const CategoryItem: React.FC<InviteItemProps> = ({
                 <p>.</p>
               </>
             ))}
+          </div>
+        ) : (
+          <div>
+            <FiTablet />
+            <p>Não informado</p>
+            <p>.</p>
           </div>
         )}
       </Devices>

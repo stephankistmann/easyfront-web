@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import Switch from 'react-switch';
+// import Switch from 'react-switch';
 import { Container, SelectRestriction, WeekDay, Content } from './styles';
 
 interface IProps {
@@ -12,7 +12,7 @@ const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 const SelectWeekDay: React.FC<IProps> = ({ value, onChange }) => {
   const [restriction, setRestriction] = useState<boolean>(false);
 
-  const handleToogleWeekDay = useCallback(
+  const handleToggleWeekDay = useCallback(
     index => {
       onChange(
         value.map((weekDay, weekDayIndex) =>
@@ -23,19 +23,22 @@ const SelectWeekDay: React.FC<IProps> = ({ value, onChange }) => {
     [value, onChange],
   );
 
-  function handleToggleRestriction(checkedValue: boolean) {
+  const handleToggleRestriction = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     if (!restriction) {
       onChange([true, true, true, true, true, true, true]);
     }
+    const checkedValue = event.target.checked === true;
 
     setRestriction(checkedValue);
-  }
+  };
 
   return (
     <Container>
       <SelectRestriction>
         <p>Restrição de dias</p>
-        <Switch
+        {/* <Switch
           checked={restriction}
           onChange={checked => handleToggleRestriction(checked)}
           onColor="#69aaf5"
@@ -45,6 +48,13 @@ const SelectWeekDay: React.FC<IProps> = ({ value, onChange }) => {
           height={22}
           width={40}
           // boxShadow="0 0 6px rgba(0, 0, 0, 0.4)"
+        /> */}
+        <input
+          type="checkbox"
+          name="weekDays"
+          id="weekDays"
+          checked={restriction}
+          onChange={handleToggleRestriction}
         />
       </SelectRestriction>
       {restriction && (
@@ -53,7 +63,7 @@ const SelectWeekDay: React.FC<IProps> = ({ value, onChange }) => {
             <WeekDay
               key={`${weekDay} - ${Math.random()}`}
               selected={value[index]}
-              onClick={() => handleToogleWeekDay(index)}
+              onClick={() => handleToggleWeekDay(index)}
             >
               <p>{weekDay}</p>
             </WeekDay>

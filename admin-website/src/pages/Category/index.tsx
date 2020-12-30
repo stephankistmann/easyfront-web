@@ -16,6 +16,10 @@ import { useSuperunit } from '../../hooks/superunit';
 import Header from '../../components/Header';
 import CategoryItem from './CategoryItem';
 
+interface IInvites {
+  name: string;
+}
+
 interface IDevices {
   name: string;
 }
@@ -26,6 +30,7 @@ interface ICategories {
   min_time: string;
   max_time: string;
   devices: IDevices[];
+  inviteTypes: IInvites[];
 }
 
 const Category: React.FC = () => {
@@ -105,6 +110,7 @@ const Category: React.FC = () => {
                 <div>Nome</div>
                 <div>Horário</div>
                 <div>Dispositivos</div>
+                <div>Tipos de convite</div>
                 <div>Editar/Excluir</div>
               </ListItemsCategory>
             )}
@@ -117,7 +123,14 @@ const Category: React.FC = () => {
                   name={category.name || 'Não informado'}
                   min_time={category.min_time || 'Não informado'}
                   max_time={category.max_time || 'Não informado'}
-                  devices={category.devices.map(device => device.name)}
+                  devices={
+                    category.devices.map(device => device.name) ||
+                    'Não informado'
+                  }
+                  inviteTypesIds={
+                    category.inviteTypes.map(inviteType => inviteType.name) ||
+                    'Não informado'
+                  }
                   onClickDelete={() => handleDelete(category.id)}
                 />
               ))
