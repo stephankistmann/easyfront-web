@@ -2,19 +2,18 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
+  flex-direction: column;
+`;
+
+export const SelectSchedule = styled.div`
+  display: flex;
   align-items: center;
   padding-right: 16px;
   margin-right: 16px;
   height: 48px;
-  margin-top: 8px;
 
   p {
     margin-right: 8px;
-  }
-
-  div {
-    display: flex;
-    margin-right: 16px;
   }
 `;
 
@@ -27,10 +26,10 @@ export const Content = styled.div`
   height: 48px;
   padding: 0 16px;
   box-shadow: 0 0 16px rgba(0, 0, 100, 0.08);
-  margin-left: 12px;
+  /* margin-left: 12px; */
   position: relative;
 
-  &::before {
+  /* &::before {
     content: '';
     width: 8px;
     height: 8px;
@@ -38,7 +37,7 @@ export const Content = styled.div`
     background: #ddd;
     position: absolute;
     left: -28px;
-  }
+  } */
 
   > input {
     border: 0;

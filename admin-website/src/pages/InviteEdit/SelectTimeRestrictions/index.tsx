@@ -1,6 +1,6 @@
-import React, { useCallback } from 'react';
-import Switch from 'react-switch';
-import { Container, Content } from './styles';
+import React, { useCallback, useState } from 'react';
+// import Switch from 'react-switch';
+import { Container, SelectSchedule, Content } from './styles';
 
 interface ITimeRestrictions {
   time_limit: boolean;
@@ -14,15 +14,20 @@ interface IProps {
 }
 
 const SelectTimeRestrictions: React.FC<IProps> = ({ value, onChange }) => {
+  const [checked, setChecked] = useState<boolean>(false);
+
   const handleToggle = useCallback(
-    checked => {
-      if (checked) {
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      if (!checked) {
         onChange({ ...value, time_limit: true });
       } else {
         onChange({ time_limit: false, min_time: '00:00', max_time: '23:59' });
       }
+
+      const checkedValue = event.target.checked === true;
+      setChecked(checkedValue);
     },
-    [value, onChange],
+    [value, onChange, checked],
   );
 
   const handleMinTime = useCallback(
@@ -45,9 +50,9 @@ const SelectTimeRestrictions: React.FC<IProps> = ({ value, onChange }) => {
 
   return (
     <Container>
-      <div>
+      <SelectSchedule>
         <p>Definir restrição de horário</p>
-        <Switch
+        {/* <Switch
           checked={value.time_limit}
           onChange={handleToggle}
           onColor="#69aaf5"
@@ -57,8 +62,15 @@ const SelectTimeRestrictions: React.FC<IProps> = ({ value, onChange }) => {
           height={22}
           width={40}
           // boxShadow="0 0 6px rgba(0, 0, 0, 0.4)"
+        /> */}
+        <input
+          type="checkbox"
+          name="time_limit"
+          id="time_limit"
+          checked={checked}
+          onChange={handleToggle}
         />
-      </div>
+      </SelectSchedule>
       {value.time_limit && (
         <Content>
           {value.time_limit && (
