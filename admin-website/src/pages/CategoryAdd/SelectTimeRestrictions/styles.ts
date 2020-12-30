@@ -2,15 +2,10 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  /* padding-right: 16px;
-  margin-right: 16px;
-  margin-top: 8px; */
   flex-direction: column;
-  align-items: left;
-  margin-top: 0;
 `;
 
-export const SelectRestriction = styled.div`
+export const SelectSchedule = styled.div`
   display: flex;
   align-items: center;
   padding-right: 16px;
@@ -29,6 +24,7 @@ export const Content = styled.div`
   border-radius: 8px;
   width: 208px;
   height: 48px;
+  padding: 0 16px;
   box-shadow: 0 0 16px rgba(0, 0, 100, 0.08);
   /* margin-left: 12px; */
   position: relative;

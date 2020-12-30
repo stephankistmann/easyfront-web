@@ -35,6 +35,10 @@ export const Content = styled.div`
     flex-direction: column;
     > div {
       margin-top: 16px;
+
+      :nth-child(3) {
+        margin-top: 0;
+      }
     }
 
     > button {
