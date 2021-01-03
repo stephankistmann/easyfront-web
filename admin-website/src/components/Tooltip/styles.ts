@@ -16,7 +16,7 @@ export const Container = styled.div<ITooltipProps>`
 
   span {
     display: flex;
-    background: #eee;
+    background: rgb(226, 242, 255);
     align-items: center;
     justify-content: center;
 
@@ -44,7 +44,7 @@ export const Container = styled.div<ITooltipProps>`
         &::before {
           content: '';
           border-style: solid;
-          border-color: #eee transparent;
+          border-color: rgb(226, 242, 255) transparent;
           border-width: 6px 6px 0px;
           top: 100%;
           position: absolute;
@@ -59,7 +59,7 @@ export const Container = styled.div<ITooltipProps>`
         &::before {
           content: '';
           border-style: solid;
-          border-color: #eee transparent;
+          border-color: rgb(226, 242, 255) transparent;
           border-width: 0px 6px 6px;
           bottom: 100%;
           position: absolute;

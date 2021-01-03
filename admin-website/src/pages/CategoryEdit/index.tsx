@@ -15,6 +15,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationErrors';
+import Tooltip from '../../components/Tooltip';
 
 interface IInvite {
   id: string;
@@ -56,6 +57,7 @@ const CategoryEdit: React.FC = () => {
   const { id }: { id: string } = useParams();
   const history = useHistory();
   const [devices, setDevices] = useState<IDevice[]>([]);
+  const [oldDevices, setOldDevices] = useState<IDevice[]>([]);
   const [invites, setInvites] = useState<IInvite[]>([]);
   const [validationErrors, setValidationErrors] = useState<IValidationErrors>(
     {},
@@ -84,7 +86,7 @@ const CategoryEdit: React.FC = () => {
 
   useEffect(() => {
     const getData = async () => {
-      if (superUnitId) {
+      if (superUnitId && devices) {
         const categoryData = await api.get(
           `/superunities/${superUnitId}/accesses/categories/${id}`,
         );
@@ -93,14 +95,13 @@ const CategoryEdit: React.FC = () => {
 
         setName(categoryData.data.name);
         setWeekDays(categoryData.data.weekDays);
-        // setTimeRestrictions(
-        //   (categoryData.data.time_limit,
-        //   categoryData.data.min_time,
-        //   categoryData.data.max_time),
-        // );
       }
     };
 
+    getData();
+  }, [id, superUnitId, devices]);
+
+  useEffect(() => {
     const getDevices = async () => {
       if (superUnitId) {
         const response = await api.get(`/superunities/${superUnitId}/devices`);
@@ -116,6 +117,36 @@ const CategoryEdit: React.FC = () => {
       }
     };
 
+    getDevices();
+  }, [superUnitId]);
+
+  useEffect(() => {
+    const getOldDevices = async () => {
+      if (superUnitId) {
+        const response = await api.get(
+          `/superunities/${superUnitId}/accesses/categories/1eea3f69-36fe-4c18-af60-4400e8294ded`,
+        );
+
+        if (response.status !== 200) return;
+
+        setOldDevices(response.data.devices);
+        console.log(oldDevices);
+
+        // setOldDevices(
+        //   devices.map((device: IDevice) =>
+        //     response.data.devices.find(
+        //       (deviceResponse: IDevice) => deviceResponse.id === device.id,
+        //     ),
+        //   ),
+        // );
+      }
+    };
+    getOldDevices();
+
+    // console.log(oldDevices);
+  }, [superUnitId, id, oldDevices]);
+
+  useEffect(() => {
     const getInvites = async () => {
       if (superUnitId) {
         const response = await api.get(
@@ -134,9 +165,7 @@ const CategoryEdit: React.FC = () => {
     };
 
     getInvites();
-    getData();
-    getDevices();
-  }, [id, superUnitId]);
+  }, [superUnitId]);
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
@@ -228,6 +257,12 @@ const CategoryEdit: React.FC = () => {
           <h1>
             <FiList />
             Editar Categoria
+            <Tooltip
+              title="Teste de largura do container"
+              width={250}
+              height={40}
+              direction="down"
+            />
           </h1>
         </MainHeader>
         <Content>

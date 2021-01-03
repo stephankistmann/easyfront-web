@@ -5,7 +5,7 @@ export const Container = styled.button`
   align-items: center;
   justify-content: space-between;
   padding-left: 24px;
-  background: linear-gradient(-30deg, #ff6757, #ff7957);
+  background: linear-gradient(40deg, #f66253, #f19486);
   height: 56px;
   width: 100%;
   border-radius: 8px;

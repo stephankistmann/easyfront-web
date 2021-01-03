@@ -13,6 +13,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationErrors';
+import Tooltip from '../../components/Tooltip';
 
 interface IDevice {
   id: string;
@@ -159,6 +160,12 @@ const InviteAdd: React.FC = () => {
           <h1>
             <FiList />
             Adicionar tipo de Convite
+            <Tooltip
+              title="Teste de largura do container"
+              width={250}
+              height={40}
+              direction="down"
+            />
           </h1>
         </MainHeader>
         <Content>

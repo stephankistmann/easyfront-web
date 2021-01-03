@@ -15,6 +15,7 @@ import api from '../../services/api';
 import { useSuperunit } from '../../hooks/superunit';
 import Header from '../../components/Header';
 import CategoryItem from './CategoryItem';
+import Tooltip from '../../components/Tooltip';
 
 interface IInvites {
   name: string;
@@ -41,7 +42,7 @@ const Category: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const history = useHistory();
 
-  const superunitId = selected?.id;
+  const superUnitId = selected?.id;
 
   const handlePages = (updatePage: number) => {
     setPage(updatePage);
@@ -64,7 +65,7 @@ const Category: React.FC = () => {
       setLoading(true);
       if (selected) {
         const response = await api.get(
-          `/superunities/${superunitId}/accesses/categories`,
+          `/superunities/${superUnitId}/accesses/categories`,
           { params: { page } },
         );
 
@@ -80,7 +81,7 @@ const Category: React.FC = () => {
     }
 
     getData();
-  }, [selected, page, superunitId]);
+  }, [selected, page, superUnitId]);
 
   return (
     <Layout>
@@ -91,6 +92,12 @@ const Category: React.FC = () => {
             <h1>
               <FiList />
               Lista de Categorias
+              <Tooltip
+                title="Teste de largura do container"
+                width={250}
+                height={40}
+                direction="down"
+              />
             </h1>
           </div>
           <StyledButton
