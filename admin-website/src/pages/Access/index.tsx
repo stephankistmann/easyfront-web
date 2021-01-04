@@ -14,6 +14,7 @@ import {
   StyledButton,
 } from './styles';
 import Header from '../../components/Header';
+import Tooltip from '../../components/Tooltip';
 
 interface IUser {
   id: string;
@@ -43,6 +44,8 @@ const Access: React.FC = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [accesses, setAccesses] = useState<IAccess[]>([]);
   const history = useHistory();
+
+  const superUnitId = selected?.id;
 
   const handlePages = (updatePage: number) => {
     setPage(updatePage);
@@ -75,7 +78,7 @@ const Access: React.FC = () => {
     }
 
     getData();
-  }, [selected, page]);
+  }, [selected, page, superUnitId]);
 
   return (
     <Layout>
@@ -86,6 +89,12 @@ const Access: React.FC = () => {
             <h1>
               <FiChevronsRight />
               Lista de Acessos
+              <Tooltip
+                title="Teste de largura do container"
+                width={250}
+                height={40}
+                direction="down"
+              />
             </h1>
           </div>
           <StyledButton
@@ -110,9 +119,9 @@ const Access: React.FC = () => {
               <AccessItem
                 key={acces.id}
                 id={acces.id}
-                name={acces.user?.name}
-                unit={acces.unit.name}
-                category={acces.accessCategory.name}
+                name={acces.user?.name || 'Não informado'}
+                unit={acces.unit.name || 'Não informado'}
+                category={acces.accessCategory.name || 'Não informado'}
                 onClickDelete={() => handleDelete(acces.id)}
               />
             ))

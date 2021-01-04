@@ -15,6 +15,11 @@ import api from '../../services/api';
 import { useSuperunit } from '../../hooks/superunit';
 import Header from '../../components/Header';
 import CategoryItem from './CategoryItem';
+import Tooltip from '../../components/Tooltip';
+
+interface IInvites {
+  name: string;
+}
 
 interface IDevices {
   name: string;
@@ -26,6 +31,7 @@ interface ICategories {
   min_time: string;
   max_time: string;
   devices: IDevices[];
+  inviteTypes: IInvites[];
 }
 
 const Category: React.FC = () => {
@@ -36,7 +42,7 @@ const Category: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const history = useHistory();
 
-  const superunitId = selected?.id;
+  const superUnitId = selected?.id;
 
   const handlePages = (updatePage: number) => {
     setPage(updatePage);
@@ -59,7 +65,7 @@ const Category: React.FC = () => {
       setLoading(true);
       if (selected) {
         const response = await api.get(
-          `/superunities/${superunitId}/accesses/categories`,
+          `/superunities/${superUnitId}/accesses/categories`,
           { params: { page } },
         );
 
@@ -75,7 +81,7 @@ const Category: React.FC = () => {
     }
 
     getData();
-  }, [selected, page, superunitId]);
+  }, [selected, page, superUnitId]);
 
   return (
     <Layout>
@@ -86,6 +92,12 @@ const Category: React.FC = () => {
             <h1>
               <FiList />
               Lista de Categorias
+              <Tooltip
+                title="Teste de largura do container"
+                width={250}
+                height={40}
+                direction="down"
+              />
             </h1>
           </div>
           <StyledButton
@@ -105,6 +117,7 @@ const Category: React.FC = () => {
                 <div>Nome</div>
                 <div>Horário</div>
                 <div>Dispositivos</div>
+                <div>Tipos de convite</div>
                 <div>Editar/Excluir</div>
               </ListItemsCategory>
             )}
@@ -117,7 +130,14 @@ const Category: React.FC = () => {
                   name={category.name || 'Não informado'}
                   min_time={category.min_time || 'Não informado'}
                   max_time={category.max_time || 'Não informado'}
-                  devices={category.devices.map(device => device.name)}
+                  devices={
+                    category.devices.map(device => device.name) ||
+                    'Não informado'
+                  }
+                  inviteTypesIds={
+                    category.inviteTypes.map(inviteType => inviteType.name) ||
+                    'Não informado'
+                  }
                   onClickDelete={() => handleDelete(category.id)}
                 />
               ))

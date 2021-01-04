@@ -54,15 +54,12 @@ const Header: React.FC<IProps> = ({ hasBackButton, title, subTitle }) => {
         </TitleContainer>
       </Navigation>
       <Left>
-        <Profile>
+        <Profile to="/profile">
+          <div />
           {user.avatar_url ? (
-            <Link to="/profile">
-              <img src={user.avatar_url} alt="Usuário" />
-            </Link>
+            <img src={user.avatar_url} alt="Usuário" />
           ) : (
-            <Link to="/profile">
-              <h1>{initials}</h1>
-            </Link>
+            <h1>{initials}</h1>
           )}
         </Profile>
         <SuperUnitSelect />

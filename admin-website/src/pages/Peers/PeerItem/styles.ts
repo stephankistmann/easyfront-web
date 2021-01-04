@@ -44,7 +44,8 @@ export const Contact = styled.div`
     height: 28px;
     padding: 0 24px;
     border-radius: 4px;
-    background: #e4defe;
+    background: transparent;
+    /* background: #e4defe; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,7 +85,7 @@ export const Extra = styled.div`
     height: 28px;
     padding: 0 24px;
     border-radius: 4px;
-    background: rgb(226, 242, 255);
+    /* background: rgb(226, 242, 255); */
     display: flex;
     align-items: center;
     justify-content: center;

@@ -106,6 +106,37 @@ export const Devices = styled.div`
     }
   }
 `;
+export const Invites = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    padding: 0 24px;
+    background: rgb(224, 249, 224);
+    height: 28px;
+    position: relative;
+    margin-right: 4px;
+
+    svg {
+      height: 16px;
+      width: 16px;
+      margin-right: 8px;
+    }
+  }
+
+  p {
+    font-size: 14px;
+    :last-child {
+      display: none;
+    }
+  }
+`;
 
 export const Controllers = styled.div`
   display: flex;

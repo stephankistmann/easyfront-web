@@ -12,6 +12,7 @@ interface ISuperUnitContext {
   superunities: ISuperUnit[];
   selected: ISuperUnit | undefined;
   selectSuperunit(s: Object): void;
+  loading: boolean;
 }
 
 const SuperunitContext = createContext<ISuperUnitContext>(
@@ -22,7 +23,7 @@ const SuperunitProvider: React.FC = ({ children }) => {
   const { token } = useAuth();
   const [superunities, setSuperunities] = useState<ISuperUnit[]>([]);
   const [selected, setSelected] = useState<ISuperUnit>();
-  const [load, setLoad] = useState(true);
+  const [loading, setLoading] = useState(true);
   const history = useHistory();
 
   async function selectSuperunit(id: string) {
@@ -32,15 +33,18 @@ const SuperunitProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     async function getData() {
-      const response = await api.get('/manager/superunities');
+      if (token) {
+        setLoading(true);
+        const response = await api.get('/manager/superunities');
 
-      setSuperunities(response.data);
+        setSuperunities(response.data);
 
-      if (response.data.length === 0) {
-        history.push('/error');
+        if (response.data.length === 0) {
+          history.push('/error');
+        }
+        setSelected(response.data[0]);
+        setLoading(false);
       }
-      setSelected(response.data[0]);
-      setLoad(false);
     }
 
     getData();
@@ -48,7 +52,7 @@ const SuperunitProvider: React.FC = ({ children }) => {
 
   return (
     <SuperunitContext.Provider
-      value={{ superunities, selected, selectSuperunit }}
+      value={{ superunities, selected, selectSuperunit, loading }}
     >
       {children}
     </SuperunitContext.Provider>

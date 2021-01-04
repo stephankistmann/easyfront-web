@@ -1,8 +1,16 @@
 /* eslint-disable no-constant-condition */
 import React from 'react';
+import { BiBuildingHouse } from 'react-icons/bi';
 import { FiChevronDown } from 'react-icons/fi';
 import { useSuperunit } from '../../../hooks/superunit';
-import { Container, Content, Selected, Item, StyledLoading } from './styles';
+import {
+  Container,
+  Content,
+  Selected,
+  SelectedInfo,
+  Item,
+  StyledLoading,
+} from './styles';
 
 const SuperUnitSelect: React.FC = () => {
   const { superunities, selected, selectSuperunit } = useSuperunit();
@@ -11,14 +19,17 @@ const SuperUnitSelect: React.FC = () => {
     <Container>
       <Selected>
         {!selected ? (
-          <StyledLoading color="#fff" />
+          <StyledLoading color="#0e0e2c" />
         ) : (
           <>
-            <div>
+            <SelectedInfo>
+              <div>
+                <BiBuildingHouse size={20} />
+              </div>
               <h1>{selected?.name}</h1>
-            </div>
+            </SelectedInfo>
             <button type="button">
-              <FiChevronDown color="#fff" size={24} />
+              <FiChevronDown color="#0e0e2c" size={24} />
             </button>
           </>
         )}

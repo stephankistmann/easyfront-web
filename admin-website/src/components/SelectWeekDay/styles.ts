@@ -28,7 +28,7 @@ export const Content = styled.div`
   border-radius: 8px;
   height: 48px;
   padding: 0 16px;
-  box-shadow: 0 0 16px rgba(0, 0, 100, 0.08);
+  background: rgba(0, 0, 10, 0.05);
   /* margin-left: 12px; */
   position: relative;
   width: 270px;

@@ -14,7 +14,7 @@ export const Container = styled.div`
   background: transparent;
   padding: 13px;
   border: 0;
-  color: #2f4858;
+  color: #0e0e2c;
   align-items: center;
   overflow: hidden;
   transition: 0.4s;

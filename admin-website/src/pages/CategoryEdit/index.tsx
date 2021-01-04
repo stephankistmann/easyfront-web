@@ -9,11 +9,19 @@ import SelectWeekDay from '../../components/SelectWeekDay';
 import SelectDevices from './SelectDevices';
 import api from '../../services/api';
 import SelectTimeRestrictions from './SelectTimeRestrictions';
+import SelectInvites from './SelectInvites';
 import { useSuperunit } from '../../hooks/superunit';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationErrors';
+import Tooltip from '../../components/Tooltip';
+
+interface IInvite {
+  id: string;
+  name: string;
+  selected: boolean;
+}
 
 interface IDevice {
   id: string;
@@ -33,6 +41,7 @@ interface ICategory {
   max_time: string;
   time_limit: boolean;
   devicesIds: string[];
+  inviteTypesIds: string[];
   weekDays: boolean[];
 }
 
@@ -48,6 +57,8 @@ const CategoryEdit: React.FC = () => {
   const { id }: { id: string } = useParams();
   const history = useHistory();
   const [devices, setDevices] = useState<IDevice[]>([]);
+  const [oldDevices, setOldDevices] = useState<IDevice[]>([]);
+  const [invites, setInvites] = useState<IInvite[]>([]);
   const [validationErrors, setValidationErrors] = useState<IValidationErrors>(
     {},
   );
@@ -75,7 +86,7 @@ const CategoryEdit: React.FC = () => {
 
   useEffect(() => {
     const getData = async () => {
-      if (superUnitId) {
+      if (superUnitId && devices) {
         const categoryData = await api.get(
           `/superunities/${superUnitId}/accesses/categories/${id}`,
         );
@@ -84,14 +95,13 @@ const CategoryEdit: React.FC = () => {
 
         setName(categoryData.data.name);
         setWeekDays(categoryData.data.weekDays);
-        // setTimeRestrictions(
-        //   (categoryData.data.time_limit,
-        //   categoryData.data.min_time,
-        //   categoryData.data.max_time),
-        // );
       }
     };
 
+    getData();
+  }, [id, superUnitId, devices]);
+
+  useEffect(() => {
     const getDevices = async () => {
       if (superUnitId) {
         const response = await api.get(`/superunities/${superUnitId}/devices`);
@@ -107,9 +117,55 @@ const CategoryEdit: React.FC = () => {
       }
     };
 
-    getData();
     getDevices();
-  }, [id, superUnitId]);
+  }, [superUnitId]);
+
+  useEffect(() => {
+    const getOldDevices = async () => {
+      if (superUnitId) {
+        const response = await api.get(
+          `/superunities/${superUnitId}/accesses/categories/1eea3f69-36fe-4c18-af60-4400e8294ded`,
+        );
+
+        if (response.status !== 200) return;
+
+        setOldDevices(response.data.devices);
+        console.log(oldDevices);
+
+        // setOldDevices(
+        //   devices.map((device: IDevice) =>
+        //     response.data.devices.find(
+        //       (deviceResponse: IDevice) => deviceResponse.id === device.id,
+        //     ),
+        //   ),
+        // );
+      }
+    };
+    getOldDevices();
+
+    // console.log(oldDevices);
+  }, [superUnitId, id, oldDevices]);
+
+  useEffect(() => {
+    const getInvites = async () => {
+      if (superUnitId) {
+        const response = await api.get(
+          `/superunities/${superUnitId}/invites/types`,
+        );
+
+        if (response.status !== 200) return;
+
+        setInvites(
+          response.data.data.map((invite: IInvite) => ({
+            ...invite,
+            selected: false,
+          })),
+        );
+      }
+    };
+
+    getInvites();
+  }, [superUnitId]);
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
@@ -123,6 +179,10 @@ const CategoryEdit: React.FC = () => {
         .filter(device => device.selected)
         .map(device => device.id);
 
+      const inviteTypesIds = invites
+        .filter(invite => invite.selected)
+        .map(invite => invite.id);
+
       const { time_limit, min_time, max_time } = timeRestrictions;
 
       const data: ICategory = {
@@ -131,6 +191,7 @@ const CategoryEdit: React.FC = () => {
         max_time,
         name,
         devicesIds,
+        inviteTypesIds,
         weekDays,
       };
 
@@ -172,7 +233,17 @@ const CategoryEdit: React.FC = () => {
 
       history.push('/category');
     },
-    [superUnitId, weekDays, devices, name, timeRestrictions, addToast, history],
+    [
+      superUnitId,
+      weekDays,
+      devices,
+      invites,
+      name,
+      timeRestrictions,
+      addToast,
+      history,
+      id,
+    ],
   );
   return (
     <Layout>
@@ -186,6 +257,12 @@ const CategoryEdit: React.FC = () => {
           <h1>
             <FiList />
             Editar Categoria
+            <Tooltip
+              title="Teste de largura do container"
+              width={250}
+              height={40}
+              direction="down"
+            />
           </h1>
         </MainHeader>
         <Content>
@@ -210,6 +287,11 @@ const CategoryEdit: React.FC = () => {
             <SelectDevices
               value={devices}
               onChange={value => setDevices(value)}
+            />
+
+            <SelectInvites
+              value={invites}
+              onChange={value => setInvites(value)}
             />
 
             <Button type="submit" icon={FiPlus} loading={loading}>
