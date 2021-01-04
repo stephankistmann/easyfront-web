@@ -57,7 +57,6 @@ const CategoryEdit: React.FC = () => {
   const { id }: { id: string } = useParams();
   const history = useHistory();
   const [devices, setDevices] = useState<IDevice[]>([]);
-  const [oldDevices, setOldDevices] = useState<IDevice[]>([]);
   const [invites, setInvites] = useState<IInvite[]>([]);
   const [validationErrors, setValidationErrors] = useState<IValidationErrors>(
     {},
@@ -93,8 +92,19 @@ const CategoryEdit: React.FC = () => {
 
         if (!categoryData) return;
 
+        const categoryDevices = categoryData.data.devices;
+
         setName(categoryData.data.name);
         setWeekDays(categoryData.data.weekDays);
+        setDevices(oldDevices =>
+          oldDevices.map(oldDevice => {
+            const isSelected = categoryDevices.find(
+              (categoryDevice: IDevice) => categoryDevice.id === oldDevice.id,
+            );
+
+            return isSelected ? { ...oldDevice, selected: true } : oldDevice;
+          }),
+        );
       }
     };
 
@@ -119,32 +129,6 @@ const CategoryEdit: React.FC = () => {
 
     getDevices();
   }, [superUnitId]);
-
-  useEffect(() => {
-    const getOldDevices = async () => {
-      if (superUnitId) {
-        const response = await api.get(
-          `/superunities/${superUnitId}/accesses/categories/1eea3f69-36fe-4c18-af60-4400e8294ded`,
-        );
-
-        if (response.status !== 200) return;
-
-        setOldDevices(response.data.devices);
-        console.log(oldDevices);
-
-        // setOldDevices(
-        //   devices.map((device: IDevice) =>
-        //     response.data.devices.find(
-        //       (deviceResponse: IDevice) => deviceResponse.id === device.id,
-        //     ),
-        //   ),
-        // );
-      }
-    };
-    getOldDevices();
-
-    // console.log(oldDevices);
-  }, [superUnitId, id, oldDevices]);
 
   useEffect(() => {
     const getInvites = async () => {

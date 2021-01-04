@@ -15,7 +15,7 @@ import OpenCloseButton from './OpenCloseButton';
 import logo from '../../assets/logo.png';
 import LogoutButton from './LogoutButton';
 
-const Sidebar: React.FC = () => {
+const SideBar: React.FC = () => {
   const [open, setOpen] = useState(() => {
     const menuState = localStorage.getItem('@Easyfront:menuState');
     return menuState ? menuState === 'true' : true;
@@ -68,4 +68,4 @@ const Sidebar: React.FC = () => {
   );
 };
 
-export default Sidebar;
+export default SideBar;
