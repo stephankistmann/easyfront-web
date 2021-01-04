@@ -218,6 +218,8 @@ const CategoryAdd: React.FC = () => {
               onChange={value => setWeekDays(value)}
             />
 
+            <hr />
+
             <SelectTimeRestrictions
               value={timeRestrictions}
               onChange={value => setTimeRestrictions(value)}

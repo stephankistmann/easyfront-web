@@ -49,8 +49,8 @@ export const Schedule = styled.div`
     justify-content: center;
     border-radius: 8px;
     padding: 0 24px;
-    background: #e2f2f2;
-    color: #356d9b;
+    /* background: #e2f2f2;
+    color: #356d9b; */
     height: 28px;
     opacity: 0.8;
 
@@ -86,8 +86,8 @@ export const Devices = styled.div`
     justify-content: center;
     border-radius: 8px;
     padding: 0 24px;
-    background: #e4defe;
-    color: #5f5294;
+    /* background: #e4defe;
+    color: #5f5294; */
     height: 28px;
     position: relative;
     margin-right: 4px;

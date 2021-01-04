@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 import { FiChevronsRight, FiPlus } from 'react-icons/fi';
 import Button from '../../components/Button';
@@ -45,6 +45,7 @@ interface ISelectOptions {
 }
 
 const AccessEdit: React.FC = () => {
+  const history = useHistory();
   const formRef = useRef<FormHandles>(null);
   const { id }: { id: string } = useParams();
   const { selected } = useSuperunit();
@@ -123,19 +124,17 @@ const AccessEdit: React.FC = () => {
           abortEarly: false,
         });
 
-        console.log(data);
-
         const newData: IFormData = Object.assign(data, { active: true });
-
-        console.log(newData);
 
         await api.patch(`/superunities/${superunitId}/accesses/${id}`, newData);
 
         addToast({
           type: 'success',
-          title: 'Cadastro realizado!',
-          description: 'Acesso cadastrado com sucesso.',
+          title: 'Acesso atualzado!',
+          description: 'O acesso foi atualizado com sucesso.',
         });
+
+        history.push('/access');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);

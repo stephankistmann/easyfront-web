@@ -14,20 +14,15 @@ interface IProps {
 }
 
 const SelectTimeRestrictions: React.FC<IProps> = ({ value, onChange }) => {
-  const [checked, setChecked] = useState<boolean>(false);
-
   const handleToggle = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (!checked) {
+      if (!value.time_limit) {
         onChange({ ...value, time_limit: true });
       } else {
         onChange({ time_limit: false, min_time: '00:00', max_time: '23:59' });
       }
-
-      const checkedValue = event.target.checked === true;
-      setChecked(checkedValue);
     },
-    [value, onChange, checked],
+    [value, onChange],
   );
 
   const handleMinTime = useCallback(
@@ -52,22 +47,11 @@ const SelectTimeRestrictions: React.FC<IProps> = ({ value, onChange }) => {
     <Container>
       <SelectSchedule>
         <p>Definir restrição de horário</p>
-        {/* <Switch
-          checked={value.time_limit}
-          onChange={handleToggle}
-          onColor="#69aaf5"
-          offColor="#ddd"
-          checkedIcon={false}
-          uncheckedIcon={false}
-          height={22}
-          width={40}
-          // boxShadow="0 0 6px rgba(0, 0, 0, 0.4)"
-        /> */}
         <input
           type="checkbox"
           name="time_limit"
           id="time_limit"
-          checked={checked}
+          checked={value.time_limit}
           onChange={handleToggle}
         />
       </SelectSchedule>
