@@ -1,10 +1,10 @@
 import React from 'react';
-import SideBar from '../../components/SideBar';
+import Sidebar from '../../components/Sidebar';
 import { Container, Content, Main } from './styles';
 
 const Layout: React.FC = ({ children }) => (
   <Container>
-    <SideBar />
+    <Sidebar />
     <Main>
       <Content>{children}</Content>
     </Main>
