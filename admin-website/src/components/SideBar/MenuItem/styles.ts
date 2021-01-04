@@ -12,7 +12,7 @@ export const Container = styled.button<ContainerProps>`
   background: transparent;
   padding: 13px;
   border: 0;
-  color: #2f4858;
+  color: #0e0e2c;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -20,11 +20,19 @@ export const Container = styled.button<ContainerProps>`
   background: transparent;
   border-radius: 8px;
 
+  svg {
+    color: #0e0e2c;
+  }
+
   ${props =>
     props.isSelected &&
     css`
       color: #fff;
-      background: linear-gradient(35deg, #ff6757, #ff7957);
+      background: linear-gradient(40deg, #f66253, #f19486);
+
+      svg {
+        color: #fff;
+      }
     `}
   ${props =>
     !props.isSelected &&

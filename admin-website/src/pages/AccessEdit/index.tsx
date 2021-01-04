@@ -19,6 +19,7 @@ import getValidationErrors from '../../utils/getValidationErrors';
 import Select from '../../components/Select';
 import { useSuperunit } from '../../hooks/superunit';
 import Header from '../../components/Header';
+import Tooltip from '../../components/Tooltip';
 
 interface IFormData {
   accessCategory_id: string;
@@ -67,12 +68,32 @@ const AccessEdit: React.FC = () => {
 
         if (!unitiesData) return;
 
+        setUnities(unitiesData.data.data);
+      }
+    }
+
+    getData();
+  }, [superunitId, id, selected]);
+
+  useEffect(() => {
+    async function getData() {
+      if (selected) {
         const categoriesData = await api.get(
           `/superunities/${superunitId}/accesses/categories`,
         );
 
         if (!categoriesData) return;
 
+        setCategories(categoriesData.data.data);
+      }
+    }
+
+    getData();
+  }, [superunitId, id, selected]);
+
+  useEffect(() => {
+    async function getData() {
+      if (selected) {
         const accessData = await api.get(
           `/superunities/${superunitId}/accesses/${id}`,
         );
@@ -88,9 +109,6 @@ const AccessEdit: React.FC = () => {
           label: accessData.data.accessCategory.name,
           value: accessData.data.accessCategory.id,
         });
-
-        setUnities(unitiesData.data.data);
-        setCategories(categoriesData.data.data);
       }
     }
 
@@ -105,7 +123,11 @@ const AccessEdit: React.FC = () => {
           abortEarly: false,
         });
 
+        console.log(data);
+
         const newData: IFormData = Object.assign(data, { active: true });
+
+        console.log(newData);
 
         await api.patch(`/superunities/${superunitId}/accesses/${id}`, newData);
 
@@ -167,6 +189,12 @@ const AccessEdit: React.FC = () => {
           <h1>
             <FiChevronsRight />
             Editar Accesso
+            <Tooltip
+              title="Teste de largura do container"
+              width={250}
+              height={40}
+              direction="down"
+            />
           </h1>
         </MainHeader>
         <Form ref={formRef} onSubmit={handleSubmit}>

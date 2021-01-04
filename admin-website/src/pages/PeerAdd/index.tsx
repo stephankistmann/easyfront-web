@@ -11,6 +11,7 @@ import { useToast } from '../../hooks/toast';
 import api from '../../services/api';
 import Layout from '../../Layouts/Default';
 import Header from '../../components/Header';
+import Tooltip from '../../components/Tooltip';
 
 const PeerAdd: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -76,6 +77,12 @@ const PeerAdd: React.FC = () => {
           <h1>
             <FiUserPlus />
             Adicionar Parceiro
+            <Tooltip
+              title="Teste de largura do container"
+              width={250}
+              height={40}
+              direction="down"
+            />
           </h1>
         </MainHeader>
         <Form ref={formRef} onSubmit={handleSubmit}>

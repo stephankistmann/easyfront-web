@@ -17,6 +17,7 @@ import Pagination from '../../components/Pagination';
 import Layout from '../../Layouts/Default';
 import Header from '../../components/Header';
 import PeerItem from './PeerItem';
+import Tooltip from '../../components/Tooltip';
 
 interface IPeer {
   id: string;
@@ -83,6 +84,12 @@ const Peers: React.FC = () => {
           <h1>
             <FiUsers />
             Lista de Usuários
+            <Tooltip
+              title="Teste de largura do container"
+              width={250}
+              height={40}
+              direction="down"
+            />
           </h1>
 
           <div>

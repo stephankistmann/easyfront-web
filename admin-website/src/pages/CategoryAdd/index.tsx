@@ -14,6 +14,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationErrors';
+import Tooltip from '../../components/Tooltip';
 
 interface IInvite {
   id: string;
@@ -180,7 +181,7 @@ const CategoryAdd: React.FC = () => {
 
       setLoading(false);
     },
-    [superUnitId, weekDays, devices, name, timeRestrictions, addToast],
+    [superUnitId, weekDays, devices, name, timeRestrictions, addToast, invites],
   );
 
   return (
@@ -195,6 +196,12 @@ const CategoryAdd: React.FC = () => {
           <h1>
             <FiList />
             Adicionar Categoria
+            <Tooltip
+              title="Teste de largura do container"
+              width={250}
+              height={40}
+              direction="down"
+            />
           </h1>
         </MainHeader>
         <Content>
@@ -216,15 +223,21 @@ const CategoryAdd: React.FC = () => {
               onChange={value => setTimeRestrictions(value)}
             />
 
+            <hr />
+
             <SelectDevices
               value={devices}
               onChange={value => setDevices(value)}
             />
 
+            <hr />
+
             <SelectInvites
               value={invites}
               onChange={value => setInvites(value)}
             />
+
+            <hr />
 
             <Button type="submit" icon={FiPlus} loading={loading}>
               Adicionar

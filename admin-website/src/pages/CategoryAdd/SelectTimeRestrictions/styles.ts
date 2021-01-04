@@ -25,7 +25,7 @@ export const Content = styled.div`
   width: 208px;
   height: 48px;
   padding: 0 16px;
-  box-shadow: 0 0 16px rgba(0, 0, 100, 0.08);
+  border: 1px solid rgba(0, 0, 10, 0.05);
   /* margin-left: 12px; */
   position: relative;
 
@@ -38,6 +38,10 @@ export const Content = styled.div`
     position: absolute;
     left: -28px;
   } */
+
+  p {
+    margin-right: 8px;
+  }
 
   > input {
     border: 0;

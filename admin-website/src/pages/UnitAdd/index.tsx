@@ -13,6 +13,7 @@ import Select from '../../components/Select';
 import { useSuperunit } from '../../hooks/superunit';
 import Layout from '../../Layouts/Default';
 import Header from '../../components/Header';
+import Tooltip from '../../components/Tooltip';
 
 interface IFormData {
   name: string;
@@ -96,6 +97,12 @@ const UnitAdd: React.FC = () => {
           <h1>
             <FiHome />
             Adicionar Unidade
+            <Tooltip
+              title="Teste de largura do container"
+              width={250}
+              height={40}
+              direction="down"
+            />
           </h1>
         </MainHeader>
         <Form ref={formRef} onSubmit={handleSubmit}>

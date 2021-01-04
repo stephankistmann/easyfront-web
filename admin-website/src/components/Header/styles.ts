@@ -4,15 +4,13 @@ import { Link } from 'react-router-dom';
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  height: 64px;
+  height: 88px;
   justify-content: space-between;
-  margin-bottom: 16px;
 `;
 
 export const Navigation = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 16px;
 `;
 
 export const NavButton = styled.button`
@@ -100,66 +98,49 @@ export const Left = styled.div`
   }
 `;
 
-export const Profile = styled.div`
+export const Profile = styled(Link)`
+  position: relative;
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 2px solid #ddd;
+  border: 4px solid #fff;
   margin-right: 24px;
   display: flex;
-<<<<<<< HEAD
-  width: 400px;
-  justify-content: space-between;
-  margin-right: 8px;
-  height: 100%;
-
-  img {
-    margin-top: 17px;
-    margin-left: 30px;
-    margin-right: 30px;
-    height: 56px;
-    width: 56px;
-    object-fit: cover;
-  }
-=======
   align-items: center;
   justify-content: center;
->>>>>>> d1b124f4889f0369a0a1630e157bae317f8140b1
+  box-shadow: 0 0 12px rgba(0, 0, 20, 0.05);
 
   transition: 0.2s;
+  text-decoration: none;
 
-  a {
-    height: 40px;
+  img {
+    width: 42px;
+    height: 42px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  h1 {
+    font-size: 16px;
+    font-weight: bolder;
+    color: #fff;
     width: 40px;
-    text-decoration: none;
-
-    img {
-      width: 40px;
-      height: 40px;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-    h1 {
-      font-size: 16px;
-      font-weight: bolder;
-      color: #fff;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #ddd;
-      border-radius: 50%;
-      transition: 0.2s;
-    }
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ddd;
+    border-radius: 50%;
+    transition: 0.2s;
   }
 
-  &:hover {
-    border: 2px solid #69aaf5;
-    a {
-      h1 {
-        background: #69aaf5;
-      }
-    }
+  div {
+    position: absolute;
+    background: #82d888;
+    width: 8px;
+    height: 8px;
+    box-shadow: 0 0 6px rgba(0, 0, 20, 0.1);
+    border-radius: 50%;
+    bottom: 0px;
+    right: 0px;
   }
 `;

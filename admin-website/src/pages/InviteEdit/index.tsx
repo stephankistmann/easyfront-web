@@ -14,6 +14,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationErrors';
+import Tooltip from '../../components/Tooltip';
 
 interface IDevice {
   id: string;
@@ -92,7 +93,11 @@ const InviteEdit: React.FC = () => {
       }
     };
 
-    const getDevices = async () => {
+    getData();
+  }, [id, superUnitId]);
+
+  useEffect(() => {
+    const getData = async () => {
       if (superUnitId) {
         const response = await api.get(`/superunities/${superUnitId}/devices`);
 
@@ -108,7 +113,6 @@ const InviteEdit: React.FC = () => {
     };
 
     getData();
-    getDevices();
   }, [id, superUnitId]);
 
   const handleSubmit = useCallback(
@@ -195,6 +199,12 @@ const InviteEdit: React.FC = () => {
           <h1>
             <FiList />
             Editar tipo de Convite
+            <Tooltip
+              title="Teste de largura do container"
+              width={250}
+              height={40}
+              direction="down"
+            />
           </h1>
         </MainHeader>
         <Content>

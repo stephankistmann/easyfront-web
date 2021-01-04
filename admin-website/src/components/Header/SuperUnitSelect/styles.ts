@@ -14,7 +14,7 @@ export const Container = styled.div`
   }
 
   &:hover {
-    svg {
+    button {
       transform: rotate(180deg);
     }
     div:nth-child(2) {
@@ -32,34 +32,46 @@ export const StyledLoading = styled(Loading)`
 export const Selected = styled.div`
   display: flex;
   align-items: center;
-  padding: 0 8px 0 24px;
-  background: linear-gradient(30deg, #ff6757, #ff7957);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  padding: 8px;
+  background: #e5e5e9;
   height: 64px;
   justify-content: space-between;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-radius: 8px;
   width: 300px;
   cursor: pointer;
   button {
     background: transparent;
     border: 0;
-    svg {
-      transition: 0.2s;
-    }
+    margin: 4px;
+    transition: 0.2s;
   }
+`;
+
+export const SelectedInfo = styled.div`
+  display: flex;
+  align-items: center;
+  color: #fff;
 
   div {
-    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    width: 48px;
+    background: #0e0e2c;
+    border-radius: 8px;
+    box-shadow: 0 0 6px rgba(0, 0, 100, 0.1);
+  }
 
-    h1 {
-      font-size: 16px;
-    }
+  h1 {
+    font-size: 16px;
+    margin-left: 16px;
+    color: #0e0e2c;
+  }
 
-    p {
-      font-size: 12px;
-      margin-top: 4px;
-    }
+  p {
+    font-size: 12px;
+    margin-top: 4px;
   }
 `;
 
@@ -78,9 +90,9 @@ export const Content = styled.div`
 
 export const Item = styled.div`
   position: relative;
-  color: #000;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 8px 0;
+  color: #0e0e2c;
+  border-bottom: 1px solid rgba(0, 0, 20, 0.05);
+  padding: 16px 0;
   transition: 0.1s;
   cursor: pointer;
 

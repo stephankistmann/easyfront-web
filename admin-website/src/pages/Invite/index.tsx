@@ -15,6 +15,7 @@ import api from '../../services/api';
 import { useSuperunit } from '../../hooks/superunit';
 import Header from '../../components/Header';
 import CategoryItem from './InviteItem';
+import Tooltip from '../../components/Tooltip';
 
 interface IDevices {
   name: string;
@@ -84,6 +85,12 @@ const Invite: React.FC = () => {
             <h1>
               <FiSend />
               Lista de tipos de Convites
+              <Tooltip
+                title="Teste de largura do container"
+                width={250}
+                height={40}
+                direction="down"
+              />
             </h1>
           </div>
           <StyledButton
