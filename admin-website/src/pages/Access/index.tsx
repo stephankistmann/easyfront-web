@@ -78,7 +78,7 @@ const Access: React.FC = () => {
     }
 
     getData();
-  }, [selected, page, superUnitId]);
+  }, [selected, page, superUnitId, accesses]);
 
   return (
     <Layout>

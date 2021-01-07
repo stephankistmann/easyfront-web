@@ -88,14 +88,14 @@ export const Unit = styled.div`
     height: 28px;
     padding: 0 24px;
     border-radius: 8px;
-    background: #e2f2f2;
+    /* background: #e2f2f2; */
 
     p {
       font-size: 14px;
     }
 
     > div {
-      background: #356d9b;
+      /* background: #356d9b; */
       height: 4px;
       width: 4px;
       border-radius: 50%;
@@ -117,14 +117,14 @@ export const Device = styled.div`
     height: 28px;
     padding: 0 24px;
     border-radius: 8px;
-    background: #e4defe;
+    /* background: #e4defe; */
 
     p {
       font-size: 14px;
     }
 
     > div {
-      background: #5f5294;
+      /* background: #5f5294; */
       height: 4px;
       width: 4px;
       border-radius: 50%;

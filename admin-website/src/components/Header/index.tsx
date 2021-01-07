@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { FiChevronLeft } from 'react-icons/fi';
 import { BsDot } from 'react-icons/bs';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {
   Container,
   Navigation,

@@ -151,7 +151,7 @@ const AccessEdit: React.FC = () => {
         });
       }
     },
-    [addToast, id, superunitId, schema],
+    [addToast, id, superunitId, schema, history],
   );
 
   const optionsUnit = useMemo(

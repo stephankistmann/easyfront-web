@@ -88,7 +88,6 @@ const CategoryEdit: React.FC = () => {
   useEffect(() => {
     const getData = async () => {
       if (superUnitId && loadedDevices && loadedInvites) {
-        console.log('request');
         const categoryData = await api.get(
           `/superunities/${superUnitId}/accesses/categories/${id}`,
         );
@@ -263,8 +262,6 @@ const CategoryEdit: React.FC = () => {
     ],
   );
 
-  console.log(weekDays);
-
   return (
     <Layout>
       <Header
@@ -287,12 +284,12 @@ const CategoryEdit: React.FC = () => {
         </MainHeader>
         <Content>
           <form onSubmit={handleSubmit}>
-            <Input
+            {/* <Input
               value={name}
               onChange={event => setName(event.target.value)}
               placeholder={name}
               error={validationErrors?.name}
-            />
+            /> */}
 
             <SelectWeekDay
               value={weekDays}
