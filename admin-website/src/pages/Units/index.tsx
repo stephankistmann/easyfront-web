@@ -31,6 +31,8 @@ const Units: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const history = useHistory();
 
+  const superUnitId = selected?.id;
+
   const handlePages = (updatePage: number) => {
     setPage(updatePage);
   };
@@ -38,7 +40,7 @@ const Units: React.FC = () => {
   async function handleDelete(id: string) {
     const deleteUnit = unities.find(unit => unit.id === id);
 
-    await api.delete(`/superunities/${selected?.id}/unities/${deleteUnit?.id}`);
+    await api.delete(`/superunities/${superUnitId}/unities/${deleteUnit?.id}`);
 
     setUnities(oldUnities => oldUnities.filter(unit => unit.id !== id));
   }
@@ -47,21 +49,23 @@ const Units: React.FC = () => {
     async function getData() {
       setLoading(true);
       if (selected) {
-        const response = await api.get(`/superunities/${selected.id}/unities`, {
+        const response = await api.get(`/superunities/${superUnitId}/unities`, {
           params: { page },
         });
 
         if (!response) return;
+
         setUnities(response.data.data);
 
         setPage(response.data.page);
+
         setTotalPages(response.data.total_pages);
       }
       setLoading(false);
     }
 
     getData();
-  }, [selected, page]);
+  }, [selected, page, superUnitId]);
 
   return (
     <Layout>
