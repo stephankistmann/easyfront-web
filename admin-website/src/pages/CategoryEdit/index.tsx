@@ -57,8 +57,9 @@ const CategoryEdit: React.FC = () => {
   const { id }: { id: string } = useParams();
   const history = useHistory();
   const [devices, setDevices] = useState<IDevice[]>([]);
-  const [oldDevices, setOldDevices] = useState<IDevice[]>([]);
   const [invites, setInvites] = useState<IInvite[]>([]);
+  const [loadedDevices, setLoadedDevices] = useState(false);
+  const [loadedInvites, setLoadedInvites] = useState(false);
   const [validationErrors, setValidationErrors] = useState<IValidationErrors>(
     {},
   );
@@ -86,20 +87,59 @@ const CategoryEdit: React.FC = () => {
 
   useEffect(() => {
     const getData = async () => {
-      if (superUnitId && devices) {
+      if (superUnitId && loadedDevices && loadedInvites) {
         const categoryData = await api.get(
           `/superunities/${superUnitId}/accesses/categories/${id}`,
         );
 
         if (!categoryData) return;
 
-        setName(categoryData.data.name);
+        const categoryDevices = categoryData.data.devices;
+
+        const categoryInvites = categoryData.data.inviteTypes;
+
+        const categoryTimeRestriction = {
+          min_time: categoryData.data.min_time,
+          max_time: categoryData.data.max_time,
+          time_limit: categoryData.data.time_limit,
+        };
+
+        setTimeRestrictions(categoryTimeRestriction);
         setWeekDays(categoryData.data.weekDays);
+        setName(categoryData.data.name);
+        setDevices(oldDevices =>
+          oldDevices.map(oldDevice => {
+            const isSelected = categoryDevices.find(
+              (categoryDevice: IDevice) => categoryDevice.id === oldDevice.id,
+            );
+
+            return isSelected ? { ...oldDevice, selected: true } : oldDevice;
+          }),
+        );
+
+        setInvites(oldInvites =>
+          oldInvites.map(oldInvite => {
+            const isSelected = categoryInvites.find(
+              (categoryInvite: IInvite) => categoryInvite.id === oldInvite.id,
+            );
+
+            return isSelected ? { ...oldInvite, selected: true } : oldInvite;
+          }),
+        );
       }
     };
 
     getData();
-  }, [id, superUnitId, devices]);
+  }, [
+    id,
+    superUnitId,
+    setWeekDays,
+    setDevices,
+    setName,
+    setTimeRestrictions,
+    loadedDevices,
+    loadedInvites,
+  ]);
 
   useEffect(() => {
     const getDevices = async () => {
@@ -114,37 +154,12 @@ const CategoryEdit: React.FC = () => {
             selected: false,
           })),
         );
+        setLoadedDevices(true);
       }
     };
 
     getDevices();
   }, [superUnitId]);
-
-  useEffect(() => {
-    const getOldDevices = async () => {
-      if (superUnitId) {
-        const response = await api.get(
-          `/superunities/${superUnitId}/accesses/categories/1eea3f69-36fe-4c18-af60-4400e8294ded`,
-        );
-
-        if (response.status !== 200) return;
-
-        setOldDevices(response.data.devices);
-        console.log(oldDevices);
-
-        // setOldDevices(
-        //   devices.map((device: IDevice) =>
-        //     response.data.devices.find(
-        //       (deviceResponse: IDevice) => deviceResponse.id === device.id,
-        //     ),
-        //   ),
-        // );
-      }
-    };
-    getOldDevices();
-
-    // console.log(oldDevices);
-  }, [superUnitId, id, oldDevices]);
 
   useEffect(() => {
     const getInvites = async () => {
@@ -161,6 +176,7 @@ const CategoryEdit: React.FC = () => {
             selected: false,
           })),
         );
+        setLoadedInvites(true);
       }
     };
 
@@ -207,8 +223,8 @@ const CategoryEdit: React.FC = () => {
 
         addToast({
           type: 'success',
-          title: 'Cadastro realizado!',
-          description: 'Categoria cadastrada com sucesso.',
+          title: 'Categoria atualizada!',
+          description: 'A categoria foi atualizada com sucesso.',
         });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
@@ -245,6 +261,7 @@ const CategoryEdit: React.FC = () => {
       id,
     ],
   );
+
   return (
     <Layout>
       <Header
@@ -267,32 +284,40 @@ const CategoryEdit: React.FC = () => {
         </MainHeader>
         <Content>
           <form onSubmit={handleSubmit}>
-            <Input
+            {/* <Input
               value={name}
               onChange={event => setName(event.target.value)}
               placeholder={name}
               error={validationErrors?.name}
-            />
+            /> */}
 
             <SelectWeekDay
               value={weekDays}
               onChange={value => setWeekDays(value)}
             />
 
+            <hr />
+
             <SelectTimeRestrictions
               value={timeRestrictions}
               onChange={value => setTimeRestrictions(value)}
             />
+
+            <hr />
 
             <SelectDevices
               value={devices}
               onChange={value => setDevices(value)}
             />
 
+            <hr />
+
             <SelectInvites
               value={invites}
               onChange={value => setInvites(value)}
             />
+
+            <hr />
 
             <Button type="submit" icon={FiPlus} loading={loading}>
               Salvar

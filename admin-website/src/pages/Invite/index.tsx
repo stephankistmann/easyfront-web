@@ -30,10 +30,10 @@ interface IInvites {
 }
 
 const Invite: React.FC = () => {
+  const { selected } = useSuperunit();
   const [invites, setInvites] = useState<IInvites[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const { selected } = useSuperunit();
   const [loading, setLoading] = useState(true);
   const history = useHistory();
 

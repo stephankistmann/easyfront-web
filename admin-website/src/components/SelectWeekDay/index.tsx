@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react';
-// import Switch from 'react-switch';
 import { Container, SelectRestriction, WeekDay, Content } from './styles';
 
 interface IProps {
@@ -38,17 +37,6 @@ const SelectWeekDay: React.FC<IProps> = ({ value, onChange }) => {
     <Container>
       <SelectRestriction>
         <p>Restrição de dias</p>
-        {/* <Switch
-          checked={restriction}
-          onChange={checked => handleToggleRestriction(checked)}
-          onColor="#69aaf5"
-          offColor="#ddd"
-          checkedIcon={false}
-          uncheckedIcon={false}
-          height={22}
-          width={40}
-          // boxShadow="0 0 6px rgba(0, 0, 0, 0.4)"
-        /> */}
         <input
           type="checkbox"
           name="weekDays"

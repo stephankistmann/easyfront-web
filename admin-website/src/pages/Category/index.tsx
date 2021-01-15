@@ -52,7 +52,7 @@ const Category: React.FC = () => {
     const deleteCategory = categories.find(category => category.id === id);
 
     await api.delete(
-      `/superunities/${selected?.id}/accesses/categories/${deleteCategory?.id}`,
+      `/superunities/${superUnitId}/accesses/categories/${deleteCategory?.id}`,
     );
 
     setCategories(oldCategory =>

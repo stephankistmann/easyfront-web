@@ -45,5 +45,13 @@ export const Content = styled.div`
       align-self: flex-end;
       margin-top: 16px;
     }
+
+    hr {
+      height: 1px;
+      margin: 16px 0;
+      background: rgba(0, 0, 10, 0.05);
+      border: 0;
+      width: 100%;
+    }
   }
 `;

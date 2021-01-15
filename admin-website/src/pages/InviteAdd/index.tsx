@@ -182,15 +182,21 @@ const InviteAdd: React.FC = () => {
               onChange={value => setWeekDays(value)}
             />
 
+            <hr />
+
             <SelectTimeRestrictions
               value={timeRestrictions}
               onChange={value => setTimeRestrictions(value)}
             />
 
+            <hr />
+
             <SelectDevices
               value={devices}
               onChange={value => setDevices(value)}
             />
+
+            <hr />
 
             <Button type="submit" icon={FiPlus} loading={loading}>
               Adicionar

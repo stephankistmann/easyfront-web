@@ -14,7 +14,7 @@ export const SelectRestriction = styled.div`
   align-items: center;
   padding-right: 16px;
   margin-right: 16px;
-  height: 48px;
+  margin-top: 16px;
 
   p {
     margin-right: 8px;
@@ -28,10 +28,12 @@ export const Content = styled.div`
   border-radius: 8px;
   height: 48px;
   padding: 0 16px;
-  background: rgba(0, 0, 10, 0.05);
-  /* margin-left: 12px; */
   position: relative;
   width: 270px;
+  margin-top: 16px;
+  border: 1px solid rgba(0, 0, 10, 0.05);
+  /* background: rgba(0, 0, 10, 0.05); */
+  /* margin-left: 12px; */
   /* 
   &::before {
     content: '';

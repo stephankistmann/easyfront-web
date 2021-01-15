@@ -84,12 +84,8 @@ const InviteEdit: React.FC = () => {
         if (!inviteData) return;
 
         setName(inviteData.data.name);
+        setTimeRestrictions(inviteData.data);
         setWeekDays(inviteData.data.weekDays);
-        // setTimeRestrictions(
-        //   (inviteData.data.time_limit,
-        //   inviteData.data.min_time,
-        //   inviteData.data.max_time),
-        // );
       }
     };
 
@@ -150,8 +146,8 @@ const InviteEdit: React.FC = () => {
 
         addToast({
           type: 'success',
-          title: 'Cadastro realizado!',
-          description: 'Categoria cadastrada com sucesso.',
+          title: 'Convite atualizado!',
+          description: 'O tipo de convite foi atualizado com sucesso.',
         });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
@@ -221,15 +217,21 @@ const InviteEdit: React.FC = () => {
               onChange={value => setWeekDays(value)}
             />
 
+            <hr />
+
             <SelectTimeRestrictions
               value={timeRestrictions}
               onChange={value => setTimeRestrictions(value)}
             />
 
+            <hr />
+
             <SelectDevices
               value={devices}
               onChange={value => setDevices(value)}
             />
+
+            <hr />
 
             <Button type="submit" icon={FiPlus} loading={loading}>
               Salvar

@@ -44,7 +44,6 @@ export const Contact = styled.div`
     height: 28px;
     padding: 0 24px;
     border-radius: 4px;
-    background: transparent;
     /* background: #e4defe; */
     display: flex;
     align-items: center;

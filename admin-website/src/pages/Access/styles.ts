@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Button from '../../components/Button';
+import Loading from '../../components/Loading';
 
 export const Container = styled.div`
   display: flex;
@@ -49,6 +50,13 @@ export const MainHeader = styled.div`
 export const StyledButton = styled(Button)`
   width: 276px;
   height: 48px;
+`;
+
+export const StyledLoading = styled(Loading).attrs({
+  color: '#888',
+})`
+  padding-bottom: 64px;
+  padding-top: 64px;
 `;
 
 export const List = styled.div`

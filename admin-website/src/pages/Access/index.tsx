@@ -12,6 +12,7 @@ import {
   List,
   ListItemsCategory,
   StyledButton,
+  StyledLoading,
 } from './styles';
 import Header from '../../components/Header';
 import Tooltip from '../../components/Tooltip';
@@ -44,6 +45,7 @@ const Access: React.FC = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [accesses, setAccesses] = useState<IAccess[]>([]);
   const history = useHistory();
+  const [loading, setLoading] = useState(true);
 
   const superUnitId = selected?.id;
 
@@ -63,6 +65,7 @@ const Access: React.FC = () => {
 
   useEffect(() => {
     async function getData() {
+      setLoading(true);
       if (selected) {
         const response = await api.get(
           `/superunities/${selected.id}/accesses`,
@@ -75,10 +78,11 @@ const Access: React.FC = () => {
         setAccesses(response.data.data);
         setTotalPages(response.data.total_pages);
       }
+      setLoading(false);
     }
 
     getData();
-  }, [selected, page, superUnitId]);
+  }, [selected, page, superUnitId, accesses]);
 
   return (
     <Layout>
@@ -105,37 +109,40 @@ const Access: React.FC = () => {
             Adicionar Acesso
           </StyledButton>
         </MainHeader>
-
-        <List>
-          {accesses.length > 0 && (
-            <ListItemsCategory>
-              <div>Parceiro</div>
-              <div>Categoria / Unidade</div>
-              <div>Editar / Excluir</div>
-            </ListItemsCategory>
-          )}
-          {accesses.length > 0 ? (
-            accesses.map(acces => (
-              <AccessItem
-                key={acces.id}
-                id={acces.id}
-                name={acces.user?.name || 'Não informado'}
-                unit={acces.unit.name || 'Não informado'}
-                category={acces.accessCategory.name || 'Não informado'}
-                onClickDelete={() => handleDelete(acces.id)}
+        {loading ? (
+          <StyledLoading />
+        ) : (
+          <List>
+            {accesses.length > 0 && (
+              <ListItemsCategory>
+                <div>Parceiro</div>
+                <div>Categoria / Unidade</div>
+                <div>Editar / Excluir</div>
+              </ListItemsCategory>
+            )}
+            {accesses.length > 0 ? (
+              accesses.map(acces => (
+                <AccessItem
+                  key={acces.id}
+                  id={acces.id}
+                  name={acces.user?.name || 'Não informado'}
+                  unit={acces.unit.name || 'Não informado'}
+                  category={acces.accessCategory.name || 'Não informado'}
+                  onClickDelete={() => handleDelete(acces.id)}
+                />
+              ))
+            ) : (
+              <p>Ainda não há accessos registrados</p>
+            )}
+            {accesses.length > 0 && (
+              <Pagination
+                page={page}
+                handlePagination={handlePages}
+                totalPages={totalPages}
               />
-            ))
-          ) : (
-            <p>Ainda não há accessos registrados</p>
-          )}
-          {accesses.length > 0 && (
-            <Pagination
-              page={page}
-              handlePagination={handlePages}
-              totalPages={totalPages}
-            />
-          )}
-        </List>
+            )}
+          </List>
+        )}
       </Container>
     </Layout>
   );
