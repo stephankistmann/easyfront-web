@@ -1,7 +1,16 @@
-import React from 'react';
-import { FiCheck, FiFile, FiSmartphone, FiX } from 'react-icons/fi';
-import { Container, Infos, Contact, Extra, Status } from './styles';
+import React, { useCallback, useState } from 'react';
+import { FiCheck, FiFile, FiRotateCw, FiSmartphone } from 'react-icons/fi';
+import {
+  Container,
+  Infos,
+  Contact,
+  Extra,
+  Status,
+  StyledButton,
+} from './styles';
 import defaultUserIcon from '../../../assets/defaultUserIcon.png';
+import { useToast } from '../../../hooks/toast';
+import api from '../../../services/api';
 
 interface PeerItemProps {
   name: string;
@@ -21,9 +30,40 @@ const PeerItem: React.FC<PeerItemProps> = ({
   nature,
   active,
 }) => {
+  const { addToast } = useToast();
+  const [loading, setLoading] = useState(false);
   const phoneMasked = phone
     .replace(/^(\d{2})(\d)/g, '($1) $2')
     .replace(/(\d)(\d{4})$/, '$1-$2');
+
+  const handleResendEmail = useCallback(
+    (peerEmail: string) => {
+      setLoading(true);
+
+      try {
+        api.post('/users/confirmemail/resend', peerEmail);
+
+        addToast({
+          type: 'success',
+          title: 'E-mail de confirmação reenviado.',
+          description:
+            'Um e-mail para confirmar o cadastro do usuário foi reenviado.',
+        });
+      } catch (err) {
+        addToast({
+          type: 'error',
+          title: 'Erro no reenvio do e-mail',
+          description:
+            'Ocorreu um erro ao tentar reenviar o e-mail de confirmação, tente novamente',
+        });
+
+        return;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [addToast],
+  );
 
   return (
     <Container>
@@ -57,10 +97,16 @@ const PeerItem: React.FC<PeerItemProps> = ({
         </Status>
       ) : (
         <Status active={active}>
-          <div>
-            <FiX />
+          <StyledButton
+            name="Reenviar E-mail"
+            onClick={() => handleResendEmail(email)}
+            icon={FiRotateCw}
+            loading={loading}
+          >
             <h1>Inativo</h1>
-          </div>
+            <h2>|</h2>
+            <h2> Reenviar e-mail</h2>
+          </StyledButton>
         </Status>
       )}
     </Container>

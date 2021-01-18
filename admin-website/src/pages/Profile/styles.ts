@@ -51,7 +51,7 @@ export const AvatarInput = styled.div`
   display: flex;
   position: relative;
   margin: 16px;
-  box-shadow: 0 0 4px rgba(0, 0, 20, 0.3);
+  box-shadow: 0 0 12px rgba(0, 0, 20, 0.05);
   align-items: center;
   justify-content: center;
   background: transparent;
