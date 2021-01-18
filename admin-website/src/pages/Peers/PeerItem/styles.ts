@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import Button from '../../../components/Button';
 
 interface IStatusProps {
   active: boolean;
@@ -44,7 +45,6 @@ export const Contact = styled.div`
     height: 28px;
     padding: 0 24px;
     border-radius: 4px;
-    /* background: #e4defe; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,7 +84,6 @@ export const Extra = styled.div`
     height: 28px;
     padding: 0 24px;
     border-radius: 4px;
-    /* background: rgb(226, 242, 255); */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -133,7 +132,7 @@ export const Status = styled.div<IStatusProps>`
     ${props =>
       props.active &&
       css`
-        background: rgb(224, 249, 224);
+        background: #ebfcf5;
       `}
 
     svg {
@@ -147,5 +146,38 @@ export const Status = styled.div<IStatusProps>`
       font-size: 14px;
       font-weight: 700;
     }
+  }
+
+  .inactive {
+    svg {
+      margin-right: 0;
+    }
+  }
+`;
+
+export const StyledButton = styled(Button)`
+  width: 260px;
+  height: 28px;
+  border-radius: 4px;
+  color: #2f4858;
+  background: #f7f7f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  h2 {
+    text-indent: 1em;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
   }
 `;

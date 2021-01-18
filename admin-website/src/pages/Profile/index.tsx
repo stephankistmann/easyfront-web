@@ -172,18 +172,6 @@ const Profile: React.FC = () => {
     <Layout>
       <Header title={{ value: 'Perfil', path: '/profile' }} />
       <Container>
-        {/* <MainHeader>
-          <h1>
-            <FiUser />
-            Perfil
-            <Tooltip
-              title="Teste de largura do container"
-              width={250}
-              height={40}
-              direction="down"
-            />
-          </h1>
-        </MainHeader> */}
         <AvatarContainer>
           <AvatarInput>
             <img src={user.avatar_url || userIcon} alt={user.name} />
