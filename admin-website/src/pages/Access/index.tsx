@@ -94,9 +94,12 @@ const Access: React.FC = () => {
               <FiChevronsRight />
               Lista de Acessos
               <Tooltip
-                title="Teste de largura do container"
-                width={250}
-                height={40}
+                title='
+                
+                Você pode criar novos acessos clicando no botão "adicionar acesso".
+                Acessos podem ser editados ou excluídos ao clicar nos respectivos ícones na lista de acessos.'
+                width={500}
+                height={75}
                 direction="down"
               />
             </h1>

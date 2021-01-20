@@ -85,9 +85,10 @@ const Peers: React.FC = () => {
             <FiUsers />
             Lista de Usuários
             <Tooltip
-              title="Teste de largura do container"
-              width={250}
-              height={40}
+              title='
+              Você pode criar um novo parceiro clicando no botão "adicionar parceiro". O e-mail de confirmação para usuários inativos pode ser reenviado ao clicar no botão "Reenviar e-mail" na lista de usuários. '
+              width={500}
+              height={90}
               direction="down"
             />
           </h1>

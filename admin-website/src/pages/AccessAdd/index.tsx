@@ -18,7 +18,6 @@ import getValidationErrors from '../../utils/getValidationErrors';
 import { useSuperunit } from '../../hooks/superunit';
 import Header from '../../components/Header';
 import Select from '../../components/Select';
-import Tooltip from '../../components/Tooltip';
 
 interface IFormData {
   user_id: string;
@@ -163,12 +162,6 @@ const AccessAdd: React.FC = () => {
           <h1>
             <FiChevronsRight />
             Adicionar Acesso
-            <Tooltip
-              title="Teste de largura do container"
-              width={250}
-              height={40}
-              direction="down"
-            />
           </h1>
         </MainHeader>
         <Form ref={formRef} onSubmit={handleSubmit}>

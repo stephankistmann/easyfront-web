@@ -14,7 +14,6 @@ import Button from '../../components/Button';
 import InputUnform from '../../components/InputUnform';
 import { useSuperunit } from '../../hooks/superunit';
 import Header from '../../components/Header';
-import Tooltip from '../../components/Tooltip';
 
 interface IFormData {
   name: string;
@@ -128,12 +127,6 @@ const UnitEdit: React.FC = () => {
           <h1>
             <FiHome />
             Editar Unidade
-            <Tooltip
-              title="Teste de largura do container"
-              width={250}
-              height={40}
-              direction="down"
-            />
           </h1>
         </MainHeader>
         <Form ref={formRef} onSubmit={handleSubmit}>

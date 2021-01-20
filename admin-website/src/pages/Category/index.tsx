@@ -93,9 +93,10 @@ const Category: React.FC = () => {
               <FiList />
               Lista de Categorias
               <Tooltip
-                title="Teste de largura do container"
-                width={250}
-                height={40}
+                title='Você pode criar novas categorias clicando no botão "adicionar categoria".
+                Categorias podem ser editadas ou excluídas ao clicar nos respectivos ícones na lista de categorias.'
+                width={500}
+                height={75}
                 direction="down"
               />
             </h1>

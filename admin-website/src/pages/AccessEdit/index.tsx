@@ -19,7 +19,6 @@ import getValidationErrors from '../../utils/getValidationErrors';
 import Select from '../../components/Select';
 import { useSuperunit } from '../../hooks/superunit';
 import Header from '../../components/Header';
-import Tooltip from '../../components/Tooltip';
 
 interface IFormData {
   accessCategory_id: string;
@@ -188,12 +187,6 @@ const AccessEdit: React.FC = () => {
           <h1>
             <FiChevronsRight />
             Editar Accesso
-            <Tooltip
-              title="Teste de largura do container"
-              width={250}
-              height={40}
-              direction="down"
-            />
           </h1>
         </MainHeader>
         <Form ref={formRef} onSubmit={handleSubmit}>

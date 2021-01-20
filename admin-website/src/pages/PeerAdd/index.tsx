@@ -78,9 +78,9 @@ const PeerAdd: React.FC = () => {
             <FiUserPlus />
             Adicionar Parceiro
             <Tooltip
-              title="Teste de largura do container"
-              width={250}
-              height={40}
+              title="Um e-mail será enviado ao usuário para realizar a confirmação do cadastro."
+              width={320}
+              height={60}
               direction="down"
             />
           </h1>
