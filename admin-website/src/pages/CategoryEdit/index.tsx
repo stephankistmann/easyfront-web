@@ -15,7 +15,6 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationErrors';
-import Tooltip from '../../components/Tooltip';
 
 interface IInvite {
   id: string;
@@ -274,23 +273,10 @@ const CategoryEdit: React.FC = () => {
           <h1>
             <FiList />
             Editar Categoria
-            <Tooltip
-              title="Teste de largura do container"
-              width={250}
-              height={40}
-              direction="down"
-            />
           </h1>
         </MainHeader>
         <Content>
           <form onSubmit={handleSubmit}>
-            {/* <Input
-              value={name}
-              onChange={event => setName(event.target.value)}
-              placeholder={name}
-              error={validationErrors?.name}
-            /> */}
-
             <SelectWeekDay
               value={weekDays}
               onChange={value => setWeekDays(value)}

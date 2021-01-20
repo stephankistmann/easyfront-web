@@ -24,7 +24,7 @@ export const Container = styled.div<ITooltipProps>`
     height: ${props => `${props.height}px`};
     padding: 8px;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     opacity: 0;
     transition: opacity 0.4s;

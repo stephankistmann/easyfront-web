@@ -86,9 +86,10 @@ const Invite: React.FC = () => {
               <FiSend />
               Lista de tipos de Convites
               <Tooltip
-                title="Teste de largura do container"
-                width={250}
-                height={40}
+                title='Você pode criar novos convites clicando no botão "adicionar convite".
+                Convites podem ser editados ou excluídos ao clicar nos respectivos ícones na lista de categorias.'
+                width={500}
+                height={75}
                 direction="down"
               />
             </h1>

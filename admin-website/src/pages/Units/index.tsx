@@ -77,9 +77,11 @@ const Units: React.FC = () => {
               <FiHome />
               Lista de Unidades
               <Tooltip
-                title="Teste de largura do container"
-                width={250}
-                height={40}
+                title='
+                Você pode criar novas unidades clicando no botão "adicionar unidade".
+                Unidades podem ser editadas ou excluídas ao clicar nos respectivos ícones na lista de acessos.'
+                width={500}
+                height={75}
                 direction="down"
               />
             </h1>
