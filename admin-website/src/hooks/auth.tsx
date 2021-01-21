@@ -5,9 +5,8 @@ import React, {
   useContext,
   useEffect,
 } from 'react';
-import { useHistory } from 'react-router-dom';
 import api from '../services/api';
-// import { useToast } from './toast';
+import { useToast } from './toast';
 
 interface User {
   id: string;
@@ -44,8 +43,7 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
-  const history = useHistory();
-  // const { addToast } = useToast();
+  const { addToast } = useToast();
   const [data, setData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@Easyfront:token');
     const user = localStorage.getItem('@Easyfront:user');
@@ -63,50 +61,47 @@ const AuthProvider: React.FC = ({ children }) => {
 
   const signIn = useCallback(
     async ({ email, password }) => {
-      // try {
-      const response = await api.post('session', {
-        email,
-        password,
-      });
+      try {
+        const response = await api.post('session', {
+          email,
+          password,
+        });
 
-      const { token, user } = response.data;
+        const { token, user } = response.data;
 
-      api.defaults.headers.authorization = `bearer ${token}`;
+        api.defaults.headers.authorization = `bearer ${token}`;
 
-      localStorage.setItem('@Easyfront:token', token);
-      localStorage.setItem('@Easyfront:user', JSON.stringify(user));
+        localStorage.setItem('@Easyfront:token', token);
+        localStorage.setItem('@Easyfront:user', JSON.stringify(user));
 
-      if (user.active !== true) history.push('/error');
+        setData({ token, user });
+      } catch (error) {
+        if (error.response.data.content.code === 0) {
+          addToast({
+            type: 'error',
+            title: 'Erro ao efetuar login',
+            description: 'Ocorreu um erro ao efetuar login, cheque seu e-mail.',
+          });
+        }
 
-      setData({ token, user });
-      // } catch (error) {
-      //   if (error.response.data.content.code === 1) {
-      //     console.log(error);
-      //   }
-      // if (error.response.data.content.code === 0) {
-      //   addToast({
-      //     type: 'error',
-      //     title: 'Erro ao efetuar login',
-      //     description: 'Ocorreu um erro ao efetuar login, cheque seu e-mail.',
-      //   });
-      // }
-      // if (error.response.data.content.code === 1) {
-      //   addToast({
-      //     type: 'error',
-      //     title: 'Erro na autenticação',
-      //     description: 'Usuário não confirmado, por favor cheque seu e-mail.',
-      //   });
-      // }
-      // if (error.response.data.content.code === 2) {
-      //   addToast({
-      //     type: 'error',
-      //     title: 'Erro na autenticação',
-      //     description: 'Dados inválidos, tente novamente.',
-      //   });
-      // }
-      // }
+        if (error.response.data.content.code === 1) {
+          addToast({
+            type: 'error',
+            title: 'Erro na autenticação',
+            description: 'Usuário não confirmado, por favor cheque seu e-mail.',
+          });
+        }
+
+        if (error.response.data.content.code === 2) {
+          addToast({
+            type: 'error',
+            title: 'Erro na autenticação',
+            description: 'Dados inválidos, tente novamente.',
+          });
+        }
+      }
     },
-    [history],
+    [addToast],
   );
 
   const signOut = useCallback(() => {

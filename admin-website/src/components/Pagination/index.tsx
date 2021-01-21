@@ -1,6 +1,6 @@
 import React from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { Container, NavPage } from './styles';
+import { Container, NavPage, PageNumbers } from './styles';
 
 export interface PaginationProps {
   page: number;
@@ -24,9 +24,9 @@ const Pagination: React.FC<PaginationProps> = ({
           <FiChevronLeft />
         </NavPage>
       )}
-      <NavPage name="NavPageCurrent">
+      <PageNumbers>
         <span>{`${page}/${totalPages}`}</span>
-      </NavPage>
+      </PageNumbers>
       {page !== totalPages && (
         <NavPage
           name="NavPageNext"

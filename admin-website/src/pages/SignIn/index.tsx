@@ -1,16 +1,21 @@
 import React, { useCallback, useRef } from 'react';
 import { FormHandles } from '@unform/core';
-import { FiLock, FiLogIn, FiMail } from 'react-icons/fi';
+import { FiLock, FiLogIn, FiMail, FiUser } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import InputUnform from '../../components/InputUnform';
 import Button from '../../components/Button';
-import { Container, Content, Background, AnimationContainer } from './styles';
+import {
+  Container,
+  Content,
+  Background,
+  AnimationContainer,
+  Links,
+} from './styles';
 import logoImg from '../../assets/logo.png';
 import getValidationErrors from '../../utils/getValidationErrors';
 import { useAuth } from '../../hooks/auth';
-import { useToast } from '../../hooks/toast';
 
 interface SignInFormData {
   email: string;
@@ -26,9 +31,7 @@ const schema = Yup.object().shape({
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const { addToast } = useToast();
   const { signIn } = useAuth();
-  const history = useHistory();
 
   const handleSubmit = useCallback(
     async (data: SignInFormData) => {
@@ -43,26 +46,15 @@ const SignIn: React.FC = () => {
           email: data.email,
           password: data.password,
         });
-
-        history.push('/dashboard');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
           formRef.current?.setErrors(errors);
-
-          return;
         }
-
-        addToast({
-          type: 'error',
-          title: 'Erro na autenticação',
-          description:
-            'Ocorreu um erro ao fazer login, cheque seu e-mail e/ou senha.',
-        });
       }
     },
-    [signIn, addToast, history],
+    [signIn],
   );
 
   return (
@@ -87,7 +79,14 @@ const SignIn: React.FC = () => {
               Entrar
             </Button>
 
-            <Link to="/forgot-password">Esqueci minha senha</Link>
+            <Links>
+              <Link to="/forgot-password">Esqueci minha senha</Link>
+
+              <a href="http://portal.easyfront.cloud/">
+                Entrar como usuário
+                <FiUser />
+              </a>
+            </Links>
           </Form>
         </AnimationContainer>
       </Content>

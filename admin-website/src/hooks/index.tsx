@@ -5,11 +5,11 @@ import { ToastProvider } from './toast';
 import { SuperunitProvider } from './superunit';
 
 const AppProvider: React.FC = ({ children }) => (
-  <AuthProvider>
-    <ToastProvider>
+  <ToastProvider>
+    <AuthProvider>
       <SuperunitProvider>{children}</SuperunitProvider>
-    </ToastProvider>
-  </AuthProvider>
+    </AuthProvider>
+  </ToastProvider>
 );
 
 export default AppProvider;

@@ -23,7 +23,7 @@ const Input: React.FC<InputProps> = ({
     setIsFocused(false);
   }, []);
 
-  if (error) return <p>ERRROR</p>;
+  if (error) return <p>ERROR</p>;
 
   return (
     <Container isFocused={isFocused}>
