@@ -80,14 +80,14 @@ const PeerItem: React.FC<PeerItemProps> = ({
           <p>{phoneMasked}</p>
         </div>
       </Contact>
-      <Extra>
+      {/* <Extra>
         <div>
           <FiFile />
           <h1>{gender}</h1>
           <div />
           <p>{nature}</p>
         </div>
-      </Extra>
+      </Extra> */}
       {active ? (
         <Status active={active}>
           <div>
