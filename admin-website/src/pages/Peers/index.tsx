@@ -125,7 +125,7 @@ const Peers: React.FC = () => {
               <ListItemsCategory>
                 <div>Nome</div>
                 <div>Contato</div>
-                <div>Gênero / Natureza</div>
+                {/* <div>Gênero / Natureza</div> */}
                 <div>Estado</div>
               </ListItemsCategory>
             )}
