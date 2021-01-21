@@ -20,26 +20,14 @@ export const SelectSchedule = styled.div`
 export const Content = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   border-radius: 8px;
-  width: 208px;
+  width: 270px;
   height: 48px;
   padding: 0 16px;
   border: 1px solid rgba(0, 0, 10, 0.05);
-  /* margin-left: 12px; */
   position: relative;
-
   margin-top: 16px;
-
-  /* &::before {
-    content: '';
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #ddd;
-    position: absolute;
-    left: -28px;
-  } */
 
   p {
     margin-right: 8px;

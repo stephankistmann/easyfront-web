@@ -32,18 +32,6 @@ export const Content = styled.div`
   width: 270px;
   margin-top: 16px;
   border: 1px solid rgba(0, 0, 10, 0.05);
-  /* background: rgba(0, 0, 10, 0.05); */
-  /* margin-left: 12px; */
-  /* 
-  &::before {
-    content: '';
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #ddd;
-    position: absolute;
-    left: -28px;
-  } */
 `;
 
 export const WeekDay = styled.div<IWeekDayProps>`

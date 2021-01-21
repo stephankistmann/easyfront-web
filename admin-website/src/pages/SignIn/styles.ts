@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components';
-import { shade } from 'polished';
 import signInBackgroundImg from '../../assets/background.svg';
 
 export const Container = styled.div`
@@ -53,18 +52,6 @@ export const AnimationContainer = styled.div`
       font-weight: 700;
     }
 
-    a {
-      color: #2f4858;
-      display: block;
-      text-decoration: none;
-      transition: color 0.2;
-      margin-top: 24px;
-
-      &:hover {
-        opacity: 0.8;
-      }
-    }
-
     div + div {
       margin-top: 8px;
     }
@@ -74,22 +61,26 @@ export const AnimationContainer = styled.div`
       height: 48px;
     }
   }
+`;
 
-  > a {
-    color: #ff6757;
-    display: block;
+export const Links = styled.div`
+  display: flex;
+  justify-content: space-around;
+  a {
+    color: #2f4858;
+    display: flex;
     text-decoration: none;
     transition: color 0.2;
-    margin-top: 0px;
-    display: flex;
+    margin-top: 24px;
     align-items: center;
-
-    svg {
-      margin-right: 16px;
-    }
+    justify-content: center;
 
     &:hover {
-      color: ${shade(0.2, '#ff6757')};
+      opacity: 0.8;
+    }
+
+    svg {
+      margin-left: 8px;
     }
   }
 `;
