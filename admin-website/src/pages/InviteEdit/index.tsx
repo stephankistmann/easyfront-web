@@ -48,6 +48,7 @@ const schema = Yup.object().shape({
 const InviteEdit: React.FC = () => {
   const { id }: { id: string } = useParams();
   const [devices, setDevices] = useState<IDevice[]>([]);
+  const [loadedDevices, setLoadedDevices] = useState(false);
   const [validationErrors, setValidationErrors] = useState<IValidationErrors>(
     {},
   );
@@ -76,7 +77,7 @@ const InviteEdit: React.FC = () => {
 
   useEffect(() => {
     const getData = async () => {
-      if (superUnitId) {
+      if (superUnitId && loadedDevices) {
         const inviteData = await api.get(
           `superunities/${superUnitId}/invites/types/${id}`,
         );
@@ -86,14 +87,26 @@ const InviteEdit: React.FC = () => {
         setName(inviteData.data.name);
         setTimeRestrictions(inviteData.data);
         setWeekDays(inviteData.data.weekDays);
+
+        const inviteDevices = inviteData.data.devices;
+
+        setDevices(oldDevices =>
+          oldDevices.map(oldDevice => {
+            const isSelected = inviteDevices.find(
+              (inviteDevice: IDevice) => inviteDevice.id === oldDevice.id,
+            );
+
+            return isSelected ? { ...oldDevice, selected: true } : oldDevice;
+          }),
+        );
       }
     };
 
     getData();
-  }, [id, superUnitId]);
+  }, [id, superUnitId, loadedDevices]);
 
   useEffect(() => {
-    const getData = async () => {
+    const getDevices = async () => {
       if (superUnitId) {
         const response = await api.get(`/superunities/${superUnitId}/devices`);
 
@@ -105,11 +118,12 @@ const InviteEdit: React.FC = () => {
             selected: false,
           })),
         );
+        setLoadedDevices(true);
       }
     };
 
-    getData();
-  }, [id, superUnitId]);
+    getDevices();
+  }, [superUnitId]);
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {

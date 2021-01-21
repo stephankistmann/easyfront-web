@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react';
-// import Switch from 'react-switch';
 import { Container, SelectSchedule, Content } from './styles';
 
 interface ITimeRestrictions {
