@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 import {
   FiEdit3,
@@ -48,7 +49,13 @@ const Delivery: React.FC<DeliveryProps> = ({ delivery }) => {
         <Status>
           <div>
             <FiActivity />
-            <h1>{status}</h1>
+            {status === 'delivering' ? (
+              <h1>Entregando</h1>
+            ) : status === 'picked' ? (
+              <h1>Colhido</h1>
+            ) : (
+              <h1>Trancado</h1>
+            )}
           </div>
         </Status>
         <Volume>
