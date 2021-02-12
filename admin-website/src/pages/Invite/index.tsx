@@ -37,8 +37,6 @@ const Invite: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const history = useHistory();
 
-  const superunitId = selected?.id;
-
   const handlePages = (updatePage: number) => {
     setPage(updatePage);
   };
@@ -58,7 +56,7 @@ const Invite: React.FC = () => {
       setLoading(true);
       if (selected) {
         const response = await api.get(
-          `/superunities/${superunitId}/invites/types`,
+          `/superunities/${selected?.id}/invites/types`,
           { params: { page } },
         );
 
@@ -74,7 +72,7 @@ const Invite: React.FC = () => {
     }
 
     getData();
-  }, [selected, page, superunitId]);
+  }, [selected, page]);
 
   return (
     <Layout>

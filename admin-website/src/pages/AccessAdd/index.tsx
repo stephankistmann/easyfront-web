@@ -40,8 +40,6 @@ const AccessAdd: React.FC = () => {
   const [categories, setCategories] = useState<ISelectOptions[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const superunitId = selected?.id;
-
   const schema = Yup.object().shape({
     user_id: Yup.string(),
     accessCategory_id: Yup.string(),
@@ -52,7 +50,7 @@ const AccessAdd: React.FC = () => {
     async function getData() {
       if (selected) {
         const unitiesData = await api.get(
-          `/superunities/${superunitId}/unities`,
+          `/superunities/${selected?.id}/unities`,
         );
 
         if (!unitiesData) return;
@@ -62,7 +60,7 @@ const AccessAdd: React.FC = () => {
         if (!usersData) return;
 
         const categoriesData = await api.get(
-          `/superunities/${superunitId}/accesses/categories`,
+          `/superunities/${selected?.id}/accesses/categories`,
         );
 
         if (!categoriesData) return;
@@ -74,7 +72,7 @@ const AccessAdd: React.FC = () => {
     }
 
     getData();
-  }, [superunitId, selected]);
+  }, [selected]);
 
   const handleSubmit = useCallback(
     async (data: IFormData) => {
@@ -89,7 +87,7 @@ const AccessAdd: React.FC = () => {
 
         const response = data;
 
-        await api.post(`/superunities/${superunitId}/accesses`, response);
+        await api.post(`/superunities/${selected?.id}/accesses`, response);
 
         addToast({
           type: 'success',
@@ -114,7 +112,7 @@ const AccessAdd: React.FC = () => {
         setLoading(false);
       }
     },
-    [addToast, superunitId, schema],
+    [addToast, schema],
   );
 
   const selectOptionsUser = useMemo(

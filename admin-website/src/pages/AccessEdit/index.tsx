@@ -52,8 +52,6 @@ const AccessEdit: React.FC = () => {
   const [unities, setUnities] = useState<ISelectOptions[]>([]);
   const [categories, setCategories] = useState<ISelectOptions[]>([]);
 
-  const superunitId = selected?.id;
-
   const schema = Yup.object().shape({
     accessCategory_id: Yup.string(),
     unit_id: Yup.string(),
@@ -63,7 +61,7 @@ const AccessEdit: React.FC = () => {
     async function getData() {
       if (selected) {
         const unitiesData = await api.get(
-          `/superunities/${superunitId}/unities`,
+          `/superunities/${selected?.id}/unities`,
         );
 
         if (!unitiesData) return;
@@ -73,13 +71,13 @@ const AccessEdit: React.FC = () => {
     }
 
     getData();
-  }, [superunitId, id, selected]);
+  }, [id, selected]);
 
   useEffect(() => {
     async function getData() {
       if (selected) {
         const categoriesData = await api.get(
-          `/superunities/${superunitId}/accesses/categories`,
+          `/superunities/${selected?.id}/accesses/categories`,
         );
 
         if (!categoriesData) return;
@@ -89,13 +87,13 @@ const AccessEdit: React.FC = () => {
     }
 
     getData();
-  }, [superunitId, id, selected]);
+  }, [id, selected]);
 
   useEffect(() => {
     async function getData() {
       if (selected) {
         const accessData = await api.get(
-          `/superunities/${superunitId}/accesses/${id}`,
+          `/superunities/${selected?.id}/accesses/${id}`,
         );
 
         if (!accessData) return;
@@ -113,7 +111,7 @@ const AccessEdit: React.FC = () => {
     }
 
     getData();
-  }, [superunitId, id, selected]);
+  }, [id, selected]);
 
   const handleSubmit = useCallback(
     async (data: IFormData) => {
@@ -125,7 +123,10 @@ const AccessEdit: React.FC = () => {
 
         const newData: IFormData = Object.assign(data, { active: true });
 
-        await api.patch(`/superunities/${superunitId}/accesses/${id}`, newData);
+        await api.patch(
+          `/superunities/${selected?.id}/accesses/${id}`,
+          newData,
+        );
 
         addToast({
           type: 'success',
@@ -150,7 +151,7 @@ const AccessEdit: React.FC = () => {
         });
       }
     },
-    [addToast, id, superunitId, schema, history],
+    [addToast, id, schema, history],
   );
 
   const optionsUnit = useMemo(

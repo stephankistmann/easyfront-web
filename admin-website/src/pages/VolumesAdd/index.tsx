@@ -1,5 +1,5 @@
 import React, { useRef, useCallback, useState } from 'react';
-import { FiHome, FiPlus } from 'react-icons/fi';
+import { FiCodepen, FiPlus } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
@@ -16,23 +16,12 @@ import Header from '../../components/Header';
 
 interface IFormData {
   name: string;
-  type: string;
+  size: string;
 }
 
 const schema = Yup.object().shape({
   name: Yup.string().required('Nome obrigatório'),
-  public_area: Yup.string()
-    .required('Tipo obrigatorio')
-    .oneOf([
-      'Academia',
-      'Apartamento',
-      'Bloco',
-      'Casa',
-      'Condomínio',
-      'Departamento',
-      'Loja',
-      'Sala',
-    ]),
+  size: Yup.string().required('Tipo obrigatorio').oneOf(['s', 'm', 'l']),
 });
 
 const UnitAdd: React.FC = () => {
@@ -43,23 +32,26 @@ const UnitAdd: React.FC = () => {
 
   const handleSubmit = useCallback(
     async (data: IFormData) => {
-      const unit = { public_area: data.type, name: data.name };
+      const volume = { size: data.size, name: data.name };
 
       formRef.current?.setErrors({});
 
       setLoading(true);
 
       try {
-        await schema.validate(unit, {
+        await schema.validate(volume, {
           abortEarly: false,
         });
 
-        await api.post(`/superunities/${selected?.id}/unities`, unit);
+        await api.post(
+          `/superunities/${selected?.id}/lockerroom/volumes`,
+          volume,
+        );
 
         addToast({
           type: 'success',
           title: 'Cadastro realizado!',
-          description: 'Unidade cadastrada com sucesso.',
+          description: 'Volume cadastrado com sucesso.',
         });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
@@ -85,33 +77,28 @@ const UnitAdd: React.FC = () => {
   return (
     <Layout>
       <Header
-        title={{ value: 'Unidades', path: '/units' }}
-        subTitle={{ value: 'Adicionar Unidade', path: '/units/new' }}
+        title={{ value: 'Volumes', path: '/lockerroom' }}
+        subTitle={{ value: 'Adicionar Volume', path: '/lockerroom/new' }}
         hasBackButton
       />
       <Container>
         <MainHeader>
           <h1>
-            <FiHome />
-            Adicionar Unidade
+            <FiCodepen />
+            Adicionar Volume
           </h1>
         </MainHeader>
         <Form ref={formRef} onSubmit={handleSubmit}>
           <InputUnform name="name" placeholder="Nome" />
           <Select
-            name="type"
+            name="size"
             options={[
-              { label: 'Academia', value: 'Academia' },
-              { label: 'Apartamento', value: 'Apartamento' },
-              { label: 'Bloco', value: 'Bloco' },
-              { label: 'Casa', value: 'Casa' },
-              { label: 'Condomínio', value: 'Condomínio' },
-              { label: 'Departamento', value: 'Departamento' },
-              { label: 'Loja', value: 'Loja' },
-              { label: 'Sala', value: 'Sala' },
+              { label: 'Pequeno', value: 's' },
+              { label: 'Médio', value: 'm' },
+              { label: 'Grande', value: 'l' },
             ]}
             defaultValue={{
-              label: 'Tipo',
+              label: 'Tamanho',
               value: '',
             }}
           />

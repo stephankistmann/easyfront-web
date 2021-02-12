@@ -29,6 +29,11 @@ import Invite from '../pages/Invite';
 import InviteAdd from '../pages/InviteAdd';
 import InviteEdit from '../pages/InviteEdit';
 
+import LockerRoom from '../pages/LockerRoom';
+import VolumesAdd from '../pages/VolumesAdd';
+
+import Deliveries from '../pages/Deliveries';
+
 import ErrorPage from '../pages/ErrorPage';
 
 const Routes: React.FC = () => (
@@ -61,6 +66,11 @@ const Routes: React.FC = () => (
     <Route path="/peers" exact component={Peers} isPrivate />
     <Route path="/peers/new" component={PeerAdd} isPrivate />
     <Route path="/peers/edit/:id" component={PeerEdit} isPrivate />
+
+    <Route path="/lockerroom" exact component={LockerRoom} isPrivate />
+    <Route path="/lockerroom/new" exact component={VolumesAdd} isPrivate />
+
+    <Route path="/deliveries" exact component={Deliveries} isPrivate />
   </Switch>
 );
 

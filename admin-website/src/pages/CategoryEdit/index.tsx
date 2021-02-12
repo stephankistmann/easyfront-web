@@ -82,13 +82,11 @@ const CategoryEdit: React.FC = () => {
 
   const { selected } = useSuperunit();
 
-  const superUnitId = selected?.id;
-
   useEffect(() => {
     const getData = async () => {
-      if (superUnitId && loadedDevices && loadedInvites) {
+      if (selected && loadedDevices && loadedInvites) {
         const categoryData = await api.get(
-          `/superunities/${superUnitId}/accesses/categories/${id}`,
+          `/superunities/${selected?.id}/accesses/categories/${id}`,
         );
 
         if (!categoryData) return;
@@ -131,7 +129,7 @@ const CategoryEdit: React.FC = () => {
     getData();
   }, [
     id,
-    superUnitId,
+    selected,
     setWeekDays,
     setDevices,
     setName,
@@ -142,8 +140,8 @@ const CategoryEdit: React.FC = () => {
 
   useEffect(() => {
     const getDevices = async () => {
-      if (superUnitId) {
-        const response = await api.get(`/superunities/${superUnitId}/devices`);
+      if (selected) {
+        const response = await api.get(`/superunities/${selected?.id}/devices`);
 
         if (response.status !== 200) return;
 
@@ -158,13 +156,13 @@ const CategoryEdit: React.FC = () => {
     };
 
     getDevices();
-  }, [superUnitId]);
+  }, [selected]);
 
   useEffect(() => {
     const getInvites = async () => {
-      if (superUnitId) {
+      if (selected) {
         const response = await api.get(
-          `/superunities/${superUnitId}/invites/types`,
+          `/superunities/${selected?.id}/invites/types`,
         );
 
         if (response.status !== 200) return;
@@ -180,7 +178,7 @@ const CategoryEdit: React.FC = () => {
     };
 
     getInvites();
-  }, [superUnitId]);
+  }, [selected]);
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
@@ -216,7 +214,7 @@ const CategoryEdit: React.FC = () => {
         });
 
         await api.patch(
-          `/superunities/${superUnitId}/accesses/categories/${id}`,
+          `/superunities/${selected?.id}/accesses/categories/${id}`,
           data,
         );
 
@@ -249,7 +247,7 @@ const CategoryEdit: React.FC = () => {
       history.push('/category');
     },
     [
-      superUnitId,
+      selected,
       weekDays,
       devices,
       invites,
