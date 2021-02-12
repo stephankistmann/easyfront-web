@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react';
-import { FiEdit3, FiTrash, FiMapPin, FiHome } from 'react-icons/fi';
+import { FiEdit3, FiTrash, FiCodepen, FiLock } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { Container, Infos, Size, Controllers } from './styles';
 
@@ -22,13 +22,13 @@ const Volume: React.FC<VolumeItemProps> = ({ data, onClickDelete }) => {
     <Container>
       <Infos>
         <div>
-          <FiMapPin />
+          <FiCodepen />
           <h1>{name}</h1>
         </div>
       </Infos>
       <Size>
         <div>
-          <FiHome />
+          <FiLock />
           {size === 's' ? (
             <h1>Pequeno</h1>
           ) : size === 'm' ? (

@@ -43,8 +43,8 @@ export const Size = styled.div`
     svg {
       margin-right: 16px;
       margin-left: 16px;
-      width: 20px;
-      height: 20px;
+      width: 16px;
+      height: 16px;
       color: #2f4858;
     }
 
