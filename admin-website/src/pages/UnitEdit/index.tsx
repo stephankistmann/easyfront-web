@@ -54,13 +54,11 @@ const UnitEdit: React.FC = () => {
   const { addToast } = useToast();
   const { selected } = useSuperunit();
 
-  const superunitId = selected?.id;
-
   useEffect(() => {
     async function getData() {
       if (selected) {
         const response = await api.get(
-          `/superunities/${superunitId}/unities/${id}`,
+          `/superunities/${selected?.id}/unities/${id}`,
         );
 
         if (!response) return;
@@ -74,7 +72,7 @@ const UnitEdit: React.FC = () => {
       }
     }
     getData();
-  }, [superunitId, id, selected]);
+  }, [selected, id, selected]);
 
   const handleSubmit = useCallback(
     async (data: IFormData) => {
@@ -87,7 +85,7 @@ const UnitEdit: React.FC = () => {
           abortEarly: false,
         });
 
-        await api.patch(`/superunities/${superunitId}/unities/${id}`, unit);
+        await api.patch(`/superunities/${selected?.id}/unities/${id}`, unit);
 
         history.push('/units');
 
@@ -112,7 +110,7 @@ const UnitEdit: React.FC = () => {
         });
       }
     },
-    [addToast, superunitId, id, history],
+    [addToast, selected, id, history],
   );
 
   return (

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { FiPlus, FiHome } from 'react-icons/fi';
+import { FiPackage } from 'react-icons/fi';
 import {
   Container,
   MainHeader,
   List,
   ListItemsCategory,
-  StyledButton,
   StyledLoading,
 } from './styles';
 import Pagination from '../../components/Pagination';
@@ -14,18 +13,34 @@ import { useSuperunit } from '../../hooks/superunit';
 import api from '../../services/api';
 import Layout from '../../Layouts/Default';
 import Header from '../../components/Header';
-import UnitItem from './UnitItem';
+import Delivery from './Delivery';
 import Tooltip from '../../components/Tooltip';
 
-interface IUnit {
+interface IDeliveryEvents {
+  text_pt: string;
+  created_at: Date;
   id: string;
-  name: string;
-  public_area: string;
 }
 
-const Units: React.FC = () => {
+interface IVolume {
+  name: string;
+}
+
+interface IUnit {
+  name: string;
+}
+
+export interface IDelivery {
+  volume: IVolume;
+  unit: IUnit;
+  status: string;
+  id: string;
+  events: IDeliveryEvents[];
+}
+
+const Deliveries: React.FC = () => {
   const { selected } = useSuperunit();
-  const [unities, setUnities] = useState<IUnit[]>([]);
+  const [deliveries, setDeliveries] = useState<IDelivery[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -35,20 +50,12 @@ const Units: React.FC = () => {
     setPage(updatePage);
   };
 
-  async function handleDelete(id: string) {
-    const deleteUnit = unities.find(unit => unit.id === id);
-
-    await api.delete(`/superunities/${selected?.id}/unities/${deleteUnit?.id}`);
-
-    setUnities(oldUnities => oldUnities.filter(unit => unit.id !== id));
-  }
-
   useEffect(() => {
     async function getData() {
       setLoading(true);
       if (selected) {
         const response = await api.get(
-          `/superunities/${selected?.id}/unities`,
+          `/superunities/${selected.id}/deliveries`,
           {
             params: { page },
           },
@@ -56,9 +63,7 @@ const Units: React.FC = () => {
 
         if (!response) return;
 
-        setUnities(response.data.data);
-
-        setPage(response.data.page);
+        setDeliveries(response.data.data);
 
         setTotalPages(response.data.total_pages);
       }
@@ -66,61 +71,50 @@ const Units: React.FC = () => {
     }
 
     getData();
-  }, [selected, page, selected]);
+  }, [selected]);
 
   return (
     <Layout>
-      <Header title={{ value: 'Unidades', path: '/units' }} />
+      <Header title={{ value: 'Deliveries', path: '/deliveries' }} />
       <Container>
         <MainHeader>
           <div>
             <h1>
-              <FiHome />
-              Lista de Unidades
-              <Tooltip
+              <FiPackage />
+              Lista de Entregas
+              {/* <Tooltip
                 title='
                 Você pode criar novas unidades clicando no botão "adicionar unidade".
                 Unidades podem ser editadas ou excluídas ao clicar nos respectivos ícones na lista de acessos.'
                 width={500}
                 height={75}
                 direction="down"
-              />
+              /> */}
             </h1>
           </div>
-          <StyledButton
-            name="Unidades"
-            icon={FiPlus}
-            onClick={() => history.push('/units/new')}
-          >
-            Adicionar Unidade
-          </StyledButton>
         </MainHeader>
 
         {loading ? (
           <StyledLoading />
         ) : (
           <List>
-            {unities.length > 0 && (
+            {deliveries.length > 0 && (
               <ListItemsCategory>
-                <div>Nome</div>
-                <div>Area</div>
-                <div>Editar / Excluir</div>
+                <div>Unidade</div>
+                <div>Status</div>
+                <div>Volume</div>
               </ListItemsCategory>
             )}
-            {unities.length > 0 ? (
-              unities.map(unit => (
-                <UnitItem
-                  key={unit.id}
-                  name={unit.name || 'Não informado'}
-                  public_area={unit.public_area || 'Não informado'}
-                  id={unit.id}
-                  onClickDelete={() => handleDelete(unit.id)}
-                />
+            {deliveries.length > 0 ? (
+              deliveries.map(delivery => (
+                <div key={delivery.id}>
+                  <Delivery delivery={delivery} />
+                </div>
               ))
             ) : (
-              <p>Ainda não há unidades registradas</p>
+              <p>Ainda não há entregas registradas</p>
             )}
-            {unities.length > 0 && (
+            {deliveries.length > 0 && (
               <Pagination
                 page={page}
                 handlePagination={handlePages}
@@ -134,4 +128,4 @@ const Units: React.FC = () => {
   );
 };
 
-export default Units;
+export default Deliveries;

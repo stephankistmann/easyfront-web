@@ -69,12 +69,10 @@ const InviteAdd: React.FC = () => {
 
   const { selected } = useSuperunit();
 
-  const superUnitId = selected?.id;
-
   useEffect(() => {
     const getDevices = async () => {
-      if (superUnitId) {
-        const response = await api.get(`/superunities/${superUnitId}/devices`);
+      if (selected) {
+        const response = await api.get(`/superunities/${selected?.id}/devices`);
 
         if (response.status !== 200) return;
 
@@ -88,7 +86,7 @@ const InviteAdd: React.FC = () => {
     };
 
     getDevices();
-  }, [superUnitId]);
+  }, [selected]);
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
@@ -118,7 +116,7 @@ const InviteAdd: React.FC = () => {
           abortEarly: false,
         });
 
-        await api.post(`/superunities/${superUnitId}/invites/types`, data);
+        await api.post(`/superunities/${selected?.id}/invites/types`, data);
 
         addToast({
           type: 'success',
@@ -146,7 +144,7 @@ const InviteAdd: React.FC = () => {
 
       setLoading(false);
     },
-    [superUnitId, weekDays, devices, name, timeRestrictions, addToast],
+    [selected, weekDays, devices, name, timeRestrictions, addToast],
   );
   return (
     <Layout>

@@ -73,13 +73,11 @@ const InviteEdit: React.FC = () => {
 
   const { selected } = useSuperunit();
 
-  const superUnitId = selected?.id;
-
   useEffect(() => {
     const getData = async () => {
-      if (superUnitId && loadedDevices) {
+      if (selected && loadedDevices) {
         const inviteData = await api.get(
-          `superunities/${superUnitId}/invites/types/${id}`,
+          `superunities/${selected?.id}/invites/types/${id}`,
         );
 
         if (!inviteData) return;
@@ -103,12 +101,12 @@ const InviteEdit: React.FC = () => {
     };
 
     getData();
-  }, [id, superUnitId, loadedDevices]);
+  }, [id, selected, loadedDevices]);
 
   useEffect(() => {
     const getDevices = async () => {
-      if (superUnitId) {
-        const response = await api.get(`/superunities/${superUnitId}/devices`);
+      if (selected) {
+        const response = await api.get(`/superunities/${selected?.id}/devices`);
 
         if (response.status !== 200) return;
 
@@ -123,7 +121,7 @@ const InviteEdit: React.FC = () => {
     };
 
     getDevices();
-  }, [superUnitId]);
+  }, [selected]);
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
@@ -154,7 +152,7 @@ const InviteEdit: React.FC = () => {
         });
 
         await api.patch(
-          `/superunities/${superUnitId}/invites/types/${id}`,
+          `/superunities/${selected?.id}/invites/types/${id}`,
           data,
         );
 
@@ -187,7 +185,7 @@ const InviteEdit: React.FC = () => {
       history.push('/invites');
     },
     [
-      superUnitId,
+      selected,
       weekDays,
       devices,
       name,

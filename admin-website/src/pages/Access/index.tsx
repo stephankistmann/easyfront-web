@@ -47,8 +47,6 @@ const Access: React.FC = () => {
   const history = useHistory();
   const [loading, setLoading] = useState(true);
 
-  const superUnitId = selected?.id;
-
   const handlePages = (updatePage: number) => {
     setPage(updatePage);
   };
@@ -82,7 +80,7 @@ const Access: React.FC = () => {
     }
 
     getData();
-  }, [selected, page, superUnitId, accesses]);
+  }, [selected, page, accesses]);
 
   return (
     <Layout>
@@ -95,7 +93,7 @@ const Access: React.FC = () => {
               Lista de Acessos
               <Tooltip
                 title='
-                
+
                 Você pode criar novos acessos clicando no botão "adicionar acesso".
                 Acessos podem ser editados ou excluídos ao clicar nos respectivos ícones na lista de acessos.'
                 width={500}

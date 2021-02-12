@@ -71,7 +71,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
         api.defaults.headers.authorization = `bearer ${token}`;
 
-        const prefix = `${process.env.REACT_APP_STORAGE_LOCATION}`;
+        const prefix = process.env.REACT_APP_STORAGE_LOCATION;
 
         localStorage.setItem(`${prefix}:token`, token);
         localStorage.setItem(`${prefix}:user`, JSON.stringify(user));

@@ -77,12 +77,10 @@ const CategoryAdd: React.FC = () => {
 
   const { selected } = useSuperunit();
 
-  const superUnitId = selected?.id;
-
   useEffect(() => {
     const getDevices = async () => {
-      if (superUnitId) {
-        const response = await api.get(`/superunities/${superUnitId}/devices`);
+      if (selected) {
+        const response = await api.get(`/superunities/${selected?.id}/devices`);
 
         if (response.status !== 200) return;
 
@@ -96,9 +94,9 @@ const CategoryAdd: React.FC = () => {
     };
 
     const getInvites = async () => {
-      if (superUnitId) {
+      if (selected?.id) {
         const response = await api.get(
-          `/superunities/${superUnitId}/invites/types`,
+          `/superunities/${selected?.id}/invites/types`,
         );
 
         if (response.status !== 200) return;
@@ -114,7 +112,7 @@ const CategoryAdd: React.FC = () => {
 
     getInvites();
     getDevices();
-  }, [superUnitId]);
+  }, [selected]);
 
   const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
@@ -150,7 +148,7 @@ const CategoryAdd: React.FC = () => {
         });
 
         await api.post(
-          `/superunities/${superUnitId}/accesses/categories`,
+          `/superunities/${selected?.id}/accesses/categories`,
           data,
         );
 
@@ -180,7 +178,7 @@ const CategoryAdd: React.FC = () => {
 
       setLoading(false);
     },
-    [superUnitId, weekDays, devices, name, timeRestrictions, addToast, invites],
+    [selected, weekDays, devices, name, timeRestrictions, addToast, invites],
   );
 
   return (

@@ -7,6 +7,8 @@ import {
   FiChevronLeft,
   FiBarChart,
   FiSend,
+  FiLock,
+  FiPackage,
 } from 'react-icons/fi';
 import { useLocation } from 'react-router-dom';
 import { Container, Logo, Title, Menu } from './styles';
@@ -14,8 +16,10 @@ import MenuItem from './MenuItem';
 import OpenCloseButton from './OpenCloseButton';
 import logo from '../../assets/logo.png';
 import LogoutButton from './LogoutButton';
+import { useSuperunit } from '../../hooks/superunit';
 
 const SideBar: React.FC = () => {
+  const { selected } = useSuperunit();
   const [open, setOpen] = useState(() => {
     const menuState = localStorage.getItem('@Easyfront:menuState');
     return menuState ? menuState === 'true' : true;
@@ -58,6 +62,18 @@ const SideBar: React.FC = () => {
           to="/access"
           name="Acessos"
           icon={FiChevronsRight}
+        />
+        <MenuItem
+          path={path}
+          to="/lockerroom"
+          name="Locker Room"
+          icon={FiLock}
+        />
+        <MenuItem
+          path={path}
+          to="/deliveries"
+          name="Entregas"
+          icon={FiPackage}
         />
         <LogoutButton />
       </Menu>

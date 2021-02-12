@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { FiPlus, FiHome } from 'react-icons/fi';
+import { FiPlus, FiCodepen } from 'react-icons/fi';
 import {
   Container,
   MainHeader,
@@ -14,18 +14,18 @@ import { useSuperunit } from '../../hooks/superunit';
 import api from '../../services/api';
 import Layout from '../../Layouts/Default';
 import Header from '../../components/Header';
-import UnitItem from './UnitItem';
+import Volume from './Volume';
 import Tooltip from '../../components/Tooltip';
 
-interface IUnit {
+interface IVolume {
   id: string;
   name: string;
-  public_area: string;
+  size: string;
 }
 
-const Units: React.FC = () => {
+const LockerRoom: React.FC = () => {
   const { selected } = useSuperunit();
-  const [unities, setUnities] = useState<IUnit[]>([]);
+  const [volumes, setVolumes] = useState<IVolume[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -36,11 +36,13 @@ const Units: React.FC = () => {
   };
 
   async function handleDelete(id: string) {
-    const deleteUnit = unities.find(unit => unit.id === id);
+    const deleteVolume = volumes.find(volume => volume.id === id);
 
-    await api.delete(`/superunities/${selected?.id}/unities/${deleteUnit?.id}`);
+    await api.delete(
+      `/superunities/${selected?.id}/lockerroom/volumes/${deleteVolume?.id}`,
+    );
 
-    setUnities(oldUnities => oldUnities.filter(unit => unit.id !== id));
+    setVolumes(oldVolumes => oldVolumes.filter(volume => volume.id !== id));
   }
 
   useEffect(() => {
@@ -48,7 +50,7 @@ const Units: React.FC = () => {
       setLoading(true);
       if (selected) {
         const response = await api.get(
-          `/superunities/${selected?.id}/unities`,
+          `/superunities/${selected?.id}/lockerroom/volumes`,
           {
             params: { page },
           },
@@ -56,7 +58,7 @@ const Units: React.FC = () => {
 
         if (!response) return;
 
-        setUnities(response.data.data);
+        setVolumes(response.data.data);
 
         setPage(response.data.page);
 
@@ -66,21 +68,23 @@ const Units: React.FC = () => {
     }
 
     getData();
-  }, [selected, page, selected]);
+  }, [selected, page]);
+
+  console.log(volumes);
 
   return (
     <Layout>
-      <Header title={{ value: 'Unidades', path: '/units' }} />
+      <Header title={{ value: 'Volumes', path: '/volumes' }} />
       <Container>
         <MainHeader>
           <div>
             <h1>
-              <FiHome />
-              Lista de Unidades
+              <FiCodepen />
+              Lista de Volumes
               <Tooltip
                 title='
-                Você pode criar novas unidades clicando no botão "adicionar unidade".
-                Unidades podem ser editadas ou excluídas ao clicar nos respectivos ícones na lista de acessos.'
+                Você pode criar novos volumes clicando no botão "adicionar volume".
+                Volumes podem ser editadas ou excluídas ao clicar nos respectivos ícones na lista de volumes.'
                 width={500}
                 height={75}
                 direction="down"
@@ -88,11 +92,11 @@ const Units: React.FC = () => {
             </h1>
           </div>
           <StyledButton
-            name="Unidades"
+            name="Volumes"
             icon={FiPlus}
-            onClick={() => history.push('/units/new')}
+            onClick={() => history.push('/lockerroom/new')}
           >
-            Adicionar Unidade
+            Adicionar Volume
           </StyledButton>
         </MainHeader>
 
@@ -100,27 +104,25 @@ const Units: React.FC = () => {
           <StyledLoading />
         ) : (
           <List>
-            {unities.length > 0 && (
+            {volumes.length > 0 && (
               <ListItemsCategory>
                 <div>Nome</div>
-                <div>Area</div>
-                <div>Editar / Excluir</div>
+                <div>Tamanho</div>
+                <div>Excluir</div>
               </ListItemsCategory>
             )}
-            {unities.length > 0 ? (
-              unities.map(unit => (
-                <UnitItem
-                  key={unit.id}
-                  name={unit.name || 'Não informado'}
-                  public_area={unit.public_area || 'Não informado'}
-                  id={unit.id}
-                  onClickDelete={() => handleDelete(unit.id)}
+            {volumes.length > 0 ? (
+              volumes.map(volume => (
+                <Volume
+                  key={volume.id}
+                  data={volume}
+                  onClickDelete={() => handleDelete(volume.id)}
                 />
               ))
             ) : (
-              <p>Ainda não há unidades registradas</p>
+              <p>Ainda não há volumes registrados</p>
             )}
-            {unities.length > 0 && (
+            {volumes.length > 0 && (
               <Pagination
                 page={page}
                 handlePagination={handlePages}
@@ -134,4 +136,4 @@ const Units: React.FC = () => {
   );
 };
 
-export default Units;
+export default LockerRoom;

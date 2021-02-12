@@ -42,8 +42,6 @@ const Category: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const history = useHistory();
 
-  const superUnitId = selected?.id;
-
   const handlePages = (updatePage: number) => {
     setPage(updatePage);
   };
@@ -52,7 +50,7 @@ const Category: React.FC = () => {
     const deleteCategory = categories.find(category => category.id === id);
 
     await api.delete(
-      `/superunities/${superUnitId}/accesses/categories/${deleteCategory?.id}`,
+      `/superunities/${selected?.id}/accesses/categories/${deleteCategory?.id}`,
     );
 
     setCategories(oldCategory =>
@@ -65,7 +63,7 @@ const Category: React.FC = () => {
       setLoading(true);
       if (selected) {
         const response = await api.get(
-          `/superunities/${superUnitId}/accesses/categories`,
+          `/superunities/${selected?.id}/accesses/categories`,
           { params: { page } },
         );
 
@@ -81,7 +79,7 @@ const Category: React.FC = () => {
     }
 
     getData();
-  }, [selected, page, superUnitId]);
+  }, [selected, page, selected?.id]);
 
   return (
     <Layout>
