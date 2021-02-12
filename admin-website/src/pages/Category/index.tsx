@@ -93,8 +93,8 @@ const Category: React.FC = () => {
               <Tooltip
                 title='Você pode criar novas categorias clicando no botão "adicionar categoria".
                 Categorias podem ser editadas ou excluídas ao clicar nos respectivos ícones na lista de categorias.'
-                width={500}
-                height={75}
+                width={532}
+                height={90}
                 direction="down"
               />
             </h1>

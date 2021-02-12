@@ -81,8 +81,8 @@ const Units: React.FC = () => {
                 title='
                 Você pode criar novas unidades clicando no botão "adicionar unidade".
                 Unidades podem ser editadas ou excluídas ao clicar nos respectivos ícones na lista de acessos.'
-                width={500}
-                height={75}
+                width={532}
+                height={90}
                 direction="down"
               />
             </h1>

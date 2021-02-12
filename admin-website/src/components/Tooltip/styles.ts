@@ -22,7 +22,7 @@ export const Container = styled.div<ITooltipProps>`
 
     min-width: ${props => `${props.width}px`};
     height: ${props => `${props.height}px`};
-    padding: 8px;
+    padding: 16px;
     border-radius: 4px;
     font-size: 16px;
     font-weight: 500;

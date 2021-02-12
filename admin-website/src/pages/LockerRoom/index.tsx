@@ -85,8 +85,8 @@ const LockerRoom: React.FC = () => {
                 title='
                 Você pode criar novos volumes clicando no botão "adicionar volume".
                 Volumes podem ser editadas ou excluídas ao clicar nos respectivos ícones na lista de volumes.'
-                width={500}
-                height={75}
+                width={532}
+                height={90}
                 direction="down"
               />
             </h1>

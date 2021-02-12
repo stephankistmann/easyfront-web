@@ -87,7 +87,7 @@ const Peers: React.FC = () => {
             <Tooltip
               title='
               Você pode criar um novo parceiro clicando no botão "adicionar parceiro". O e-mail de confirmação para usuários inativos pode ser reenviado ao clicar no botão "Reenviar e-mail" na lista de usuários. '
-              width={500}
+              width={532}
               height={90}
               direction="down"
             />

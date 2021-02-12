@@ -86,8 +86,8 @@ const Invite: React.FC = () => {
               <Tooltip
                 title='Você pode criar novos convites clicando no botão "adicionar convite".
                 Convites podem ser editados ou excluídos ao clicar nos respectivos ícones na lista de categorias.'
-                width={500}
-                height={75}
+                width={532}
+                height={90}
                 direction="down"
               />
             </h1>
