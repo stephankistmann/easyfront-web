@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import { FormHandles } from '@unform/core';
-import { FiLock, FiLogIn, FiMail, FiUser } from 'react-icons/fi';
+import { FiLock, FiLogIn, FiMail, FiUser, FiHelpCircle } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
@@ -80,10 +80,13 @@ const SignIn: React.FC = () => {
             </Button>
 
             <Links>
-              <Link to="/forgot-password">Esqueci minha senha</Link>
-
+              <Link to="/forgot-password">
+                Esqueci minha senha
+                <FiHelpCircle />
+              </Link>
+              <div />
               <a href="http://portal.easyfront.cloud/">
-                Entrar como usuário
+                Entrar como morador
                 <FiUser />
               </a>
             </Links>

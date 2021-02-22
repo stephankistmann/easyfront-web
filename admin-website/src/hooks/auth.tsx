@@ -41,12 +41,13 @@ interface AuthContextData {
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
+const prefix = process.env.REACT_APP_STORAGE_LOCATION;
 
 const AuthProvider: React.FC = ({ children }) => {
   const { addToast } = useToast();
   const [data, setData] = useState<AuthState>(() => {
-    const token = localStorage.getItem('@Easyfront:token');
-    const user = localStorage.getItem('@Easyfront:user');
+    const token = localStorage.getItem(`${prefix}:token`);
+    const user = localStorage.getItem(`${prefix}:user`);
 
     if (token) {
       api.defaults.headers.authorization = `bearer ${token}`;
@@ -70,8 +71,6 @@ const AuthProvider: React.FC = ({ children }) => {
         const { token, user } = response.data;
 
         api.defaults.headers.authorization = `bearer ${token}`;
-
-        const prefix = process.env.REACT_APP_STORAGE_LOCATION;
 
         localStorage.setItem(`${prefix}:token`, token);
         localStorage.setItem(`${prefix}:user`, JSON.stringify(user));
@@ -107,15 +106,15 @@ const AuthProvider: React.FC = ({ children }) => {
   );
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('@Easyfront:token');
-    localStorage.removeItem('@Easyfront:user');
+    localStorage.removeItem(`${prefix}:token`);
+    localStorage.removeItem(`${prefix}:user`);
 
     setData({} as AuthState);
   }, []);
 
   const updateUser = useCallback(
     (user: User) => {
-      localStorage.setItem('@Easyfront:user', JSON.stringify(user));
+      localStorage.setItem(`${prefix}:user`, JSON.stringify(user));
 
       setData({
         token: data.token,

@@ -49,7 +49,6 @@ export const AnimationContainer = styled.div`
     h1 {
       margin-bottom: 24px;
       font-size: 16px;
-      font-weight: 700;
     }
 
     div + div {
@@ -66,12 +65,22 @@ export const AnimationContainer = styled.div`
 export const Links = styled.div`
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  margin-top: 24px;
+
+  div {
+    width: 4px;
+    height: 4px;
+    background: #ccc;
+    border-radius: 2px;
+  }
+
   a {
+    font-size: 12px;
     color: #2f4858;
     display: flex;
     text-decoration: none;
     transition: color 0.2;
-    margin-top: 24px;
     align-items: center;
     justify-content: center;
 
